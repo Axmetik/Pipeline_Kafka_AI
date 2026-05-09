@@ -1,0 +1,10 @@
+kafka-python
+confluent-kafka
+pandas
+numpy
+scikit-learn
+matplotlib
+pyarrow
+python-dotenv
+fastapi
+uvicorn
