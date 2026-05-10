@@ -3,6 +3,7 @@ import json
 
 from processing.iot_processor import IoTProcessor
 from storage.csv_storage import CSVStorage
+from storage.parquet_storage import ParquetStorage
 
 
 TOPIC_NAME = "iot-sensor-data"
@@ -18,6 +19,10 @@ consumer = KafkaConsumer(
 
 processor = IoTProcessor()
 storage = CSVStorage(file_path="data/processed/iot_sensor_data.csv")
+parquet_storage = ParquetStorage(
+    file_path="data/processed/iot_sensor_data.parquet",
+    batch_size=10
+)
 
 print("Processing consumer started. Waiting for messages...\n")
 
@@ -25,6 +30,7 @@ for message in consumer:
     raw_data = message.value
     processed_data = processor.process(raw_data)
     storage.save(processed_data)
+    parquet_storage.save(processed_data)
 
     print(
         f"Saved | "
