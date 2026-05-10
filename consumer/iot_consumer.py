@@ -1,6 +1,10 @@
 from kafka import KafkaConsumer
 import json
 
+from processing.iot_processor import IoTProcessor
+from storage.csv_storage import CSVStorage
+
+
 TOPIC_NAME = "iot-sensor-data"
 
 consumer = KafkaConsumer(
@@ -8,19 +12,25 @@ consumer = KafkaConsumer(
     bootstrap_servers="localhost:9092",
     auto_offset_reset="earliest",
     enable_auto_commit=True,
-    group_id="iot-consumer-group",
+    group_id="iot-processing-group",
     value_deserializer=lambda v: json.loads(v.decode("utf-8"))
 )
 
-print("Consumer started. Waiting for messages...\n")
+processor = IoTProcessor()
+storage = CSVStorage(file_path="data/processed/iot_sensor_data.csv")
+
+print("Processing consumer started. Waiting for messages...\n")
 
 for message in consumer:
-    data = message.value
+    raw_data = message.value
+    processed_data = processor.process(raw_data)
+    storage.save(processed_data)
 
     print(
-        f"Received | "
-        f"sensor_id={data['sensor_id']} | "
-        f"timestamp={data['timestamp']} | "
-        f"temperature={data['temperature']} | "
-        f"humidity={data['humidity']}"
+        f"Saved | "
+        f"sensor_id={processed_data['sensor_id']} | "
+        f"temperature={processed_data['temperature']} | "
+        f"humidity={processed_data['humidity']} | "
+        f"temp_anomaly={processed_data['is_temperature_anomaly']} | "
+        f"humidity_anomaly={processed_data['is_humidity_anomaly']}"
     )
