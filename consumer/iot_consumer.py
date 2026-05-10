@@ -24,8 +24,8 @@ processor = IoTProcessor()
 anomaly_detector = AnomalyDetector()
 storage = CSVStorage(file_path="data/processed/iot_sensor_data.csv")
 parquet_storage = ParquetStorage(
-    file_path="data/processed/iot_sensor_data.parquet",
-    batch_size=10
+    base_path="data/processed/parquet",
+    batch_size=100
 )
 
 print("Processing consumer started. Waiting for messages...\n")

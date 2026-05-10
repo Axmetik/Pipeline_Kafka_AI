@@ -1,16 +1,18 @@
 import os
+from datetime import datetime
 from typing import Dict, Any, List
 
 import pandas as pd
 
 
 class ParquetStorage:
-    def __init__(self, file_path: str, batch_size: int = 10):
-        self.file_path = file_path
+    def __init__(self, base_path: str, batch_size: int = 100):
+        self.base_path = base_path
         self.batch_size = batch_size
         self.buffer: List[Dict[str, Any]] = []
+        self.batch_counter = 0
 
-        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
+        os.makedirs(self.base_path, exist_ok=True)
 
     def save(self, data: Dict[str, Any]) -> None:
         self.buffer.append(data)
@@ -22,13 +24,28 @@ class ParquetStorage:
         if not self.buffer:
             return
 
-        new_df = pd.DataFrame(self.buffer)
+        df = pd.DataFrame(self.buffer)
 
-        if os.path.exists(self.file_path):
-            existing_df = pd.read_parquet(self.file_path)
-            result_df = pd.concat([existing_df, new_df], ignore_index=True)
-        else:
-            result_df = new_df
+        timestamp = datetime.now()
 
-        result_df.to_parquet(self.file_path, index=False)
+        partition_path = os.path.join(
+            self.base_path,
+            f"year={timestamp.year}",
+            f"month={timestamp.month:02d}",
+            f"day={timestamp.day:02d}"
+        )
+
+        os.makedirs(partition_path, exist_ok=True)
+
+        self.batch_counter += 1
+
+        file_path = os.path.join(
+            partition_path,
+            f"batch_{self.batch_counter:03d}.parquet"
+        )
+
+        df.to_parquet(file_path, index=False)
+
+        print(f"Saved parquet batch: {file_path}")
+
         self.buffer.clear()
