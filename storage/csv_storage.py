@@ -14,8 +14,11 @@ class CSVStorage:
             "is_temperature_anomaly",
             "is_humidity_anomaly",
             "ai_anomaly",
+            "iforest_anomaly_score",
             "autoencoder_anomaly",
-            "autoencoder_reconstruction_error"
+            "autoencoder_reconstruction_error",
+            "autoencoder_threshold",
+            "autoencoder_training_loss",
         ]
 
         os.makedirs(os.path.dirname(self.file_path), exist_ok=True)

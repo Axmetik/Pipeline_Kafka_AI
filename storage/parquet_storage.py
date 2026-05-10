@@ -6,9 +6,15 @@ import pandas as pd
 
 
 class ParquetStorage:
-    def __init__(self, base_path: str, batch_size: int = 100):
+    def __init__(
+        self,
+        base_path: str,
+        batch_size: int = 5000,
+        compression: str = "snappy"
+    ):
         self.base_path = base_path
         self.batch_size = batch_size
+        self.compression = compression
         self.buffer: List[Dict[str, Any]] = []
         self.batch_counter = 0
 
@@ -41,10 +47,14 @@ class ParquetStorage:
 
         file_path = os.path.join(
             partition_path,
-            f"batch_{self.batch_counter:03d}.parquet"
+            f"batch_{self.batch_counter:04d}.parquet"
         )
 
-        df.to_parquet(file_path, index=False)
+        df.to_parquet(
+            file_path,
+            index=False,
+            compression=self.compression
+        )
 
         print(f"Saved parquet batch: {file_path}")
 
