@@ -2,15 +2,13 @@ from kafka import KafkaProducer
 import pandas as pd
 import json
 import time
+import argparse
 
-producer = KafkaProducer(
-    bootstrap_servers='localhost:9092',
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
 
 TOPIC_NAME = "iot-sensor-data"
+DATASET_PATH = "data/raw/intel_lab_data.txt"
 
-columns = [
+COLUMNS = [
     "date",
     "time",
     "epoch",
@@ -21,26 +19,72 @@ columns = [
     "voltage"
 ]
 
-df = pd.read_csv(
-    "data/raw/intel_lab_data.txt",
-    sep=r"\s+",
-    names=columns
-)
 
-print("Intel Lab Producer started...\n")
+def create_producer() -> KafkaProducer:
+    return KafkaProducer(
+        bootstrap_servers="localhost:9092",
+        value_serializer=lambda v: json.dumps(v).encode("utf-8")
+    )
 
-for _, row in df.iterrows():
-    sensor_data = {
-        "timestamp": f"{row['date']} {row['time']}",
-        "sensor_id": int(row["mote_id"]),
-        "temperature": float(row["temperature"]),
-        "humidity": float(row["humidity"]),
-        "light": float(row["light"]),
-        "voltage": float(row["voltage"])
-    }
 
-    producer.send(TOPIC_NAME, sensor_data)
+def load_dataset(limit: int | None = None) -> pd.DataFrame:
+    df = pd.read_csv(
+        DATASET_PATH,
+        sep=r"\s+",
+        names=COLUMNS
+    )
 
-    print(f"Sent: {sensor_data}")
+    df = df.dropna()
 
-    time.sleep(1)
+    if limit:
+        df = df.head(limit)
+
+    return df
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Intel Lab Dataset Kafka Producer")
+    parser.add_argument(
+        "--sleep",
+        type=float,
+        default=0.0,
+        help="Delay between messages in seconds. Use 0 for fast experiment mode."
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Maximum number of records to stream."
+    )
+
+    args = parser.parse_args()
+
+    producer = create_producer()
+    df = load_dataset(limit=args.limit)
+
+    print(f"Intel Lab Producer started. Records to send: {len(df)}")
+    print(f"Sleep between messages: {args.sleep} seconds\n")
+
+    for _, row in df.iterrows():
+        sensor_data = {
+            "timestamp": f"{row['date']} {row['time']}",
+            "sensor_id": int(row["mote_id"]),
+            "temperature": float(row["temperature"]),
+            "humidity": float(row["humidity"]),
+            "light": float(row["light"]),
+            "voltage": float(row["voltage"])
+        }
+
+        producer.send(TOPIC_NAME, sensor_data)
+
+        if args.sleep > 0:
+            time.sleep(args.sleep)
+
+    producer.flush()
+    producer.close()
+
+    print("\nProducer finished sending data.")
+
+
+if __name__ == "__main__":
+    main()

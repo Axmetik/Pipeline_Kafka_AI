@@ -22,12 +22,17 @@ consumer = KafkaConsumer(
 processor = IoTProcessor()
 
 isolation_forest_detector = AnomalyDetector(
-    window_size=50
+    window_size=500,
+    contamination=0.03,
+    min_train_size=500
 )
 
 autoencoder_detector = AutoencoderAnomalyDetector(
-    window_size=100,
-    threshold_percentile=95
+    window_size=2000,
+    retrain_interval=2000,
+    threshold_percentile=99,
+    epochs=30,
+    learning_rate=0.001
 )
 
 csv_storage = CSVStorage(
@@ -36,7 +41,8 @@ csv_storage = CSVStorage(
 
 parquet_storage = ParquetStorage(
     base_path="data/processed/parquet",
-    batch_size=100
+    batch_size=5000,
+    compression="snappy"
 )
 
 print("Processing consumer started. Waiting for messages...\n")
@@ -58,8 +64,10 @@ try:
             f"temp={processed_data['temperature']} | "
             f"humidity={processed_data['humidity']} | "
             f"iforest_anomaly={processed_data['ai_anomaly']} | "
+            f"iforest_score={processed_data['iforest_anomaly_score']} | "
             f"ae_anomaly={processed_data['autoencoder_anomaly']} | "
-            f"ae_error={processed_data['autoencoder_reconstruction_error']}"
+            f"ae_error={processed_data['autoencoder_reconstruction_error']} | "
+            f"ae_threshold={processed_data['autoencoder_threshold']} | "
         )
 
 except KeyboardInterrupt:
