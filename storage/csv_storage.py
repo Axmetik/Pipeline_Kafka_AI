@@ -26,5 +26,9 @@ class CSVStorage:
 
     def save(self, data: Dict[str, Any]) -> None:
         with open(self.file_path, mode="a", newline="", encoding="utf-8") as file:
-            writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+            writer = csv.DictWriter(
+                file,
+                fieldnames=self.fieldnames,
+                extrasaction="ignore"
+            )
             writer.writerow(data)
