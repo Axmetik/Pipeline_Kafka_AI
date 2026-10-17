@@ -1,5 +1,7 @@
 import os
-from datetime import datetime
+from datetime import datetime, timezone
+from uuid import uuid4
+from processing.message_schema import PROCESSED_FIELDS
 from typing import Dict, Any, List
 
 import pandas as pd
@@ -12,6 +14,8 @@ class ParquetStorage:
         batch_size: int = 5000,
         compression: str = "snappy"
     ):
+        if batch_size < 1:
+            raise ValueError("batch_size must be positive")
         self.base_path = base_path
         self.batch_size = batch_size
         self.compression = compression
@@ -21,7 +25,7 @@ class ParquetStorage:
         os.makedirs(self.base_path, exist_ok=True)
 
     def save(self, data: Dict[str, Any]) -> None:
-        self.buffer.append(data)
+        self.buffer.append(dict(data))
 
         if len(self.buffer) >= self.batch_size:
             self.flush()
@@ -30,9 +34,9 @@ class ParquetStorage:
         if not self.buffer:
             return
 
-        df = pd.DataFrame(self.buffer)
+        df = pd.DataFrame(self.buffer, columns=PROCESSED_FIELDS)
 
-        timestamp = datetime.now()
+        timestamp = datetime.now(timezone.utc)
 
         partition_path = os.path.join(
             self.base_path,
@@ -47,7 +51,7 @@ class ParquetStorage:
 
         file_path = os.path.join(
             partition_path,
-            f"batch_{self.batch_counter:04d}.parquet"
+            f"batch_{uuid4().hex}.parquet"
         )
 
         df.to_parquet(

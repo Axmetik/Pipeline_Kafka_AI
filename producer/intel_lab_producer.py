@@ -3,10 +3,13 @@ import pandas as pd
 import json
 import time
 import argparse
+import os
+from config import Settings
 
 
-TOPIC_NAME = "iot-sensor-data"
-DATASET_PATH = "data/raw/intel_lab_data.txt"
+SETTINGS = Settings.from_env()
+TOPIC_NAME = SETTINGS.topic
+DATASET_PATH = os.getenv("INTEL_LAB_DATASET_PATH", "data/raw/intel_lab_data.txt")
 
 COLUMNS = [
     "date",
@@ -22,7 +25,7 @@ COLUMNS = [
 
 def create_producer() -> KafkaProducer:
     return KafkaProducer(
-        bootstrap_servers="localhost:9092",
+        bootstrap_servers=SETTINGS.bootstrap_servers,
         value_serializer=lambda v: json.dumps(v).encode("utf-8")
     )
 
@@ -75,7 +78,7 @@ def main() -> None:
             "voltage": float(row["voltage"])
         }
 
-        producer.send(TOPIC_NAME, sensor_data)
+        producer.send(TOPIC_NAME, sensor_data).get(timeout=30)
 
         if args.sleep > 0:
             time.sleep(args.sleep)
