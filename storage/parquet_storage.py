@@ -12,10 +12,14 @@ class ParquetStorage:
         self,
         base_path: str,
         batch_size: int = 5000,
-        compression: str = "snappy"
+        compression: str = "snappy",
+        columns=None,
+        arrow_schema=None
     ):
         if batch_size < 1:
             raise ValueError("batch_size must be positive")
+        self.columns = list(PROCESSED_FIELDS) if columns is None else list(columns)
+        self.arrow_schema = arrow_schema
         self.base_path = base_path
         self.batch_size = batch_size
         self.compression = compression
@@ -34,7 +38,7 @@ class ParquetStorage:
         if not self.buffer:
             return
 
-        df = pd.DataFrame(self.buffer, columns=PROCESSED_FIELDS)
+        df = pd.DataFrame(self.buffer, columns=self.columns)
 
         timestamp = datetime.now(timezone.utc)
 
@@ -54,10 +58,12 @@ class ParquetStorage:
             f"batch_{uuid4().hex}.parquet"
         )
 
+        options = {"schema": self.arrow_schema} if self.arrow_schema is not None else {}
         df.to_parquet(
             file_path,
             index=False,
-            compression=self.compression
+            compression=self.compression,
+            **options
         )
 
         print(f"Saved parquet batch: {file_path}")

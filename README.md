@@ -132,3 +132,208 @@ script does not verify that historical CSV and Parquet contain identical records
 Stop services with `docker compose -f docker/docker-compose.yml down`.
 The existing Compose configuration has no explicit persistent Kafka volume;
 do not treat it as durable storage across container recreation.
+
+## Energy Pipeline (stage 2)
+
+Independent scenario: **Appliances CSV → Kafka → causal preprocessing → frozen
+HistGradientBoostingRegressor + persistence → separate Parquet archives**.
+The IoT commands, detectors and default storage schema above remain unchanged.
+
+### Dataset and offline training
+
+Use the same Python environment. Dependencies are already in `requirements.txt`.
+The download command verifies HTTPS and refuses to overwrite an existing file:
+
+```sh
+python -m producer.download_appliances --output data/energy/raw/energydata_complete.csv
+OMP_NUM_THREADS=1 python -m ai.train_energy_forecaster \
+  --dataset data/energy/raw/energydata_complete.csv \
+  --output artifacts/energy/appliances-hgb-bound-v1
+```
+
+Source: [UCI Appliances Energy Prediction](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction),
+Candanedo (2017), DOI `10.24432/C5VC8G`, CC BY 4.0.
+`Appliances` is **Wh per 10-minute interval**, not watts, and is not silently added
+to `lights` or relabeled as whole-building consumption. `T1` and `RH_1` describe
+the kitchen. Other CSV measurements are archived as additional parameters.
+The random `rv1`/`rv2` fields are excluded, and airport weather is not used as a
+model feature because its historical interpolation does not establish real-time availability.
+
+The original timestamp labels have no assigned timezone. The adapter preserves
+this with `timezone=null` and `timestamp_reference=dataset_label`. It does not
+claim these are verified interval start/end timestamps. Row t is treated as
+available before row t+1 for this replay experiment.
+
+Each new experiment requires a new output directory. It produces:
+
+- `model.joblib`: trusted local model and metadata; never load untrusted pickle/joblib files.
+- `metadata.json`: model/feature versions, parameters, ordered features, seed,
+  dataset SHA-256, software versions, train/test boundaries and replay range.
+- `metrics.json`: actual MAE/RMSE in Wh for model and persistence, counts and quality report.
+- `test_predictions.parquet`: held-out prediction origins, targets, actual values and predictions.
+
+The first 80% of eligible **target times** train the model; the last 20% evaluate it.
+There is no shuffle or automatic early stopping. The test is sequential one-step
+forecasting with a frozen model: earlier observed test measurements can form later
+features, but no test target is used in fitting. Persistence predicts the last
+observed energy. Parameters are fixed before test evaluation.
+
+### Contract, features and clocks
+
+The machine-readable contract is `schemas/energy-message-v1.schema.json`.
+Messages identify a building/source, source type (`dataset` or `smart_meter`),
+measurement timestamp/reference, interval, energy value/unit/scope and environment.
+Only interval energy in Wh/kWh is accepted; kWh is converted to Wh. W and
+cumulative meter readings need an upstream adapter. This first trained model is
+for `scope=appliances` and 600-second intervals. An explicit timezone label requires
+an offset-bearing timestamp with a matching offset; naive dataset times stay naive.
+
+`processing.energy_processor.EnergyProcessor` is the **single** feature implementation
+for both training and Kafka inference. It uses current energy, 1–6 prior interval
+lags, rolling mean/std over the latest 3/6 records (including current), current
+kitchen temperature/humidity and missingness indicators, and cyclic hour/weekday
+features plus a weekend indicator. No future weather or energy is used.
+
+There are three separate time concepts:
+
+- `measurement_timestamp` / `forecast_origin`: original event time t of the latest known measurement.
+- `forecast_generated_at_utc`: actual wall-clock time the prediction was produced during replay.
+- `forecast_target_timestamp`: t + 600 seconds in the source timestamp convention.
+
+`received_at_utc` separately records ingestion. Source timestamps are stored as
+strings to preserve naive vs offset-bearing semantics without silently imposing UTC.
+
+Invalid energy, JSON, schema or timestamps go to `rejected.jsonl`. Missing/nonfinite
+temperature or humidity and humidity outside 0–100% become null with quality flags;
+HGB handles missing values. Large valid energy values are not clipped as anomalies.
+Histories are isolated per building/source. Duplicate or out-of-order timestamps
+are rejected; a gap resets history. Seven consecutive measurements are needed,
+so the first six have `insufficient_history` and null predictions. Model output
+is clipped at zero to respect nonnegative consumption. Late-event buffering,
+persistent deduplication and automatic resampling are not implemented.
+
+### Kafka replay
+
+Start Kafka using the earlier Compose instructions. Set these variables in both
+producer and consumer terminals (use new names/directories for independent runs):
+
+```sh
+export ENERGY_KAFKA_TOPIC=energy-demo-001
+export ENERGY_KAFKA_GROUP_ID=energy-demo-001
+export ENERGY_OUTPUT_DIR=data/energy/demo-001
+export ENERGY_PARQUET_BATCH_SIZE=1000
+```
+
+Consumer:
+
+```sh
+OMP_NUM_THREADS=1 python -m consumer.energy_consumer \
+  --model artifacts/energy/appliances-hgb-bound-v1/model.joblib \
+  --max-messages 100 --idle-timeout-ms 60000
+```
+
+Producer:
+
+```sh
+python -m producer.energy_producer \
+  --dataset data/energy/raw/energydata_complete.csv --limit 100 --sleep 0
+```
+
+`--start`/`--end` select inclusive event-time bounds. `--speed 60` replays source-time
+differences 60 times faster; alternatively `--sleep` sets a fixed delay between
+messages. Original timestamps are never replaced by wall-clock times. Kafka keys
+are building/source pairs. The CSV must already be strictly chronological.
+
+Energy uses separate environment variables above; only `KAFKA_BOOTSTRAP_SERVERS`
+is shared with IoT. Its default output is `data/energy/processed`, topic
+`energy-measurements`, group `energy-processing-group`, batch size 5000.
+
+`measurements/` contains facts and quality flags; `forecasts/` contains prediction
+origins, target times, generation times, status, model version, and ML/baseline
+predictions. Facts and predictions are joined by building/source and target time;
+future actual values are not fabricated or backfilled into forecast files.
+Both archives use explicit nullable Arrow schemas, including for all-null warm-up
+batches, and UUID filenames. Their directory partitions use the UTC date of writing.
+
+### End-to-end verification
+
+```sh
+OMP_NUM_THREADS=1 RUN_KAFKA_SMOKE=1 python -m unittest discover -s tests -v
+
+OMP_NUM_THREADS=1 python -m ai.verify_energy_replay \
+  --dataset data/energy/raw/energydata_complete.csv \
+  --experiment artifacts/energy/appliances-hgb-bound-v1 \
+  --output artifacts/energy/replay-bound-v1 --full-dataset --inject-invalid
+```
+
+The verifier uses the **actual producer and consumer CLI commands**, creates and
+deletes a unique Kafka topic, saves logs/archives/report, and compares every held-out
+prediction with offline results. Without `--full-dataset`, it replays the held-out
+period plus six earlier observations needed for warm-up. `--inject-invalid` checks
+bad-message isolation. Output directories must be new. A final forecast beyond
+the dataset has no matching actual and is excluded from evaluation. Full replay
+also produces in-sample historical forecasts; only held-out targets count in metrics.
+
+### Remaining scope and limitations
+
+Energy feature vectors are ready for future Isolation Forest/Autoencoder adapters;
+energy anomaly training/calibration is deferred as agreed. Existing IoT detectors
+still run in the IoT scenario. No database, API or dashboard is introduced.
+
+Kafka auto-commit, in-memory feature history and buffered writes remain: a crash,
+consumer rebalance or restart can lose history/buffered records or produce duplicates.
+Use one consumer writer and an isolated output directory for this prototype.
+The two archives are not transactional. The model was trained on one house and
+has no demonstrated generalization to new buildings or physical meters.
+Missing auxiliary values are handled, but missing energy is not imputed.
+All existing outputs are kept; no automatic dataset/model migration occurs.
+
+### Model/source compatibility (review follow-up)
+
+New model artifacts contain `allowed_sources`, derived **only from sources present
+in the training partition** and included in the model version hash. The binding
+matches building ID, source ID, source type, energy scope, interval length,
+timestamp reference, timezone label and whether the timestamp has an offset.
+The standard Appliances artifact allows only `appliances-house-1` / `uci-appliances`
+with the original dataset semantics. Sharing `energy.scope=appliances` is not enough.
+
+The consumer checks compatibility before updating feature history, writing facts or
+predicting. Incompatible messages are written to `rejected.jsonl` with a reason;
+processing continues. Source identifiers are a compatibility contract, not device
+authentication: a sender can still spoof labels unless a future ingestion layer
+verifies them. Another house/meter needs an explicitly validated model/adaptation;
+there is no wildcard source override.
+
+Artifacts produced before this change have no source binding and are refused with
+an actionable error. Retrain into a **new experiment directory** using the commands
+above; do not edit the old artifact or assume unrestricted compatibility. Feature
+engineering and estimator parameters have not changed, but model version changes
+because the binding is now part of the configuration.
+
+### Automated checks
+
+`.github/workflows/tests.yml` runs on pushes, pull requests and manual dispatch:
+
+- **Unit tests:** Python 3.13 on Ubuntu 24.04, no broker and no dataset download.
+- **Kafka smoke tests:** separate job, Kafka 3.9.0 started using Compose, bounded
+  readiness wait, both IoT and Energy broker tests, then broker cleanup.
+
+CI installs `requirements-ci.txt` (a constrained test dependency subset) and
+PyTorch 2.11.0 CPU wheels. The local equivalents using the existing environment are:
+
+```sh
+OMP_NUM_THREADS=1 python tests/run_suite.py --suite unit
+OMP_NUM_THREADS=1 python tests/run_suite.py --suite kafka
+OMP_NUM_THREADS=1 python tests/run_suite.py --suite all
+```
+
+The runner explicitly selects the suites and enables broker tests for `kafka`/`all`;
+skipped tests or an empty selection fail rather than silently passing.
+
+### Recovery limitations
+
+See [recovery and delivery limits](docs/recovery-and-delivery.md) for exact failure
+windows and a safe manual replay procedure. Offsets, feature history and Parquet
+are not checkpointed together: crashes can cause **missing records, duplicates,
+partial files and differences between measurement and forecast archives**. Normal
+shutdown flushing does not establish crash-safe delivery.
