@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipeline:energy-message:1.0",
+  "title": "Interval energy measurement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "building_id", "source_id", "source_type", "timestamp", "timezone", "timestamp_reference", "interval_seconds", "energy", "environment", "additional_parameters"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "event_id": {"type": "string", "minLength": 1},
+    "building_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_type": {"enum": ["dataset", "smart_meter"]},
+    "timestamp": {"type": "string", "minLength": 1},
+    "timezone": {"type": ["string", "null"]},
+    "timestamp_reference": {"enum": ["dataset_label", "interval_start", "interval_end"]},
+    "interval_seconds": {"type": "integer", "minimum": 1},
+    "energy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "unit", "measurement_type", "scope"],
+      "properties": {
+        "value": {"type": "number", "minimum": 0},
+        "unit": {"enum": ["Wh", "kWh"]},
+        "measurement_type": {"const": "interval_energy"},
+        "scope": {"type": "string", "minLength": 1}
+      }
+    },
+    "environment": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "temperature_c": {"type": ["number", "null"]},
+        "relative_humidity_pct": {"type": ["number", "null"]}
+      }
+    },
+    "additional_parameters": {
+      "type": "object", "additionalProperties": {"type": ["number", "null"]}
+    }
+  }
+}
