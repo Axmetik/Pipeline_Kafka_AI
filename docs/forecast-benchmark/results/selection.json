@@ -1,0 +1,49 @@
+{
+  "parameters": {
+    "persistence": {},
+    "seasonal_naive": {},
+    "random_forest": {
+      "max_depth": 12,
+      "min_samples_leaf": 10,
+      "n_estimators": 400
+    },
+    "hist_gradient_boosting": {
+      "l2_regularization": 0.0,
+      "learning_rate": 0.05,
+      "max_iter": 100,
+      "max_leaf_nodes": 15
+    }
+  },
+  "validation_metrics": {
+    "persistence": {
+      "count": 3946,
+      "mae_wh": 28.441459706031424,
+      "rmse_wh": 71.97330839370473,
+      "mean_signed_error_wh": -0.07856056766345666,
+      "underprediction_fraction": 0.3345159655347187
+    },
+    "seasonal_naive": {
+      "count": 3946,
+      "mae_wh": 60.25595539787126,
+      "rmse_wh": 127.37445743751479,
+      "mean_signed_error_wh": -1.8018246325392804,
+      "underprediction_fraction": 0.41130258489609733
+    },
+    "random_forest": {
+      "count": 3946,
+      "mae_wh": 26.443457732686625,
+      "rmse_wh": 61.23661769205663,
+      "mean_signed_error_wh": 0.08423253198702604,
+      "underprediction_fraction": 0.39559047136340597
+    },
+    "hist_gradient_boosting": {
+      "count": 3946,
+      "mae_wh": 26.54491374941168,
+      "rmse_wh": 60.992505747262285,
+      "mean_signed_error_wh": -0.5632991489418088,
+      "underprediction_fraction": 0.41510390268626457
+    }
+  },
+  "recommended_by_validation": "random_forest",
+  "selection_uses_test": false
+}

@@ -1,0 +1,5 @@
+model,median_us,p95_us,calls
+persistence,0.75,0.792,1280
+seasonal_naive,0.75,0.792,1280
+random_forest,9618.4375,10719.011050000001,1280
+hist_gradient_boosting,422.792,468.85595,1280

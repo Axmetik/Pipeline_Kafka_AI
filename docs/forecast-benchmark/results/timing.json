@@ -1,0 +1,22 @@
+{
+  "persistence": {
+    "median_us": 0.75,
+    "p95_us": 0.792,
+    "calls": 1280
+  },
+  "seasonal_naive": {
+    "median_us": 0.75,
+    "p95_us": 0.792,
+    "calls": 1280
+  },
+  "random_forest": {
+    "median_us": 9618.4375,
+    "p95_us": 10719.011050000001,
+    "calls": 1280
+  },
+  "hist_gradient_boosting": {
+    "median_us": 422.792,
+    "p95_us": 468.85595,
+    "calls": 1280
+  }
+}
