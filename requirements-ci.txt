@@ -11,3 +11,4 @@ scikit-learn==1.8.0
 scipy==1.17.1
 threadpoolctl==3.6.0
 # CI installs torch==2.11.0 separately from the official CPU wheel index.
+matplotlib==3.10.9

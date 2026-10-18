@@ -337,3 +337,30 @@ windows and a safe manual replay procedure. Offsets, feature history and Parquet
 are not checkpointed together: crashes can cause **missing records, duplicates,
 partial files and differences between measurement and forecast archives**. Normal
 shutdown flushing does not establish crash-safe delivery.
+
+## Stage 3: offline forecasting benchmark
+
+The benchmark is separate from Energy Kafka inference and the IoT scenario.
+Its [frozen protocol](docs/forecast-benchmark/protocol.md) compares persistence,
+exact previous-day Seasonal Naive, Random Forest and HistGradientBoosting on
+common chronological targets. Hyperparameters use validation only. The test
+window was already inspected in Stage 2 and is **not an unseen holdout**.
+
+```bash
+OMP_NUM_THREADS=1 python -m benchmark.run \
+  --dataset data/energy/raw/energydata_complete.csv \
+  --output docs/forecast-benchmark/results \
+  --models-output artifacts/forecast-benchmark/v1
+python tests/run_suite.py --suite all
+```
+
+The dataset must match the protocol SHA-256. Output directories must not exist;
+use new output paths to repeat an experiment. Dependencies are pinned in
+`requirements.txt`; CI uses the corresponding test subset. The runner saves
+validation decisions before test inference, fitted models under ignored
+`artifacts/`, and all test predictions, metrics, timings, versions, configuration,
+checksums, PNG/SVG figures and a Markdown report under the selected output path.
+The report and tables from the full dataset are in
+[docs/forecast-benchmark/results/report.md](docs/forecast-benchmark/results/report.md).
+Prediction timings vary across machines. High-load observations are not labelled
+as anomalies. Integration of the selected model requires a separate change.
