@@ -76,3 +76,47 @@ class EnergyForecastTests(unittest.TestCase):
             second = EnergyForecaster.load(root / 'second/model.joblib')
             frame, _ = build_samples(iter_appliances(csv))
             np.testing.assert_array_equal(first.predict_many(frame), second.predict_many(frame))
+
+    def test_source_binding_blocks_other_buildings_and_semantics_before_history(self):
+        with tempfile.TemporaryDirectory() as directory, threadpool_limits(limits=1):
+            root = Path(directory)
+            csv = root / 'input.csv'
+            write_csv(csv)
+            train_experiment(csv, root / 'run', max_iter=5)
+            model = EnergyForecaster.load(root / 'run/model.joblib')
+            record = next(iter_appliances(csv))
+            from copy import deepcopy
+            from unittest.mock import patch
+            pipeline = EnergyPipeline(EnergySettings(output_dir=root / 'stream'), model)
+            cases = []
+            for key, value in [('building_id', 'another-house'), ('source_id', 'another-source'),
+                               ('source_type', 'smart_meter'), ('timestamp_reference', 'interval_end'),
+                               ('interval_seconds', 300), ('timestamp', record['timestamp'] + '+00:00')]:
+                changed = deepcopy(record)
+                changed[key] = value
+                cases.append(changed)
+            for changed in cases:
+                with self.subTest(record=changed), patch.object(model, 'predict', side_effect=AssertionError('Must not predict')):
+                    self.assertFalse(pipeline.process(json.dumps(changed).encode()))
+            self.assertEqual(pipeline.processor.histories, {})
+            self.assertEqual(pipeline.measurements.buffer, [])
+            self.assertEqual(pipeline.forecasts.buffer, [])
+            self.assertTrue(pipeline.process(json.dumps(record).encode()))
+            pipeline.close()
+            rejects = [json.loads(line) for line in (root / 'stream/rejected.jsonl').read_text().splitlines()]
+            self.assertEqual(len(rejects), len(cases))
+            self.assertTrue(all('allowed_sources' in item['reason'] for item in rejects))
+            self.assertEqual(model.metadata['allowed_sources'][0]['building_id'], 'appliances-house-1')
+
+    def test_unbound_legacy_artifact_fails_closed(self):
+        import joblib
+        with tempfile.TemporaryDirectory() as directory, threadpool_limits(limits=1):
+            root = Path(directory)
+            csv = root / 'input.csv'
+            write_csv(csv)
+            train_experiment(csv, root / 'run', max_iter=5)
+            artifact = joblib.load(root / 'run/model.joblib')
+            artifact['metadata'].pop('allowed_sources')
+            joblib.dump(artifact, root / 'legacy.joblib')
+            with self.assertRaisesRegex(ValueError, 'retrain'):
+                EnergyForecaster.load(root / 'legacy.joblib')

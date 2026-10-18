@@ -31,8 +31,7 @@ class EnergyPipeline:
         received = utc_now()
         try:
             record = decode_energy(payload)
-            if record["energy"]["scope"] != "appliances":
-                raise InvalidMessage("This trained model supports energy.scope=appliances only")
+            self.forecaster.validate_source(record)
             result = self.processor.process(record)
         except InvalidMessage as exc:
             self.rejected.save(payload, str(exc), metadata)

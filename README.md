@@ -148,7 +148,7 @@ The download command verifies HTTPS and refuses to overwrite an existing file:
 python -m producer.download_appliances --output data/energy/raw/energydata_complete.csv
 OMP_NUM_THREADS=1 python -m ai.train_energy_forecaster \
   --dataset data/energy/raw/energydata_complete.csv \
-  --output artifacts/energy/appliances-hgb-v1
+  --output artifacts/energy/appliances-hgb-bound-v1
 ```
 
 Source: [UCI Appliances Energy Prediction](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction),
@@ -228,7 +228,7 @@ Consumer:
 
 ```sh
 OMP_NUM_THREADS=1 python -m consumer.energy_consumer \
-  --model artifacts/energy/appliances-hgb-v1/model.joblib \
+  --model artifacts/energy/appliances-hgb-bound-v1/model.joblib \
   --max-messages 100 --idle-timeout-ms 60000
 ```
 
@@ -262,8 +262,8 @@ OMP_NUM_THREADS=1 RUN_KAFKA_SMOKE=1 python -m unittest discover -s tests -v
 
 OMP_NUM_THREADS=1 python -m ai.verify_energy_replay \
   --dataset data/energy/raw/energydata_complete.csv \
-  --experiment artifacts/energy/appliances-hgb-v1 \
-  --output artifacts/energy/replay-v1 --full-dataset --inject-invalid
+  --experiment artifacts/energy/appliances-hgb-bound-v1 \
+  --output artifacts/energy/replay-bound-v1 --full-dataset --inject-invalid
 ```
 
 The verifier uses the **actual producer and consumer CLI commands**, creates and
@@ -287,3 +287,53 @@ The two archives are not transactional. The model was trained on one house and
 has no demonstrated generalization to new buildings or physical meters.
 Missing auxiliary values are handled, but missing energy is not imputed.
 All existing outputs are kept; no automatic dataset/model migration occurs.
+
+### Model/source compatibility (review follow-up)
+
+New model artifacts contain `allowed_sources`, derived **only from sources present
+in the training partition** and included in the model version hash. The binding
+matches building ID, source ID, source type, energy scope, interval length,
+timestamp reference, timezone label and whether the timestamp has an offset.
+The standard Appliances artifact allows only `appliances-house-1` / `uci-appliances`
+with the original dataset semantics. Sharing `energy.scope=appliances` is not enough.
+
+The consumer checks compatibility before updating feature history, writing facts or
+predicting. Incompatible messages are written to `rejected.jsonl` with a reason;
+processing continues. Source identifiers are a compatibility contract, not device
+authentication: a sender can still spoof labels unless a future ingestion layer
+verifies them. Another house/meter needs an explicitly validated model/adaptation;
+there is no wildcard source override.
+
+Artifacts produced before this change have no source binding and are refused with
+an actionable error. Retrain into a **new experiment directory** using the commands
+above; do not edit the old artifact or assume unrestricted compatibility. Feature
+engineering and estimator parameters have not changed, but model version changes
+because the binding is now part of the configuration.
+
+### Automated checks
+
+`.github/workflows/tests.yml` runs on pushes, pull requests and manual dispatch:
+
+- **Unit tests:** Python 3.13 on Ubuntu 24.04, no broker and no dataset download.
+- **Kafka smoke tests:** separate job, Kafka 3.9.0 started using Compose, bounded
+  readiness wait, both IoT and Energy broker tests, then broker cleanup.
+
+CI installs `requirements-ci.txt` (a constrained test dependency subset) and
+PyTorch 2.11.0 CPU wheels. The local equivalents using the existing environment are:
+
+```sh
+OMP_NUM_THREADS=1 python tests/run_suite.py --suite unit
+OMP_NUM_THREADS=1 python tests/run_suite.py --suite kafka
+OMP_NUM_THREADS=1 python tests/run_suite.py --suite all
+```
+
+The runner explicitly selects the suites and enables broker tests for `kafka`/`all`;
+skipped tests or an empty selection fail rather than silently passing.
+
+### Recovery limitations
+
+See [recovery and delivery limits](docs/recovery-and-delivery.md) for exact failure
+windows and a safe manual replay procedure. Offsets, feature history and Parquet
+are not checkpointed together: crashes can cause **missing records, duplicates,
+partial files and differences between measurement and forecast archives**. Normal
+shutdown flushing does not establish crash-safe delivery.

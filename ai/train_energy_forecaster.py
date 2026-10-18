@@ -13,7 +13,7 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from threadpoolctl import threadpool_limits
 
-from ai.energy_forecaster import EnergyForecaster
+from ai.energy_forecaster import EnergyForecaster, source_binding
 from processing.energy_schema import validate_energy
 from processing.energy_processor import EnergyProcessor, FEATURE_NAMES, FEATURE_VERSION
 from processing.message_schema import InvalidMessage
@@ -45,6 +45,7 @@ def build_samples(records):
             rows.append({**previous["features"], "forecast_origin": previous["forecast_origin"],
                          "forecast_target_timestamp": result["forecast_origin"],
                          "building_id": key[0], "source_id": key[1],
+                         "source_binding": source_binding(record),
                          "actual_energy_wh": record["energy"]["value"]})
         pending[key] = result
     return pd.DataFrame(rows), {**counts, "eligible_samples": len(rows), "rejections": rejections}
@@ -73,6 +74,9 @@ def train_experiment(dataset, output, train_fraction=0.8, seed=42, max_iter=100)
         raise ValueError("Experiment directory already exists; choose a new run directory")
     frame, quality = build_samples(iter_appliances(dataset))
     train, test = chronological_split(frame, train_fraction)
+    # Only sources actually represented in the training partition may be served.
+    allowed_sources = [json.loads(value) for value in sorted(
+        {json.dumps(binding, sort_keys=True) for binding in train.source_binding})]
     params = {"loss": "squared_error", "max_iter": max_iter, "learning_rate": 0.1,
               "max_leaf_nodes": 31, "min_samples_leaf": 20, "l2_regularization": 0.0,
               "early_stopping": False, "random_state": seed}
@@ -87,7 +91,7 @@ def train_experiment(dataset, output, train_fraction=0.8, seed=42, max_iter=100)
               "test_target_end": test.forecast_target_timestamp.iloc[-1],
               "python_version": platform.python_version(), "sklearn_version": sklearn.__version__,
               "numpy_version": np.__version__, "pandas_version": pd.__version__,
-              "threads": 1}
+              "threads": 1, "allowed_sources": allowed_sources}
     identity = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
     metadata = {**config, "model_version": f"hgb-energy-v1-{identity}",
                 "trained_at_utc": datetime.now(timezone.utc).isoformat(),
