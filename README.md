@@ -364,3 +364,65 @@ The report and tables from the full dataset are in
 [docs/forecast-benchmark/results/report.md](docs/forecast-benchmark/results/report.md).
 Prediction timings vary across machines. High-load observations are not labelled
 as anomalies. Integration of the selected model requires a separate change.
+
+## Stage 4: energy anomaly detection
+
+Stage 4 adds an **independent** consumer and offline experiment. Production Energy
+HGB forecasting and the IoT scenario are unchanged. IF/AE use the existing 20
+features; residual detection uses a dedicated RF with the 21 Stage 3 features,
+refitted on Stage 4 train only. It never loads the train+validation Stage 3 RF
+for calibration. See the [frozen protocol](docs/energy-anomaly/protocol.md).
+
+```bash
+OMP_NUM_THREADS=1 python -m anomaly.run_experiment \
+  --dataset data/energy/raw/energydata_complete.csv
+```
+
+This executes train-only fitting, separate calibration, validation selection and
+then test evaluation, including 95 predefined injection scenarios per evaluated
+split. Model: `artifacts/energy-anomaly/v1/bundle.joblib`. Results, manifests,
+per-point scores/labels, tables and figures: `docs/energy-anomaly/results/`.
+Use new `--output` and `--artifacts` directories to repeat; existing results are
+never overwritten. Model artifacts use pickle/joblib: load trusted local files only.
+
+To inspect a live replay, start the consumer in one terminal:
+
+```bash
+OMP_NUM_THREADS=1 python -m consumer.energy_anomaly_consumer \
+  --model artifacts/energy-anomaly/v1/bundle.joblib \
+  --topic energy-anomaly-demo-001 --group energy-anomaly-demo-001 \
+  --output data/energy/anomaly-demo-001 --batch-size 50 \
+  --max-messages 300 --idle-timeout-ms 120000
+```
+
+In another terminal, explicitly select the **same topic**:
+
+```bash
+ENERGY_KAFKA_TOPIC=energy-anomaly-demo-001 python -m producer.energy_producer \
+  --dataset data/energy/raw/energydata_complete.csv --limit 300 --sleep 0.1
+```
+
+Use a new topic/group/output suffix for a fresh replay. The first six readings
+have no IF/AE scores and the first 144 have no residual score. `warmup`/null does
+not mean normal. The following automated check creates a temporary topic, injects
+spikes into a held-out replay, runs the actual consumer process, compares scores
+and flags with offline results, and removes only its own temporary topic:
+
+```bash
+OMP_NUM_THREADS=1 python -m anomaly.verify_kafka \
+  --dataset data/energy/raw/energydata_complete.csv \
+  --model artifacts/energy-anomaly/v1/bundle.joblib \
+  --results docs/energy-anomaly/results \
+  --output data/energy/anomaly-kafka-check-001
+python tests/run_suite.py --suite all
+```
+
+The new consumer retains in-memory feature/forecast state, Kafka automatic offset
+commits and buffered Parquet writes. A crash can lose buffered rows after offset
+commit or duplicate rows if storage precedes offset persistence. A restarted group
+has no restored lag/pending-forecast state. For a reproducible restart, replay at
+least 144 predecessor measurements into a new group/output and retain warmup
+statuses; timestamps/event IDs support downstream reconciliation but do not provide
+exactly-once guarantees. See [delivery limitations](docs/recovery-and-delivery.md).
+Synthetic anomaly labels are never sent to inference. Unchanged UCI alarms are
+not confirmed false positives; high loads alone are not anomaly labels.
