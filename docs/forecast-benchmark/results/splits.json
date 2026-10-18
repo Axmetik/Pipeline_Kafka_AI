@@ -1,0 +1,17 @@
+{
+  "train": {
+    "count": 11699,
+    "first_target": "2016-01-12T17:00:00",
+    "last_target": "2016-04-02T22:40:00"
+  },
+  "validation": {
+    "count": 3946,
+    "first_target": "2016-04-02T22:50:00",
+    "last_target": "2016-04-30T08:20:00"
+  },
+  "test": {
+    "count": 3946,
+    "first_target": "2016-04-30T08:30:00",
+    "last_target": "2016-05-27T18:00:00"
+  }
+}
