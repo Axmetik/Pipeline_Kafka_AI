@@ -2,6 +2,7 @@
 const { chromium } = require('/app/node_modules/playwright');
 const fs = require('node:fs');
 const out = process.env.PERF_OUTPUT;
+const control = process.env.PERF_CONTROL || out;
 const stream = fs.createWriteStream(out + '/browser.jsonl', { flags: 'a' });
 const emit = (kind, data) => stream.write(JSON.stringify({ kind, ...data }) + '\n');
 (async () => {
@@ -29,16 +30,17 @@ const emit = (kind, data) => stream.write(JSON.stringify({ kind, ...data }) + '\
         const response = await fetch('/api/performance-clock', { cache: 'no-store' });
         const server = await response.json();
         const end = performance.timeOrigin + performance.now();
-        result.push({ startEpochMs:start,endEpochMs:end,serverEpochNs:server.epoch_ns });
+        result.push({ startEpochMs:start,endEpochMs:end,serverEpochNs:server.epoch_ns,
+          serverMonoNs:server.mono_ns,clockDomain:server.clock_domain });
       }
       return result;
     });
     rows.forEach(row => emit('clock', row));
   }
   await clocks();
-  fs.writeFileSync(out + '/browser.ready', 'ready');
+  fs.writeFileSync(control + '/browser.ready', 'ready');
   let clock = Date.now();
-  while (!fs.existsSync(out + '/browser.stop')) {
+  while (!fs.existsSync(control + '/browser.stop')) {
     await new Promise(resolve => setTimeout(resolve, 200));
     if (Date.now() - clock >= 60000) { await clocks(); clock = Date.now(); }
   }

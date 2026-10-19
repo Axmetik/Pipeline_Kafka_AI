@@ -19,6 +19,8 @@ def install(sink):
     from processing.energy_processor import EnergyProcessor
     from anomaly.features import FeatureStream
     from performance.telemetry import current, span, timed
+    from performance.clock_domain import domain
+    sink.emit('clock_domain',**domain())
 
     factory = worker.create_engine
     def engine(*args, **kwargs):
@@ -77,8 +79,9 @@ def install(sink):
         token = current.set(row)
         try:
             result = process(self, offset, key, value)
-            row.update(outcome=result['outcome'], process_ns=time.perf_counter_ns()-start,
-                       db_ack_epoch_ns=time.time_ns(), poll_to_db_ns=time.perf_counter_ns()-polled.pop(offset, start))
+            end=time.perf_counter_ns()
+            row.update(outcome=result['outcome'], process_ns=end-start,db_ack_mono_ns=end,
+                       db_ack_epoch_ns=time.time_ns(), poll_to_db_ns=end-polled.pop(offset, start))
             pending.clear()
             pending.update(row)
             return result
@@ -93,8 +96,15 @@ def install(sink):
         nonlocal first_message
         start = time.perf_counter_ns()
         result = commit(self, *args, **kwargs)
+        duration=time.perf_counter_ns()-start
         if pending:
-            sink.emit('message', flush=first_message, **pending, kafka_commit_ack_ns=time.perf_counter_ns()-start)
+            if first_message and os.environ.get('PERF_CONTROL'):
+                from pathlib import Path
+                control=Path(os.environ['PERF_CONTROL'])/'worker-progress.json'
+                temporary=control.with_suffix('.tmp')
+                temporary.write_text(json.dumps({key:pending[key] for key in ('offset','db_ack_epoch_ns')}))
+                temporary.replace(control)
+            sink.emit('message', flush=first_message, **pending, kafka_commit_ack_ns=duration)
             first_message=False
             pending.clear()
         return result

@@ -22,6 +22,8 @@ def main():
         p.error('Invalid replay bounds')
     settings=Settings.from_env()
     sink=Sink(os.environ['PERF_OUTPUT']+'/producer.jsonl')
+    from performance.clock_domain import domain
+    sink.emit('clock_domain',**domain())
     producer=KafkaProducer(bootstrap_servers=settings.bootstrap_servers,
                           value_serializer=lambda record:json.dumps(record,allow_nan=False).encode())
     try:
@@ -35,9 +37,9 @@ def main():
             metadata=producer.send(settings.topic,record,key=key).get(timeout=30)
             sink.emit('publication',index=index,phase=a.phase,event_id=record['event_id'],
                       offset=metadata.offset,partition=metadata.partition,topic=metadata.topic,
-                      send_epoch_ns=epoch,ack_ns=time.perf_counter_ns()-start)
+                      send_epoch_ns=epoch,send_mono_ns=start,ack_ns=time.perf_counter_ns()-start)
             if sent==0:
-                (Path(os.environ['PERF_OUTPUT'])/(a.phase+'.start')).write_text('first publication acknowledged\n')
+                (Path(os.environ.get('PERF_CONTROL',os.environ['PERF_OUTPUT']))/(a.phase+'.start')).write_text('first publication acknowledged\n')
             sent+=1
         if sent!=a.count:
             raise ValueError('Dataset exhausted')

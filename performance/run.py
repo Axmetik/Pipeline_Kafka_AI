@@ -12,9 +12,19 @@ import threading
 import time
 import urllib.request
 import uuid
+import re
 
 ROOT=Path(__file__).resolve().parents[1]
 CONFIG=ROOT/'configs/system-performance-v1.json'
+
+
+def redact(value):
+    from integration.settings import env_file
+    values={**env_file(ROOT/'.env.mvp'),**os.environ}
+    for key,secret in values.items():
+        if any(word in key.upper() for word in ('PASSWORD','TOKEN','SECRET','DATABASE_URL')) and len(secret)>=8:
+            value=value.replace(secret,'[REDACTED]')
+    return re.sub(r'postgres(?:ql)?(?:\+[a-zA-Z0-9_]+)?://\S+','[REDACTED_DATABASE_URL]',value)
 
 
 def instrumentation_digest():
@@ -30,7 +40,7 @@ def execute(command, *, env=None, timeout=None, log=None):
         with Path(log).open('a') as stream:
             # Commands contain paths/IDs, never DB credentials. Avoid verbose
             # Compose config or inspect Config.Env, including on failure.
-            stream.write(result.stdout+result.stderr)
+            stream.write(redact(result.stdout+result.stderr))
     if result.returncode:
         raise RuntimeError(f'Command failed ({result.returncode}): {command[0:3]}; see private-safe run log')
     return result.stdout.strip()
@@ -44,10 +54,24 @@ def get(url):
 class Run:
     def __init__(self, label, mode, warmup, measured, instrumented=True):
         self.config=json.loads(CONFIG.read_text())
+        dataset_checksum=hashlib.sha256((ROOT/self.config['dataset']).read_bytes()).hexdigest()
+        if dataset_checksum!=self.config['dataset_sha256']:raise ValueError('Dataset changed from the registered checksum')
+        execute(['git','diff','--quiet','v0.1.0-mvp','--','ai','anomaly','benchmark','processing','producer',
+                 'consumer','storage','integration','api','migrations'])
+        environment_path=ROOT/'docs/stage6/environment.json'
+        if environment_path.exists():
+            frozen=json.loads(environment_path.read_text())
+            for image,identity in frozen.get('frozen_images',{}).items():
+                if execute(['docker','image','inspect','--format','{{.Id}}',image])!=identity:
+                    raise RuntimeError('Docker image changed since frozen environment: '+image)
+            actual=json.loads(execute(['docker','info','--format','{{json .}}']))
+            for key in ('NCPU','MemTotal','ServerVersion','KernelVersion','Architecture'):
+                if frozen['docker'].get(key)!=actual.get(key):raise RuntimeError('Docker evaluation environment changed: '+key)
         token=datetime.now(timezone.utc).strftime('%Y%m%dt%H%M%S')+'-'+uuid.uuid4().hex[:6]
         self.id='s6-'+label+'-'+mode+'-'+token
         self.directory=ROOT/'docs/stage6/raw'/self.id
         self.directory.mkdir(parents=True)
+        (self.directory/'config.json').write_text(json.dumps(self.config,indent=2)+'\n')
         self.env={**os.environ,'MVP_RUN_ID':self.id,'MVP_GROUP_ID':self.id,'MVP_TOPIC':self.id,
                   'MVP_ARTIFACT_MANIFEST':self.config['manifest'],'MVP_WEB_PORT':'8089',
                   'LOCAL_UID':str(os.getuid()),'LOCAL_GID':str(os.getgid()),'PERF_RUN_DIR':str(self.directory)}
@@ -61,6 +85,7 @@ class Run:
                            sleep=self.config['modes'][mode],instrumented=instrumented,
                            protocol='stage6-v1',status='created',started_at=datetime.now(timezone.utc).isoformat())
         self.manifest['config_sha256']=hashlib.sha256(CONFIG.read_bytes()).hexdigest()
+        self.manifest['dataset_sha256']=dataset_checksum
         self.manifest['instrumentation_sha256']=instrumentation_digest()
         self.manifest['manifest_sha256']=hashlib.sha256((ROOT/self.config['manifest']).read_bytes()).hexdigest()
         self.stop=threading.Event();self.children=[]
@@ -116,7 +141,8 @@ class Run:
         api=self.compose('ps','-q','api')
         command=['docker','run','--rm','--init','--shm-size=1g','--network','container:'+api,
                  '--label','com.docker.compose.project='+self.id,'--name',self.id+'-browser',
-                 '-v',str(self.directory)+':/evaluation','-e','PERF_OUTPUT=/evaluation',
+                 '-v',str(self.directory)+':/evaluation','-v',self.id+'_telemetry:/telemetry',
+                 '-e','PERF_OUTPUT=/telemetry','-e','PERF_CONTROL=/evaluation',
                  '-e','MVP_RUN_ID='+self.id,'-e','PERF_ENABLED='+str(int(self.manifest['instrumented'])),
                  'energy-performance-browser:local']
         process=self.child(command,'browser.log')
@@ -131,21 +157,22 @@ class Run:
         return self.child(['docker','run','--rm','--network','container:'+api,
             '--label','com.docker.compose.project='+self.id,'--name',self.id+'-http',
             '-v',str(ROOT/'performance')+':/app/performance:ro',
-            '-v',str(self.directory)+':/evaluation','-e','PERF_OUTPUT=/evaluation',
+            '-v',self.id+'_telemetry:/telemetry','-e','PERF_OUTPUT=/telemetry',
+            '-v',str(self.directory)+':/evaluation','-e','PERF_CONTROL=/evaluation',
+            '-e','PERF_HTTP_REPLAY='+str(int(self.manifest['measured']>0)),
             '-e','MVP_RUN_ID='+self.id,'energy-monitoring-backend:local',
             'python','-m','performance.api_load','--clients',str(clients)],'http.log')
 
     def watch_recovery(self,start):
-        path=self.directory/'worker.jsonl'
+        path=self.directory/'worker-progress.json'
         while not self.stop.is_set():
             if path.exists():
-                for line in path.read_text().splitlines():
-                    try:row=json.loads(line)
-                    except ValueError:continue
-                    if row.get('kind')=='message' and row['offset']>=self.manifest['warmup']:
-                        self.manifest['recovery_resumed_observed_ns']=time.monotonic_ns()-start
-                        self.manifest['recovery_first_db_ack_epoch_ns']=row['db_ack_epoch_ns']
-                        self.save();return
+                try:row=json.loads(path.read_text())
+                except ValueError:continue
+                if row['offset']>=self.manifest['warmup']:
+                    self.manifest['recovery_resumed_observed_ns']=time.monotonic_ns()-start
+                    self.manifest['recovery_first_db_ack_epoch_ns']=row['db_ack_epoch_ns']
+                    self.save();return
             self.stop.wait(.01)
 
     def watch_measured_start(self):
@@ -165,8 +192,14 @@ class Run:
             details=execute(['docker','inspect','--format',
                 '{{json .Name}} {{json .Image}} {{json .HostConfig.NanoCpus}} {{json .HostConfig.Memory}} {{json .HostConfig.CpusetCpus}}',*ids],env=self.env)
             (self.directory/'container-limits.txt').write_text(details+'\n')
+            domains={name:json.loads(self.compose('exec','-T',name,'python','-m','performance.clock_domain')) for name in ('worker','api')}
+            domains['tools']=json.loads(self.compose('run','--rm','--no-deps','tools','python','-m','performance.clock_domain'))
+            from performance.clock_domain import compatible
+            if not compatible(list(domains.values())):raise RuntimeError('Incompatible kernel/time namespaces; no cross-process latency measurement')
+            (self.directory/'clock-domains.json').write_text(json.dumps(domains,indent=2)+'\n')
             if self.manifest['instrumented']:
-                self.child([*self.command,'run','--rm','--no-deps','tools','python','-m','performance.database','observe'],'observer.log')
+                self.child([*self.command,'run','--rm','--no-deps','tools','python','-m','performance.database','observe',
+                            '--interval',str(self.config['observer_interval_seconds'])],'observer.log')
             self.browser()
             resources=threading.Thread(target=self.resources,daemon=True);resources.start()
             self.replay(0,self.manifest['warmup'],0,'warmup')
@@ -183,7 +216,8 @@ class Run:
             self.manifest['status']='measuring';self.save()
             start=time.monotonic_ns()
             self.manifest['measured_start_epoch_ns']=time.time_ns();self.save()
-            threading.Thread(target=self.watch_measured_start,daemon=True).start()
+            if self.manifest['measured']:
+                threading.Thread(target=self.watch_measured_start,daemon=True).start()
             http=self.api_load(api_clients) if api_clients else None
             if self.manifest['measured']:
                 self.replay(self.manifest['warmup'],self.manifest['measured'],self.manifest['sleep'],'measured')
@@ -214,6 +248,10 @@ class Run:
             self.manifest['status']='complete'
         except BaseException as exc:
             self.manifest['status']='failed';self.manifest['failure']=str(exc)
+            try:
+                self.compose('logs','--no-color','--tail','200','bootstrap','worker','api','postgres','kafka')
+            except Exception:
+                pass
             raise
         finally:
             self.stop.set()
@@ -222,12 +260,28 @@ class Run:
             for process in self.children:
                 try:process.wait(timeout=30)
                 except subprocess.TimeoutExpired:process.terminate()
+                if process.returncode not in (None,0):
+                    self.manifest['status']='failed';self.manifest['failure']='Telemetry subprocess exited '+str(process.returncode)
             try:self.compose('stop','worker')  # graceful Python exit flushes queue
             except Exception:pass
             self.manifest['ended_at']=datetime.now(timezone.utc).isoformat();self.save()
             from performance.analysis import summarize
+            exported=False
             try:
+                self.compose('run','--rm','--no-deps','tools','python','-c',
+                    'import shutil; shutil.copytree("/telemetry","/evaluation",dirs_exist_ok=True)')
+                exported=True
                 summarize(self.directory)
+                if recovery:
+                    from performance.analysis import read
+                    history=[r for r in read(self.directory/'worker.jsonl') if r['kind']=='history_restored']
+                    ready=[r for r in read(self.directory/'worker.jsonl') if r['kind']=='ready']
+                    if (len(history)<2 or len(ready)<2 or ready[-1]['db_next_offset']!=self.manifest['warmup']
+                            or ready[-1]['verified_journal_records']!=self.manifest['warmup']):
+                        raise RuntimeError('Recovery did not prove journal reconciliation and restored ML history')
+                    self.manifest['recovery_history_restore_ns']=history[-1]['duration_ns']
+                    self.manifest['recovery_startup_ns']=ready[-1]['startup_ns']
+                    self.save()
                 if self.manifest['status']=='complete' and self.manifest['instrumented']:
                     from performance.gate import check
                     issues=check(self.directory)['issues']
@@ -238,7 +292,10 @@ class Run:
             finally:
                 # Cleanup must still happen if post-processing a retained run fails.
                 # Only this explicitly unique evaluation project's volumes.
-                self.compose('--profile','tools','down','-v','--remove-orphans')
+                if not exported:
+                    self.manifest['status']='failed';self.manifest['failure']='Telemetry export failed; Docker volumes retained'
+                    self.save()
+                self.compose('--profile','tools','down',*(['-v'] if exported else []),'--remove-orphans')
         return self.directory
 
 
@@ -259,6 +316,15 @@ def environment():
         result['host_hardware']={'processor':platform.processor(),'cpu_count':os.cpu_count()}
     result['background_containers']=execute(['docker','ps','--format','{{.Names}} {{.Image}}'])
     result['images']=execute(['docker','image','ls','--digests','--format','{{.Repository}} {{.Tag}} {{.ID}} {{.Digest}}'])
+    result['frozen_images']={name:execute(['docker','image','inspect','--format','{{.Id}}',name]) for name in (
+        'energy-monitoring-backend:local','energy-performance-dashboard:local','energy-performance-browser:local',
+        'apache/kafka:3.9.0','postgres:18-alpine')}
+    result['runtime_versions']=json.loads(execute(['docker','run','--rm','--network','none',
+        'energy-monitoring-backend:local','python','-c',
+        'import importlib.metadata as m,json,platform; print(json.dumps({"python":platform.python_version(),"packages":{n:m.version(n) for n in ("numpy","scikit-learn","torch","kafka-python","SQLAlchemy","psycopg","fastapi","uvicorn","pydantic","joblib","threadpoolctl","pyarrow","pandas")}}))']))
+    if sys.platform=='darwin':
+        result['power_observation']=execute(['pmset','-g','batt'])
+        result['thermal_observation']=execute(['pmset','-g','therm'])
     path=ROOT/'docs/stage6/environment.json';path.write_text(json.dumps(result,indent=2)+'\n')
 
 
@@ -269,7 +335,7 @@ def main():
     args=p.parse_args();config=json.loads(CONFIG.read_text())
     if args.series=='environment':environment();return
     jobs=[]
-    if args.series=='pilot':jobs=[('pilot',mode,config['pilot']['warmup'],config['pilot']['measured'],True) for mode in ('slow','demo','max')]
+    if args.series=='pilot':jobs=[('pilot-'+config['pilot']['campaign'],mode,config['pilot']['warmup'],config['pilot']['measured'],True) for mode in ('slow','demo','max')]
     elif args.series=='overhead':
         jobs=[('overhead-'+config['overhead']['campaign']+'-'+str(i+1), 'max',config['overhead']['warmup'],config['overhead']['measured'],enabled) for i,pair in enumerate(config['overhead']['orders']) for enabled in pair]
     elif args.series=='main':
@@ -278,6 +344,7 @@ def main():
         approved=json.loads((ROOT/'docs/stage6/pilot-approved.json').read_text())
         if (approved.get('config_sha256')!=hashlib.sha256(CONFIG.read_bytes()).hexdigest()
                 or approved.get('instrumentation_sha256')!=instrumentation_digest()
+                or approved.get('environment_sha256')!=hashlib.sha256((ROOT/'docs/stage6/environment.json').read_bytes()).hexdigest()
                 or approved.get('manifest_sha256')!=hashlib.sha256((ROOT/config['manifest']).read_bytes()).hexdigest()):
             raise SystemExit('Configuration/instrumentation/artifact manifest changed since pilot gate; review and validate again')
         jobs=[('main-'+str(i+1),mode,config['warmup'],config['measured'],True) for i,modes in enumerate(config['orders']) for mode in modes]

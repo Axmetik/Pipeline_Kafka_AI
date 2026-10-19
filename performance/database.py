@@ -45,9 +45,11 @@ def validate(counts, expected):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('command',choices=['observe','snapshot'])
+    p.add_argument('--interval',type=float,default=.2)
     p.add_argument('--expected',type=int);a=p.parse_args()
     settings=Settings.from_env();engine=create_engine(settings.database_url,pool_pre_ping=True)
     output=Path(os.environ['PERF_OUTPUT'])
+    control=Path(os.environ.get('PERF_CONTROL',str(output)))
     if a.command=='snapshot':
         counts=snapshot(engine,settings)
         consumer=KafkaConsumer(bootstrap_servers=settings.bootstrap_servers,group_id=settings.group_id,enable_auto_commit=False)
@@ -58,23 +60,26 @@ def main():
         finally:
             consumer.close(autocommit=False)
         counts['failures']=validate(counts,a.expected) if a.expected is not None else []
-        (output/'integrity.json').write_text(json.dumps(counts,default=str,indent=2)+'\n')
+        (control/'integrity.json').write_text(json.dumps(counts,default=str,indent=2)+'\n')
         if counts['failures']:
             raise SystemExit('Business integrity check failed')
         return
-    sink=Sink(output/'visibility.jsonl');last_offset=-1;previous=time.time_ns()
+    sink=Sink(output/'visibility.jsonl');last_offset=-1;previous=time.time_ns();previous_mono=time.perf_counter_ns()
+    from performance.clock_domain import domain
+    sink.emit('clock_domain',**domain())
     try:
-        while not (output/'observer.stop').exists():
-            tick=time.perf_counter();lower=previous;begin=time.time_ns()
+        while not (control/'observer.stop').exists():
+            tick=time.perf_counter();lower=previous;lower_mono=previous_mono;begin=time.time_ns();begin_mono=time.perf_counter_ns()
             with engine.connect() as c:
                 rows=list(c.execute(text('SELECT measurement_id,event_id,kafka_offset FROM mvp_measurements WHERE run_id=:run AND kafka_offset>:offset ORDER BY kafka_offset'),{'run':settings.run_id,'offset':last_offset}).mappings())
-            end=time.time_ns()
+            end_mono=time.perf_counter_ns();end=time.time_ns()
             sink.emit('visibility_poll',start_epoch_ns=begin,end_epoch_ns=end,count=len(rows))
             for row in rows:
-                sink.emit('visible',**dict(row),available_lower_ns=lower,available_upper_ns=end)
+                sink.emit('visible',**dict(row),available_lower_ns=lower,available_upper_ns=end,
+                          available_lower_mono_ns=lower_mono,available_upper_mono_ns=end_mono)
                 last_offset=row['kafka_offset']
-            previous=begin
-            time.sleep(max(0,.05-(time.perf_counter()-tick)))
+            previous=begin;previous_mono=begin_mono
+            time.sleep(max(0,a.interval-(time.perf_counter()-tick)))
     finally:
         sink.close();engine.dispose()
 

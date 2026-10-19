@@ -1,13 +1,16 @@
 """Measurement math and isolation, independent of benchmark outcomes."""
 from contextlib import redirect_stdout
 import json
+import gzip
 from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
 from performance.telemetry import Sink,current,span,timed
-from performance.analysis import quantiles,summarize,read,clock_steps
+from performance.analysis import quantiles,summarize,read,clock_steps,read_json
 from performance.database import validate
+from performance.clock_domain import compatible
+from performance.run import redact
 
 
 class PerformanceTests(unittest.TestCase):
@@ -89,6 +92,47 @@ class PerformanceTests(unittest.TestCase):
             sink=Sink(directory,capacity=1)  # opening a directory as a file fails
             sink.thread.join(timeout=2)
             with self.assertRaisesRegex(RuntimeError,'Incomplete telemetry'):sink.close()
+
+    def test_lossless_compressed_raw_data_remain_readable(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'raw.jsonl'
+            original=b'{"kind":"sample","value":1}\n'
+            Path(str(path)+'.gz').write_bytes(gzip.compress(original,mtime=0))
+            self.assertEqual(read(path),[{'kind':'sample','value':1}])
+            self.assertEqual(read_json(path),{'kind':'sample','value':1})
+
+    def test_cross_process_domain_requires_same_boot_namespace_and_clock(self):
+        valid=dict(boot_id='kernel-a',time_namespace='time:[1]',implementation='clock_gettime(CLOCK_MONOTONIC)',
+                   monotonic=True,adjustable=False,resolution_seconds=1e-9)
+        self.assertTrue(compatible([valid,dict(valid)]))
+        self.assertFalse(compatible([]))
+        for key,value in [('boot_id','other'),('time_namespace','time:[2]'),('adjustable',True),('monotonic',False)]:
+            self.assertFalse(compatible([valid,{**valid,key:value}]))
+
+    def test_epoch_step_does_not_corrupt_verified_monotonic_latency(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            domain=dict(boot_id='kernel-a',time_namespace='time:[1]',implementation='clock_gettime(CLOCK_MONOTONIC)',
+                        monotonic=True,adjustable=False,resolution_seconds=1e-9)
+            (root/'clock-domains.json').write_text(json.dumps({'worker':domain,'tools':domain,'api':domain}))
+            def save(name,rows):(root/(name+'.jsonl')).write_text('\n'.join(json.dumps(r) for r in rows))
+            save('producer',[dict(kind='clock_domain',**domain),
+                dict(kind='publication',phase='measured',offset=0,ack_ns=1,send_epoch_ns=1000000000,send_mono_ns=10000000,epoch_ns=1000000000,mono_ns=10000000),
+                dict(kind='publication',phase='measured',offset=1,ack_ns=1,send_epoch_ns=999999999999,send_mono_ns=20000000,epoch_ns=999999999999,mono_ns=20000000)])
+            save('worker',[dict(kind='clock_domain',**domain),
+                dict(kind='message',offset=0,process_ns=1,db_ack_epoch_ns=1001000000,db_ack_mono_ns=12000000),
+                dict(kind='message',offset=1,process_ns=1,db_ack_epoch_ns=999999999999+1000000,db_ack_mono_ns=22000000)])
+            result=summarize(root)
+            self.assertFalse(result['epoch_clock_valid'])
+            self.assertTrue(result['cross_process_clock_valid'])
+            self.assertEqual(result['latency_ms']['send_to_db_ack']['p50'],2)
+
+    def test_failure_logs_remove_secrets_and_database_urls(self):
+        with patch.dict('os.environ',{'MVP_TEST_PASSWORD':'not-a-real-secret'}):
+            output=redact('error not-a-real-secret postgresql+psycopg://user:other@localhost/db')
+            self.assertNotIn('not-a-real-secret',output)
+            self.assertNotIn('postgresql',output)
+            self.assertIn('error',output)
 
 
 if __name__=='__main__':unittest.main()

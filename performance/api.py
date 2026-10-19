@@ -1,13 +1,15 @@
 """Evaluation-only clock endpoint; inherits all normal local-only middleware."""
 import time
 from api.main import create_app
+from performance.clock_domain import domain
 
 
 def app():
     application = create_app()
+    identity=domain()
     @application.get('/api/performance-clock', include_in_schema=False)
     def clock():
-        return {'epoch_ns':time.time_ns(), 'mono_ns':time.perf_counter_ns()}
+        return {'epoch_ns':time.time_ns(), 'mono_ns':time.perf_counter_ns(),'clock_domain':identity}
     return application
 
 

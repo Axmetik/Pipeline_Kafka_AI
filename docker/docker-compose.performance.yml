@@ -1,22 +1,36 @@
 # Evaluation-only overrides. The normal MVP remains unchanged.
 services:
+  telemetry-init:
+    image: energy-monitoring-backend:local
+    user: '0:0'
+    network_mode: none
+    command: [python, -c, 'import os; os.chmod("/telemetry",0o777)']
+    volumes: [telemetry:/telemetry]
   dashboard:
     image: energy-performance-dashboard:local
   worker:
     user: '${LOCAL_UID:-10001}:${LOCAL_GID:-10001}'
     command: [python, -m, performance.worker]
     environment:
-      PERF_OUTPUT: /evaluation
+      PERF_OUTPUT: /telemetry
+      PERF_CONTROL: /evaluation
+    depends_on:
+      telemetry-init: {condition: service_completed_successfully}
     volumes:
       - ../performance:/app/performance:ro
       - ${PERF_RUN_DIR:?}:/evaluation
+      - telemetry:/telemetry
   api:
     command: [python, -m, performance.api]
     volumes:
       - ../performance:/app/performance:ro
   tools:
     environment:
-      PERF_OUTPUT: /evaluation
+      PERF_OUTPUT: /telemetry
+      PERF_CONTROL: /evaluation
     volumes:
       - ../performance:/app/performance:ro
       - ${PERF_RUN_DIR:?}:/evaluation
+      - telemetry:/telemetry
+volumes:
+  telemetry:
