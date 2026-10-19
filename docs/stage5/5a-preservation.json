@@ -1,0 +1,27 @@
+{
+  "stage4_merge_commit": "ac5a04d867476cd162bd0a301152ad6e3c1490a1",
+  "stage4_frozen_file_hashes_verified": 407,
+  "stage4_original_model_sha256": "2ac3a9c71a78a09ea5ba5845d47e68ae79f23a1b696d3f9daf23fbbad0f569ee",
+  "legacy_source_and_experiment_paths_unchanged": true,
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "clean_clone_artifact_provisioning_executed": true,
+  "local_tests": {
+    "unit": 52,
+    "legacy_kafka": 3,
+    "mvp_postgresql_kafka": 12,
+    "total": 67,
+    "result": "passed"
+  },
+  "versions": {
+    "SQLAlchemy": "2.0.55",
+    "alembic": "1.20.0",
+    "psycopg": "3.3.6",
+    "psycopg-binary": "3.3.6"
+  },
+  "local_default_ports": {
+    "mvp_postgresql": "127.0.0.1:15432",
+    "mvp_kafka": "127.0.0.1:19092",
+    "legacy_kafka": "127.0.0.1:9092",
+    "legacy_kafka_ui": "127.0.0.1:8080"
+  }
+}
