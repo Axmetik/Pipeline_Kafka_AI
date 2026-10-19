@@ -41,12 +41,12 @@
   "measured": 3600,
   "repetitions": 5,
   "pilot": {
-    "campaign": "v5",
+    "campaign": "v6",
     "warmup": 150,
     "measured": 60
   },
   "overhead": {
-    "campaign": "v5",
+    "campaign": "v6",
     "warmup": 300,
     "measured": 600,
     "orders": [
@@ -65,7 +65,7 @@
     ],
     "investigation_percent": 5
   },
-  "observer_interval_seconds": 0.05,
+  "observer_interval_seconds": 0.2,
   "poll_seconds": 2,
   "window": 144,
   "clock_uncertainty_ms": 10,
