@@ -1,0 +1,75 @@
+{
+  "implementation_commit": "0c9933b2b1361adcf36756598df490a6fbc801cc",
+  "source_sha256": {
+    "integration/__init__.py": "c047d23a84616120800a321a8949f3923d9fc65e755532e166d975edc2986eb8",
+    "integration/artifacts.py": "a84ebe6f3ee21dfe597e743f47ebb8f801e2b61523d5492b11161969a20310e6",
+    "integration/checkpoints.py": "e682dc831c5fe69f76928aa9e6cce02d615d79fa1a70e6000e5773e824656a49",
+    "integration/energy_worker.py": "dbcd7fa8f06a7f203c123db0982a9d0caa396b1256abbeb75d9a293bde15a462",
+    "integration/processor.py": "2c70153aa366599624bb051de379803409b5be41cdaf9c4241023ba770184dd1",
+    "integration/replay.py": "952df8794a77a300d21678ff8904d02e93bc024fdc614af862489533fd91cd07",
+    "integration/runtime.py": "ad2817d17f655d793b340003a182afe040e4d24bda27f4611c71605a51a05837",
+    "integration/settings.py": "a0838d7846b9244e52c680542190a715592e2770423b26419275f48440e89df5",
+    "integration/setup.py": "16d1fc48144506e584ec241ef6d4eaecddb78fb60f6f7636b7be066f3465df91",
+    "integration/status.py": "5c94be8de5d5bd763a1f0673a90f058aa6cce29bcdbcfa695af226ec8b952aa8",
+    "integration/verify.py": "c8dd3199d9dbb42bcf2e19ba426c02929252798a4d49f7a9d56454e23e162558"
+  },
+  "run_id": "verification-a704b374790941059eaf0a1d786e3231",
+  "topic": "mvp-verification-a704b374790941059eaf0a1d786e3231",
+  "postgres_version": "18.6",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "manifest_sha256": "983d6a388e31f82a68e6e53de8ad735d308bb00c1ca2f2ab67d05d8a9f200737",
+  "unique_measurements": 300,
+  "forecasts": 600,
+  "anomaly_score_rows": 900,
+  "duplicate_deliveries": 2,
+  "delivery_receipts": 302,
+  "db_next_offset": 302,
+  "kafka_committed_offset": 302,
+  "experimental_episodes": 1,
+  "restart_reconciled_journal_records": 150,
+  "previous_forecasts_and_generated_times_preserved": true,
+  "offline_inference_matches": true,
+  "naive_dataset_time_preserved": true,
+  "ready_scores": {
+    "isolation_forest": 294,
+    "autoencoder": 294,
+    "residual": 156
+  },
+  "model_registry": [
+    {
+      "role": "primary_forecast",
+      "model_version": "hgb-energy-v1-add6d31cb21e3987",
+      "feature_version": "energy-features-v1",
+      "threshold_version": null,
+      "maturity": "existing"
+    },
+    {
+      "role": "residual_reference",
+      "model_version": "energy-anomaly-v1-44600700f5a3be9c",
+      "feature_version": "benchmark-energy-v1",
+      "threshold_version": "quantiles-v1-d16d40eb0016ffe8",
+      "maturity": "experimental"
+    },
+    {
+      "role": "isolation_forest",
+      "model_version": "energy-anomaly-v1-44600700f5a3be9c",
+      "feature_version": "energy-anomaly-20-v1",
+      "threshold_version": "quantiles-v1-d16d40eb0016ffe8",
+      "maturity": "experimental"
+    },
+    {
+      "role": "autoencoder",
+      "model_version": "energy-anomaly-v1-44600700f5a3be9c",
+      "feature_version": "energy-anomaly-20-v1",
+      "threshold_version": "quantiles-v1-d16d40eb0016ffe8",
+      "maturity": "experimental"
+    },
+    {
+      "role": "residual",
+      "model_version": "energy-anomaly-v1-44600700f5a3be9c",
+      "feature_version": "benchmark-energy-v1",
+      "threshold_version": "quantiles-v1-d16d40eb0016ffe8",
+      "maturity": "experimental"
+    }
+  ]
+}

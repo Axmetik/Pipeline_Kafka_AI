@@ -30,6 +30,8 @@ jobs:
           cache-dependency-path: |
             requirements-ci.txt
             requirements.txt
+            requirements-mvp.txt
+            requirements-api.txt
       - name: Install test dependencies
         run: |
           python -m pip install 'torch==2.11.0' --index-url https://download.pytorch.org/whl/cpu
@@ -50,6 +52,8 @@ jobs:
           cache-dependency-path: |
             requirements-ci.txt
             requirements.txt
+            requirements-mvp.txt
+            requirements-api.txt
       - name: Install test dependencies
         run: |
           python -m pip install 'torch==2.11.0' --index-url https://download.pytorch.org/whl/cpu
@@ -73,3 +77,123 @@ jobs:
       - name: Stop test broker
         if: always()
         run: docker compose -f docker/docker-compose.yml down -v
+
+  mvp:
+    name: PostgreSQL and MVP recovery integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: |
+            requirements-ci.txt
+            requirements.txt
+            requirements-mvp.txt
+            requirements-api.txt
+      - name: Install test dependencies
+        run: |
+          python -m pip install 'torch==2.11.0' --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements-ci.txt
+      - name: Create private ephemeral environment and start local infrastructure
+        run: |
+          python -m integration.setup
+          docker compose --env-file .env.mvp -p energy-mvp-ci -f docker/docker-compose.mvp.yml up -d --wait
+      - name: Run PostgreSQL, Kafka, crash and recovery tests
+        run: python tests/run_suite.py --suite mvp
+      - name: Infrastructure logs
+        if: failure()
+        run: docker compose --env-file .env.mvp -p energy-mvp-ci -f docker/docker-compose.mvp.yml logs --no-color
+      - name: Stop owned test infrastructure
+        if: always()
+        run: docker compose --env-file .env.mvp -p energy-mvp-ci -f docker/docker-compose.mvp.yml down -v
+
+  api:
+    name: Read-only API PostgreSQL integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: |
+            requirements-ci.txt
+            requirements.txt
+            requirements-mvp.txt
+            requirements-api.txt
+      - name: Install test dependencies
+        run: |
+          python -m pip install 'torch==2.11.0' --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements-ci.txt
+      - name: Start isolated PostgreSQL
+        run: |
+          python -m integration.setup
+          docker compose --env-file .env.mvp -p energy-api-ci -f docker/docker-compose.mvp.yml up -d --wait postgres
+      - name: Run actual SQL API integration checks
+        run: python tests/run_suite.py --suite api
+      - name: Stop owned database
+        if: always()
+        run: docker compose --env-file .env.mvp -p energy-api-ci -f docker/docker-compose.mvp.yml down -v
+
+  frontend:
+    name: Dashboard unit, TypeScript, build and browser contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - name: Frontend checks
+        working-directory: dashboard
+        run: |
+          npm ci
+          npm test
+          npm run typecheck
+          npm run build
+      - name: Browser contracts in isolated Chromium
+        run: python3 -m integration.browser_tests
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-contract-failure
+          path: dashboard/test-results/
+
+  dashboard-e2e:
+    name: Full Docker Kafka to live browser E2E
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      MVP_COMPOSE_PROJECT: energy-dashboard-ci
+      MVP_RUN_ID: dashboard-ci-001
+      MVP_GROUP_ID: dashboard-ci-001
+      MVP_TOPIC: dashboard-ci-001
+      MVP_WEB_PORT: '8088'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare clean-clone environment, dataset and frozen local models
+        run: python3 -m integration.demo prepare
+      - name: Start the entire local stack
+        run: |
+          python3 -m integration.demo up
+          curl --fail --max-time 10 http://127.0.0.1:8088/health/ready
+          python3 -m integration.security_check
+      - name: Replay in browser, restart recovery and duplicate delivery
+        run: python3 -m integration.browser_tests --live
+      - name: Safe diagnostic logs
+        if: failure()
+        run: python3 -m integration.demo logs
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: full-browser-failure
+          path: dashboard/test-results/
+      - name: Remove only this job's ephemeral stack
+        if: always()
+        run: docker compose --env-file .env.mvp -p energy-dashboard-ci -f docker/docker-compose.dashboard.yml down -v

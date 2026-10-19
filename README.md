@@ -426,3 +426,123 @@ statuses; timestamps/event IDs support downstream reconciliation but do not prov
 exactly-once guarantees. See [delivery limitations](docs/recovery-and-delivery.md).
 Synthetic anomaly labels are never sent to inference. Unchanged UCI alarms are
 not confirmed false positives; high loads alone are not anomaly labels.
+
+## Stage 5A: PostgreSQL and integrated worker
+
+[Stage 5A runbook](docs/stage5/5a-runbook.md) covers clean-clone setup, private
+local environment, Alembic migrations, verified model provisioning, replay and
+recovery. This substage adds the DB/worker only; FastAPI and Dashboard follow
+review of 5A. It preserves legacy scenarios and frozen Stage2/3/4 results.
+
+```bash
+python -m pip install -r requirements-mvp.txt
+python -m integration.setup
+docker compose --env-file .env.mvp -p energy-mvp -f docker/docker-compose.mvp.yml up -d --wait
+alembic upgrade head
+# Provision/register trusted models as described in the runbook, then:
+python -m integration.replay --dataset data/energy/raw/energydata_complete.csv --limit 300 --sleep 0
+OMP_NUM_THREADS=1 python -m integration.energy_worker --max-messages 300 --idle-timeout 15
+python -m integration.status
+```
+
+MVP infrastructure ports bind127.0.0.1 only. Local credentials/artifacts are
+ignored by Git. Explicit Kafka commits follow atomic PostgreSQL commits;
+recovery verifies DB checkpoints against retained Kafka records and restores
+causal model history/pending forecasts without rewriting their original times.
+All anomaly scores and threshold-exceedance episodes remain **experimental**.
+New real DB/Kafka recovery tests: `python tests/run_suite.py --suite mvp`.
+`--suite all` now requires both legacy Kafka and the isolated MVP infrastructure.
+
+### Stage 5B — локальний read-only API
+
+PostgreSQL — єдине джерело API; моделі й Kafka для запуску API не потрібні.
+Спочатку підготуйте базу за `docs/stage5/5a-runbook.md` (setup, Compose, Alembic)
+і виконайте replay worker, щоб отримати дані. API сам не створює схему.
+
+```bash
+source .venv/bin/activate
+python -m pip install -r requirements-mvp.txt -r requirements-api.txt -c requirements.txt
+python -m api
+```
+
+Відкрити [Swagger UI](http://127.0.0.1:8000/docs), перевірити
+[готовність PostgreSQL](http://127.0.0.1:8000/health/ready) та
+[останні вимірювання](http://127.0.0.1:8000/api/measurements?limit=10).
+У `/api/runs` можна вибрати `run_id`, потім додати його до запитів.
+Жодного фільтра «сьогодні» немає: останні записи replay 2016 року доступні відразу.
+
+```bash
+curl 'http://127.0.0.1:8000/api/pipeline-status'
+curl 'http://127.0.0.1:8000/api/forecasts?purpose=primary_forecast&limit=10'
+curl 'http://127.0.0.1:8000/api/anomaly-scores?detector=residual&limit=10'
+curl 'http://127.0.0.1:8000/api/measurements/aggregate?bucket_minutes=60&limit=10'
+python tests/run_suite.py --suite api   # потрібна реальна PostgreSQL, окремі тестові схеми
+python -m api.smoke --run-id YOUR_COMPLETED_300_POINT_RUN
+```
+
+`energy_wh` — енергія Wh за 600 секунд, не W. Історичний dataset timestamp
+не має timezone; браузер не повинен додавати до нього `Z` або конвертувати його
+через `Date`. Для джерел із явним offset задайте `time_basis=offset_aware`.
+`null` означає відсутність результату, а не нуль. IF/AE/residual і події є
+**experimental**, score не є ймовірністю, перевищення порогу не підтверджує несправність.
+`worker_status=unknown`: checkpoint не доводить, що worker зараз працює.
+
+API без автентифікації доступний тільки локально. CORS дозволяє лише
+`http://localhost:5173` і `http://127.0.0.1:5173`. Не публікуйте його через
+reverse proxy/tunnel; для віддаленого використання потрібна окрема погоджена
+автентифікація. Dashboard (Stage 5C) ще не реалізований.
+Повний контракт, обмеження й результати: `docs/stage5/5b-report.md`.
+
+### Stage 5C — повний застосунок у Docker
+
+Потрібні Docker Compose та Python3.10+ для невеликого CLI (ML/Python3.13 і
+frontend/Node працюють у контейнерах). З чистого clone, з кореня репозиторію:
+
+```bash
+python3 -m integration.demo prepare
+python3 -m integration.demo up
+# Відкрити http://127.0.0.1:8088
+python3 -m integration.demo replay --limit 300 --sleep 0.15
+```
+
+`prepare` створює приватний `.env.mvp`, завантажує відомий UCI CSV, готує нові
+локальні моделі за зафіксованими конфігураціями та перевіряє manifest/checksums.
+Перший build/fit потребує кількох хвилин. Наявні моделі й результати не
+перезаписуються. Вже перевірені trusted artifacts можна підключити без нового fit:
+
+```bash
+python3 -m integration.demo prepare \
+  --hgb artifacts/energy/appliances-hgb-bound-v1/model.joblib \
+  --anomaly artifacts/energy-anomaly/v1/bundle.joblib
+```
+
+Після першого replay на Dashboard видно300 measurements,600 forecasts і900
+score rows. Під час replay графіки оновлюються без перезавантаження. Worker
+залишається `unknown` без heartbeat; `API на зв’язку` означає лише стан HTTP API.
+Повторний replay тих самих300 readings збільшує duplicates, а не число фактів.
+
+```bash
+python3 -m integration.demo restart   # worker + Dashboard, дані збережено
+python3 -m integration.demo status
+python3 -m integration.demo logs
+python3 -m integration.demo stop      # volumes НЕ видаляються
+```
+
+Для нового незалежного replay експортуйте нові `MVP_RUN_ID`, `MVP_GROUP_ID` і
+`MVP_TOPIC` **в одному терміналі перед up та replay**. Не змінюйте ці значення
+лише для producer. Деталі, dev mode, browser tests, архітектура локального
+proxy та реальні скриншоти: [Stage5C report](docs/stage5/5c-report.md).
+
+```bash
+# Необов'язково, frontend development: Node22.12+ та host API на127.0.0.1:8000
+cd dashboard
+npm ci
+npm test
+npm run typecheck
+npm run build
+npm run dev
+```
+
+Docker API не має опублікованого8000-порту. Єдиний зовнішній порт повного MVP —
+`127.0.0.1:8088`; моделі read-only, credentials і datasets поза Git. Публічний
+хостинг без автентифікації не підтримується. IoT і Stage5A Compose залишаються окремими.

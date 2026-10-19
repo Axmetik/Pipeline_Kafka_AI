@@ -1,0 +1,110 @@
+# Isolated complete MVP. Does not change Stage5A infrastructure/host ports.
+x-backend: &backend
+  image: energy-monitoring-backend:local
+  build:
+    context: ..
+    dockerfile: docker/Dockerfile.backend
+  environment: &environment
+    MVP_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:?}:${POSTGRES_PASSWORD:?}@postgres:5432/${POSTGRES_DB:?}
+    MVP_BOOTSTRAP_SERVERS: kafka:29092
+    MVP_RUN_ID: ${MVP_RUN_ID:-demo-001}
+    MVP_GROUP_ID: ${MVP_GROUP_ID:-energy-mvp-demo-001}
+    MVP_TOPIC: ${MVP_TOPIC:-energy-mvp-demo-001}
+    MVP_ARTIFACT_MANIFEST: /app/${MVP_ARTIFACT_MANIFEST:-artifacts/mvp/local/manifest.json}
+  volumes:
+    - ../artifacts:/app/artifacts:ro
+    - ../data:/app/data:ro
+  networks: [backend]
+services:
+  postgres:
+    image: postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?}
+      POSTGRES_USER: ${POSTGRES_USER:?}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes: [pgdata:/var/lib/postgresql]
+    networks: [backend]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  kafka:
+    image: apache/kafka:3.9.0
+    networks: [backend]
+    volumes: [kafkadata:/var/lib/kafka/data]
+    environment:
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+    healthcheck:
+      test: [CMD-SHELL, '/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --list >/dev/null 2>&1']
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+  migrate:
+    <<: *backend
+    command: [alembic, upgrade, head]
+    depends_on:
+      postgres: {condition: service_healthy}
+  bootstrap:
+    <<: *backend
+    command: [python, -m, integration.stack_bootstrap]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      kafka: {condition: service_healthy}
+  worker:
+    <<: *backend
+    init: true
+    depends_on:
+      bootstrap: {condition: service_completed_successfully}
+  api:
+    <<: *backend
+    networks: [backend, edge]
+    # API binds ONLY loopback. nginx shares this network namespace below.
+    command: [python, -m, api]
+    volumes: []
+    ports: ['127.0.0.1:${MVP_WEB_PORT:-8088}:8080']
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, 'import urllib.request; urllib.request.urlopen("http://127.0.0.1:8000/health/ready",timeout=2)']
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  dashboard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dashboard
+    network_mode: service:api
+    depends_on:
+      api: {condition: service_healthy, restart: true}
+  tools:
+    <<: *backend
+    profiles: [tools]
+    networks: [backend, provisioning]
+    user: '${LOCAL_UID:-10001}:${LOCAL_GID:-10001}'
+    volumes:
+      - ../artifacts:/app/artifacts
+      - ../data:/app/data
+    command: [python, -m, integration.artifacts, --help]
+networks:
+  edge: {}
+  provisioning: {}
+  backend:
+    internal: true
+volumes:
+  pgdata:
+  kafkadata:
