@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "9d9baab885e563d6912154f3a586cf63712269b2",
+  "model_sha256": "2ac3a9c71a78a09ea5ba5845d47e68ae79f23a1b696d3f9daf23fbbad0f569ee",
+  "frozen_source_hashes_verified": 12,
+  "protected_tracked_paths_unchanged": true,
+  "local_tests": {
+    "unit": 44,
+    "kafka": 3,
+    "total": 47,
+    "result": "passed"
+  }
+}
