@@ -197,6 +197,8 @@ class Run:
             if recovery:
                 self.compose('run','--rm','--no-deps','tools','python','-m','performance.database','snapshot')
                 before=json.loads((self.directory/'integrity.json').read_text())
+                self.manifest['recovery_open_episodes_before']=sum(row['status']=='open' for row in before['episode_rows'])
+                self.manifest['recovery_closed_episodes_before']=sum(row['status']=='closed' for row in before['episode_rows'])
                 (self.directory/'before-restart.json').write_text(json.dumps(before,indent=2)+'\n')
                 start=time.monotonic_ns();epoch=time.time_ns()
                 threading.Thread(target=self.watch_recovery,args=(start,),daemon=True).start()
