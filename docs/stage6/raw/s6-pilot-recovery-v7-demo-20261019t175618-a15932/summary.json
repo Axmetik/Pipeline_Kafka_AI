@@ -1,0 +1,334 @@
+{
+  "publications": 60,
+  "processed": 60,
+  "latency_ms": {
+    "process": {
+      "n": 60,
+      "p50": 47.593292000000005,
+      "p95": 90.46168954999999,
+      "p99": 111.63022369
+    },
+    "poll_to_db": {
+      "n": 60,
+      "p50": 47.596312499999996,
+      "p95": 90.4666556,
+      "p99": 111.63512647
+    },
+    "hgb": {
+      "n": 60,
+      "p50": 0.8135,
+      "p95": 2.2550871499999996,
+      "p99": 2.967996249999996
+    },
+    "rf": {
+      "n": 60,
+      "p50": 18.165312,
+      "p95": 31.76583269999998,
+      "p99": 56.686545159999945
+    },
+    "if": {
+      "n": 60,
+      "p50": 12.505499499999999,
+      "p95": 23.108574999999995,
+      "p99": 26.675124309999983
+    },
+    "ae": {
+      "n": 60,
+      "p50": 1.152667,
+      "p95": 2.3643562499999997,
+      "p99": 2.882354659999998
+    },
+    "runtime": {
+      "n": 60,
+      "p50": 34.504979000000006,
+      "p95": 63.37931664999997,
+      "p99": 82.78673124999995
+    },
+    "energy_features": {
+      "n": 60,
+      "p50": 0.2457915,
+      "p95": 0.814153,
+      "p99": 0.8339482199999999
+    },
+    "anomaly_features": {
+      "n": 60,
+      "p50": 0.272875,
+      "p95": 0.5883753,
+      "p99": 1.0448627799999997
+    },
+    "transaction": {
+      "n": 60,
+      "p50": 47.278833500000005,
+      "p95": 90.02644404999998,
+      "p99": 111.04453147
+    },
+    "sql": {
+      "n": 60,
+      "p50": 4.6409595,
+      "p95": 11.43022535,
+      "p99": 16.52218995999998
+    },
+    "db_commit_ack": {
+      "n": 60,
+      "p50": 0.6759580000000001,
+      "p95": 2.88711875,
+      "p99": 3.3032419399999973
+    },
+    "kafka_commit_ack": {
+      "n": 60,
+      "p50": 2.364729,
+      "p95": 6.103368449999994,
+      "p99": 9.477600439999993
+    },
+    "ml_inference": {
+      "n": 60,
+      "p50": 32.9564385,
+      "p95": 60.83067769999998,
+      "p99": 79.23846474999995
+    },
+    "publication_ack": {
+      "n": 60,
+      "p50": 2.9484585,
+      "p95": 9.761710099999998,
+      "p99": 42.4931849999998
+    },
+    "send_to_db_ack": {
+      "n": 60,
+      "p50": 1822.639979,
+      "p95": 4290.500925249999,
+      "p99": 4525.03510672
+    }
+  },
+  "clock_method": "verified_shared_vm_CLOCK_MONOTONIC",
+  "clock_step_ms": {
+    "producer": {
+      "n": 211,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    },
+    "worker": {
+      "n": 215,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    }
+  },
+  "epoch_clock_valid": true,
+  "cross_process_clock_valid": true,
+  "publication_rate_per_second": 6.399843104136562,
+  "commit_rate_per_second": 12.490222384001981,
+  "completion_throughput_per_second": 6.445520959289007,
+  "dashboard": {
+    "committed_measured_ids": 60,
+    "observed_measured_ids": 60,
+    "censored": 0,
+    "invalid_clock_observations": 0,
+    "availability_to_dom_lower_ms": {
+      "n": 60,
+      "p50": 808.9492677561939,
+      "p95": 1975.0968766734004,
+      "p99": 2011.6738279040155
+    },
+    "availability_to_dom_upper_ms": {
+      "n": 60,
+      "p50": 1015.6766574122012,
+      "p95": 2179.5663073286414,
+      "p99": 2215.935063837841
+    },
+    "availability_to_dom_midpoint_ms": {
+      "n": 60,
+      "p50": 912.3129625841975,
+      "p95": 2077.331592001021,
+      "p99": 2113.8044458709282
+    },
+    "fetch_to_dom_ms": {
+      "n": 4,
+      "p50": 14.9500732421875,
+      "p95": 18.470056152343748,
+      "p99": 18.73405029296875
+    },
+    "clock_uncertainty_ms": {
+      "n": 2,
+      "p50": 1.425048828125,
+      "p95": 1.537548828125,
+      "p99": 1.547548828125
+    },
+    "latest_displayed_availability_age_lower_ms": {
+      "n": 4,
+      "p50": 4.675684757530689,
+      "p95": 1469.7063887950028,
+      "p99": 1669.8895446943488
+    },
+    "latest_displayed_availability_age_upper_ms": {
+      "n": 4,
+      "p50": 209.97709491103888,
+      "p95": 1675.7500901561225,
+      "p99": 1875.8488958963003
+    },
+    "known_db_head_gap_records": {
+      "n": 4,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    },
+    "actual_poll_interval_ms": {
+      "n": 16,
+      "p50": 2090.8499755859375,
+      "p95": 2344.4249267578125,
+      "p99": 2416.4849853515625
+    },
+    "cross_process_clock_valid": true,
+    "clock_method": "verified_vm_monotonic_bridge",
+    "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+  },
+  "telemetry_errors": [],
+  "resource_sampling_errors": 4,
+  "resource_scope": "measured controller epoch window; Docker CPU samples have their own averaging interval",
+  "resources": {
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-api-1": {
+      "samples": 5,
+      "cpu_percent": {
+        "n": 5,
+        "p50": 0.18,
+        "p95": 17.009999999999998,
+        "p99": 17.842
+      },
+      "cpu_mean_percent": 6.2780000000000005,
+      "cpu_peak_percent": 18.05,
+      "ram_peak_bytes": 70443335.68,
+      "sampling_interval_ms": {
+        "n": 4,
+        "p50": 2034.856,
+        "p95": 2058.43635,
+        "p99": 2061.4880700000003
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-browser": {
+      "samples": 5,
+      "cpu_percent": {
+        "n": 5,
+        "p50": 0.16,
+        "p95": 0.31799999999999995,
+        "p99": 0.34359999999999996
+      },
+      "cpu_mean_percent": 0.192,
+      "cpu_peak_percent": 0.35,
+      "ram_peak_bytes": 262563430.4,
+      "sampling_interval_ms": {
+        "n": 4,
+        "p50": 2034.8515000000002,
+        "p95": 2058.4387,
+        "p99": 2061.49174
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-dashboard-1": {
+      "samples": 5,
+      "cpu_percent": {
+        "n": 5,
+        "p50": 0.0,
+        "p95": 0.912,
+        "p99": 0.9184
+      },
+      "cpu_mean_percent": 0.36,
+      "cpu_peak_percent": 0.92,
+      "ram_peak_bytes": 6360662.016,
+      "sampling_interval_ms": {
+        "n": 4,
+        "p50": 2034.8575,
+        "p95": 2058.43565,
+        "p99": 2061.48713
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-kafka-1": {
+      "samples": 5,
+      "cpu_percent": {
+        "n": 5,
+        "p50": 22.72,
+        "p95": 77.18999999999998,
+        "p99": 83.518
+      },
+      "cpu_mean_percent": 32.397999999999996,
+      "cpu_peak_percent": 85.1,
+      "ram_peak_bytes": 358612992.0,
+      "sampling_interval_ms": {
+        "n": 4,
+        "p50": 2034.855,
+        "p95": 2058.4375,
+        "p99": 2061.4891
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-postgres-1": {
+      "samples": 5,
+      "cpu_percent": {
+        "n": 5,
+        "p50": 2.79,
+        "p95": 6.649999999999999,
+        "p99": 7.273999999999999
+      },
+      "cpu_mean_percent": 3.528,
+      "cpu_peak_percent": 7.43,
+      "ram_peak_bytes": 53162803.2,
+      "sampling_interval_ms": {
+        "n": 4,
+        "p50": 2034.8555,
+        "p95": 2058.4375,
+        "p99": 2061.4891
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-tools-run-2cd894b9faa7": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 0.9450000000000001,
+        "p95": 1.4054999999999997,
+        "p99": 1.4570999999999998
+      },
+      "cpu_mean_percent": 1.005,
+      "cpu_peak_percent": 1.47,
+      "ram_peak_bytes": 103892910.08,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2032.9,
+        "p95": 2059.3375,
+        "p99": 2061.6875
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-tools-run-bba5eb6f1a62": {
+      "samples": 5,
+      "cpu_percent": {
+        "n": 5,
+        "p50": 0.78,
+        "p95": 0.87,
+        "p99": 0.886
+      },
+      "cpu_mean_percent": 0.6980000000000001,
+      "cpu_peak_percent": 0.89,
+      "ram_peak_bytes": 43536875.52,
+      "sampling_interval_ms": {
+        "n": 4,
+        "p50": 2034.9085,
+        "p95": 2058.4556,
+        "p99": 2061.49592
+      }
+    },
+    "s6-pilot-recovery-v7-demo-20261019t175618-a15932-worker-1": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 81.28999999999999,
+        "p95": 96.8655,
+        "p99": 98.2851
+      },
+      "cpu_mean_percent": 73.565,
+      "cpu_peak_percent": 98.64,
+      "ram_peak_bytes": 318242816.0,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2032.889,
+        "p95": 2059.3175,
+        "p99": 2061.6666999999998
+      }
+    }
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "publications": 0,
+  "processed": 0,
+  "latency_ms": {
+    "process": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "poll_to_db": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "hgb": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "rf": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "if": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "ae": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "runtime": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "energy_features": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "anomaly_features": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "transaction": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "sql": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "db_commit_ack": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "kafka_commit_ack": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "ml_inference": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "publication_ack": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "send_to_db_ack": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    }
+  },
+  "clock_method": "legacy_epoch",
+  "clock_step_ms": {
+    "producer": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "worker": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    }
+  },
+  "epoch_clock_valid": true,
+  "cross_process_clock_valid": true,
+  "dashboard": {
+    "committed_measured_ids": 0,
+    "observed_measured_ids": 0,
+    "censored": 0,
+    "invalid_clock_observations": 0,
+    "availability_to_dom_lower_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "availability_to_dom_upper_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "availability_to_dom_midpoint_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "fetch_to_dom_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "clock_uncertainty_ms": {
+      "n": 2,
+      "p50": 3.20001220703125,
+      "p95": 4.820001220703125,
+      "p99": 4.964000244140625
+    },
+    "latest_displayed_availability_age_lower_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "latest_displayed_availability_age_upper_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "known_db_head_gap_records": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "actual_poll_interval_ms": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null
+    },
+    "cross_process_clock_valid": true,
+    "clock_method": "legacy_epoch_bridge",
+    "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+  },
+  "telemetry_errors": [],
+  "resource_sampling_errors": 0,
+  "resource_scope": "measured controller epoch window; Docker CPU samples have their own averaging interval",
+  "resources": {
+    "s6-overhead-v3-3-max-20261019t144733-d45f86-api-1": {
+      "samples": 1,
+      "cpu_percent": {
+        "n": 1,
+        "p50": 14.94,
+        "p95": 14.94,
+        "p99": 14.94
+      },
+      "cpu_mean_percent": 14.94,
+      "cpu_peak_percent": 14.94,
+      "ram_peak_bytes": 61027123.2,
+      "sampling_interval_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      }
+    },
+    "s6-overhead-v3-3-max-20261019t144733-d45f86-browser": {
+      "samples": 1,
+      "cpu_percent": {
+        "n": 1,
+        "p50": 53.96,
+        "p95": 53.96,
+        "p99": 53.96
+      },
+      "cpu_mean_percent": 53.96,
+      "cpu_peak_percent": 53.96,
+      "ram_peak_bytes": 178782208.0,
+      "sampling_interval_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      }
+    },
+    "s6-overhead-v3-3-max-20261019t144733-d45f86-dashboard-1": {
+      "samples": 1,
+      "cpu_percent": {
+        "n": 1,
+        "p50": 1.47,
+        "p95": 1.47,
+        "p99": 1.47
+      },
+      "cpu_mean_percent": 1.47,
+      "cpu_peak_percent": 1.47,
+      "ram_peak_bytes": 5488246.784,
+      "sampling_interval_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      }
+    },
+    "s6-overhead-v3-3-max-20261019t144733-d45f86-kafka-1": {
+      "samples": 1,
+      "cpu_percent": {
+        "n": 1,
+        "p50": 157.02,
+        "p95": 157.02,
+        "p99": 157.02
+      },
+      "cpu_mean_percent": 157.02,
+      "cpu_peak_percent": 157.02,
+      "ram_peak_bytes": 328623718.4,
+      "sampling_interval_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      }
+    },
+    "s6-overhead-v3-3-max-20261019t144733-d45f86-postgres-1": {
+      "samples": 1,
+      "cpu_percent": {
+        "n": 1,
+        "p50": 10.69,
+        "p95": 10.69,
+        "p99": 10.69
+      },
+      "cpu_mean_percent": 10.69,
+      "cpu_peak_percent": 10.69,
+      "ram_peak_bytes": 36721131.52,
+      "sampling_interval_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      }
+    },
+    "s6-overhead-v3-3-max-20261019t144733-d45f86-worker-1": {
+      "samples": 1,
+      "cpu_percent": {
+        "n": 1,
+        "p50": 102.28,
+        "p95": 102.28,
+        "p99": 102.28
+      },
+      "cpu_mean_percent": 102.28,
+      "cpu_peak_percent": 102.28,
+      "ram_peak_bytes": 256167116.8,
+      "sampling_interval_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "run_id": "s6-pilot-slow-20261019t141748-5dce71",
+  "mode": "slow",
+  "label": "pilot",
+  "warmup": 150,
+  "measured": 60,
+  "sleep": 1.0,
+  "instrumented": true,
+  "protocol": "stage6-v1",
+  "status": "complete",
+  "started_at": "2026-10-19T14:17:48.307447+00:00",
+  "measured_start_epoch_ns": 1792419500734412000,
+  "measured_duration_ns": 62601926042,
+  "measured_end_epoch_ns": 1792419563336315000,
+  "ended_at": "2026-10-19T14:19:33.219834+00:00"
+}

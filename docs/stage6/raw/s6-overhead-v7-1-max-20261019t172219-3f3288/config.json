@@ -1,0 +1,92 @@
+{
+  "protocol": "stage6-v1",
+  "base_tag": "v0.1.0-mvp",
+  "seed": 42,
+  "dataset": "data/energy/raw/energydata_complete.csv",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "manifest": "artifacts/mvp/docker/manifest.json",
+  "modes": {
+    "slow": 1.0,
+    "demo": 0.15,
+    "max": 0.0
+  },
+  "orders": [
+    [
+      "slow",
+      "demo",
+      "max"
+    ],
+    [
+      "demo",
+      "max",
+      "slow"
+    ],
+    [
+      "max",
+      "slow",
+      "demo"
+    ],
+    [
+      "slow",
+      "max",
+      "demo"
+    ],
+    [
+      "demo",
+      "slow",
+      "max"
+    ]
+  ],
+  "warmup": 300,
+  "measured": 3600,
+  "repetitions": 5,
+  "pilot": {
+    "campaign": "v7",
+    "warmup": 150,
+    "measured": 60
+  },
+  "overhead": {
+    "campaign": "v7",
+    "warmup": 300,
+    "measured": 600,
+    "orders": [
+      [
+        true,
+        false
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        true,
+        false
+      ]
+    ],
+    "investigation_percent": 5
+  },
+  "observer_interval_seconds": 0.2,
+  "poll_seconds": 2,
+  "window": 144,
+  "clock_uncertainty_ms": 10,
+  "drain_timeout_seconds": 900,
+  "startup_timeout_seconds": 240,
+  "api": {
+    "clients": [
+      1,
+      5
+    ],
+    "repetitions": 5,
+    "warmup_per_client": 50,
+    "requests_per_client": 1000,
+    "timeout_seconds": 10
+  },
+  "recovery": {
+    "repetitions": 5,
+    "warmup": 300,
+    "measured": 100
+  },
+  "threads": 1,
+  "cross_process_clock": "verified_shared_vm_CLOCK_MONOTONIC",
+  "completion_probe": "readonly_checkpoint_100ms"
+}

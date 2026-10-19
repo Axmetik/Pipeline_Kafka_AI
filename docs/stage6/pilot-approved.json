@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "run_id": "s6-pilot-v7-demo-20261019t175423-81d47a",
+      "issues": []
+    },
+    {
+      "run_id": "s6-pilot-v7-max-20261019t175518-4fed12",
+      "issues": []
+    },
+    {
+      "run_id": "s6-pilot-v7-slow-20261019t175239-0ed37d",
+      "issues": []
+    },
+    {
+      "run_id": "s6-overhead-v7-1-max-20261019t172102-3e0127",
+      "issues": []
+    },
+    {
+      "run_id": "s6-overhead-v7-1-max-20261019t172219-3f3288",
+      "issues": []
+    },
+    {
+      "run_id": "s6-overhead-v7-2-max-20261019t172332-e46abe",
+      "issues": []
+    },
+    {
+      "run_id": "s6-overhead-v7-2-max-20261019t172457-65ff6d",
+      "issues": []
+    },
+    {
+      "run_id": "s6-overhead-v7-3-max-20261019t172617-f5e6b4",
+      "issues": []
+    },
+    {
+      "run_id": "s6-overhead-v7-3-max-20261019t172735-34dee9",
+      "issues": []
+    }
+  ],
+  "pairs": [
+    {
+      "pair": "overhead-v7-1",
+      "on_run": "s6-overhead-v7-1-max-20261019t172102-3e0127",
+      "off_run": "s6-overhead-v7-1-max-20261019t172219-3f3288",
+      "on_per_second": 21.86636734039374,
+      "off_per_second": 22.143110390131042,
+      "throughput_overhead_percent": 1.2497930275443307,
+      "model_output_parity": true
+    },
+    {
+      "pair": "overhead-v7-2",
+      "on_run": "s6-overhead-v7-2-max-20261019t172457-65ff6d",
+      "off_run": "s6-overhead-v7-2-max-20261019t172332-e46abe",
+      "on_per_second": 20.44125245580888,
+      "off_per_second": 17.106879623752686,
+      "throughput_overhead_percent": -19.491414596888017,
+      "model_output_parity": true
+    },
+    {
+      "pair": "overhead-v7-3",
+      "on_run": "s6-overhead-v7-3-max-20261019t172617-f5e6b4",
+      "off_run": "s6-overhead-v7-3-max-20261019t172735-34dee9",
+      "on_per_second": 19.767734148059397,
+      "off_per_second": 21.562948644100228,
+      "throughput_overhead_percent": 8.325459220216684,
+      "model_output_parity": true
+    }
+  ],
+  "median_throughput_overhead_percent": 1.2497930275443307,
+  "correctness_passed": true,
+  "overhead_budget_exceeded": false,
+  "overhead_investigation_completed": true,
+  "overhead_under_investigation": false,
+  "config_sha256": "442a803d36b1ae0c12d4b5c5f3cd1b8317bf61b502d4097a31aa42768b0aa05a",
+  "instrumentation_sha256": "12e06aef4461868ecd43d34dc2d165d028f802905ff17ffa13ba1bc0ad5bbb64",
+  "manifest_sha256": "38415dc95ade11bfce5fc2cadea883ce01dd976ad84498df0dd98f7d05a7cde1",
+  "environment_sha256": "38a1115d40c91051e28c04863e0bcae8868a82d7308f2b43ef91fc1db3b37072"
+}

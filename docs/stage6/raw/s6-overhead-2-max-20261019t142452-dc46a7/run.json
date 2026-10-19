@@ -1,0 +1,16 @@
+{
+  "run_id": "s6-overhead-2-max-20261019t142452-dc46a7",
+  "mode": "max",
+  "label": "overhead-2",
+  "warmup": 150,
+  "measured": 100,
+  "sleep": 0.0,
+  "instrumented": true,
+  "protocol": "stage6-v1",
+  "status": "complete",
+  "started_at": "2026-10-19T14:24:52.492492+00:00",
+  "measured_start_epoch_ns": 1792419916990329000,
+  "measured_duration_ns": 5344895542,
+  "measured_end_epoch_ns": 1792419922335238000,
+  "ended_at": "2026-10-19T14:25:31.139904+00:00"
+}

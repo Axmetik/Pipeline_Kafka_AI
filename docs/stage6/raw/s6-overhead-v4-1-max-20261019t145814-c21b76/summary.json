@@ -1,0 +1,316 @@
+{
+  "publications": 600,
+  "processed": 600,
+  "latency_ms": {
+    "process": {
+      "n": 600,
+      "p50": 39.275145499999994,
+      "p95": 89.59829969999998,
+      "p99": 143.31297365999995
+    },
+    "poll_to_db": {
+      "n": 600,
+      "p50": 39.278521,
+      "p95": 89.60299819999999,
+      "p99": 143.32122190999993
+    },
+    "hgb": {
+      "n": 600,
+      "p50": 0.7397290000000001,
+      "p95": 1.7983937499999967,
+      "p99": 3.629067079999996
+    },
+    "rf": {
+      "n": 600,
+      "p50": 15.253708,
+      "p95": 34.17122679999997,
+      "p99": 59.83733291999997
+    },
+    "if": {
+      "n": 600,
+      "p50": 11.074313,
+      "p95": 25.62821009999999,
+      "p99": 47.879552679999975
+    },
+    "ae": {
+      "n": 600,
+      "p50": 0.9428544999999999,
+      "p95": 2.298620849999997,
+      "p99": 5.31605725
+    },
+    "runtime": {
+      "n": 600,
+      "p50": 29.817937999999998,
+      "p95": 65.25847259999988,
+      "p99": 127.02572974
+    },
+    "energy_features": {
+      "n": 600,
+      "p50": 0.1895,
+      "p95": 0.4139833499999999,
+      "p99": 0.8647304199999997
+    },
+    "anomaly_features": {
+      "n": 600,
+      "p50": 0.2318125,
+      "p95": 0.5206493499999995,
+      "p99": 1.0296745899999993
+    },
+    "transaction": {
+      "n": 600,
+      "p50": 38.890125,
+      "p95": 89.26549724999998,
+      "p99": 142.70967574999995
+    },
+    "sql": {
+      "n": 600,
+      "p50": 3.6515225,
+      "p95": 9.2420557,
+      "p99": 17.377712399999986
+    },
+    "db_commit_ack": {
+      "n": 600,
+      "p50": 0.5887290000000001,
+      "p95": 1.778422299999998,
+      "p99": 3.3457409199999995
+    },
+    "kafka_commit_ack": {
+      "n": 600,
+      "p50": 1.2285840000000001,
+      "p95": 3.7824172999999983,
+      "p99": 7.456722919999994
+    },
+    "ml_inference": {
+      "n": 600,
+      "p50": 28.495458499999998,
+      "p95": 62.368716499999806,
+      "p99": 114.38348041999994
+    },
+    "publication_ack": {
+      "n": 600,
+      "p50": 1.1319789999999998,
+      "p95": 3.9247562499999993,
+      "p99": 6.316609409999994
+    },
+    "send_to_db_ack": {
+      "n": 600,
+      "p50": 15269.044180500001,
+      "p95": 28084.050792449998,
+      "p99": 29058.01828767
+    }
+  },
+  "clock_method": "legacy_epoch",
+  "clock_step_ms": {
+    "producer": {
+      "n": 899,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    },
+    "worker": {
+      "n": 901,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    }
+  },
+  "epoch_clock_valid": true,
+  "cross_process_clock_valid": true,
+  "publication_rate_per_second": 619.1654445729348,
+  "commit_rate_per_second": 19.85931320507702,
+  "completion_throughput_per_second": 19.82969222038449,
+  "dashboard": {
+    "committed_measured_ids": 600,
+    "observed_measured_ids": 600,
+    "censored": 0,
+    "invalid_clock_observations": 0,
+    "availability_to_dom_lower_ms": {
+      "n": 600,
+      "p50": 1135.7232666015625,
+      "p95": 2009.2548828125,
+      "p99": 2120.2230810546876
+    },
+    "availability_to_dom_upper_ms": {
+      "n": 600,
+      "p50": 1194.050537109375,
+      "p95": 2065.9204711914062,
+      "p99": 2177.3647534179686
+    },
+    "availability_to_dom_midpoint_ms": {
+      "n": 600,
+      "p50": 1164.952392578125,
+      "p95": 2037.585205078125,
+      "p99": 2148.793917236328
+    },
+    "fetch_to_dom_ms": {
+      "n": 15,
+      "p50": 15.60009765625,
+      "p95": 34.00993652343749,
+      "p99": 38.321909179687495
+    },
+    "clock_uncertainty_ms": {
+      "n": 2,
+      "p50": 2.9749755859375,
+      "p95": 3.49254150390625,
+      "p99": 3.53854736328125
+    },
+    "latest_displayed_availability_age_lower_ms": {
+      "n": 15,
+      "p50": 70.218017578125,
+      "p95": 1075.5229736328122,
+      "p99": 1290.9434619140623
+    },
+    "latest_displayed_availability_age_upper_ms": {
+      "n": 15,
+      "p50": 127.2861328125,
+      "p95": 1135.6267333984372,
+      "p99": 1348.7845263671873
+    },
+    "known_db_head_gap_records": {
+      "n": 15,
+      "p50": 0.0,
+      "p95": 1.0,
+      "p99": 1.0
+    },
+    "actual_poll_interval_ms": {
+      "n": 27,
+      "p50": 2097.60009765625,
+      "p95": 2341.899951171875,
+      "p99": 2376.1419873046875
+    },
+    "cross_process_clock_valid": true,
+    "clock_method": "legacy_epoch_bridge",
+    "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+  },
+  "telemetry_errors": [],
+  "resource_sampling_errors": 3,
+  "resource_scope": "measured controller epoch window; Docker CPU samples have their own averaging interval",
+  "resources": {
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-api-1": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 11.58,
+        "p95": 33.377,
+        "p99": 33.8194
+      },
+      "cpu_mean_percent": 15.611333333333333,
+      "cpu_peak_percent": 33.93,
+      "ram_peak_bytes": 86224404.48,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.452,
+        "p95": 2800.9155499999993,
+        "p99": 3852.5911099999985
+      }
+    },
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-browser": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 10.2,
+        "p95": 33.76999999999998,
+        "p99": 42.22599999999999
+      },
+      "cpu_mean_percent": 13.412666666666667,
+      "cpu_peak_percent": 44.34,
+      "ram_peak_bytes": 312580505.6,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.4515000000001,
+        "p95": 2800.7512999999994,
+        "p99": 3852.564659999998
+      }
+    },
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-dashboard-1": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 0.75,
+        "p95": 2.045,
+        "p99": 2.129
+      },
+      "cpu_mean_percent": 0.9346666666666666,
+      "cpu_peak_percent": 2.15,
+      "ram_peak_bytes": 5743050.752,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.4515000000001,
+        "p95": 2800.7517499999994,
+        "p99": 3852.5583499999984
+      }
+    },
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-kafka-1": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 42.52,
+        "p95": 139.04399999999998,
+        "p99": 149.4488
+      },
+      "cpu_mean_percent": 58.09,
+      "cpu_peak_percent": 152.05,
+      "ram_peak_bytes": 410936934.4,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.4545,
+        "p95": 2800.9351499999993,
+        "p99": 3852.5982299999987
+      }
+    },
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-postgres-1": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 10.63,
+        "p95": 15.63199999999999,
+        "p99": 21.086399999999994
+      },
+      "cpu_mean_percent": 10.531333333333333,
+      "cpu_peak_percent": 22.45,
+      "ram_peak_bytes": 64382566.4,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.455,
+        "p95": 2800.931899999999,
+        "p99": 3852.5975799999987
+      }
+    },
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-tools-run-fb075c6fb3bc": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 1.92,
+        "p95": 3.470999999999999,
+        "p99": 4.0142
+      },
+      "cpu_mean_percent": 2.122,
+      "cpu_peak_percent": 4.15,
+      "ram_peak_bytes": 43704647.68,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.43,
+        "p95": 2800.644549999999,
+        "p99": 3852.5385099999985
+      }
+    },
+    "s6-overhead-v4-1-max-20261019t145814-c21b76-worker-1": {
+      "samples": 15,
+      "cpu_percent": {
+        "n": 15,
+        "p50": 88.66,
+        "p95": 91.22500000000001,
+        "p99": 91.421
+      },
+      "cpu_mean_percent": 84.06866666666667,
+      "cpu_peak_percent": 91.47,
+      "ram_peak_bytes": 323380838.4,
+      "sampling_interval_ms": {
+        "n": 14,
+        "p50": 2032.452,
+        "p95": 2800.7504499999995,
+        "p99": 3852.5580899999986
+      }
+    }
+  }
+}

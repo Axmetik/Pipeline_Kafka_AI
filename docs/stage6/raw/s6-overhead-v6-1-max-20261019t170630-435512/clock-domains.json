@@ -1,0 +1,26 @@
+{
+  "worker": {
+    "boot_id": "f827ee63-c3d1-466b-88ba-ac3cb761d728",
+    "time_namespace": "time:[4026531834]",
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution_seconds": 0.001
+  },
+  "api": {
+    "boot_id": "f827ee63-c3d1-466b-88ba-ac3cb761d728",
+    "time_namespace": "time:[4026531834]",
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution_seconds": 0.001
+  },
+  "tools": {
+    "boot_id": "f827ee63-c3d1-466b-88ba-ac3cb761d728",
+    "time_namespace": "time:[4026531834]",
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution_seconds": 0.001
+  }
+}

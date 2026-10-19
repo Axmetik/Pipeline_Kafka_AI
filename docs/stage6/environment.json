@@ -1,0 +1,168 @@
+{
+  "registered_config": {
+    "protocol": "stage6-v1",
+    "base_tag": "v0.1.0-mvp",
+    "seed": 42,
+    "dataset": "data/energy/raw/energydata_complete.csv",
+    "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "manifest": "artifacts/mvp/docker/manifest.json",
+    "modes": {
+      "slow": 1.0,
+      "demo": 0.15,
+      "max": 0.0
+    },
+    "orders": [
+      [
+        "slow",
+        "demo",
+        "max"
+      ],
+      [
+        "demo",
+        "max",
+        "slow"
+      ],
+      [
+        "max",
+        "slow",
+        "demo"
+      ],
+      [
+        "slow",
+        "max",
+        "demo"
+      ],
+      [
+        "demo",
+        "slow",
+        "max"
+      ]
+    ],
+    "warmup": 300,
+    "measured": 3600,
+    "repetitions": 5,
+    "pilot": {
+      "campaign": "v7",
+      "warmup": 150,
+      "measured": 60
+    },
+    "overhead": {
+      "campaign": "v7",
+      "warmup": 300,
+      "measured": 600,
+      "orders": [
+        [
+          true,
+          false
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          false
+        ]
+      ],
+      "investigation_percent": 5
+    },
+    "observer_interval_seconds": 0.2,
+    "poll_seconds": 2,
+    "window": 144,
+    "clock_uncertainty_ms": 10,
+    "drain_timeout_seconds": 900,
+    "startup_timeout_seconds": 240,
+    "api": {
+      "clients": [
+        1,
+        5
+      ],
+      "repetitions": 5,
+      "warmup_per_client": 50,
+      "requests_per_client": 1000,
+      "timeout_seconds": 10
+    },
+    "recovery": {
+      "repetitions": 5,
+      "warmup": 300,
+      "measured": 100
+    },
+    "threads": 1,
+    "cross_process_clock": "verified_shared_vm_CLOCK_MONOTONIC",
+    "completion_probe": "readonly_checkpoint_100ms"
+  },
+  "host": {
+    "system": "Darwin",
+    "node": "Oleksandrs-Slavych-MacBook-Pro.local",
+    "release": "25.5.0",
+    "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:38:00 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8103",
+    "machine": "arm64",
+    "processor": "arm"
+  },
+  "python": "3.13.2 (v3.13.2:4f8bb3947cf, Feb  4 2025, 11:51:10) [Clang 15.0.0 (clang-1500.3.9.4)]",
+  "git": "8c56e5afce028b0e727ee2a3536e328a797455cb",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "manifest": {
+    "schema_version": 1,
+    "libraries": {
+      "numpy": "2.4.4",
+      "scikit-learn": "1.8.0",
+      "torch": "2.11.0+cpu",
+      "joblib": "1.5.3"
+    },
+    "artifacts": {
+      "hgb": {
+        "path": "../../energy/appliances-hgb-bound-v1/model.joblib",
+        "sha256": "68998ace760b31ed6eb757764f7ca75f867da9ba570f344369e95674e44a3e79"
+      },
+      "anomaly": {
+        "path": "../../energy-anomaly/v1/bundle.joblib",
+        "sha256": "2ac3a9c71a78a09ea5ba5845d47e68ae79f23a1b696d3f9daf23fbbad0f569ee"
+      }
+    }
+  },
+  "docker": {
+    "ServerVersion": "29.4.2",
+    "NCPU": 5,
+    "MemTotal": 6212689920,
+    "Architecture": "aarch64",
+    "KernelVersion": "6.12.76-linuxkit",
+    "OperatingSystem": "Docker Desktop"
+  },
+  "host_hardware": {
+    "chip_type": "Apple M1",
+    "physical_memory": "16 GB",
+    "number_processors": "proc 8:4:4:0",
+    "machine_name": "MacBook Pro",
+    "machine_model": "MacBookPro17,1"
+  },
+  "background_containers": "energy-dashboard-dashboard-1 energy-dashboard-dashboard\nenergy-dashboard-worker-1 7a4450174518\nenergy-dashboard-api-1 7a4450174518\nenergy-dashboard-postgres-1 postgres:18-alpine\nenergy-dashboard-kafka-1 apache/kafka:3.9.0\nenergy-mvp-kafka-1 apache/kafka:3.9.0\nenergy-mvp-postgres-1 postgres:18-alpine\nkafka-ui provectuslabs/kafka-ui:latest\nkafka apache/kafka:3.9.0",
+  "images": "energy-performance-browser local 337658fea254 sha256:337658fea254a361001bd2b6584e3a20e3c5149a052bde565e0003c93d74dbab\nenergy-performance-build-dashboard latest 0a192e2fadf1 <none>\nenergy-performance-dashboard local 0a192e2fadf1 sha256:0a192e2fadf1b63f912451241e2cc1f97ca9adec5ae5a35231845cff98fa245c\nenergy-monitoring-backend local d4e7a3c610c6 sha256:d4e7a3c610c638aa4337a7f9a22388b71b97da8cf61d2a08e5738c6a7c819d1f\nenergy-dashboard-dashboard latest 1fd52f412248 sha256:1fd52f412248ee07861800cc9ccfb8180d60df88fe5f4b6ae6d5f67234b96778\nenergy-dashboard-e2e local cf2fac35303e sha256:cf2fac35303eb1e10a2f82b7287f076600df7a7a744bdf4db7728b7cdffc15b1\npostgres 18-alpine 77f585114c32 sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873\nalpine latest 5b10f432ef3d sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\nhello-world latest f9078146db2e sha256:f9078146db2e05e794366b1bfe584a14ea6317f44027d10ef7dad65279026885\napache/kafka 3.9.0 fbc7d7c428e3 sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f\nprovectuslabs/kafka-ui latest 8f2ff02d64b0 sha256:8f2ff02d64b0a7a2b71b6b3b3148b85f66d00ec20ad40c30bdcd415d46d31818",
+  "frozen_images": {
+    "energy-monitoring-backend:local": "sha256:d4e7a3c610c638aa4337a7f9a22388b71b97da8cf61d2a08e5738c6a7c819d1f",
+    "energy-performance-dashboard:local": "sha256:0a192e2fadf1b63f912451241e2cc1f97ca9adec5ae5a35231845cff98fa245c",
+    "energy-performance-browser:local": "sha256:337658fea254a361001bd2b6584e3a20e3c5149a052bde565e0003c93d74dbab",
+    "apache/kafka:3.9.0": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+    "postgres:18-alpine": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873"
+  },
+  "runtime_versions": {
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.4.4",
+      "scikit-learn": "1.8.0",
+      "torch": "2.11.0+cpu",
+      "kafka-python": "2.3.1",
+      "SQLAlchemy": "2.0.55",
+      "psycopg": "3.3.6",
+      "fastapi": "0.147.0",
+      "uvicorn": "0.46.0",
+      "pydantic": "2.13.5",
+      "joblib": "1.5.3",
+      "threadpoolctl": "3.6.0",
+      "pyarrow": "24.0.0",
+      "pandas": "3.0.2"
+    }
+  },
+  "power_observation": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22872163)\t31%; charging; 2:01 remaining present: true",
+  "thermal_observation": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+}

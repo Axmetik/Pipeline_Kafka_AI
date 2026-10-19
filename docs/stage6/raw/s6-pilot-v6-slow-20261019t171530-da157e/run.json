@@ -1,0 +1,22 @@
+{
+  "run_id": "s6-pilot-v6-slow-20261019t171530-da157e",
+  "mode": "slow",
+  "label": "pilot-v6",
+  "warmup": 150,
+  "measured": 60,
+  "sleep": 1.0,
+  "instrumented": true,
+  "protocol": "stage6-v1",
+  "status": "complete",
+  "started_at": "2026-10-19T17:15:30.549502+00:00",
+  "config_sha256": "d803e48b2b23364221cd7a1819e0c0a7478ce3521d93857d7b091c595421a292",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "instrumentation_sha256": "b91b7342a96fe25f3b0c9c6c9ff99c430d08d0074c15f817350af7596a04a7a9",
+  "manifest_sha256": "38415dc95ade11bfce5fc2cadea883ce01dd976ad84498df0dd98f7d05a7cde1",
+  "measured_start_epoch_ns": 1792430154371294000,
+  "publication_observed_mono_ns": 227118165130916,
+  "measured_duration_ns": 61271764500,
+  "observed_completion_duration_ns": 59834523417,
+  "measured_end_epoch_ns": 1792430215643113000,
+  "ended_at": "2026-10-19T17:17:04.305841+00:00"
+}

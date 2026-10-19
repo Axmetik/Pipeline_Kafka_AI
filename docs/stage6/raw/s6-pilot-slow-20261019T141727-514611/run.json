@@ -1,0 +1,14 @@
+{
+  "run_id": "s6-pilot-slow-20261019T141727-514611",
+  "mode": "slow",
+  "label": "pilot",
+  "warmup": 150,
+  "measured": 60,
+  "sleep": 1.0,
+  "instrumented": true,
+  "protocol": "stage6-v1",
+  "status": "failed",
+  "started_at": "2026-10-19T14:17:27.291445+00:00",
+  "failure": "Command failed (1): ['docker', 'compose', '--env-file']; see private-safe run log",
+  "ended_at": "2026-10-19T14:17:27.469828+00:00"
+}

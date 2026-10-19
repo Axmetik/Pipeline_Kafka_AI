@@ -1,0 +1,316 @@
+{
+  "publications": 600,
+  "processed": 600,
+  "latency_ms": {
+    "process": {
+      "n": 600,
+      "p50": 40.922208499999996,
+      "p95": 119.91658125,
+      "p99": 290.6227949099996
+    },
+    "poll_to_db": {
+      "n": 600,
+      "p50": 40.926708000000005,
+      "p95": 119.92189345,
+      "p99": 290.8103121699996
+    },
+    "hgb": {
+      "n": 600,
+      "p50": 0.7302715,
+      "p95": 2.20109315,
+      "p99": 4.93205167
+    },
+    "rf": {
+      "n": 600,
+      "p50": 15.347729000000001,
+      "p95": 44.44674409999998,
+      "p99": 99.42754165999966
+    },
+    "if": {
+      "n": 600,
+      "p50": 11.3373125,
+      "p95": 31.36803124999999,
+      "p99": 68.57934883999997
+    },
+    "ae": {
+      "n": 600,
+      "p50": 0.967021,
+      "p95": 2.4463830499999997,
+      "p99": 6.350026339999986
+    },
+    "runtime": {
+      "n": 600,
+      "p50": 30.436374999999998,
+      "p95": 88.74032704999999,
+      "p99": 190.52960899999968
+    },
+    "energy_features": {
+      "n": 600,
+      "p50": 0.198229,
+      "p95": 0.6112555999999997,
+      "p99": 1.4141323299999973
+    },
+    "anomaly_features": {
+      "n": 600,
+      "p50": 0.2361875,
+      "p95": 0.7659360499999984,
+      "p99": 1.4468159199999997
+    },
+    "transaction": {
+      "n": 600,
+      "p50": 40.58675,
+      "p95": 119.48975449999999,
+      "p99": 286.68620216999955
+    },
+    "sql": {
+      "n": 600,
+      "p50": 3.8702695,
+      "p95": 13.260023949999997,
+      "p99": 28.594124149999956
+    },
+    "db_commit_ack": {
+      "n": 600,
+      "p50": 0.6799585,
+      "p95": 2.615633649999999,
+      "p99": 5.250230419999999
+    },
+    "kafka_commit_ack": {
+      "n": 600,
+      "p50": 1.3224785,
+      "p95": 6.99404614999999,
+      "p99": 11.783555419999972
+    },
+    "ml_inference": {
+      "n": 600,
+      "p50": 28.9703125,
+      "p95": 84.28387054999993,
+      "p99": 186.27704848999977
+    },
+    "publication_ack": {
+      "n": 600,
+      "p50": 0.855063,
+      "p95": 2.5650732499999958,
+      "p99": 4.267257499999999
+    },
+    "send_to_db_ack": {
+      "n": 600,
+      "p50": 21052.325864,
+      "p95": 33070.4440097,
+      "p99": 34334.48605942
+    }
+  },
+  "clock_method": "legacy_epoch",
+  "clock_step_ms": {
+    "producer": {
+      "n": 899,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    },
+    "worker": {
+      "n": 901,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    }
+  },
+  "epoch_clock_valid": true,
+  "cross_process_clock_valid": true,
+  "publication_rate_per_second": 851.4125227269044,
+  "commit_rate_per_second": 17.03389265476889,
+  "completion_throughput_per_second": 17.021132719610602,
+  "dashboard": {
+    "committed_measured_ids": 600,
+    "observed_measured_ids": 600,
+    "censored": 0,
+    "invalid_clock_observations": 0,
+    "availability_to_dom_lower_ms": {
+      "n": 600,
+      "p50": 1139.6162109375,
+      "p95": 2114.0418884277337,
+      "p99": 2744.8959924316405
+    },
+    "availability_to_dom_upper_ms": {
+      "n": 600,
+      "p50": 1196.501708984375,
+      "p95": 2176.3826110839836,
+      "p99": 2804.5548693847654
+    },
+    "availability_to_dom_midpoint_ms": {
+      "n": 600,
+      "p50": 1168.0589599609375,
+      "p95": 2145.212249755859,
+      "p99": 2774.7254309082027
+    },
+    "fetch_to_dom_ms": {
+      "n": 17,
+      "p50": 18.199951171875,
+      "p95": 111.12011718749996,
+      "p99": 153.42402343749998
+    },
+    "clock_uncertainty_ms": {
+      "n": 3,
+      "p50": 2.3499755859375,
+      "p95": 3.83499755859375,
+      "p99": 3.96699951171875
+    },
+    "latest_displayed_availability_age_lower_ms": {
+      "n": 17,
+      "p50": 85.3551025390625,
+      "p95": 716.5295654296865,
+      "p99": 1542.9772998046874
+    },
+    "latest_displayed_availability_age_upper_ms": {
+      "n": 17,
+      "p50": 142.8458251953125,
+      "p95": 799.6985107421866,
+      "p99": 1605.2435107421873
+    },
+    "known_db_head_gap_records": {
+      "n": 17,
+      "p50": 0.0,
+      "p95": 1.0,
+      "p99": 1.0
+    },
+    "actual_poll_interval_ms": {
+      "n": 29,
+      "p50": 2122.699951171875,
+      "p95": 2622.840039062499,
+      "p99": 2936.39216796875
+    },
+    "cross_process_clock_valid": true,
+    "clock_method": "legacy_epoch_bridge",
+    "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+  },
+  "telemetry_errors": [],
+  "resource_sampling_errors": 2,
+  "resource_scope": "measured controller epoch window; Docker CPU samples have their own averaging interval",
+  "resources": {
+    "s6-overhead-v4-2-max-20261019t150218-abe216-api-1": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 14.120000000000001,
+        "p95": 42.72,
+        "p99": 43.8
+      },
+      "cpu_mean_percent": 19.214375,
+      "cpu_peak_percent": 44.07,
+      "ram_peak_bytes": 80824238.08,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.788,
+        "p95": 3363.9295999999986,
+        "p99": 3931.9163199999994
+      }
+    },
+    "s6-overhead-v4-2-max-20261019t150218-abe216-browser": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 2.2,
+        "p95": 21.9325,
+        "p99": 32.2585
+      },
+      "cpu_mean_percent": 7.49375,
+      "cpu_peak_percent": 34.84,
+      "ram_peak_bytes": 308805632.0,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.786,
+        "p95": 3363.9327999999987,
+        "p99": 3931.9161599999993
+      }
+    },
+    "s6-overhead-v4-2-max-20261019t150218-abe216-dashboard-1": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 0.83,
+        "p95": 2.3600000000000003,
+        "p99": 2.792
+      },
+      "cpu_mean_percent": 1.034375,
+      "cpu_peak_percent": 2.9,
+      "ram_peak_bytes": 5898240.0,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.786,
+        "p95": 3363.929299999999,
+        "p99": 3931.9154599999993
+      }
+    },
+    "s6-overhead-v4-2-max-20261019t150218-abe216-kafka-1": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 64.725,
+        "p95": 133.19,
+        "p99": 134.894
+      },
+      "cpu_mean_percent": 64.710625,
+      "cpu_peak_percent": 135.32,
+      "ram_peak_bytes": 403072614.4,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.789,
+        "p95": 3363.928199999999,
+        "p99": 3931.916039999999
+      }
+    },
+    "s6-overhead-v4-2-max-20261019t150218-abe216-postgres-1": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 10.665,
+        "p95": 19.5375,
+        "p99": 29.539499999999997
+      },
+      "cpu_mean_percent": 11.82125,
+      "cpu_peak_percent": 32.04,
+      "ram_peak_bytes": 64676167.68,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.788,
+        "p95": 3363.928899999999,
+        "p99": 3931.9161799999993
+      }
+    },
+    "s6-overhead-v4-2-max-20261019t150218-abe216-tools-run-b2e2a9a49f21": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 2.7649999999999997,
+        "p95": 9.114999999999998,
+        "p99": 14.742999999999995
+      },
+      "cpu_mean_percent": 3.765625,
+      "cpu_peak_percent": 16.15,
+      "ram_peak_bytes": 43054530.56,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.79,
+        "p95": 3363.936699999999,
+        "p99": 3931.938539999999
+      }
+    },
+    "s6-overhead-v4-2-max-20261019t150218-abe216-worker-1": {
+      "samples": 16,
+      "cpu_percent": {
+        "n": 16,
+        "p50": 86.435,
+        "p95": 92.065,
+        "p99": 93.037
+      },
+      "cpu_mean_percent": 80.62625,
+      "cpu_peak_percent": 93.28,
+      "ram_peak_bytes": 323275980.8,
+      "sampling_interval_ms": {
+        "n": 15,
+        "p50": 2048.786,
+        "p95": 3363.9296999999992,
+        "p99": 3931.9091399999993
+      }
+    }
+  }
+}

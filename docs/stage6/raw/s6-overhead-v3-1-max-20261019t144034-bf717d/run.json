@@ -1,0 +1,20 @@
+{
+  "run_id": "s6-overhead-v3-1-max-20261019t144034-bf717d",
+  "mode": "max",
+  "label": "overhead-v3-1",
+  "warmup": 300,
+  "measured": 600,
+  "sleep": 0.0,
+  "instrumented": true,
+  "protocol": "stage6-v1",
+  "status": "complete",
+  "started_at": "2026-10-19T14:40:34.444104+00:00",
+  "config_sha256": "f603c61e074e5058f592f7997e4015e3359a68ee4012fdc2ca1d657eeb311ec1",
+  "instrumentation_sha256": "1892528440d2af847a40915a75d944ce58f2f5f52e65fd7b08b9e54dad090d8a",
+  "measured_start_epoch_ns": 1792420872061239000,
+  "publication_observed_mono_ns": 223736880994166,
+  "measured_duration_ns": 37559903125,
+  "observed_completion_duration_ns": 35718103292,
+  "measured_end_epoch_ns": 1792420909621366000,
+  "ended_at": "2026-10-19T14:42:00.892338+00:00"
+}

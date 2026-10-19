@@ -1,0 +1,16 @@
+{
+  "run_id": "s6-pilot-max-20261019t142023-4eac5f",
+  "mode": "max",
+  "label": "pilot",
+  "warmup": 150,
+  "measured": 60,
+  "sleep": 0.0,
+  "instrumented": true,
+  "protocol": "stage6-v1",
+  "status": "complete",
+  "started_at": "2026-10-19T14:20:23.226512+00:00",
+  "measured_start_epoch_ns": 1792419646429196000,
+  "measured_duration_ns": 4542846541,
+  "measured_end_epoch_ns": 1792419650972049000,
+  "ended_at": "2026-10-19T14:21:00.596328+00:00"
+}

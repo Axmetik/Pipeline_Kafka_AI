@@ -1,0 +1,16 @@
+{
+  "run_id": "s6-overhead-v3-3-max-20261019t144733-d45f86",
+  "mode": "max",
+  "label": "overhead-v3-3",
+  "warmup": 300,
+  "measured": 600,
+  "sleep": 0.0,
+  "instrumented": false,
+  "protocol": "stage6-v1",
+  "status": "failed",
+  "started_at": "2026-10-19T14:47:33.370676+00:00",
+  "config_sha256": "f603c61e074e5058f592f7997e4015e3359a68ee4012fdc2ca1d657eeb311ec1",
+  "instrumentation_sha256": "3294facc94b27ef46fbb0bb96c1f016d93cf14990e0f76f454eeb5a5000f585a",
+  "failure": "Command failed (1): ['docker', 'compose', '--env-file']; see private-safe run log",
+  "ended_at": "2026-10-19T14:48:00.187391+00:00"
+}

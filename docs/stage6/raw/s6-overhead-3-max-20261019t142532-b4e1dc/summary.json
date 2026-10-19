@@ -1,0 +1,281 @@
+{
+  "publications": 100,
+  "processed": 100,
+  "latency_ms": {
+    "process": {
+      "n": 100,
+      "p50": 41.4532085,
+      "p95": 74.31165659999999,
+      "p99": 109.94263241000007
+    },
+    "poll_to_db": {
+      "n": 100,
+      "p50": 41.4595415,
+      "p95": 74.31869584999998,
+      "p99": 109.99209217000008
+    },
+    "hgb": {
+      "n": 100,
+      "p50": 0.786646,
+      "p95": 2.17455625,
+      "p99": 2.8153585000000145
+    },
+    "rf": {
+      "n": 100,
+      "p50": 15.4178955,
+      "p95": 32.5074375,
+      "p99": 36.34470833000002
+    },
+    "if": {
+      "n": 100,
+      "p50": 11.843209,
+      "p95": 21.202541699999998,
+      "p99": 38.62978117000011
+    },
+    "ae": {
+      "n": 100,
+      "p50": 1.015479,
+      "p95": 2.53581815,
+      "p99": 5.273668750000008
+    },
+    "runtime": {
+      "n": 100,
+      "p50": 31.0406665,
+      "p95": 55.25392679999998,
+      "p99": 77.94575626000012
+    },
+    "energy_features": {
+      "n": 100,
+      "p50": 0.2035835,
+      "p95": 0.57996495,
+      "p99": 1.0071265700000003
+    },
+    "anomaly_features": {
+      "n": 100,
+      "p50": 0.245833,
+      "p95": 0.7687312499999998,
+      "p99": 1.627107910000002
+    },
+    "transaction": {
+      "n": 100,
+      "p50": 41.126583499999995,
+      "p95": 73.84106459999998,
+      "p99": 106.2741566700001
+    },
+    "sql": {
+      "n": 100,
+      "p50": 3.8470005,
+      "p95": 9.7059115,
+      "p99": 10.999442840000004
+    },
+    "db_commit_ack": {
+      "n": 100,
+      "p50": 0.6441669999999999,
+      "p95": 2.6954547999999994,
+      "p99": 3.7199079200000003
+    },
+    "kafka_commit_ack": {
+      "n": 100,
+      "p50": 1.649354,
+      "p95": 5.2908767499999945,
+      "p99": 9.40529491
+    },
+    "ml_inference": {
+      "n": 100,
+      "p50": 29.410084,
+      "p95": 53.48931004999998,
+      "p99": 72.56238108000012
+    },
+    "publication_ack": {
+      "n": 100,
+      "p50": 3.438312,
+      "p95": 9.616151799999999,
+      "p99": 11.582931670000008
+    },
+    "send_to_db_ack": {
+      "n": 100,
+      "p50": 2277.373404,
+      "p95": 4349.2432463,
+      "p99": 4485.76707641,
+      "valid": false
+    }
+  },
+  "clock_method": "legacy_epoch",
+  "clock_step_ms": {
+    "producer": {
+      "n": 249,
+      "p50": 8.3e-05,
+      "p95": 0.0011501999999999997,
+      "p99": 0.0021278400000000015
+    },
+    "worker": {
+      "n": 251,
+      "p50": 4.2e-05,
+      "p95": 0.00035400000000000004,
+      "p99": 0.001271
+    }
+  },
+  "epoch_clock_valid": false,
+  "cross_process_clock_valid": false,
+  "publication_rate_per_second": 230.57779906070382,
+  "commit_rate_per_second": 20.47529225171068,
+  "completion_throughput_per_second": 20.148188296950455,
+  "dashboard": {
+    "committed_measured_ids": 100,
+    "observed_measured_ids": 100,
+    "censored": 0,
+    "invalid_clock_observations": 0,
+    "availability_to_dom_lower_ms": {
+      "n": 100,
+      "p50": 1091.461669921875,
+      "p95": 2002.1000854492186,
+      "p99": 2128.1905078125005
+    },
+    "availability_to_dom_upper_ms": {
+      "n": 100,
+      "p50": 1149.983154296875,
+      "p95": 2062.8558349609375,
+      "p99": 2188.882622070313
+    },
+    "availability_to_dom_midpoint_ms": {
+      "n": 100,
+      "p50": 1120.722412109375,
+      "p95": 2032.477960205078,
+      "p99": 2158.5365649414066
+    },
+    "fetch_to_dom_ms": {
+      "n": 3,
+      "p50": 15.199951171875,
+      "p95": 18.1699951171875,
+      "p99": 18.4339990234375
+    },
+    "clock_uncertainty_ms": {
+      "n": 2,
+      "p50": 4.99993896484375,
+      "p95": 6.394927978515625,
+      "p99": 6.518927001953125
+    },
+    "latest_displayed_availability_age_lower_ms": {
+      "n": 3,
+      "p50": 79.496337890625,
+      "p95": 793.4118896484374,
+      "p99": 856.8710498046875
+    },
+    "latest_displayed_availability_age_upper_ms": {
+      "n": 3,
+      "p50": 139.265380859375,
+      "p95": 852.43232421875,
+      "p99": 915.82494140625
+    },
+    "known_db_head_gap_records": {
+      "n": 3,
+      "p50": 0.0,
+      "p95": 0.8999999999999999,
+      "p99": 0.98
+    },
+    "actual_poll_interval_ms": {
+      "n": 12,
+      "p50": 2134.2000732421875,
+      "p95": 2358.009875488281,
+      "p99": 2459.1218969726565
+    },
+    "cross_process_clock_valid": false,
+    "clock_method": "legacy_epoch_bridge",
+    "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+  },
+  "telemetry_errors": [],
+  "resource_sampling_errors": 0,
+  "resource_scope": "measured controller epoch window; Docker CPU samples have their own averaging interval",
+  "resources": {
+    "s6-overhead-3-max-20261019t142532-b4e1dc-api-1": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 3.605,
+        "p95": 22.807499999999994,
+        "p99": 25.273499999999995
+      },
+      "cpu_mean_percent": 8.715,
+      "cpu_peak_percent": 25.89,
+      "ram_peak_bytes": 70223134.72,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2029.505,
+        "p95": 2035.1975,
+        "p99": 2035.7034999999998
+      }
+    },
+    "s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 0.615,
+        "p95": 1.1454999999999997,
+        "p99": 1.1730999999999998
+      },
+      "cpu_mean_percent": 0.6224999999999999,
+      "cpu_peak_percent": 1.18,
+      "ram_peak_bytes": 5803868.16,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2029.469,
+        "p95": 2035.1876,
+        "p99": 2035.6959200000001
+      }
+    },
+    "s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 53.93,
+        "p95": 137.50549999999998,
+        "p99": 142.76510000000002
+      },
+      "cpu_mean_percent": 64.49000000000001,
+      "cpu_peak_percent": 144.08,
+      "ram_peak_bytes": 398039449.6,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2029.461,
+        "p95": 2035.1832,
+        "p99": 2035.69184
+      }
+    },
+    "s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 6.84,
+        "p95": 8.6105,
+        "p99": 8.6501
+      },
+      "cpu_mean_percent": 6.465,
+      "cpu_peak_percent": 8.66,
+      "ram_peak_bytes": 53791948.8,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2029.45,
+        "p95": 2035.1812,
+        "p99": 2035.69064
+      }
+    },
+    "s6-overhead-3-max-20261019t142532-b4e1dc-worker-1": {
+      "samples": 4,
+      "cpu_percent": {
+        "n": 4,
+        "p50": 73.34,
+        "p95": 89.369,
+        "p99": 89.8178
+      },
+      "cpu_mean_percent": 64.8425,
+      "cpu_peak_percent": 89.93,
+      "ram_peak_bytes": 321283686.4,
+      "sampling_interval_ms": {
+        "n": 3,
+        "p50": 2029.449,
+        "p95": 2035.182,
+        "p99": 2035.6915999999999
+      }
+    }
+  }
+}

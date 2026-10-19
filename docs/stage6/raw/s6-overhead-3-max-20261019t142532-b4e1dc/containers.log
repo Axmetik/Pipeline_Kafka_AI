@@ -1,0 +1,117 @@
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_backend Creating 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_backend Created 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_edge Creating 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_edge Created 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_pgdata Creating 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_pgdata Created 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_kafkadata Creating 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_kafkadata Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Exited 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Exited 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Exited 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Starting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Started 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Waiting 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Exited 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Exited 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Healthy 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Healthy 
+cb9bc26e6f112da7eaece584d80808e2fb62607af2d4c5f904ba640edadc0e98
+11295f20154db4c4de954a5d34e7221c456ba0038e2954baaeb82aca18feaf7c
+188a2c627fc6db74390e33cfb6119b86e7a31abf7b7710ea319007b334b50030
+bd557be12d489cfee1f707fa2898e902e845f501a45ef6dff922db915e1170b3
+c09b946fa581a59cfe14e60f561779faa86e377c3ce20887170e91bb9087b133
+cb9bc26e6f112da7eaece584d80808e2fb62607af2d4c5f904ba640edadc0e98
+cb9bc26e6f112da7eaece584d80808e2fb62607af2d4c5f904ba640edadc0e98
+11295f20154db4c4de954a5d34e7221c456ba0038e2954baaeb82aca18feaf7c
+188a2c627fc6db74390e33cfb6119b86e7a31abf7b7710ea319007b334b50030
+bd557be12d489cfee1f707fa2898e902e845f501a45ef6dff922db915e1170b3
+c09b946fa581a59cfe14e60f561779faa86e377c3ce20887170e91bb9087b133
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-tools-run-944a7d909d94 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-tools-run-944a7d909d94 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-tools-run-6eb555495c9d Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-tools-run-6eb555495c9d Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-tools-run-3b2e2fbcece4 Creating 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-tools-run-3b2e2fbcece4 Created 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-worker-1 Removed 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-bootstrap-1 Removed 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-dashboard-1 Removed 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-api-1 Removed 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-migrate-1 Removed 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Stopping 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-postgres-1 Removed 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Stopped 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Removing 
+ Container s6-overhead-3-max-20261019t142532-b4e1dc-kafka-1 Removed 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_backend Removing 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_kafkadata Removing 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_edge Removing 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_pgdata Removing 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_pgdata Removed 
+ Volume s6-overhead-3-max-20261019t142532-b4e1dc_kafkadata Removed 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_edge Removed 
+ Network s6-overhead-3-max-20261019t142532-b4e1dc_backend Removed 
