@@ -1,0 +1,257 @@
+{
+  "split": "validation",
+  "scenario": "level_shift-s2-seed103",
+  "seed": 103,
+  "type": "level_shift",
+  "severity": 2,
+  "prefix": 144,
+  "requested_points": 39,
+  "labeled_points": 34,
+  "numerically_changed_points": 34,
+  "achieved_fraction": 0.017232640648758235,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "level_shift",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 613,
+      "end": 625,
+      "duration": 13,
+      "start_timestamp": "2016-04-20T21:50:00",
+      "end_timestamp": "2016-04-20T23:50:00",
+      "changes": [
+        {
+          "index": 613,
+          "timestamp": "2016-04-20T21:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 614,
+          "timestamp": "2016-04-20T22:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 615,
+          "timestamp": "2016-04-20T22:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 616,
+          "timestamp": "2016-04-20T22:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 617,
+          "timestamp": "2016-04-20T22:30:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 618,
+          "timestamp": "2016-04-20T22:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 619,
+          "timestamp": "2016-04-20T22:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 620,
+          "timestamp": "2016-04-20T23:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 621,
+          "timestamp": "2016-04-20T23:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 622,
+          "timestamp": "2016-04-20T23:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 623,
+          "timestamp": "2016-04-20T23:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 624,
+          "timestamp": "2016-04-20T23:40:00",
+          "original_wh": 20.0,
+          "modified_wh": 170.0
+        },
+        {
+          "index": 625,
+          "timestamp": "2016-04-20T23:50:00",
+          "original_wh": 30.0,
+          "modified_wh": 180.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "level_shift",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 441,
+      "end": 446,
+      "duration": 6,
+      "start_timestamp": "2016-04-19T17:10:00",
+      "end_timestamp": "2016-04-19T18:00:00",
+      "changes": [
+        {
+          "index": 441,
+          "timestamp": "2016-04-19T17:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 442,
+          "timestamp": "2016-04-19T17:20:00",
+          "original_wh": 90.0,
+          "modified_wh": 240.0
+        },
+        {
+          "index": 443,
+          "timestamp": "2016-04-19T17:30:00",
+          "original_wh": 170.0,
+          "modified_wh": 320.0
+        },
+        {
+          "index": 444,
+          "timestamp": "2016-04-19T17:40:00",
+          "original_wh": 510.0,
+          "modified_wh": 660.0
+        },
+        {
+          "index": 445,
+          "timestamp": "2016-04-19T17:50:00",
+          "original_wh": 590.0,
+          "modified_wh": 740.0
+        },
+        {
+          "index": 446,
+          "timestamp": "2016-04-19T18:00:00",
+          "original_wh": 190.0,
+          "modified_wh": 340.0
+        }
+      ]
+    },
+    {
+      "event_id": 2,
+      "type": "level_shift",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 1060,
+      "end": 1074,
+      "duration": 15,
+      "start_timestamp": "2016-04-24T00:20:00",
+      "end_timestamp": "2016-04-24T02:40:00",
+      "changes": [
+        {
+          "index": 1060,
+          "timestamp": "2016-04-24T00:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1061,
+          "timestamp": "2016-04-24T00:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1062,
+          "timestamp": "2016-04-24T00:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1063,
+          "timestamp": "2016-04-24T00:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1064,
+          "timestamp": "2016-04-24T01:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1065,
+          "timestamp": "2016-04-24T01:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1066,
+          "timestamp": "2016-04-24T01:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1067,
+          "timestamp": "2016-04-24T01:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1068,
+          "timestamp": "2016-04-24T01:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1069,
+          "timestamp": "2016-04-24T01:50:00",
+          "original_wh": 30.0,
+          "modified_wh": 180.0
+        },
+        {
+          "index": 1070,
+          "timestamp": "2016-04-24T02:00:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 1071,
+          "timestamp": "2016-04-24T02:10:00",
+          "original_wh": 30.0,
+          "modified_wh": 180.0
+        },
+        {
+          "index": 1072,
+          "timestamp": "2016-04-24T02:20:00",
+          "original_wh": 30.0,
+          "modified_wh": 180.0
+        },
+        {
+          "index": 1073,
+          "timestamp": "2016-04-24T02:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1074,
+          "timestamp": "2016-04-24T02:40:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "verified_experiment_file_hashes": 407,
+  "verified_scenario_metric_rows": 1710,
+  "verified_injection_manifests": 190,
+  "calibration_quantiles_reproduced": true,
+  "validation_selection_reproduced": true,
+  "original_dataset_unchanged": true,
+  "csv_roundtrip_tolerance": 1e-10
+}

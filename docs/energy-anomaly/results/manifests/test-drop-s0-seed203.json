@@ -1,0 +1,718 @@
+{
+  "split": "test",
+  "scenario": "drop-s0-seed203",
+  "seed": 203,
+  "type": "drop",
+  "severity": 0,
+  "prefix": 144,
+  "requested_points": 78,
+  "labeled_points": 74,
+  "numerically_changed_points": 74,
+  "achieved_fraction": 0.01875316776482514,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 3080,
+      "end": 3081,
+      "duration": 2,
+      "start_timestamp": "2016-05-21T17:50:00",
+      "end_timestamp": "2016-05-21T18:00:00",
+      "changes": [
+        {
+          "index": 3080,
+          "timestamp": "2016-05-21T17:50:00",
+          "original_wh": 80.0,
+          "modified_wh": 40.0
+        },
+        {
+          "index": 3081,
+          "timestamp": "2016-05-21T18:00:00",
+          "original_wh": 150.0,
+          "modified_wh": 75.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 1356,
+      "end": 1361,
+      "duration": 6,
+      "start_timestamp": "2016-05-09T18:30:00",
+      "end_timestamp": "2016-05-09T19:20:00",
+      "changes": [
+        {
+          "index": 1356,
+          "timestamp": "2016-05-09T18:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1357,
+          "timestamp": "2016-05-09T18:40:00",
+          "original_wh": 160.0,
+          "modified_wh": 80.0
+        },
+        {
+          "index": 1358,
+          "timestamp": "2016-05-09T18:50:00",
+          "original_wh": 110.0,
+          "modified_wh": 55.0
+        },
+        {
+          "index": 1359,
+          "timestamp": "2016-05-09T19:00:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1360,
+          "timestamp": "2016-05-09T19:10:00",
+          "original_wh": 110.0,
+          "modified_wh": 55.0
+        },
+        {
+          "index": 1361,
+          "timestamp": "2016-05-09T19:20:00",
+          "original_wh": 110.0,
+          "modified_wh": 55.0
+        }
+      ]
+    },
+    {
+      "event_id": 2,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 344,
+      "end": 349,
+      "duration": 6,
+      "start_timestamp": "2016-05-02T17:50:00",
+      "end_timestamp": "2016-05-02T18:40:00",
+      "changes": [
+        {
+          "index": 344,
+          "timestamp": "2016-05-02T17:50:00",
+          "original_wh": 280.0,
+          "modified_wh": 140.0
+        },
+        {
+          "index": 345,
+          "timestamp": "2016-05-02T18:00:00",
+          "original_wh": 170.0,
+          "modified_wh": 85.0
+        },
+        {
+          "index": 346,
+          "timestamp": "2016-05-02T18:10:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 347,
+          "timestamp": "2016-05-02T18:20:00",
+          "original_wh": 100.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 348,
+          "timestamp": "2016-05-02T18:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 349,
+          "timestamp": "2016-05-02T18:40:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        }
+      ]
+    },
+    {
+      "event_id": 3,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 910,
+      "end": 912,
+      "duration": 3,
+      "start_timestamp": "2016-05-06T16:10:00",
+      "end_timestamp": "2016-05-06T16:30:00",
+      "changes": [
+        {
+          "index": 910,
+          "timestamp": "2016-05-06T16:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 35.0
+        },
+        {
+          "index": 911,
+          "timestamp": "2016-05-06T16:20:00",
+          "original_wh": 70.0,
+          "modified_wh": 35.0
+        },
+        {
+          "index": 912,
+          "timestamp": "2016-05-06T16:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    },
+    {
+      "event_id": 4,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 189,
+      "end": 192,
+      "duration": 4,
+      "start_timestamp": "2016-05-01T16:00:00",
+      "end_timestamp": "2016-05-01T16:30:00",
+      "changes": [
+        {
+          "index": 189,
+          "timestamp": "2016-05-01T16:00:00",
+          "original_wh": 100.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 190,
+          "timestamp": "2016-05-01T16:10:00",
+          "original_wh": 270.0,
+          "modified_wh": 135.0
+        },
+        {
+          "index": 191,
+          "timestamp": "2016-05-01T16:20:00",
+          "original_wh": 250.0,
+          "modified_wh": 125.0
+        },
+        {
+          "index": 192,
+          "timestamp": "2016-05-01T16:30:00",
+          "original_wh": 110.0,
+          "modified_wh": 55.0
+        }
+      ]
+    },
+    {
+      "event_id": 5,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 3311,
+      "end": 3316,
+      "duration": 6,
+      "start_timestamp": "2016-05-23T08:20:00",
+      "end_timestamp": "2016-05-23T09:10:00",
+      "changes": [
+        {
+          "index": 3311,
+          "timestamp": "2016-05-23T08:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 3312,
+          "timestamp": "2016-05-23T08:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 3313,
+          "timestamp": "2016-05-23T08:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 3314,
+          "timestamp": "2016-05-23T08:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 3315,
+          "timestamp": "2016-05-23T09:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 3316,
+          "timestamp": "2016-05-23T09:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        }
+      ]
+    },
+    {
+      "event_id": 6,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 3517,
+      "end": 3520,
+      "duration": 4,
+      "start_timestamp": "2016-05-24T18:40:00",
+      "end_timestamp": "2016-05-24T19:10:00",
+      "changes": [
+        {
+          "index": 3517,
+          "timestamp": "2016-05-24T18:40:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 3518,
+          "timestamp": "2016-05-24T18:50:00",
+          "original_wh": 120.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 3519,
+          "timestamp": "2016-05-24T19:00:00",
+          "original_wh": 110.0,
+          "modified_wh": 55.0
+        },
+        {
+          "index": 3520,
+          "timestamp": "2016-05-24T19:10:00",
+          "original_wh": 160.0,
+          "modified_wh": 80.0
+        }
+      ]
+    },
+    {
+      "event_id": 7,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 529,
+      "end": 531,
+      "duration": 3,
+      "start_timestamp": "2016-05-04T00:40:00",
+      "end_timestamp": "2016-05-04T01:00:00",
+      "changes": [
+        {
+          "index": 529,
+          "timestamp": "2016-05-04T00:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 530,
+          "timestamp": "2016-05-04T00:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 531,
+          "timestamp": "2016-05-04T01:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    },
+    {
+      "event_id": 8,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 3726,
+      "end": 3730,
+      "duration": 5,
+      "start_timestamp": "2016-05-26T05:30:00",
+      "end_timestamp": "2016-05-26T06:10:00",
+      "changes": [
+        {
+          "index": 3726,
+          "timestamp": "2016-05-26T05:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 3727,
+          "timestamp": "2016-05-26T05:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 3728,
+          "timestamp": "2016-05-26T05:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 3729,
+          "timestamp": "2016-05-26T06:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 3730,
+          "timestamp": "2016-05-26T06:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 35.0
+        }
+      ]
+    },
+    {
+      "event_id": 9,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 1807,
+      "end": 1808,
+      "duration": 2,
+      "start_timestamp": "2016-05-12T21:40:00",
+      "end_timestamp": "2016-05-12T21:50:00",
+      "changes": [
+        {
+          "index": 1807,
+          "timestamp": "2016-05-12T21:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 1808,
+          "timestamp": "2016-05-12T21:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    },
+    {
+      "event_id": 10,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 2910,
+      "end": 2910,
+      "duration": 1,
+      "start_timestamp": "2016-05-20T13:30:00",
+      "end_timestamp": "2016-05-20T13:30:00",
+      "changes": [
+        {
+          "index": 2910,
+          "timestamp": "2016-05-20T13:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    },
+    {
+      "event_id": 11,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 1120,
+      "end": 1124,
+      "duration": 5,
+      "start_timestamp": "2016-05-08T03:10:00",
+      "end_timestamp": "2016-05-08T03:50:00",
+      "changes": [
+        {
+          "index": 1120,
+          "timestamp": "2016-05-08T03:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 1121,
+          "timestamp": "2016-05-08T03:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 1122,
+          "timestamp": "2016-05-08T03:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 1123,
+          "timestamp": "2016-05-08T03:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 1124,
+          "timestamp": "2016-05-08T03:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    },
+    {
+      "event_id": 12,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 2703,
+      "end": 2705,
+      "duration": 3,
+      "start_timestamp": "2016-05-19T03:00:00",
+      "end_timestamp": "2016-05-19T03:20:00",
+      "changes": [
+        {
+          "index": 2703,
+          "timestamp": "2016-05-19T03:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 2704,
+          "timestamp": "2016-05-19T03:10:00",
+          "original_wh": 40.0,
+          "modified_wh": 20.0
+        },
+        {
+          "index": 2705,
+          "timestamp": "2016-05-19T03:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    },
+    {
+      "event_id": 13,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 758,
+      "end": 760,
+      "duration": 3,
+      "start_timestamp": "2016-05-05T14:50:00",
+      "end_timestamp": "2016-05-05T15:10:00",
+      "changes": [
+        {
+          "index": 758,
+          "timestamp": "2016-05-05T14:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 759,
+          "timestamp": "2016-05-05T15:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 760,
+          "timestamp": "2016-05-05T15:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 35.0
+        }
+      ]
+    },
+    {
+      "event_id": 14,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 1539,
+      "end": 1540,
+      "duration": 2,
+      "start_timestamp": "2016-05-11T01:00:00",
+      "end_timestamp": "2016-05-11T01:10:00",
+      "changes": [
+        {
+          "index": 1539,
+          "timestamp": "2016-05-11T01:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 1540,
+          "timestamp": "2016-05-11T01:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        }
+      ]
+    },
+    {
+      "event_id": 15,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 3882,
+      "end": 3886,
+      "duration": 5,
+      "start_timestamp": "2016-05-27T07:30:00",
+      "end_timestamp": "2016-05-27T08:10:00",
+      "changes": [
+        {
+          "index": 3882,
+          "timestamp": "2016-05-27T07:30:00",
+          "original_wh": 190.0,
+          "modified_wh": 95.0
+        },
+        {
+          "index": 3883,
+          "timestamp": "2016-05-27T07:40:00",
+          "original_wh": 130.0,
+          "modified_wh": 65.0
+        },
+        {
+          "index": 3884,
+          "timestamp": "2016-05-27T07:50:00",
+          "original_wh": 180.0,
+          "modified_wh": 90.0
+        },
+        {
+          "index": 3885,
+          "timestamp": "2016-05-27T08:00:00",
+          "original_wh": 360.0,
+          "modified_wh": 180.0
+        },
+        {
+          "index": 3886,
+          "timestamp": "2016-05-27T08:10:00",
+          "original_wh": 100.0,
+          "modified_wh": 50.0
+        }
+      ]
+    },
+    {
+      "event_id": 16,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 38,
+      "end": 39,
+      "duration": 2,
+      "start_timestamp": "2016-04-30T14:50:00",
+      "end_timestamp": "2016-04-30T15:00:00",
+      "changes": [
+        {
+          "index": 38,
+          "timestamp": "2016-04-30T14:50:00",
+          "original_wh": 90.0,
+          "modified_wh": 45.0
+        },
+        {
+          "index": 39,
+          "timestamp": "2016-04-30T15:00:00",
+          "original_wh": 80.0,
+          "modified_wh": 40.0
+        }
+      ]
+    },
+    {
+      "event_id": 17,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 2001,
+      "end": 2004,
+      "duration": 4,
+      "start_timestamp": "2016-05-14T06:00:00",
+      "end_timestamp": "2016-05-14T06:30:00",
+      "changes": [
+        {
+          "index": 2001,
+          "timestamp": "2016-05-14T06:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 2002,
+          "timestamp": "2016-05-14T06:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 35.0
+        },
+        {
+          "index": 2003,
+          "timestamp": "2016-05-14T06:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 25.0
+        },
+        {
+          "index": 2004,
+          "timestamp": "2016-05-14T06:30:00",
+          "original_wh": 70.0,
+          "modified_wh": 35.0
+        }
+      ]
+    },
+    {
+      "event_id": 18,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 2240,
+      "end": 2245,
+      "duration": 6,
+      "start_timestamp": "2016-05-15T21:50:00",
+      "end_timestamp": "2016-05-15T22:40:00",
+      "changes": [
+        {
+          "index": 2240,
+          "timestamp": "2016-05-15T21:50:00",
+          "original_wh": 100.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 2241,
+          "timestamp": "2016-05-15T22:00:00",
+          "original_wh": 90.0,
+          "modified_wh": 45.0
+        },
+        {
+          "index": 2242,
+          "timestamp": "2016-05-15T22:10:00",
+          "original_wh": 90.0,
+          "modified_wh": 45.0
+        },
+        {
+          "index": 2243,
+          "timestamp": "2016-05-15T22:20:00",
+          "original_wh": 90.0,
+          "modified_wh": 45.0
+        },
+        {
+          "index": 2244,
+          "timestamp": "2016-05-15T22:30:00",
+          "original_wh": 80.0,
+          "modified_wh": 40.0
+        },
+        {
+          "index": 2245,
+          "timestamp": "2016-05-15T22:40:00",
+          "original_wh": 100.0,
+          "modified_wh": 50.0
+        }
+      ]
+    },
+    {
+      "event_id": 19,
+      "type": "drop",
+      "severity": 0,
+      "strength": 0.5,
+      "start": 2537,
+      "end": 2538,
+      "duration": 2,
+      "start_timestamp": "2016-05-17T23:20:00",
+      "end_timestamp": "2016-05-17T23:30:00",
+      "changes": [
+        {
+          "index": 2537,
+          "timestamp": "2016-05-17T23:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        },
+        {
+          "index": 2538,
+          "timestamp": "2016-05-17T23:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 30.0
+        }
+      ]
+    }
+  ]
+}

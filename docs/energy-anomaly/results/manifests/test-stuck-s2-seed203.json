@@ -1,0 +1,521 @@
+{
+  "split": "test",
+  "scenario": "stuck-s2-seed203",
+  "seed": 203,
+  "type": "stuck",
+  "severity": 2,
+  "prefix": 144,
+  "requested_points": 78,
+  "labeled_points": 78,
+  "numerically_changed_points": 72,
+  "achieved_fraction": 0.019766852508869743,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 3070,
+      "end": 3084,
+      "duration": 15,
+      "start_timestamp": "2016-05-21T16:10:00",
+      "end_timestamp": "2016-05-21T18:30:00",
+      "changes": [
+        {
+          "index": 3070,
+          "timestamp": "2016-05-21T16:10:00",
+          "original_wh": 90.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3071,
+          "timestamp": "2016-05-21T16:20:00",
+          "original_wh": 110.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3072,
+          "timestamp": "2016-05-21T16:30:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3073,
+          "timestamp": "2016-05-21T16:40:00",
+          "original_wh": 90.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3074,
+          "timestamp": "2016-05-21T16:50:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3075,
+          "timestamp": "2016-05-21T17:00:00",
+          "original_wh": 120.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3076,
+          "timestamp": "2016-05-21T17:10:00",
+          "original_wh": 110.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3077,
+          "timestamp": "2016-05-21T17:20:00",
+          "original_wh": 90.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3078,
+          "timestamp": "2016-05-21T17:30:00",
+          "original_wh": 80.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3079,
+          "timestamp": "2016-05-21T17:40:00",
+          "original_wh": 90.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3080,
+          "timestamp": "2016-05-21T17:50:00",
+          "original_wh": 80.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3081,
+          "timestamp": "2016-05-21T18:00:00",
+          "original_wh": 150.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3082,
+          "timestamp": "2016-05-21T18:10:00",
+          "original_wh": 130.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3083,
+          "timestamp": "2016-05-21T18:20:00",
+          "original_wh": 120.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 3084,
+          "timestamp": "2016-05-21T18:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 110.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 1346,
+      "end": 1380,
+      "duration": 35,
+      "start_timestamp": "2016-05-09T16:50:00",
+      "end_timestamp": "2016-05-09T22:30:00",
+      "changes": [
+        {
+          "index": 1346,
+          "timestamp": "2016-05-09T16:50:00",
+          "original_wh": 90.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1347,
+          "timestamp": "2016-05-09T17:00:00",
+          "original_wh": 90.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1348,
+          "timestamp": "2016-05-09T17:10:00",
+          "original_wh": 90.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1349,
+          "timestamp": "2016-05-09T17:20:00",
+          "original_wh": 170.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1350,
+          "timestamp": "2016-05-09T17:30:00",
+          "original_wh": 410.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1351,
+          "timestamp": "2016-05-09T17:40:00",
+          "original_wh": 540.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1352,
+          "timestamp": "2016-05-09T17:50:00",
+          "original_wh": 310.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1353,
+          "timestamp": "2016-05-09T18:00:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1354,
+          "timestamp": "2016-05-09T18:10:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1355,
+          "timestamp": "2016-05-09T18:20:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1356,
+          "timestamp": "2016-05-09T18:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1357,
+          "timestamp": "2016-05-09T18:40:00",
+          "original_wh": 160.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1358,
+          "timestamp": "2016-05-09T18:50:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1359,
+          "timestamp": "2016-05-09T19:00:00",
+          "original_wh": 120.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1360,
+          "timestamp": "2016-05-09T19:10:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1361,
+          "timestamp": "2016-05-09T19:20:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1362,
+          "timestamp": "2016-05-09T19:30:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1363,
+          "timestamp": "2016-05-09T19:40:00",
+          "original_wh": 100.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1364,
+          "timestamp": "2016-05-09T19:50:00",
+          "original_wh": 110.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1365,
+          "timestamp": "2016-05-09T20:00:00",
+          "original_wh": 100.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1366,
+          "timestamp": "2016-05-09T20:10:00",
+          "original_wh": 100.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1367,
+          "timestamp": "2016-05-09T20:20:00",
+          "original_wh": 100.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1368,
+          "timestamp": "2016-05-09T20:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1369,
+          "timestamp": "2016-05-09T20:40:00",
+          "original_wh": 80.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1370,
+          "timestamp": "2016-05-09T20:50:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1371,
+          "timestamp": "2016-05-09T21:00:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1372,
+          "timestamp": "2016-05-09T21:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1373,
+          "timestamp": "2016-05-09T21:20:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1374,
+          "timestamp": "2016-05-09T21:30:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1375,
+          "timestamp": "2016-05-09T21:40:00",
+          "original_wh": 80.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1376,
+          "timestamp": "2016-05-09T21:50:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1377,
+          "timestamp": "2016-05-09T22:00:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1378,
+          "timestamp": "2016-05-09T22:10:00",
+          "original_wh": 80.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1379,
+          "timestamp": "2016-05-09T22:20:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 1380,
+          "timestamp": "2016-05-09T22:30:00",
+          "original_wh": 70.0,
+          "modified_wh": 100.0
+        }
+      ]
+    },
+    {
+      "event_id": 2,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 342,
+      "end": 369,
+      "duration": 28,
+      "start_timestamp": "2016-05-02T17:30:00",
+      "end_timestamp": "2016-05-02T22:00:00",
+      "changes": [
+        {
+          "index": 342,
+          "timestamp": "2016-05-02T17:30:00",
+          "original_wh": 240.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 343,
+          "timestamp": "2016-05-02T17:40:00",
+          "original_wh": 210.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 344,
+          "timestamp": "2016-05-02T17:50:00",
+          "original_wh": 280.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 345,
+          "timestamp": "2016-05-02T18:00:00",
+          "original_wh": 170.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 346,
+          "timestamp": "2016-05-02T18:10:00",
+          "original_wh": 120.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 347,
+          "timestamp": "2016-05-02T18:20:00",
+          "original_wh": 100.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 348,
+          "timestamp": "2016-05-02T18:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 349,
+          "timestamp": "2016-05-02T18:40:00",
+          "original_wh": 120.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 350,
+          "timestamp": "2016-05-02T18:50:00",
+          "original_wh": 130.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 351,
+          "timestamp": "2016-05-02T19:00:00",
+          "original_wh": 130.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 352,
+          "timestamp": "2016-05-02T19:10:00",
+          "original_wh": 120.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 353,
+          "timestamp": "2016-05-02T19:20:00",
+          "original_wh": 120.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 354,
+          "timestamp": "2016-05-02T19:30:00",
+          "original_wh": 140.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 355,
+          "timestamp": "2016-05-02T19:40:00",
+          "original_wh": 150.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 356,
+          "timestamp": "2016-05-02T19:50:00",
+          "original_wh": 150.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 357,
+          "timestamp": "2016-05-02T20:00:00",
+          "original_wh": 150.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 358,
+          "timestamp": "2016-05-02T20:10:00",
+          "original_wh": 140.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 359,
+          "timestamp": "2016-05-02T20:20:00",
+          "original_wh": 130.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 360,
+          "timestamp": "2016-05-02T20:30:00",
+          "original_wh": 100.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 361,
+          "timestamp": "2016-05-02T20:40:00",
+          "original_wh": 80.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 362,
+          "timestamp": "2016-05-02T20:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 363,
+          "timestamp": "2016-05-02T21:00:00",
+          "original_wh": 30.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 364,
+          "timestamp": "2016-05-02T21:10:00",
+          "original_wh": 40.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 365,
+          "timestamp": "2016-05-02T21:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 366,
+          "timestamp": "2016-05-02T21:30:00",
+          "original_wh": 80.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 367,
+          "timestamp": "2016-05-02T21:40:00",
+          "original_wh": 70.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 368,
+          "timestamp": "2016-05-02T21:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 369,
+          "timestamp": "2016-05-02T22:00:00",
+          "original_wh": 70.0,
+          "modified_wh": 260.0
+        }
+      ]
+    }
+  ]
+}

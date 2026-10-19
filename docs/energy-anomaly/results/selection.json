@@ -1,0 +1,25 @@
+{
+  "recommended": "residual",
+  "candidates": {
+    "isolation_forest": {
+      "validation_event_f1": 0.0,
+      "background_alarm_rate": 0.0040547389761784085,
+      "matched_event_median_delay_mean_minutes": null,
+      "eligible": true
+    },
+    "autoencoder": {
+      "validation_event_f1": 0.0,
+      "background_alarm_rate": 0.005575266092245312,
+      "matched_event_median_delay_mean_minutes": null,
+      "eligible": true
+    },
+    "residual": {
+      "validation_event_f1": 0.023529411764705882,
+      "background_alarm_rate": 0.006082108464267613,
+      "matched_event_median_delay_mean_minutes": 40.0,
+      "eligible": true
+    }
+  },
+  "uses_test": false,
+  "selection": "validation mixed-event F1 with clean background alarm budget"
+}

@@ -1,0 +1,53 @@
+{
+  "git_commit": "6d7bf261bb63782a09ae8cd6bbe586ec260e584e",
+  "tracked_dirty": false,
+  "source_sha256": {
+    "anomaly/__init__.py": "32f4d5b4ff707cfe65222f5fd1a7725d0305e1af3bfdf8f535f942b7e538ce00",
+    "anomaly/artifacts.py": "77acff536b2db5219d69f49d406b0d09801e2aa1dcf0f638cd05f453e52458cf",
+    "anomaly/calibrate.py": "2b2a0fb6425d3beaf4536448747558cd37e7d189a0008ebecf8ac3702257f79b",
+    "anomaly/detectors.py": "b56514d863646dc8889b7d683591080a3029133ebf1c651508f932c6fec396a8",
+    "anomaly/evaluate.py": "11f8176874612bd02bb03e869f1a2958d8f1e80556562595d9877b7700211e88",
+    "anomaly/features.py": "8f7ffea0a9399e7047d37b7733b9675a012d7d9a0ae60cdb504f4867dbd5a12c",
+    "anomaly/inject.py": "493768812293f94523aaea848745388a08d07773bc4eb640105843a128f2291f",
+    "anomaly/plots.py": "f73cad763df6cc63f8c83445b3a2e7954f5f6e07d50674289efca78e7d208d11",
+    "anomaly/residual.py": "7bae011bcce4aae059d5736e8b8d9ef7ab4d7ab6878542f55d978e3a735dad50",
+    "anomaly/run_experiment.py": "f1af700820b3fb47274665169b3aa33d0a71c0018eeaa6dcf3a807f5da60cee4",
+    "anomaly/train.py": "b071974a7c7f0822292dfd0955b8e0bba2dc564cfe9a5a31e162d0366d4432f4",
+    "anomaly/verify_kafka.py": "df649f11ccfd8aaf2677c615e89efa062e47071b4b10afb6f70e4483da2d3727"
+  },
+  "protocol_sha256": "ec9404c12a837ad773716868444be57aac8a3fc21f8121fd7ad1596e46cf4431",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "model_sha256": "2ac3a9c71a78a09ea5ba5845d47e68ae79f23a1b696d3f9daf23fbbad0f569ee",
+  "elapsed_seconds": 259.2902828750084,
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "python": "3.13.2",
+  "threadpools": [
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "libomp",
+      "filepath": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/.venv/lib/python3.13/site-packages/sklearn/.dylibs/libomp.dylib",
+      "version": null
+    },
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "libomp",
+      "filepath": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/.venv/lib/python3.13/site-packages/torch/lib/libomp.dylib",
+      "version": null
+    }
+  ],
+  "libraries": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scikit-learn": "1.8.0",
+    "torch": "2.11.0",
+    "joblib": "1.5.3",
+    "pyarrow": "24.0.0",
+    "matplotlib": "3.10.9",
+    "scipy": "1.17.1",
+    "threadpoolctl": "3.6.0"
+  }
+}

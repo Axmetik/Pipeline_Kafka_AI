@@ -1,0 +1,515 @@
+{
+  "split": "test",
+  "scenario": "spike-s0-seed205",
+  "seed": 205,
+  "type": "spike",
+  "severity": 0,
+  "prefix": 144,
+  "requested_points": 78,
+  "labeled_points": 38,
+  "numerically_changed_points": 38,
+  "achieved_fraction": 0.00963000506842372,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 3582,
+      "end": 3583,
+      "duration": 2,
+      "start_timestamp": "2016-05-25T05:30:00",
+      "end_timestamp": "2016-05-25T05:40:00",
+      "changes": [
+        {
+          "index": 3582,
+          "timestamp": "2016-05-25T05:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 150.0
+        },
+        {
+          "index": 3583,
+          "timestamp": "2016-05-25T05:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 150.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 899,
+      "end": 900,
+      "duration": 2,
+      "start_timestamp": "2016-05-06T14:20:00",
+      "end_timestamp": "2016-05-06T14:30:00",
+      "changes": [
+        {
+          "index": 899,
+          "timestamp": "2016-05-06T14:20:00",
+          "original_wh": 140.0,
+          "modified_wh": 240.0
+        },
+        {
+          "index": 900,
+          "timestamp": "2016-05-06T14:30:00",
+          "original_wh": 340.0,
+          "modified_wh": 440.0
+        }
+      ]
+    },
+    {
+      "event_id": 2,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 3247,
+      "end": 3248,
+      "duration": 2,
+      "start_timestamp": "2016-05-22T21:40:00",
+      "end_timestamp": "2016-05-22T21:50:00",
+      "changes": [
+        {
+          "index": 3247,
+          "timestamp": "2016-05-22T21:40:00",
+          "original_wh": 80.0,
+          "modified_wh": 180.0
+        },
+        {
+          "index": 3248,
+          "timestamp": "2016-05-22T21:50:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        }
+      ]
+    },
+    {
+      "event_id": 3,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 750,
+      "end": 752,
+      "duration": 3,
+      "start_timestamp": "2016-05-05T13:30:00",
+      "end_timestamp": "2016-05-05T13:50:00",
+      "changes": [
+        {
+          "index": 750,
+          "timestamp": "2016-05-05T13:30:00",
+          "original_wh": 20.0,
+          "modified_wh": 120.0
+        },
+        {
+          "index": 751,
+          "timestamp": "2016-05-05T13:40:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        },
+        {
+          "index": 752,
+          "timestamp": "2016-05-05T13:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 4,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 1652,
+      "end": 1652,
+      "duration": 1,
+      "start_timestamp": "2016-05-11T19:50:00",
+      "end_timestamp": "2016-05-11T19:50:00",
+      "changes": [
+        {
+          "index": 1652,
+          "timestamp": "2016-05-11T19:50:00",
+          "original_wh": 90.0,
+          "modified_wh": 190.0
+        }
+      ]
+    },
+    {
+      "event_id": 5,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 533,
+      "end": 533,
+      "duration": 1,
+      "start_timestamp": "2016-05-04T01:20:00",
+      "end_timestamp": "2016-05-04T01:20:00",
+      "changes": [
+        {
+          "index": 533,
+          "timestamp": "2016-05-04T01:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 6,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 1825,
+      "end": 1825,
+      "duration": 1,
+      "start_timestamp": "2016-05-13T00:40:00",
+      "end_timestamp": "2016-05-13T00:40:00",
+      "changes": [
+        {
+          "index": 1825,
+          "timestamp": "2016-05-13T00:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 7,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 371,
+      "end": 372,
+      "duration": 2,
+      "start_timestamp": "2016-05-02T22:20:00",
+      "end_timestamp": "2016-05-02T22:30:00",
+      "changes": [
+        {
+          "index": 371,
+          "timestamp": "2016-05-02T22:20:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        },
+        {
+          "index": 372,
+          "timestamp": "2016-05-02T22:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 150.0
+        }
+      ]
+    },
+    {
+      "event_id": 8,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 2750,
+      "end": 2750,
+      "duration": 1,
+      "start_timestamp": "2016-05-19T10:50:00",
+      "end_timestamp": "2016-05-19T10:50:00",
+      "changes": [
+        {
+          "index": 2750,
+          "timestamp": "2016-05-19T10:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 9,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 2048,
+      "end": 2050,
+      "duration": 3,
+      "start_timestamp": "2016-05-14T13:50:00",
+      "end_timestamp": "2016-05-14T14:10:00",
+      "changes": [
+        {
+          "index": 2048,
+          "timestamp": "2016-05-14T13:50:00",
+          "original_wh": 100.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 2049,
+          "timestamp": "2016-05-14T14:00:00",
+          "original_wh": 100.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 2050,
+          "timestamp": "2016-05-14T14:10:00",
+          "original_wh": 110.0,
+          "modified_wh": 210.0
+        }
+      ]
+    },
+    {
+      "event_id": 10,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 2539,
+      "end": 2540,
+      "duration": 2,
+      "start_timestamp": "2016-05-17T23:40:00",
+      "end_timestamp": "2016-05-17T23:50:00",
+      "changes": [
+        {
+          "index": 2539,
+          "timestamp": "2016-05-17T23:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        },
+        {
+          "index": 2540,
+          "timestamp": "2016-05-17T23:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 11,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 1504,
+      "end": 1505,
+      "duration": 2,
+      "start_timestamp": "2016-05-10T19:10:00",
+      "end_timestamp": "2016-05-10T19:20:00",
+      "changes": [
+        {
+          "index": 1504,
+          "timestamp": "2016-05-10T19:10:00",
+          "original_wh": 100.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1505,
+          "timestamp": "2016-05-10T19:20:00",
+          "original_wh": 100.0,
+          "modified_wh": 200.0
+        }
+      ]
+    },
+    {
+      "event_id": 12,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 1184,
+      "end": 1185,
+      "duration": 2,
+      "start_timestamp": "2016-05-08T13:50:00",
+      "end_timestamp": "2016-05-08T14:00:00",
+      "changes": [
+        {
+          "index": 1184,
+          "timestamp": "2016-05-08T13:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 150.0
+        },
+        {
+          "index": 1185,
+          "timestamp": "2016-05-08T14:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 13,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 2964,
+      "end": 2966,
+      "duration": 3,
+      "start_timestamp": "2016-05-20T22:30:00",
+      "end_timestamp": "2016-05-20T22:50:00",
+      "changes": [
+        {
+          "index": 2964,
+          "timestamp": "2016-05-20T22:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        },
+        {
+          "index": 2965,
+          "timestamp": "2016-05-20T22:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        },
+        {
+          "index": 2966,
+          "timestamp": "2016-05-20T22:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 150.0
+        }
+      ]
+    },
+    {
+      "event_id": 14,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 3931,
+      "end": 3931,
+      "duration": 1,
+      "start_timestamp": "2016-05-27T15:40:00",
+      "end_timestamp": "2016-05-27T15:40:00",
+      "changes": [
+        {
+          "index": 3931,
+          "timestamp": "2016-05-27T15:40:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        }
+      ]
+    },
+    {
+      "event_id": 15,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 3730,
+      "end": 3730,
+      "duration": 1,
+      "start_timestamp": "2016-05-26T06:10:00",
+      "end_timestamp": "2016-05-26T06:10:00",
+      "changes": [
+        {
+          "index": 3730,
+          "timestamp": "2016-05-26T06:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        }
+      ]
+    },
+    {
+      "event_id": 16,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 72,
+      "end": 73,
+      "duration": 2,
+      "start_timestamp": "2016-04-30T20:30:00",
+      "end_timestamp": "2016-04-30T20:40:00",
+      "changes": [
+        {
+          "index": 72,
+          "timestamp": "2016-04-30T20:30:00",
+          "original_wh": 80.0,
+          "modified_wh": 180.0
+        },
+        {
+          "index": 73,
+          "timestamp": "2016-04-30T20:40:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        }
+      ]
+    },
+    {
+      "event_id": 17,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 1333,
+      "end": 1333,
+      "duration": 1,
+      "start_timestamp": "2016-05-09T14:40:00",
+      "end_timestamp": "2016-05-09T14:40:00",
+      "changes": [
+        {
+          "index": 1333,
+          "timestamp": "2016-05-09T14:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 160.0
+        }
+      ]
+    },
+    {
+      "event_id": 18,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 2327,
+      "end": 2329,
+      "duration": 3,
+      "start_timestamp": "2016-05-16T12:20:00",
+      "end_timestamp": "2016-05-16T12:40:00",
+      "changes": [
+        {
+          "index": 2327,
+          "timestamp": "2016-05-16T12:20:00",
+          "original_wh": 160.0,
+          "modified_wh": 260.0
+        },
+        {
+          "index": 2328,
+          "timestamp": "2016-05-16T12:30:00",
+          "original_wh": 100.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 2329,
+          "timestamp": "2016-05-16T12:40:00",
+          "original_wh": 120.0,
+          "modified_wh": 220.0
+        }
+      ]
+    },
+    {
+      "event_id": 19,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 3394,
+      "end": 3395,
+      "duration": 2,
+      "start_timestamp": "2016-05-23T22:10:00",
+      "end_timestamp": "2016-05-23T22:20:00",
+      "changes": [
+        {
+          "index": 3394,
+          "timestamp": "2016-05-23T22:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        },
+        {
+          "index": 3395,
+          "timestamp": "2016-05-23T22:20:00",
+          "original_wh": 70.0,
+          "modified_wh": 170.0
+        }
+      ]
+    },
+    {
+      "event_id": 20,
+      "type": "spike",
+      "severity": 0,
+      "strength": 2.0,
+      "start": 224,
+      "end": 224,
+      "duration": 1,
+      "start_timestamp": "2016-05-01T21:50:00",
+      "end_timestamp": "2016-05-01T21:50:00",
+      "changes": [
+        {
+          "index": 224,
+          "timestamp": "2016-05-01T21:50:00",
+          "original_wh": 80.0,
+          "modified_wh": 180.0
+        }
+      ]
+    }
+  ]
+}
