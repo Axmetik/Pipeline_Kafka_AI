@@ -40,7 +40,12 @@ def check(directory):
             issues.append('Negative verified-monotonic end-to-end latency')
         for filename in ('producer','worker','visibility'):
             end=[r for r in read(directory/(filename+'.jsonl')) if r['kind']=='telemetry_end']
-            if not end or end[-1]['dropped']:issues.append('Unclean telemetry shutdown: '+filename)
+            if not end or any(row['dropped'] for row in end):issues.append('Unclean telemetry shutdown: '+filename)
+        for filename in ('checkpoint-probes','http'):
+            data=read(directory/(filename+'.jsonl'))
+            if data:
+                end=[row for row in data if row['kind']=='telemetry_end']
+                if not end or any(row['dropped'] for row in end):issues.append('Unclean telemetry shutdown: '+filename)
     for row in read(directory/'browser.jsonl'):
         if row['kind'] in ('fatal','browser_error'):issues.append('Browser error')
     return dict(run_id=run['run_id'],issues=sorted(set(issues)))
