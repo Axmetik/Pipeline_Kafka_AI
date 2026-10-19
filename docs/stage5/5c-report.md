@@ -42,6 +42,9 @@ Manifest контейнерного середовища окремий від h
 CPU torch може мати suffix `+cpu`. Шляхи manifest відносні, libraries/hashes
 перевіряються до роботи. Для іншої нової директорії:
 `export MVP_DOCKER_ARTIFACT_MANIFEST=artifacts/mvp/docker-v2/manifest.json`.
+Для tools із числовим UID host/CI, якого немає в container passwd, USER і
+Torch cache directories визначені явно у writable /tmp. Це усуває помилку
+getpass під час чистого deterministic AE provisioning без зміни fit/config.
 Наявний output не перезаписується. Після частково невдалого provisioning
 виберіть нову ignored директорію; не видаляйте original experiments.
 Не підключайте joblib/pickle з недовірених джерел.
