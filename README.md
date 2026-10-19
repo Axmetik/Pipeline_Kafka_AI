@@ -452,3 +452,43 @@ causal model history/pending forecasts without rewriting their original times.
 All anomaly scores and threshold-exceedance episodes remain **experimental**.
 New real DB/Kafka recovery tests: `python tests/run_suite.py --suite mvp`.
 `--suite all` now requires both legacy Kafka and the isolated MVP infrastructure.
+
+### Stage 5B — локальний read-only API
+
+PostgreSQL — єдине джерело API; моделі й Kafka для запуску API не потрібні.
+Спочатку підготуйте базу за `docs/stage5/5a-runbook.md` (setup, Compose, Alembic)
+і виконайте replay worker, щоб отримати дані. API сам не створює схему.
+
+```bash
+source .venv/bin/activate
+python -m pip install -r requirements-mvp.txt -r requirements-api.txt -c requirements.txt
+python -m api
+```
+
+Відкрити [Swagger UI](http://127.0.0.1:8000/docs), перевірити
+[готовність PostgreSQL](http://127.0.0.1:8000/health/ready) та
+[останні вимірювання](http://127.0.0.1:8000/api/measurements?limit=10).
+У `/api/runs` можна вибрати `run_id`, потім додати його до запитів.
+Жодного фільтра «сьогодні» немає: останні записи replay 2016 року доступні відразу.
+
+```bash
+curl 'http://127.0.0.1:8000/api/pipeline-status'
+curl 'http://127.0.0.1:8000/api/forecasts?purpose=primary_forecast&limit=10'
+curl 'http://127.0.0.1:8000/api/anomaly-scores?detector=residual&limit=10'
+curl 'http://127.0.0.1:8000/api/measurements/aggregate?bucket_minutes=60&limit=10'
+python tests/run_suite.py --suite api   # потрібна реальна PostgreSQL, окремі тестові схеми
+python -m api.smoke --run-id YOUR_COMPLETED_300_POINT_RUN
+```
+
+`energy_wh` — енергія Wh за 600 секунд, не W. Історичний dataset timestamp
+не має timezone; браузер не повинен додавати до нього `Z` або конвертувати його
+через `Date`. Для джерел із явним offset задайте `time_basis=offset_aware`.
+`null` означає відсутність результату, а не нуль. IF/AE/residual і події є
+**experimental**, score не є ймовірністю, перевищення порогу не підтверджує несправність.
+`worker_status=unknown`: checkpoint не доводить, що worker зараз працює.
+
+API без автентифікації доступний тільки локально. CORS дозволяє лише
+`http://localhost:5173` і `http://127.0.0.1:5173`. Не публікуйте його через
+reverse proxy/tunnel; для віддаленого використання потрібна окрема погоджена
+автентифікація. Dashboard (Stage 5C) ще не реалізований.
+Повний контракт, обмеження й результати: `docs/stage5/5b-report.md`.

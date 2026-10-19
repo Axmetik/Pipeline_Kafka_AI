@@ -14,3 +14,5 @@ threadpoolctl==3.6.0
 matplotlib==3.10.9
 
 -r requirements-mvp.txt
+
+-r requirements-api.txt
