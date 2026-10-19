@@ -41,11 +41,12 @@
   "measured": 3600,
   "repetitions": 5,
   "pilot": {
+    "campaign": "v5",
     "warmup": 150,
     "measured": 60
   },
   "overhead": {
-    "campaign": "v4",
+    "campaign": "v5",
     "warmup": 300,
     "measured": 600,
     "orders": [
@@ -85,5 +86,6 @@
     "warmup": 300,
     "measured": 100
   },
-  "threads": 1
+  "threads": 1,
+  "cross_process_clock": "verified_shared_vm_CLOCK_MONOTONIC"
 }
