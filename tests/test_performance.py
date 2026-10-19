@@ -11,6 +11,7 @@ from performance.analysis import quantiles,summarize,read,clock_steps,read_json
 from performance.database import validate
 from performance.clock_domain import compatible
 from performance.run import redact
+from performance.gate import check
 
 
 class PerformanceTests(unittest.TestCase):
@@ -133,6 +134,15 @@ class PerformanceTests(unittest.TestCase):
             self.assertNotIn('not-a-real-secret',output)
             self.assertNotIn('postgresql',output)
             self.assertIn('error',output)
+
+    def test_missing_publication_telemetry_is_reported_without_crashing_validator(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            (root/'run.json').write_text(json.dumps(dict(run_id='test',warmup=0,measured=1,instrumented=True)))
+            (root/'integrity.json').write_text(json.dumps({'failures':[],'rows':[{'kafka_offset':0,'event_id':'event'}]}))
+            (root/'producer.jsonl').write_text('{"kind":"telemetry_end","dropped":0}\n')
+            (root/'worker.jsonl').write_text('{"kind":"message","offset":0,"db_ack_mono_ns":100}\n')
+            self.assertIn('Publication/DB coverage incomplete',check(root)['issues'])
 
 
 if __name__=='__main__':unittest.main()

@@ -94,10 +94,12 @@ def summarize(directory):
     for row in browser:
         if row['kind']!='dom':continue
         dom_times.append(row['domEpochMs'])
-        fetch.append(row['domEpochMs']-row['fetchedEpochMs'])
+        measured_update=any(mid in measured_ids for mid in row['firstIds'])
+        if measured_update:
+            fetch.append(row['domEpochMs']-row['fetchedEpochMs'])
         if not samples:continue
         _,delta,error=min(samples,key=lambda s:abs(s[0]-row['domEpochMs']))
-        if row['ids'] and row['ids'][0] in visibility and error<=10:
+        if measured_update and row['ids'] and row['ids'][0] in visibility and error<=10:
             latest=visibility[row['ids'][0]];dom=row['domEpochMs']+delta
             latest_lower.append(dom-latest[upper_key]/1e6-error)
             latest_upper.append(dom-latest[lower_key]/1e6+error)
@@ -121,6 +123,7 @@ def summarize(directory):
         actual_poll_interval_ms=quantiles([b-a for a,b in zip(dom_times,dom_times[1:])]))
     result['dashboard']['cross_process_clock_valid']=result['cross_process_clock_valid']
     result['dashboard']['clock_method']='verified_vm_monotonic_bridge' if mono_visibility else 'legacy_epoch_bridge'
+    result['dashboard']['fetch_to_dom_scope']='load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes'
     result['telemetry_errors']=[r for r in read(directory/'worker.jsonl') if r['kind']=='process_error' or (r['kind']=='telemetry_end' and r['dropped'])]
     http=[r for r in read(directory/'http.jsonl') if r['kind']=='http' and r['phase']=='measured']
     if http:

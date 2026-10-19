@@ -9,12 +9,27 @@ ROOT=Path(__file__).resolve().parents[1]/'docs/stage6'
 
 
 def main():
-    rows=[];runs=[]
+    rows=[];runs=[];throughputs=[];resources=[];dashboard=[]
     for directory in sorted((ROOT/'raw').iterdir()):
         if not (directory/'run.json').exists():continue
         run=json.loads((directory/'run.json').read_text());runs.append(run)
         if run['status'] not in ('complete','failed'):continue
         result=summarize(directory)
+        throughputs.append(dict(run_id=run['run_id'],series=run['label'],mode=run['mode'],status=run['status'],
+            publications=result['publications'],processed=result['processed'],
+            publication_per_second=result.get('publication_rate_per_second'),commit_per_second=result.get('commit_rate_per_second'),
+            completion_per_second=result.get('completion_throughput_per_second'),
+            controller_completion_per_second=run['measured']/(run['observed_completion_duration_ns']/1e9) if run.get('observed_completion_duration_ns') else None))
+        for container,stats in result.get('resources',{}).items():
+            resources.append(dict(run_id=run['run_id'],series=run['label'],mode=run['mode'],container=container,
+                samples=stats['samples'],cpu_mean_percent=stats['cpu_mean_percent'],cpu_p95_percent=stats['cpu_percent']['p95'],
+                cpu_peak_percent=stats['cpu_peak_percent'],ram_peak_bytes=stats['ram_peak_bytes'],
+                sample_interval_p50_ms=stats['sampling_interval_ms']['p50']))
+        view=result['dashboard']
+        dashboard.append(dict(run_id=run['run_id'],series=run['label'],mode=run['mode'],committed=view['committed_measured_ids'],
+            observed=view['observed_measured_ids'],censored=view['censored'],invalid_clock=view['invalid_clock_observations'],
+            p95_lower_ms=view['availability_to_dom_lower_ms']['p95'],p95_midpoint_ms=view['availability_to_dom_midpoint_ms']['p95'],
+            p95_upper_ms=view['availability_to_dom_upper_ms']['p95'],fetch_to_dom_p95_ms=view['fetch_to_dom_ms']['p95']))
         for metric,summary in result['latency_ms'].items():
             rows.append(dict(run_id=run['run_id'],label=run['label'],mode=run['mode'],
                              status=run['status'],metric=metric,unit='ms',valid=summary.get('valid',True),
@@ -23,6 +38,10 @@ def main():
         writer=csv.DictWriter(stream,fieldnames=['run_id','label','mode','status','metric','unit','valid','n','p50','p95','p99'])
         writer.writeheader();writer.writerows(rows)
     (ROOT/'runs.json').write_text(json.dumps(runs,indent=2)+'\n')
+    for name,values in [('throughput',throughputs),('resources',resources),('dashboard',dashboard)]:
+        if values:
+            with (ROOT/(name+'.csv')).open('w') as stream:
+                writer=csv.DictWriter(stream,fieldnames=list(values[0]));writer.writeheader();writer.writerows(values)
     lines=['# Stage 6 — execution status','','Protocol: [protocol.md](protocol.md).',
            '','Each row below is an independent run. Failed/preflight/pilot observations are retained and never pooled into the primary series.',
            '','| Run | Series | Mode | Status |','|---|---|---|---|']
@@ -59,6 +78,9 @@ def full_report(runs):
         '','See [protocol](protocol.md), [amendments](protocol-amendments.md), [raw run manifests](runs.json), [per-run quantiles](latencies.csv) and [between-run summaries](between-runs.csv).',
         '','| Mode | Metric | Median of five run p50 (ms) | Median of five run p95 (ms) | Median of five run p99 (ms) |',
         '|---|---|---:|---:|---:|']
+    if (ROOT/'pilot-approved.json').exists():
+        pilot=json.loads((ROOT/'pilot-approved.json').read_text())
+        report[3:3]=[f"Instrumentation overhead estimate (median of three paired throughput differences): {pilot['median_throughput_overhead_percent']:.3f}%. Budget exceeded: {pilot.get('overhead_budget_exceeded')}. See [investigation](overhead-investigation.md). Primary results include instrumentation; no overhead subtraction or uninstrumented SLA claim.", '']
     for row in grouped:
         report.append(f"| {row['mode']} | {row['metric']} | {row['p50_run_median']} | {row['p95_run_median']} | {row['p99_run_median']} |")
     report+=['','Recovery readiness means restored history and a subsequent committed record observed in telemetry; durations include restart and observation delay.',

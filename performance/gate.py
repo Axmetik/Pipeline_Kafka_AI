@@ -35,7 +35,8 @@ def check(directory):
         if summary['dashboard']['invalid_clock_observations']:issues.append('Browser clock uncertainty exceeds budget')
         if summary['telemetry_errors']:issues.append('Telemetry loss/error')
         pub_by_offset={r['offset']:r for r in publications}
-        if any('db_ack_mono_ns' in r and r['db_ack_mono_ns']<pub_by_offset[r['offset']]['send_mono_ns'] for r in workers):
+        if any('db_ack_mono_ns' in r and r['offset'] in pub_by_offset and 'send_mono_ns' in pub_by_offset[r['offset']]
+               and r['db_ack_mono_ns']<pub_by_offset[r['offset']]['send_mono_ns'] for r in workers):
             issues.append('Negative verified-monotonic end-to-end latency')
         for filename in ('producer','worker','visibility'):
             end=[r for r in read(directory/(filename+'.jsonl')) if r['kind']=='telemetry_end']
@@ -71,8 +72,14 @@ def main():
         pairs.append(dict(pair=label,on_run=on.name,off_run=off.name,on_per_second=enabled,off_per_second=disabled,
                           throughput_overhead_percent=100*(disabled-enabled)/disabled,model_output_parity=parity))
     median=statistics.median(r['throughput_overhead_percent'] for r in pairs)
+    evidence_path=ROOT/'overhead-investigation.json'
+    evidence=read_json(evidence_path) if evidence_path.exists() else {}
+    investigated=(evidence.get('pairs')==pairs and evidence.get('campaign')==config['overhead']['campaign']
+                  and evidence.get('interpretation')=='instrumented_system_results_only'
+                  and (ROOT/'overhead-investigation.md').exists())
     result={'checks':checks,'pairs':pairs,'median_throughput_overhead_percent':median,
-            'correctness_passed':not any(r['issues'] for r in checks),'overhead_under_investigation':median>5}
+            'correctness_passed':not any(r['issues'] for r in checks),'overhead_budget_exceeded':median>5,
+            'overhead_investigation_completed':investigated,'overhead_under_investigation':median>5 and not investigated}
     from performance.run import instrumentation_digest,CONFIG
     result.update(config_sha256=hashlib.sha256(CONFIG.read_bytes()).hexdigest(),
                   instrumentation_sha256=instrumentation_digest(),
