@@ -10,3 +10,10 @@ artifacts/
 # Local credentials and environment variants
 .env.*
 !.env.example
+
+# Frontend local dependencies/build/browser traces
+node_modules/
+dashboard/dist/
+dashboard/test-results/
+dashboard/playwright-report/
+*.tsbuildinfo

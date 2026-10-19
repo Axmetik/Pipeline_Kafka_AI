@@ -492,3 +492,57 @@ API без автентифікації доступний тільки лока
 reverse proxy/tunnel; для віддаленого використання потрібна окрема погоджена
 автентифікація. Dashboard (Stage 5C) ще не реалізований.
 Повний контракт, обмеження й результати: `docs/stage5/5b-report.md`.
+
+### Stage 5C — повний застосунок у Docker
+
+Потрібні Docker Compose та Python3.10+ для невеликого CLI (ML/Python3.13 і
+frontend/Node працюють у контейнерах). З чистого clone, з кореня репозиторію:
+
+```bash
+python3 -m integration.demo prepare
+python3 -m integration.demo up
+# Відкрити http://127.0.0.1:8088
+python3 -m integration.demo replay --limit 300 --sleep 0.15
+```
+
+`prepare` створює приватний `.env.mvp`, завантажує відомий UCI CSV, готує нові
+локальні моделі за зафіксованими конфігураціями та перевіряє manifest/checksums.
+Перший build/fit потребує кількох хвилин. Наявні моделі й результати не
+перезаписуються. Вже перевірені trusted artifacts можна підключити без нового fit:
+
+```bash
+python3 -m integration.demo prepare \
+  --hgb artifacts/energy/appliances-hgb-bound-v1/model.joblib \
+  --anomaly artifacts/energy-anomaly/v1/bundle.joblib
+```
+
+Після першого replay на Dashboard видно300 measurements,600 forecasts і900
+score rows. Під час replay графіки оновлюються без перезавантаження. Worker
+залишається `unknown` без heartbeat; `API на зв’язку` означає лише стан HTTP API.
+Повторний replay тих самих300 readings збільшує duplicates, а не число фактів.
+
+```bash
+python3 -m integration.demo restart   # worker + Dashboard, дані збережено
+python3 -m integration.demo status
+python3 -m integration.demo logs
+python3 -m integration.demo stop      # volumes НЕ видаляються
+```
+
+Для нового незалежного replay експортуйте нові `MVP_RUN_ID`, `MVP_GROUP_ID` і
+`MVP_TOPIC` **в одному терміналі перед up та replay**. Не змінюйте ці значення
+лише для producer. Деталі, dev mode, browser tests, архітектура локального
+proxy та реальні скриншоти: [Stage5C report](docs/stage5/5c-report.md).
+
+```bash
+# Необов'язково, frontend development: Node22.12+ та host API на127.0.0.1:8000
+cd dashboard
+npm ci
+npm test
+npm run typecheck
+npm run build
+npm run dev
+```
+
+Docker API не має опублікованого8000-порту. Єдиний зовнішній порт повного MVP —
+`127.0.0.1:8088`; моделі read-only, credentials і datasets поза Git. Публічний
+хостинг без автентифікації не підтримується. IoT і Stage5A Compose залишаються окремими.

@@ -138,3 +138,62 @@ jobs:
       - name: Stop owned database
         if: always()
         run: docker compose --env-file .env.mvp -p energy-api-ci -f docker/docker-compose.mvp.yml down -v
+
+  frontend:
+    name: Dashboard unit, TypeScript, build and browser contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - name: Frontend checks
+        working-directory: dashboard
+        run: |
+          npm ci
+          npm test
+          npm run typecheck
+          npm run build
+      - name: Browser contracts in isolated Chromium
+        run: python3 -m integration.browser_tests
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-contract-failure
+          path: dashboard/test-results/
+
+  dashboard-e2e:
+    name: Full Docker Kafka to live browser E2E
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      MVP_COMPOSE_PROJECT: energy-dashboard-ci
+      MVP_RUN_ID: dashboard-ci-001
+      MVP_GROUP_ID: dashboard-ci-001
+      MVP_TOPIC: dashboard-ci-001
+      MVP_WEB_PORT: '8088'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare clean-clone environment, dataset and frozen local models
+        run: python3 -m integration.demo prepare
+      - name: Start the entire local stack
+        run: |
+          python3 -m integration.demo up
+          curl --fail --max-time 10 http://127.0.0.1:8088/health/ready
+          python3 -m integration.security_check
+      - name: Replay in browser, restart recovery and duplicate delivery
+        run: python3 -m integration.browser_tests --live
+      - name: Safe diagnostic logs
+        if: failure()
+        run: python3 -m integration.demo logs
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: full-browser-failure
+          path: dashboard/test-results/
+      - name: Remove only this job's ephemeral stack
+        if: always()
+        run: docker compose --env-file .env.mvp -p energy-dashboard-ci -f docker/docker-compose.dashboard.yml down -v

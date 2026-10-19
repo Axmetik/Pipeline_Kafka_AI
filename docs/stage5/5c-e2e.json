@@ -1,0 +1,14 @@
+{
+  "run_id": "stage5c-demo-002",
+  "during_replay_count": 11,
+  "measurements": 300,
+  "forecasts": 600,
+  "scores": 900,
+  "duplicate_deliveries": 300,
+  "next_offset": 600,
+  "retained_forecasts_verified": 36,
+  "events": 1,
+  "browser_timezone": "Pacific/Honolulu",
+  "browser_errors": [],
+  "worker_and_dashboard_restarts": 2
+}

@@ -154,6 +154,8 @@ class PipelineStatus(Public):
     status_reason: Literal['No heartbeat is recorded; checkpoints do not prove liveness'] = 'No heartbeat is recorded; checkpoints do not prove liveness'
     last_processed_at: datetime | None
     unique_measurements: int
+    forecasts: int
+    anomaly_scores: int
     duplicate_deliveries: int
     rejected_messages: int
     checkpoint_count: int

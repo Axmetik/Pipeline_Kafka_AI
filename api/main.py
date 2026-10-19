@@ -146,6 +146,7 @@ def create_app(engine=None):
         for row in checkpoints: row['last_processed_at']=row.pop('updated_at')
         return {'last_processed_at':last,'scope_run_id':run_id,
             'unique_measurements':count(s.measurements),
+            'forecasts':count(s.forecasts),'anomaly_scores':count(s.scores),
             'duplicate_deliveries':count(s.receipts,s.receipts.c.outcome=='message_duplicate'),
             'rejected_messages':count(s.receipts,s.receipts.c.outcome.not_in(['accepted','message_duplicate'])),
             'checkpoints':checkpoints,'recent_errors':errors,

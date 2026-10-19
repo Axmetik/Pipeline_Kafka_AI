@@ -187,6 +187,7 @@ class APIIntegration(unittest.TestCase):
         models=self.get('/api/models',run_id='run-a',model_version='residual-v1')['items'];self.assertEqual(len(models),1)
         status=self.get('/api/pipeline-status',run_id='run-a')
         self.assertEqual(status['worker_status'],'unknown');self.assertEqual(status['unique_measurements'],16)
+        self.assertEqual(status['forecasts'],32);self.assertEqual(status['anomaly_scores'],48)
         self.assertEqual(status['duplicate_deliveries'],1);self.assertEqual(status['rejected_messages'],1)
         self.assertEqual(status['checkpoints'][0]['next_offset'],11)
         for path in ['/api/runs','/api/sources','/api/measurements','/api/forecasts','/api/anomaly-scores','/api/events','/api/models','/api/pipeline-status']:

@@ -1,0 +1,24 @@
+FROM python:3.13-slim-bookworm@sha256:a1165e272e578941b84abc79e4ab38a0305cd12803a5c4247979ac7655f4d641
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MPLCONFIGDIR=/tmp/matplotlib
+WORKDIR /app
+COPY requirements.txt requirements-ci.txt requirements-mvp.txt requirements-api.txt ./
+RUN python -m pip install --no-cache-dir torch==2.11.0 --index-url https://download.pytorch.org/whl/cpu \
+ && python -m pip install --no-cache-dir -r requirements-ci.txt
+COPY ai ai
+COPY benchmark benchmark
+COPY config.py ./
+COPY anomaly anomaly
+COPY api api
+COPY consumer consumer
+COPY integration integration
+COPY migrations migrations
+COPY processing processing
+COPY producer producer
+COPY storage storage
+COPY schemas schemas
+COPY configs configs
+COPY docs docs
+COPY alembic.ini ./
+RUN useradd --uid 10001 --create-home energy
+USER energy
+CMD ["python", "-m", "integration.energy_worker"]
