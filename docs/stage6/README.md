@@ -9,7 +9,7 @@ source .venv/bin/activate
 python -m performance.prepare
 python -m performance.run pilot
 python -m performance.run overhead
-python -c 'from performance.run import Run; Run("pilot-recovery-v6","demo",150,60).run(recovery=True)'
+python -c 'from performance.run import Run; Run("pilot-recovery-v7","demo",150,60).run(recovery=True)'
 python -m performance.gate
 python -m performance.run main
 python -m performance.run recovery

@@ -104,18 +104,8 @@ class Run:
         return process
 
     def wait_count(self,count):
-        deadline=time.monotonic()+self.config['drain_timeout_seconds']
-        while time.monotonic()<deadline:
-            try:
-                status=get('http://127.0.0.1:8089/api/pipeline-status?run_id='+self.id)
-                if status['rejected_messages'] or status['duplicate_deliveries']:
-                    raise RuntimeError('Unexpected rejected/duplicate delivery')
-                if status['unique_measurements']==count and status['checkpoints'][0]['next_offset']==count:
-                    return status
-            except (OSError,KeyError,IndexError):
-                pass
-            time.sleep(.1)
-        raise TimeoutError('Drain deadline exceeded')
+        self.compose('run','--rm','--no-deps','tools','python','-m','performance.database','wait',
+                     '--expected',str(count),timeout=self.config['drain_timeout_seconds']+60)
 
     def replay(self,start,count,delay,phase):
         self.compose('run','--rm','--no-deps','tools','python','-m','performance.replay',

@@ -44,12 +44,30 @@ def validate(counts, expected):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['observe','snapshot'])
+    p=argparse.ArgumentParser();p.add_argument('command',choices=['observe','snapshot','wait'])
     p.add_argument('--interval',type=float,default=.2)
     p.add_argument('--expected',type=int);a=p.parse_args()
     settings=Settings.from_env();engine=create_engine(settings.database_url,pool_pre_ping=True)
     output=Path(os.environ['PERF_OUTPUT'])
     control=Path(os.environ.get('PERF_CONTROL',str(output)))
+    if a.command=='wait':
+        if a.expected is None:p.error('wait requires --expected')
+        sink=Sink(output/'checkpoint-probes.jsonl')
+        deadline=time.monotonic()+900
+        statement=text('SELECT next_offset FROM mvp_checkpoints WHERE run_id=:run')
+        try:
+            with engine.connect() as c:
+                while time.monotonic()<deadline:
+                    start=time.perf_counter_ns()
+                    offset=c.execute(statement,{'run':settings.run_id}).scalar()
+                    c.rollback()
+                    sink.emit('checkpoint_probe',next_offset=offset,expected=a.expected,duration_ns=time.perf_counter_ns()-start)
+                    if offset is not None and offset>a.expected:raise RuntimeError('Checkpoint exceeded expected completion boundary')
+                    if offset==a.expected:return
+                    time.sleep(.1)
+            raise TimeoutError('DB checkpoint drain deadline exceeded')
+        finally:
+            sink.close();engine.dispose()
     if a.command=='snapshot':
         counts=snapshot(engine,settings)
         consumer=KafkaConsumer(bootstrap_servers=settings.bootstrap_servers,group_id=settings.group_id,enable_auto_commit=False)
