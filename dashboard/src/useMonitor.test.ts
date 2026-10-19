@@ -9,7 +9,26 @@ beforeEach(() => {
   vi.useFakeTimers();
   vi.mocked(load).mockReset();
 });
-afterEach(() => vi.useRealTimers());
+afterEach(() => {
+  delete window.__energyPerformance;
+  vi.useRealTimers();
+});
+it("emits opt-in telemetry only after the snapshot is committed", async () => {
+  const callback = vi.fn();
+  window.__energyPerformance = callback;
+  vi.mocked(load).mockResolvedValue({
+    measurements: [{ measurement_id: "a" }, { measurement_id: "b" }],
+  } as Snapshot);
+  const hook = renderHook(() => useMonitor(selection, 144));
+  await act(() => Promise.resolve());
+  expect(callback).toHaveBeenCalledTimes(1);
+  expect(callback.mock.calls[0][0].ids).toEqual(["a", "b"]);
+  expect(callback.mock.calls[0][0].domEpochMs).toBeGreaterThanOrEqual(
+    callback.mock.calls[0][0].fetchedEpochMs,
+  );
+  expect(load).toHaveBeenCalledTimes(1);
+  hook.unmount();
+});
 it("does not overlap and cancels requests/timers", async () => {
   let resolve!: (s: Snapshot) => void;
   vi.mocked(load).mockImplementation(

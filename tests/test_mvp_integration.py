@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 from uuid import uuid4
@@ -107,6 +108,41 @@ class MVPIntegrationTests(unittest.TestCase):
         with self.engine.begin() as c:
             self.alembic.attributes['connection']=c;command.downgrade(self.alembic,'base');command.upgrade(self.alembic,'head')
         self.assertEqual(self.count(s.measurements),0)
+
+    def test_performance_adapter_real_commit_spans_and_model_parity(self):
+        self.publish(self.records[:150])
+        with tempfile.TemporaryDirectory() as directory:
+            env={**os.environ,'PERF_OUTPUT':directory,'MVP_DATABASE_URL':self.settings.database_url,
+                 'MVP_BOOTSTRAP_SERVERS':self.settings.bootstrap_servers,'MVP_TOPIC':self.settings.topic,
+                 'MVP_GROUP_ID':self.settings.group_id,'MVP_RUN_ID':self.settings.run_id,
+                 'MVP_ARTIFACT_MANIFEST':str(self.settings.artifact_manifest),'OMP_NUM_THREADS':'1'}
+            child=subprocess.run([sys.executable,'-m','performance.worker','--max-messages','150'],
+                                 cwd=ROOT,env=env,capture_output=True,text=True,timeout=120)
+            self.assertEqual(child.returncode,0,child.stderr[-1000:])
+            rows=[json.loads(line) for line in (Path(directory)/'worker.jsonl').read_text().splitlines()]
+        messages=[r for r in rows if r['kind']=='message']
+        self.assertEqual(len(messages),150)
+        self.assertEqual([r['offset'] for r in messages],list(range(150)))
+        self.assertEqual(rows[-1],{'kind':'telemetry_end','dropped':0})
+        for row in messages:
+            self.assertEqual(row['db_commit_ack_calls'],1)
+            self.assertGreater(row['sql_calls'],0)
+            self.assertGreater(row['transaction_ns'],row['db_commit_ack_ns'])
+            self.assertGreater(row['kafka_commit_ack_ns'],0)
+        ready=messages[-1]
+        for name in ('hgb','rf','if','ae'):
+            self.assertGreater(ready[name+'_ns'],0)
+        expected=Runtime(self.artifacts)
+        for row in self.records[:150]:last=expected.compute(row)
+        with self.engine.connect() as c:
+            measurement=c.execute(select(s.measurements.c.measurement_id).where(
+                s.measurements.c.kafka_offset==149)).scalar_one()
+            for score in last['scores']:
+                stored=c.execute(select(s.scores).where(s.scores.c.measurement_id==measurement,
+                    s.scores.c.detector==score['detector'])).mappings().one()
+                self.assertEqual(stored['score'],score['score'])
+                self.assertEqual(stored['flag'],score['flag'])
+        self.assertEqual(self.kafka_committed(),150)
 
     def test_duplicate_delivery_event_conflict_and_history_parity(self):
         repo=self.repo();processor=Processor(repo,self.artifacts)

@@ -546,3 +546,11 @@ npm run dev
 Docker API не має опублікованого8000-порту. Єдиний зовнішній порт повного MVP —
 `127.0.0.1:8088`; моделі read-only, credentials і datasets поза Git. Публічний
 хостинг без автентифікації не підтримується. IoT і Stage5A Compose залишаються окремими.
+
+### Stage 6 — оцінювання продуктивності
+
+Окремий opt-in evaluation запускає ізольовані PostgreSQL/Kafka/worker/API/browser
+контексти на `127.0.0.1:8089`, зберігаючи звичайний MVP на `8088`.
+Протокол, overhead-перевірки, сирі дані та фактичний статус виконання:
+[docs/stage6/README.md](docs/stage6/README.md). Stage6 не навчає моделі й не
+змінює production inference, пороги або checkpoint/recovery.

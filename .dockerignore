@@ -9,3 +9,4 @@ data
 **/test-results
 **/playwright-report
 .DS_Store
+docs/stage6/raw

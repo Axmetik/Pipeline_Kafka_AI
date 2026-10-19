@@ -1,0 +1,22 @@
+# Evaluation-only overrides. The normal MVP remains unchanged.
+services:
+  dashboard:
+    image: energy-performance-dashboard:local
+  worker:
+    user: '${LOCAL_UID:-10001}:${LOCAL_GID:-10001}'
+    command: [python, -m, performance.worker]
+    environment:
+      PERF_OUTPUT: /evaluation
+    volumes:
+      - ../performance:/app/performance:ro
+      - ${PERF_RUN_DIR:?}:/evaluation
+  api:
+    command: [python, -m, performance.api]
+    volumes:
+      - ../performance:/app/performance:ro
+  tools:
+    environment:
+      PERF_OUTPUT: /evaluation
+    volumes:
+      - ../performance:/app/performance:ro
+      - ${PERF_RUN_DIR:?}:/evaluation

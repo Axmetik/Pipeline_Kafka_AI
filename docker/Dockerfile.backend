@@ -13,6 +13,7 @@ COPY anomaly anomaly
 COPY api api
 COPY consumer consumer
 COPY integration integration
+COPY performance performance
 COPY migrations migrations
 COPY processing processing
 COPY producer producer
