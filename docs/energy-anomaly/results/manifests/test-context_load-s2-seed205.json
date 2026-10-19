@@ -1,0 +1,573 @@
+{
+  "split": "test",
+  "scenario": "context_load-s2-seed205",
+  "seed": 205,
+  "type": "context_load",
+  "severity": 2,
+  "prefix": 144,
+  "requested_points": 78,
+  "labeled_points": 78,
+  "numerically_changed_points": 78,
+  "achieved_fraction": 0.019766852508869743,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 3572,
+      "end": 3584,
+      "duration": 13,
+      "start_timestamp": "2016-05-25T03:50:00",
+      "end_timestamp": "2016-05-25T05:50:00",
+      "changes": [
+        {
+          "index": 3572,
+          "timestamp": "2016-05-25T03:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3573,
+          "timestamp": "2016-05-25T04:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3574,
+          "timestamp": "2016-05-25T04:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 3575,
+          "timestamp": "2016-05-25T04:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 3576,
+          "timestamp": "2016-05-25T04:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3577,
+          "timestamp": "2016-05-25T04:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3578,
+          "timestamp": "2016-05-25T04:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 3579,
+          "timestamp": "2016-05-25T05:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 3580,
+          "timestamp": "2016-05-25T05:10:00",
+          "original_wh": 80.0,
+          "modified_wh": 230.0
+        },
+        {
+          "index": 3581,
+          "timestamp": "2016-05-25T05:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3582,
+          "timestamp": "2016-05-25T05:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3583,
+          "timestamp": "2016-05-25T05:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 3584,
+          "timestamp": "2016-05-25T05:50:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 264,
+      "end": 275,
+      "duration": 12,
+      "start_timestamp": "2016-05-02T04:30:00",
+      "end_timestamp": "2016-05-02T06:20:00",
+      "changes": [
+        {
+          "index": 264,
+          "timestamp": "2016-05-02T04:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 265,
+          "timestamp": "2016-05-02T04:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 266,
+          "timestamp": "2016-05-02T04:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 267,
+          "timestamp": "2016-05-02T05:00:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        },
+        {
+          "index": 268,
+          "timestamp": "2016-05-02T05:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        },
+        {
+          "index": 269,
+          "timestamp": "2016-05-02T05:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 270,
+          "timestamp": "2016-05-02T05:30:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 271,
+          "timestamp": "2016-05-02T05:40:00",
+          "original_wh": 230.0,
+          "modified_wh": 380.0
+        },
+        {
+          "index": 272,
+          "timestamp": "2016-05-02T05:50:00",
+          "original_wh": 170.0,
+          "modified_wh": 320.0
+        },
+        {
+          "index": 273,
+          "timestamp": "2016-05-02T06:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 274,
+          "timestamp": "2016-05-02T06:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        },
+        {
+          "index": 275,
+          "timestamp": "2016-05-02T06:20:00",
+          "original_wh": 90.0,
+          "modified_wh": 240.0
+        }
+      ]
+    },
+    {
+      "event_id": 2,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 532,
+      "end": 542,
+      "duration": 11,
+      "start_timestamp": "2016-05-04T01:10:00",
+      "end_timestamp": "2016-05-04T02:50:00",
+      "changes": [
+        {
+          "index": 532,
+          "timestamp": "2016-05-04T01:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 533,
+          "timestamp": "2016-05-04T01:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 534,
+          "timestamp": "2016-05-04T01:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 535,
+          "timestamp": "2016-05-04T01:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 536,
+          "timestamp": "2016-05-04T01:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 537,
+          "timestamp": "2016-05-04T02:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 538,
+          "timestamp": "2016-05-04T02:10:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 539,
+          "timestamp": "2016-05-04T02:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 540,
+          "timestamp": "2016-05-04T02:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 541,
+          "timestamp": "2016-05-04T02:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 542,
+          "timestamp": "2016-05-04T02:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        }
+      ]
+    },
+    {
+      "event_id": 3,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 1821,
+      "end": 1829,
+      "duration": 9,
+      "start_timestamp": "2016-05-13T00:00:00",
+      "end_timestamp": "2016-05-13T01:20:00",
+      "changes": [
+        {
+          "index": 1821,
+          "timestamp": "2016-05-13T00:00:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        },
+        {
+          "index": 1822,
+          "timestamp": "2016-05-13T00:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1823,
+          "timestamp": "2016-05-13T00:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1824,
+          "timestamp": "2016-05-13T00:30:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 1825,
+          "timestamp": "2016-05-13T00:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 1826,
+          "timestamp": "2016-05-13T00:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1827,
+          "timestamp": "2016-05-13T01:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1828,
+          "timestamp": "2016-05-13T01:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 1829,
+          "timestamp": "2016-05-13T01:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        }
+      ]
+    },
+    {
+      "event_id": 4,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 820,
+      "end": 832,
+      "duration": 13,
+      "start_timestamp": "2016-05-06T01:10:00",
+      "end_timestamp": "2016-05-06T03:10:00",
+      "changes": [
+        {
+          "index": 820,
+          "timestamp": "2016-05-06T01:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 821,
+          "timestamp": "2016-05-06T01:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 822,
+          "timestamp": "2016-05-06T01:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 823,
+          "timestamp": "2016-05-06T01:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 824,
+          "timestamp": "2016-05-06T01:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 825,
+          "timestamp": "2016-05-06T02:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 826,
+          "timestamp": "2016-05-06T02:10:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 827,
+          "timestamp": "2016-05-06T02:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 828,
+          "timestamp": "2016-05-06T02:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 829,
+          "timestamp": "2016-05-06T02:40:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 830,
+          "timestamp": "2016-05-06T02:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 831,
+          "timestamp": "2016-05-06T03:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 832,
+          "timestamp": "2016-05-06T03:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        }
+      ]
+    },
+    {
+      "event_id": 5,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 978,
+      "end": 988,
+      "duration": 11,
+      "start_timestamp": "2016-05-07T03:30:00",
+      "end_timestamp": "2016-05-07T05:10:00",
+      "changes": [
+        {
+          "index": 978,
+          "timestamp": "2016-05-07T03:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 979,
+          "timestamp": "2016-05-07T03:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 980,
+          "timestamp": "2016-05-07T03:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 981,
+          "timestamp": "2016-05-07T04:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 982,
+          "timestamp": "2016-05-07T04:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 983,
+          "timestamp": "2016-05-07T04:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 190.0
+        },
+        {
+          "index": 984,
+          "timestamp": "2016-05-07T04:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 985,
+          "timestamp": "2016-05-07T04:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 986,
+          "timestamp": "2016-05-07T04:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 987,
+          "timestamp": "2016-05-07T05:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 988,
+          "timestamp": "2016-05-07T05:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        }
+      ]
+    },
+    {
+      "event_id": 6,
+      "type": "context_load",
+      "severity": 2,
+      "strength": 3.0,
+      "start": 2574,
+      "end": 2582,
+      "duration": 9,
+      "start_timestamp": "2016-05-18T05:30:00",
+      "end_timestamp": "2016-05-18T06:50:00",
+      "changes": [
+        {
+          "index": 2574,
+          "timestamp": "2016-05-18T05:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 2575,
+          "timestamp": "2016-05-18T05:40:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        },
+        {
+          "index": 2576,
+          "timestamp": "2016-05-18T05:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 2577,
+          "timestamp": "2016-05-18T06:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 2578,
+          "timestamp": "2016-05-18T06:10:00",
+          "original_wh": 130.0,
+          "modified_wh": 280.0
+        },
+        {
+          "index": 2579,
+          "timestamp": "2016-05-18T06:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 210.0
+        },
+        {
+          "index": 2580,
+          "timestamp": "2016-05-18T06:30:00",
+          "original_wh": 70.0,
+          "modified_wh": 220.0
+        },
+        {
+          "index": 2581,
+          "timestamp": "2016-05-18T06:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        },
+        {
+          "index": 2582,
+          "timestamp": "2016-05-18T06:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 200.0
+        }
+      ]
+    }
+  ]
+}

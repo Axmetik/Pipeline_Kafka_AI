@@ -1,0 +1,268 @@
+{
+  "split": "validation",
+  "scenario": "drift-s0-seed103",
+  "seed": 103,
+  "type": "drift",
+  "severity": 0,
+  "prefix": 144,
+  "requested_points": 39,
+  "labeled_points": 38,
+  "numerically_changed_points": 38,
+  "achieved_fraction": 0.01926001013684744,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "drift",
+      "severity": 0,
+      "strength": 1.0,
+      "start": 609,
+      "end": 633,
+      "duration": 25,
+      "start_timestamp": "2016-04-20T21:10:00",
+      "end_timestamp": "2016-04-21T01:10:00",
+      "changes": [
+        {
+          "index": 609,
+          "timestamp": "2016-04-20T21:10:00",
+          "original_wh": 110.0,
+          "modified_wh": 112.0
+        },
+        {
+          "index": 610,
+          "timestamp": "2016-04-20T21:20:00",
+          "original_wh": 80.0,
+          "modified_wh": 84.0
+        },
+        {
+          "index": 611,
+          "timestamp": "2016-04-20T21:30:00",
+          "original_wh": 70.0,
+          "modified_wh": 76.0
+        },
+        {
+          "index": 612,
+          "timestamp": "2016-04-20T21:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 58.0
+        },
+        {
+          "index": 613,
+          "timestamp": "2016-04-20T21:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 614,
+          "timestamp": "2016-04-20T22:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 62.0
+        },
+        {
+          "index": 615,
+          "timestamp": "2016-04-20T22:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 64.0
+        },
+        {
+          "index": 616,
+          "timestamp": "2016-04-20T22:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 76.0
+        },
+        {
+          "index": 617,
+          "timestamp": "2016-04-20T22:30:00",
+          "original_wh": 40.0,
+          "modified_wh": 58.0
+        },
+        {
+          "index": 618,
+          "timestamp": "2016-04-20T22:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 80.0
+        },
+        {
+          "index": 619,
+          "timestamp": "2016-04-20T22:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 82.0
+        },
+        {
+          "index": 620,
+          "timestamp": "2016-04-20T23:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 74.0
+        },
+        {
+          "index": 621,
+          "timestamp": "2016-04-20T23:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 86.0
+        },
+        {
+          "index": 622,
+          "timestamp": "2016-04-20T23:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 68.0
+        },
+        {
+          "index": 623,
+          "timestamp": "2016-04-20T23:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 80.0
+        },
+        {
+          "index": 624,
+          "timestamp": "2016-04-20T23:40:00",
+          "original_wh": 20.0,
+          "modified_wh": 52.0
+        },
+        {
+          "index": 625,
+          "timestamp": "2016-04-20T23:50:00",
+          "original_wh": 30.0,
+          "modified_wh": 64.0
+        },
+        {
+          "index": 626,
+          "timestamp": "2016-04-21T00:00:00",
+          "original_wh": 30.0,
+          "modified_wh": 66.0
+        },
+        {
+          "index": 627,
+          "timestamp": "2016-04-21T00:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 98.0
+        },
+        {
+          "index": 628,
+          "timestamp": "2016-04-21T00:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 100.0
+        },
+        {
+          "index": 629,
+          "timestamp": "2016-04-21T00:30:00",
+          "original_wh": 60.0,
+          "modified_wh": 102.0
+        },
+        {
+          "index": 630,
+          "timestamp": "2016-04-21T00:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 94.0
+        },
+        {
+          "index": 631,
+          "timestamp": "2016-04-21T00:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 96.0
+        },
+        {
+          "index": 632,
+          "timestamp": "2016-04-21T01:00:00",
+          "original_wh": 40.0,
+          "modified_wh": 88.0
+        },
+        {
+          "index": 633,
+          "timestamp": "2016-04-21T01:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 100.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "drift",
+      "severity": 0,
+      "strength": 1.0,
+      "start": 439,
+      "end": 451,
+      "duration": 13,
+      "start_timestamp": "2016-04-19T16:50:00",
+      "end_timestamp": "2016-04-19T18:50:00",
+      "changes": [
+        {
+          "index": 439,
+          "timestamp": "2016-04-19T16:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 53.84615384615385
+        },
+        {
+          "index": 440,
+          "timestamp": "2016-04-19T17:00:00",
+          "original_wh": 80.0,
+          "modified_wh": 87.6923076923077
+        },
+        {
+          "index": 441,
+          "timestamp": "2016-04-19T17:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 61.53846153846154
+        },
+        {
+          "index": 442,
+          "timestamp": "2016-04-19T17:20:00",
+          "original_wh": 90.0,
+          "modified_wh": 105.38461538461539
+        },
+        {
+          "index": 443,
+          "timestamp": "2016-04-19T17:30:00",
+          "original_wh": 170.0,
+          "modified_wh": 189.23076923076923
+        },
+        {
+          "index": 444,
+          "timestamp": "2016-04-19T17:40:00",
+          "original_wh": 510.0,
+          "modified_wh": 533.0769230769231
+        },
+        {
+          "index": 445,
+          "timestamp": "2016-04-19T17:50:00",
+          "original_wh": 590.0,
+          "modified_wh": 616.9230769230769
+        },
+        {
+          "index": 446,
+          "timestamp": "2016-04-19T18:00:00",
+          "original_wh": 190.0,
+          "modified_wh": 220.76923076923077
+        },
+        {
+          "index": 447,
+          "timestamp": "2016-04-19T18:10:00",
+          "original_wh": 100.0,
+          "modified_wh": 134.6153846153846
+        },
+        {
+          "index": 448,
+          "timestamp": "2016-04-19T18:20:00",
+          "original_wh": 110.0,
+          "modified_wh": 148.46153846153845
+        },
+        {
+          "index": 449,
+          "timestamp": "2016-04-19T18:30:00",
+          "original_wh": 110.0,
+          "modified_wh": 152.30769230769232
+        },
+        {
+          "index": 450,
+          "timestamp": "2016-04-19T18:40:00",
+          "original_wh": 110.0,
+          "modified_wh": 156.15384615384616
+        },
+        {
+          "index": 451,
+          "timestamp": "2016-04-19T18:50:00",
+          "original_wh": 150.0,
+          "modified_wh": 200.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "accepted": 644,
+  "rejected": 1,
+  "offline_stream_scores_match": true,
+  "flags_match": true,
+  "max_absolute_score_difference": {
+    "isolation_forest": 0.0,
+    "autoencoder": 2.980232238769531e-07,
+    "residual": 0.0,
+    "prediction_wh": 0.0,
+    "signed_residual_wh": 0.0
+  },
+  "ready": {
+    "isolation_forest": 638,
+    "autoencoder": 638,
+    "residual": 500
+  },
+  "model_version": "energy-anomaly-v1-44600700f5a3be9c"
+}

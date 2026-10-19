@@ -1,0 +1,534 @@
+{
+  "split": "test",
+  "scenario": "stuck-s2-seed201",
+  "seed": 201,
+  "type": "stuck",
+  "severity": 2,
+  "prefix": 144,
+  "requested_points": 78,
+  "labeled_points": 78,
+  "numerically_changed_points": 73,
+  "achieved_fraction": 0.019766852508869743,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 3895,
+      "end": 3909,
+      "duration": 15,
+      "start_timestamp": "2016-05-27T09:40:00",
+      "end_timestamp": "2016-05-27T12:00:00",
+      "changes": [
+        {
+          "index": 3895,
+          "timestamp": "2016-05-27T09:40:00",
+          "original_wh": 580.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3896,
+          "timestamp": "2016-05-27T09:50:00",
+          "original_wh": 660.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3897,
+          "timestamp": "2016-05-27T10:00:00",
+          "original_wh": 300.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3898,
+          "timestamp": "2016-05-27T10:10:00",
+          "original_wh": 260.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3899,
+          "timestamp": "2016-05-27T10:20:00",
+          "original_wh": 290.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3900,
+          "timestamp": "2016-05-27T10:30:00",
+          "original_wh": 240.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3901,
+          "timestamp": "2016-05-27T10:40:00",
+          "original_wh": 240.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3902,
+          "timestamp": "2016-05-27T10:50:00",
+          "original_wh": 180.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3903,
+          "timestamp": "2016-05-27T11:00:00",
+          "original_wh": 190.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3904,
+          "timestamp": "2016-05-27T11:10:00",
+          "original_wh": 70.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3905,
+          "timestamp": "2016-05-27T11:20:00",
+          "original_wh": 400.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3906,
+          "timestamp": "2016-05-27T11:30:00",
+          "original_wh": 620.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3907,
+          "timestamp": "2016-05-27T11:40:00",
+          "original_wh": 330.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3908,
+          "timestamp": "2016-05-27T11:50:00",
+          "original_wh": 250.0,
+          "modified_wh": 50.0
+        },
+        {
+          "index": 3909,
+          "timestamp": "2016-05-27T12:00:00",
+          "original_wh": 260.0,
+          "modified_wh": 50.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 2112,
+      "end": 2121,
+      "duration": 10,
+      "start_timestamp": "2016-05-15T00:30:00",
+      "end_timestamp": "2016-05-15T02:00:00",
+      "changes": [
+        {
+          "index": 2112,
+          "timestamp": "2016-05-15T00:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2113,
+          "timestamp": "2016-05-15T00:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2114,
+          "timestamp": "2016-05-15T00:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2115,
+          "timestamp": "2016-05-15T01:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2116,
+          "timestamp": "2016-05-15T01:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2117,
+          "timestamp": "2016-05-15T01:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2118,
+          "timestamp": "2016-05-15T01:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2119,
+          "timestamp": "2016-05-15T01:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2120,
+          "timestamp": "2016-05-15T01:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 2121,
+          "timestamp": "2016-05-15T02:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        }
+      ]
+    },
+    {
+      "event_id": 2,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 1911,
+      "end": 1943,
+      "duration": 33,
+      "start_timestamp": "2016-05-13T15:00:00",
+      "end_timestamp": "2016-05-13T20:20:00",
+      "changes": [
+        {
+          "index": 1911,
+          "timestamp": "2016-05-13T15:00:00",
+          "original_wh": 270.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1912,
+          "timestamp": "2016-05-13T15:10:00",
+          "original_wh": 250.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1913,
+          "timestamp": "2016-05-13T15:20:00",
+          "original_wh": 220.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1914,
+          "timestamp": "2016-05-13T15:30:00",
+          "original_wh": 170.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1915,
+          "timestamp": "2016-05-13T15:40:00",
+          "original_wh": 100.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1916,
+          "timestamp": "2016-05-13T15:50:00",
+          "original_wh": 200.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1917,
+          "timestamp": "2016-05-13T16:00:00",
+          "original_wh": 350.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1918,
+          "timestamp": "2016-05-13T16:10:00",
+          "original_wh": 300.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1919,
+          "timestamp": "2016-05-13T16:20:00",
+          "original_wh": 450.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1920,
+          "timestamp": "2016-05-13T16:30:00",
+          "original_wh": 450.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1921,
+          "timestamp": "2016-05-13T16:40:00",
+          "original_wh": 290.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1922,
+          "timestamp": "2016-05-13T16:50:00",
+          "original_wh": 270.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1923,
+          "timestamp": "2016-05-13T17:00:00",
+          "original_wh": 280.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1924,
+          "timestamp": "2016-05-13T17:10:00",
+          "original_wh": 200.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1925,
+          "timestamp": "2016-05-13T17:20:00",
+          "original_wh": 120.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1926,
+          "timestamp": "2016-05-13T17:30:00",
+          "original_wh": 120.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1927,
+          "timestamp": "2016-05-13T17:40:00",
+          "original_wh": 110.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1928,
+          "timestamp": "2016-05-13T17:50:00",
+          "original_wh": 560.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1929,
+          "timestamp": "2016-05-13T18:00:00",
+          "original_wh": 450.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1930,
+          "timestamp": "2016-05-13T18:10:00",
+          "original_wh": 490.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1931,
+          "timestamp": "2016-05-13T18:20:00",
+          "original_wh": 280.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1932,
+          "timestamp": "2016-05-13T18:30:00",
+          "original_wh": 280.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1933,
+          "timestamp": "2016-05-13T18:40:00",
+          "original_wh": 310.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1934,
+          "timestamp": "2016-05-13T18:50:00",
+          "original_wh": 280.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1935,
+          "timestamp": "2016-05-13T19:00:00",
+          "original_wh": 310.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1936,
+          "timestamp": "2016-05-13T19:10:00",
+          "original_wh": 330.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1937,
+          "timestamp": "2016-05-13T19:20:00",
+          "original_wh": 190.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1938,
+          "timestamp": "2016-05-13T19:30:00",
+          "original_wh": 130.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1939,
+          "timestamp": "2016-05-13T19:40:00",
+          "original_wh": 140.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1940,
+          "timestamp": "2016-05-13T19:50:00",
+          "original_wh": 150.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1941,
+          "timestamp": "2016-05-13T20:00:00",
+          "original_wh": 140.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1942,
+          "timestamp": "2016-05-13T20:10:00",
+          "original_wh": 130.0,
+          "modified_wh": 250.0
+        },
+        {
+          "index": 1943,
+          "timestamp": "2016-05-13T20:20:00",
+          "original_wh": 130.0,
+          "modified_wh": 250.0
+        }
+      ]
+    },
+    {
+      "event_id": 3,
+      "type": "stuck",
+      "severity": 2,
+      "strength": 1.0,
+      "start": 2324,
+      "end": 2343,
+      "duration": 20,
+      "start_timestamp": "2016-05-16T11:50:00",
+      "end_timestamp": "2016-05-16T15:00:00",
+      "changes": [
+        {
+          "index": 2324,
+          "timestamp": "2016-05-16T11:50:00",
+          "original_wh": 110.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2325,
+          "timestamp": "2016-05-16T12:00:00",
+          "original_wh": 290.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2326,
+          "timestamp": "2016-05-16T12:10:00",
+          "original_wh": 450.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2327,
+          "timestamp": "2016-05-16T12:20:00",
+          "original_wh": 160.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2328,
+          "timestamp": "2016-05-16T12:30:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2329,
+          "timestamp": "2016-05-16T12:40:00",
+          "original_wh": 120.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2330,
+          "timestamp": "2016-05-16T12:50:00",
+          "original_wh": 120.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2331,
+          "timestamp": "2016-05-16T13:00:00",
+          "original_wh": 120.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2332,
+          "timestamp": "2016-05-16T13:10:00",
+          "original_wh": 330.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2333,
+          "timestamp": "2016-05-16T13:20:00",
+          "original_wh": 350.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2334,
+          "timestamp": "2016-05-16T13:30:00",
+          "original_wh": 360.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2335,
+          "timestamp": "2016-05-16T13:40:00",
+          "original_wh": 340.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2336,
+          "timestamp": "2016-05-16T13:50:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2337,
+          "timestamp": "2016-05-16T14:00:00",
+          "original_wh": 80.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2338,
+          "timestamp": "2016-05-16T14:10:00",
+          "original_wh": 90.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2339,
+          "timestamp": "2016-05-16T14:20:00",
+          "original_wh": 80.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2340,
+          "timestamp": "2016-05-16T14:30:00",
+          "original_wh": 80.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2341,
+          "timestamp": "2016-05-16T14:40:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2342,
+          "timestamp": "2016-05-16T14:50:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        },
+        {
+          "index": 2343,
+          "timestamp": "2016-05-16T15:00:00",
+          "original_wh": 100.0,
+          "modified_wh": 110.0
+        }
+      ]
+    }
+  ]
+}

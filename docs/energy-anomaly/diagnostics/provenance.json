@@ -1,0 +1,26 @@
+{
+  "kind": "post-hoc diagnostic; original experiment not modified",
+  "original_results_commit": "9d9baab885e563d6912154f3a586cf63712269b2",
+  "original_file_hashes_verified": 407,
+  "original_checksummed_files_unchanged": true,
+  "source_sha256": "cd0822efe639d07dde57e9404fb54bdeea73651055ee07c2166bde61f5464b51",
+  "thresholds_unchanged": {
+    "0.99": {
+      "isolation_forest": 0.6747213487966208,
+      "autoencoder": 0.828860602378845,
+      "residual": 296.24602578530755
+    },
+    "0.995": {
+      "isolation_forest": 0.6928881719602268,
+      "autoencoder": 1.090164976120006,
+      "residual": 399.1783091669025
+    },
+    "0.98": {
+      "isolation_forest": 0.6537878009841837,
+      "autoencoder": 0.6165048789978026,
+      "residual": 219.0285953467243
+    }
+  },
+  "paired_rows": 29202,
+  "note": "Pooled summaries weight each scenario-point; repeated clean timestamps are not independent observations."
+}

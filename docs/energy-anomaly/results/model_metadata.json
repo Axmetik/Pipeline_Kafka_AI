@@ -1,0 +1,317 @@
+{
+  "model_version": "energy-anomaly-v1-44600700f5a3be9c",
+  "feature_names": [
+    "energy_wh",
+    "lag_1_wh",
+    "lag_2_wh",
+    "lag_3_wh",
+    "lag_4_wh",
+    "lag_5_wh",
+    "lag_6_wh",
+    "rolling_3_mean",
+    "rolling_3_std",
+    "rolling_6_mean",
+    "rolling_6_std",
+    "temperature_c",
+    "relative_humidity_pct",
+    "temperature_missing",
+    "humidity_missing",
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "is_weekend"
+  ],
+  "feature_version": "energy-anomaly-20-v1",
+  "rf_feature_names": [
+    "energy_wh",
+    "lag_1_wh",
+    "lag_2_wh",
+    "lag_3_wh",
+    "lag_4_wh",
+    "lag_5_wh",
+    "lag_6_wh",
+    "rolling_3_mean",
+    "rolling_3_std",
+    "rolling_6_mean",
+    "rolling_6_std",
+    "temperature_c",
+    "relative_humidity_pct",
+    "temperature_missing",
+    "humidity_missing",
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "is_weekend",
+    "seasonal_energy_wh"
+  ],
+  "rf_feature_version": "benchmark-energy-v1",
+  "horizon_seconds": 600,
+  "allowed_sources": [
+    {
+      "building_id": "appliances-house-1",
+      "source_id": "uci-appliances",
+      "source_type": "dataset",
+      "energy_scope": "appliances",
+      "interval_seconds": 600,
+      "timestamp_reference": "dataset_label",
+      "timezone": null,
+      "timestamp_has_offset": false
+    }
+  ],
+  "training_fingerprint": "44600700f5a3be9ca579f01cef4914403f103c3b640f788e2a1038f0d5af8fad",
+  "train_count": 11699,
+  "train_first": "2016-01-12T17:00:00",
+  "train_last": "2016-04-02T22:40:00",
+  "ae_training": {
+    "epochs": 100,
+    "early_stop_losses": [
+      0.6592767238616943,
+      0.46027010679244995,
+      0.42402833700180054,
+      0.39493122696876526,
+      0.37013155221939087,
+      0.34054604172706604,
+      0.3054506778717041,
+      0.2832780182361603,
+      0.2707935869693756,
+      0.2615428566932678,
+      0.2531566619873047,
+      0.2450963705778122,
+      0.23603062331676483,
+      0.22467070817947388,
+      0.21044126152992249,
+      0.19547130167484283,
+      0.1820434331893921,
+      0.171686053276062,
+      0.1633155792951584,
+      0.15668796002864838,
+      0.15169844031333923,
+      0.1482246071100235,
+      0.1443891078233719,
+      0.14128698408603668,
+      0.13845260441303253,
+      0.13489902019500732,
+      0.1316174566745758,
+      0.12865017354488373,
+      0.1258070021867752,
+      0.12332078814506531,
+      0.12095095217227936,
+      0.11883046478033066,
+      0.11689425259828568,
+      0.11497227847576141,
+      0.11315485090017319,
+      0.1113797277212143,
+      0.1096343994140625,
+      0.10802346467971802,
+      0.10649299621582031,
+      0.10498952865600586,
+      0.10354375839233398,
+      0.10206480324268341,
+      0.10069172084331512,
+      0.09938201308250427,
+      0.09810695052146912,
+      0.09689569473266602,
+      0.09578060358762741,
+      0.09469565004110336,
+      0.09366858750581741,
+      0.09272033721208572,
+      0.09183000773191452,
+      0.09102312475442886,
+      0.09028786420822144,
+      0.08954430371522903,
+      0.08890414983034134,
+      0.08831806480884552,
+      0.08775422722101212,
+      0.08722011744976044,
+      0.08676304668188095,
+      0.08633449673652649,
+      0.0859312117099762,
+      0.08555375039577484,
+      0.08522205054759979,
+      0.0849052220582962,
+      0.08463486284017563,
+      0.08433400094509125,
+      0.08409399539232254,
+      0.0838584452867508,
+      0.08366211503744125,
+      0.08346450328826904,
+      0.08329867571592331,
+      0.08313381671905518,
+      0.08299864828586578,
+      0.08285737782716751,
+      0.08273043483495712,
+      0.08260252326726913,
+      0.082489013671875,
+      0.08238881081342697,
+      0.08229237794876099,
+      0.08219669759273529,
+      0.08211549371480942,
+      0.08202655613422394,
+      0.08194106072187424,
+      0.08186735212802887,
+      0.08181209862232208,
+      0.08173715323209763,
+      0.08168739080429077,
+      0.0816243514418602,
+      0.08160494267940521,
+      0.08157989382743835,
+      0.0815679132938385,
+      0.0814870297908783,
+      0.08154197037220001,
+      0.08151277899742126,
+      0.0814720094203949,
+      0.0814395397901535,
+      0.08139938861131668,
+      0.08135475218296051,
+      0.08132334053516388,
+      0.08128109574317932
+    ],
+    "internal_fit_count": 9944
+  },
+  "protocol_sha256": "ec9404c12a837ad773716868444be57aac8a3fc21f8121fd7ad1596e46cf4431",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "calibration": {
+    "count": 1973,
+    "first": "2016-04-02T22:50:00",
+    "last": "2016-04-16T15:30:00"
+  },
+  "configuration": {
+    "protocol_version": "energy-anomaly-v1",
+    "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "seed": 42,
+    "train_start": "2016-01-12T17:00:00",
+    "calibration_start": "2016-04-02T22:50:00",
+    "validation_start": "2016-04-16T15:40:00",
+    "test_start": "2016-04-30T08:30:00",
+    "test_end": "2016-05-27T18:00:00",
+    "quantiles": [
+      0.99,
+      0.995,
+      0.98
+    ],
+    "main_quantile": 0.99,
+    "selection_background_alarm_limit": 0.01,
+    "rf": {
+      "n_estimators": 400,
+      "max_depth": 12,
+      "min_samples_leaf": 10
+    },
+    "isolation_forest": {
+      "n_estimators": 300,
+      "max_samples": 256
+    },
+    "autoencoder": {
+      "hidden": [
+        16,
+        8
+      ],
+      "learning_rate": 0.001,
+      "batch_size": 128,
+      "max_epochs": 100,
+      "patience": 10,
+      "early_stop_fraction": 0.15
+    },
+    "injection": {
+      "fraction": 0.02,
+      "validation_seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "test_seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "severity_levels": [
+        0,
+        1,
+        2
+      ],
+      "minimum_gap": 144,
+      "max_attempts": 10000,
+      "iqr_fallback_wh": 1.0,
+      "context_hours_count": 6,
+      "types": {
+        "spike": {
+          "duration": [
+            1,
+            3
+          ],
+          "strength": [
+            2.0,
+            4.0,
+            6.0
+          ]
+        },
+        "drop": {
+          "duration": [
+            1,
+            6
+          ],
+          "strength": [
+            0.5,
+            0.2,
+            0.0
+          ]
+        },
+        "level_shift": {
+          "duration": [
+            6,
+            18
+          ],
+          "strength": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "drift": {
+          "duration": [
+            12,
+            36
+          ],
+          "strength": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "stuck": {
+          "duration": [
+            6,
+            36
+          ],
+          "strength": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "context_load": {
+          "duration": [
+            6,
+            18
+          ],
+          "strength": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        }
+      }
+    },
+    "post_event_intervals": 144,
+    "event_matching": "contiguous alarms, chronological greedy one-to-one overlap with [start,end]; no slack or point adjustment",
+    "history_warmup_records": 144,
+    "threads": 1,
+    "test_previously_viewed": true
+  },
+  "threshold_version": "quantiles-v1-d16d40eb0016ffe8"
+}

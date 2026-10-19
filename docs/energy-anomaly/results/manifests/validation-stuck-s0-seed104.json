@@ -1,0 +1,274 @@
+{
+  "split": "validation",
+  "scenario": "stuck-s0-seed104",
+  "seed": 104,
+  "type": "stuck",
+  "severity": 0,
+  "prefix": 144,
+  "requested_points": 39,
+  "labeled_points": 39,
+  "numerically_changed_points": 36,
+  "achieved_fraction": 0.019766852508869743,
+  "events": [
+    {
+      "event_id": 0,
+      "type": "stuck",
+      "severity": 0,
+      "strength": 1.0,
+      "start": 1632,
+      "end": 1658,
+      "duration": 27,
+      "start_timestamp": "2016-04-27T23:40:00",
+      "end_timestamp": "2016-04-28T04:00:00",
+      "changes": [
+        {
+          "index": 1632,
+          "timestamp": "2016-04-27T23:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1633,
+          "timestamp": "2016-04-27T23:50:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1634,
+          "timestamp": "2016-04-28T00:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1635,
+          "timestamp": "2016-04-28T00:10:00",
+          "original_wh": 40.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1636,
+          "timestamp": "2016-04-28T00:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1637,
+          "timestamp": "2016-04-28T00:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1638,
+          "timestamp": "2016-04-28T00:40:00",
+          "original_wh": 40.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1639,
+          "timestamp": "2016-04-28T00:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1640,
+          "timestamp": "2016-04-28T01:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1641,
+          "timestamp": "2016-04-28T01:10:00",
+          "original_wh": 40.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1642,
+          "timestamp": "2016-04-28T01:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1643,
+          "timestamp": "2016-04-28T01:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1644,
+          "timestamp": "2016-04-28T01:40:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1645,
+          "timestamp": "2016-04-28T01:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1646,
+          "timestamp": "2016-04-28T02:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1647,
+          "timestamp": "2016-04-28T02:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1648,
+          "timestamp": "2016-04-28T02:20:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1649,
+          "timestamp": "2016-04-28T02:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1650,
+          "timestamp": "2016-04-28T02:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1651,
+          "timestamp": "2016-04-28T02:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1652,
+          "timestamp": "2016-04-28T03:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1653,
+          "timestamp": "2016-04-28T03:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1654,
+          "timestamp": "2016-04-28T03:20:00",
+          "original_wh": 30.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1655,
+          "timestamp": "2016-04-28T03:30:00",
+          "original_wh": 40.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1656,
+          "timestamp": "2016-04-28T03:40:00",
+          "original_wh": 40.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1657,
+          "timestamp": "2016-04-28T03:50:00",
+          "original_wh": 30.0,
+          "modified_wh": 70.0
+        },
+        {
+          "index": 1658,
+          "timestamp": "2016-04-28T04:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 70.0
+        }
+      ]
+    },
+    {
+      "event_id": 1,
+      "type": "stuck",
+      "severity": 0,
+      "strength": 1.0,
+      "start": 1357,
+      "end": 1368,
+      "duration": 12,
+      "start_timestamp": "2016-04-26T01:50:00",
+      "end_timestamp": "2016-04-26T03:40:00",
+      "changes": [
+        {
+          "index": 1357,
+          "timestamp": "2016-04-26T01:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1358,
+          "timestamp": "2016-04-26T02:00:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1359,
+          "timestamp": "2016-04-26T02:10:00",
+          "original_wh": 60.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1360,
+          "timestamp": "2016-04-26T02:20:00",
+          "original_wh": 40.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1361,
+          "timestamp": "2016-04-26T02:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1362,
+          "timestamp": "2016-04-26T02:40:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1363,
+          "timestamp": "2016-04-26T02:50:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1364,
+          "timestamp": "2016-04-26T03:00:00",
+          "original_wh": 60.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1365,
+          "timestamp": "2016-04-26T03:10:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1366,
+          "timestamp": "2016-04-26T03:20:00",
+          "original_wh": 60.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1367,
+          "timestamp": "2016-04-26T03:30:00",
+          "original_wh": 50.0,
+          "modified_wh": 60.0
+        },
+        {
+          "index": 1368,
+          "timestamp": "2016-04-26T03:40:00",
+          "original_wh": 30.0,
+          "modified_wh": 60.0
+        }
+      ]
+    }
+  ]
+}
