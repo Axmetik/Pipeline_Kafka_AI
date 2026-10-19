@@ -426,3 +426,29 @@ statuses; timestamps/event IDs support downstream reconciliation but do not prov
 exactly-once guarantees. See [delivery limitations](docs/recovery-and-delivery.md).
 Synthetic anomaly labels are never sent to inference. Unchanged UCI alarms are
 not confirmed false positives; high loads alone are not anomaly labels.
+
+## Stage 5A: PostgreSQL and integrated worker
+
+[Stage 5A runbook](docs/stage5/5a-runbook.md) covers clean-clone setup, private
+local environment, Alembic migrations, verified model provisioning, replay and
+recovery. This substage adds the DB/worker only; FastAPI and Dashboard follow
+review of 5A. It preserves legacy scenarios and frozen Stage2/3/4 results.
+
+```bash
+python -m pip install -r requirements-mvp.txt
+python -m integration.setup
+docker compose --env-file .env.mvp -p energy-mvp -f docker/docker-compose.mvp.yml up -d --wait
+alembic upgrade head
+# Provision/register trusted models as described in the runbook, then:
+python -m integration.replay --dataset data/energy/raw/energydata_complete.csv --limit 300 --sleep 0
+OMP_NUM_THREADS=1 python -m integration.energy_worker --max-messages 300 --idle-timeout 15
+python -m integration.status
+```
+
+MVP infrastructure ports bind127.0.0.1 only. Local credentials/artifacts are
+ignored by Git. Explicit Kafka commits follow atomic PostgreSQL commits;
+recovery verifies DB checkpoints against retained Kafka records and restores
+causal model history/pending forecasts without rewriting their original times.
+All anomaly scores and threshold-exceedance episodes remain **experimental**.
+New real DB/Kafka recovery tests: `python tests/run_suite.py --suite mvp`.
+`--suite all` now requires both legacy Kafka and the isolated MVP infrastructure.

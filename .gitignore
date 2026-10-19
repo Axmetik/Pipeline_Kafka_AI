@@ -7,3 +7,6 @@ __pycache__/
 data/
 artifacts/
 .idea/
+# Local credentials and environment variants
+.env.*
+!.env.example
