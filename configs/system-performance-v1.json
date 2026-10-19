@@ -7,7 +7,7 @@
   "orders": [["slow","demo","max"],["demo","max","slow"],["max","slow","demo"],["slow","max","demo"],["demo","slow","max"]],
   "warmup": 300, "measured": 3600, "repetitions": 5,
   "pilot": {"warmup":150,"measured":60},
-  "overhead": {"warmup":150,"measured":100,"orders":[[true,false],[false,true],[true,false]],"investigation_percent":5},
+  "overhead": {"campaign":"v3","warmup":300,"measured":600,"orders":[[true,false],[false,true],[true,false]],"investigation_percent":5},
   "observer_interval_seconds":0.05,"poll_seconds":2,"window":144,
   "clock_uncertainty_ms":10,"drain_timeout_seconds":900,"startup_timeout_seconds":240,
   "api": {"clients":[1,5],"repetitions":5,"warmup_per_client":50,"requests_per_client":1000,"timeout_seconds":10},
