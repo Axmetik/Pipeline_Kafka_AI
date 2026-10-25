@@ -245,6 +245,11 @@ test("one command twice: live automatic selection, preserved models and restart"
       "artifacts/mvp/showcase-verification/dashboard-top.png",
     ),
   });
+  // Compact real-data preview for reviewers unable to download ZIP artifacts.
+  // The same public UCI data and UI are retained in the full PNG artifacts.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  const preview = await page.screenshot({ type: "jpeg", quality: 55 });
+  console.log("DASHBOARD_PREVIEW_JPEG_BASE64=" + preview.toString("base64"));
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.getByTestId("energy-insights")).toBeVisible();
   expect(
