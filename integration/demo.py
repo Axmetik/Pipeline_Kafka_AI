@@ -22,42 +22,56 @@ def environment():
     return env
 
 
-def compose(*args,check=True):
-    env=environment()
-    command=['docker','compose','--env-file',str(ROOT/'.env.mvp'),'-p',env.get('MVP_COMPOSE_PROJECT','energy-dashboard'),'-f',str(COMPOSE),*args]
-    return subprocess.run(command,cwd=ROOT,env=env,check=check)
+def compose_command(env):
+    return ['docker','compose','--env-file',str(ROOT/'.env.mvp'),'-p',env.get('MVP_COMPOSE_PROJECT','energy-dashboard'),'-f',str(COMPOSE)]
 
 
-def main():
+def compose(*args,check=True,env_overrides=None,**kwargs):
+    env={**environment(),**(env_overrides or {})}
+    return subprocess.run([*compose_command(env),*args],cwd=ROOT,env=env,check=check,**kwargs)
+
+
+def prepare(a,build=True,parser=None):
+    def fail(message):
+        if parser: parser.error(message)
+        raise ValueError(message)
+    (ROOT/'artifacts').mkdir(exist_ok=True);(ROOT/'data').mkdir(exist_ok=True)
+    if build: compose('build','worker','api','dashboard')
+    dataset='data/energy/raw/energydata_complete.csv'
+    if not (ROOT/dataset).exists():
+        compose('run','--rm','--no-deps','tools','python','-m','producer.download_appliances','--output',dataset)
+    output=Path(environment()['MVP_ARTIFACT_MANIFEST'])
+    if not (ROOT/output).exists():
+        if bool(a.hgb)!=bool(a.anomaly): fail('--hgb and --anomaly must be provided together')
+        if a.hgb:
+            for path in (a.hgb,a.anomaly):
+                if path.is_absolute() or '..' in path.parts or path.parts[:1]!=('artifacts',): fail('Use trusted artifacts/... relative paths')
+            compose('run','--rm','--no-deps','tools','python','-m','integration.artifacts','register',
+                    '--hgb',str(a.hgb),'--anomaly',str(a.anomaly),'--output',str(output))
+        else:
+            compose('run','--rm','--no-deps','tools','python','-m','integration.artifacts','prepare',
+                    '--dataset',dataset,'--output',str(output.parent))
+    compose('run','--rm','--no-deps','tools','python','-c',
+            'from integration.artifacts import load_manifest; from integration.settings import Settings; load_manifest(Settings.from_env().artifact_manifest); print("Trusted container artifacts ready")')
+    print('Ready: python3 -m integration.demo up; then open http://127.0.0.1:'+environment().get('MVP_WEB_PORT','8088'))
+
+
+def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command',choices=['prepare','up','replay','restart','status','stop','logs'])
+    parser.add_argument('command',choices=['prepare','up','replay','restart','status','stop','logs','showcase'])
     parser.add_argument('--limit',type=int,default=300)
-    parser.add_argument('--sleep',type=float,default=.15)
+    parser.add_argument('--sleep',type=float,default=None)
     parser.add_argument('--hgb',type=Path,help='Optional trusted existing HGB artifact (pair with --anomaly)')
     parser.add_argument('--anomaly',type=Path)
-    a=parser.parse_args()
+    a=parser.parse_args(argv)
+    if a.sleep is None: a.sleep=.5 if a.command=='showcase' else .15
     if a.limit<1 or a.sleep<0: parser.error('positive limit and nonnegative sleep required')
+    if a.command=='showcase':
+        from integration.showcase import run
+        return run(a)
     setup()
     if a.command=='prepare':
-        (ROOT/'artifacts').mkdir(exist_ok=True);(ROOT/'data').mkdir(exist_ok=True)
-        compose('build','worker','api','dashboard')
-        dataset='data/energy/raw/energydata_complete.csv'
-        if not (ROOT/dataset).exists():
-            compose('run','--rm','--no-deps','tools','python','-m','producer.download_appliances','--output',dataset)
-        output=Path(environment()['MVP_ARTIFACT_MANIFEST'])
-        if not (ROOT/output).exists():
-            if bool(a.hgb)!=bool(a.anomaly): parser.error('--hgb and --anomaly must be provided together')
-            if a.hgb:
-                for path in (a.hgb,a.anomaly):
-                    if path.is_absolute() or '..' in path.parts or path.parts[0]!='artifacts': parser.error('Use trusted artifacts/... relative paths')
-                compose('run','--rm','--no-deps','tools','python','-m','integration.artifacts','register',
-                        '--hgb',str(a.hgb),'--anomaly',str(a.anomaly),'--output',str(output))
-            else:
-                compose('run','--rm','--no-deps','tools','python','-m','integration.artifacts','prepare',
-                        '--dataset',dataset,'--output',str(output.parent))
-        compose('run','--rm','--no-deps','tools','python','-c',
-                'from integration.artifacts import load_manifest; from integration.settings import Settings; load_manifest(Settings.from_env().artifact_manifest); print("Trusted container artifacts ready")')
-        print('Ready: python3 -m integration.demo up; then open http://127.0.0.1:'+environment().get('MVP_WEB_PORT','8088'))
+        prepare(a,parser=parser)
     elif a.command=='up':
         if not (ROOT/environment()['MVP_ARTIFACT_MANIFEST']).exists():
             parser.error('Container artifact manifest missing. First: python3 -m integration.demo prepare')

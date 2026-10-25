@@ -93,6 +93,7 @@ services:
       api: {condition: service_healthy, restart: true}
   tools:
     <<: *backend
+    init: true
     profiles: [tools]
     networks: [backend, provisioning]
     user: '${LOCAL_UID:-10001}:${LOCAL_GID:-10001}'
