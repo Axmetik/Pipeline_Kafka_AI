@@ -23,6 +23,8 @@ import {
   YAxis,
 } from "recharts";
 import { align, label, valueLabel } from "./data";
+import Insights from "./InsightsPanel";
+import { nextPrimary, chartTime, scoreTick, finite } from "./insights";
 import { useMonitor } from "./useMonitor";
 import type { Detector, Selection, Score } from "./types";
 
@@ -72,7 +74,9 @@ function ScoreChart({
     <section className="card detector" data-testid={`detector-${detector.id}`}>
       <div className="card-heading">
         <h3>{detector.name}</h3>
-        <span className="badge experimental">experimental</span>
+        <span className="badge experimental" title="Експериментальний метод">
+          experimental
+        </span>
       </div>
       <p className="muted small">{detector.description}</p>
       <div className="score-values">
@@ -88,7 +92,7 @@ function ScoreChart({
           <ResponsiveContainer width="100%" height={120}>
             <ComposedChart
               data={ordered}
-              margin={{ top: 8, right: 4, left: -24, bottom: 0 }}
+              margin={{ top: 8, right: 8, left: 4, bottom: 0 }}
             >
               <CartesianGrid vertical={false} stroke="#eef1f0" />
               <XAxis dataKey="measurement_timestamp" hide />
@@ -96,7 +100,8 @@ function ScoreChart({
                 fontSize={10}
                 tickLine={false}
                 axisLine={false}
-                width={54}
+                width={74}
+                tickFormatter={scoreTick}
                 domain={["auto", "auto"]}
               />
               <Tooltip
@@ -137,8 +142,23 @@ function ScoreChart({
           {latest ? statusName(latest.status) : "Немає даних"}
         </span>
         <span>
-          {rows.filter((r) => r.score === null).length} без оцінки ·{" "}
-          {rows.filter((r) => r.flag === true).length} перевищень
+          Без готової оцінки:{" "}
+          {
+            rows.filter(
+              (r) => r.status !== "ready" || !finite(r.score) || r.flag == null,
+            ).length
+          }
+          <br />
+          Перевищень у вибраному вікні:{" "}
+          {
+            rows.filter(
+              (r) =>
+                r.status === "ready" &&
+                finite(r.score) &&
+                finite(r.threshold) &&
+                r.flag === true,
+            ).length
+          }
         </span>
       </div>
     </section>
@@ -154,7 +174,10 @@ export default function App() {
   });
   const [windowSize, setWindowSize] = useState(144);
   const [detail, setDetail] = useState<string | null>(null);
-  const { data, connection, updated } = useMonitor(selection, windowSize);
+  const { data, connection, updated, newMeasurements } = useMonitor(
+    selection,
+    windowSize,
+  );
   const chart = useMemo(
     () => (data ? align(data.measurements, data.forecasts, data.basis) : []),
     [data],
@@ -170,9 +193,9 @@ export default function App() {
     600;
   const actualUnit =
     intervalSeconds === 600 ? "Wh / 10 хв" : `Wh / ${intervalSeconds} с`;
-  const next = data?.forecasts.find(
-    (f) => f.forecast_origin === latest?.measurement_timestamp,
-  );
+  const next = data
+    ? nextPrimary(latest, data.forecasts, data.basis)
+    : undefined;
   const chosen = data?.selection ?? selection;
   const choose = (value: Selection) => {
     setSelection(value);
@@ -355,13 +378,19 @@ export default function App() {
                 : "Очікуємо вимірювання"}
             </p>
           </article>
-          <article className="card kpi">
+          <article className="card kpi" data-testid="next-forecast">
             <div className="kpi-top">
-              Наступний інтервал
+              Прогноз наступного інтервалу
               <ArrowUpRight size={17} />
             </div>
             <strong>
-              {valueLabel(next?.predicted_energy_wh)}
+              {valueLabel(
+                next?.status === "ready" &&
+                  finite(next.predicted_energy_wh) &&
+                  next.predicted_energy_wh >= 0
+                  ? next.predicted_energy_wh
+                  : null,
+              )}
               <small>Wh / 10 хв</small>
             </strong>
             <p>
@@ -369,6 +398,8 @@ export default function App() {
                 ? `HGB20 · ${statusName(next.status)}`
                 : "HGB20 · Очікуємо прогноз"}
             </p>
+            <p>Цільовий час: {label(next?.forecast_target_timestamp)}</p>
+            <p>Від вимірювання: {label(next?.forecast_origin)}</p>
           </article>
           <article className="card kpi">
             <div className="kpi-top">
@@ -382,13 +413,39 @@ export default function App() {
           </article>
           <article className="card kpi">
             <div className="kpi-top">
-              Стан worker
+              Стан обробника даних
               <Activity size={17} />
             </div>
             <strong className="unknown">Невідомий</strong>
-            <p>Checkpoint не є heartbeat</p>
+            <p>Немає сигналу активності; позиція обробки його не підтверджує</p>
           </article>
         </section>
+        <section className="card demo-status" data-testid="demo-status">
+          <div>
+            <h3>Демонстраційний запуск</h3>
+            <p>
+              <b>Стан відтворення невідомий</b> · Оброблено у запуску:{" "}
+              {data?.status.unique_measurements ?? "—"} вимірювань.
+            </p>
+          </div>
+          <p>
+            Остання транзакція (реальний час, UTC):{" "}
+            {label(data?.status.last_processed_at)}
+            <br />
+            Надходження останнього видимого вимірювання (UTC):{" "}
+            {label(latest?.received_at)}
+            <br />
+            {connection !== "online"
+              ? "Нові надходження зараз не перевірено."
+              : newMeasurements === null
+                ? "Очікуємо два оновлення для порівняння надходжень."
+                : `Між останніми двома успішними оновленнями API: +${newMeasurements} вимірювань у запуску.`}
+            <br />
+            API не повідомляє стан producer або очікувану кількість. Незмінні
+            лічильники не підтверджують завершення replay.
+          </p>
+        </section>
+        <Insights data={data} offline={connection === "offline"} />
         <section className="card main-chart" data-testid="forecast-chart">
           <div className="chart-header">
             <div>
@@ -449,7 +506,7 @@ export default function App() {
                   <CartesianGrid vertical={false} stroke="#edf1ef" />
                   <XAxis
                     dataKey="timestamp"
-                    tickFormatter={(v) => String(v).slice(11, 16)}
+                    tickFormatter={(v) => chartTime(String(v))}
                     minTickGap={48}
                     tick={{ fontSize: 11, fill: "#82908d" }}
                     axisLine={false}
@@ -518,7 +575,10 @@ export default function App() {
                 ? "Час джерела з явним offset"
                 : "Час датасету, часовий пояс не визначено"}
             </span>
-            <span>Прогноз суміщено за цільовим часом · null ≠ 0</span>
+            <span>
+              Прогноз суміщено за цільовим часом · відсутнє значення не означає
+              нуль
+            </span>
           </div>
           {latest && latest.feature_status !== "ready" && (
             <div className="notice" data-testid="warmup-state">
@@ -557,13 +617,13 @@ export default function App() {
           </div>
           <div className="pipeline-metrics">
             <span>
-              Прогнози
+              Записи прогнозів (HGB20 + RF21)
               <b data-testid="forecast-count">
                 {data?.status.forecasts ?? "—"}
               </b>
             </span>
             <span>
-              Оцінки
+              Записи оцінок (3 методи)
               <b data-testid="score-count">
                 {data?.status.anomaly_scores ?? "—"}
               </b>
@@ -581,14 +641,15 @@ export default function App() {
               </b>
             </span>
             <span>
-              Next offset
+              Наступна позиція обробки
               <b data-testid="checkpoint-next">
                 {data?.status.checkpoints[0]?.next_offset ?? "—"}
               </b>
             </span>
           </div>
           <div className="last-processed">
-            Остання транзакція: {label(data?.status.last_processed_at)}
+            Остання транзакція (реальний час, UTC):{" "}
+            {label(data?.status.last_processed_at)}
           </div>
           {!!data?.status.recent_errors.length && (
             <div className="notice">
@@ -602,10 +663,16 @@ export default function App() {
             <div>
               <h2>Історія експериментальних подій</h2>
               <p className="muted small">
-                Епізоди перевищення порогу · це не підтверджені несправності
+                Останні 50 епізодів за весь вибраний запуск, будівлю та джерело
+                · не лише видиме вікно. Це не підтверджені несправності.
               </p>
             </div>
-            <span className="badge experimental">experimental</span>
+            <span
+              className="badge experimental"
+              title="Експериментальний метод"
+            >
+              experimental
+            </span>
           </div>
           <div className="table-scroll">
             <table>
@@ -642,7 +709,8 @@ export default function App() {
             </table>
             {!data?.events.length && (
               <p className="table-empty">
-                Перевищень порогу поки не зафіксовано.
+                У завантаженій історії немає епізодів перевищення. Відсутність
+                оцінок не означає відсутність відхилень.
               </p>
             )}
           </div>
@@ -658,7 +726,8 @@ export default function App() {
             <div>
               <h2>Останні вимірювання</h2>
               <p className="muted small">
-                Прогноз для того самого цільового інтервалу
+                HGB20 для часу вимірювання у рядку. Верхня картка показує
+                наступний інтервал; тому значення можуть відрізнятися.
               </p>
             </div>
             <span className="subtle-tag">{actualUnit}</span>
@@ -706,9 +775,9 @@ export default function App() {
                 <dd>{label(detailRow.timestamp)}</dd>
                 <dt>Надходження повідомлення (UTC)</dt>
                 <dd>{label(detailRow.measurement?.received_at)}</dd>
-                <dt>Origin прогнозу (джерело)</dt>
+                <dt>Час вимірювання для прогнозу (origin)</dt>
                 <dd>{label(detailRow.prediction?.forecast_origin)}</dd>
-                <dt>Target прогнозу (джерело)</dt>
+                <dt>Цільовий час прогнозу (target)</dt>
                 <dd>
                   {label(detailRow.prediction?.forecast_target_timestamp)}
                 </dd>
