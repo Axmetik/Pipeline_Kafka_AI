@@ -28,7 +28,8 @@ test("one command twice: live automatic selection, preserved models and restart"
   let priorRun="";
   for(let repetition=0;repetition<2;repetition++) {
     const previous=state().run_id;
-    const processHandle=spawn(python,["-m","integration.demo","showcase","--limit","300","--sleep","0.2"],{cwd:root,env:process.env,stdio:["ignore","pipe","pipe"]});
+    const args=repetition===0?["-m","integration.demo","showcase"]:["-m","integration.demo","showcase","--limit","300","--sleep","0.2"];
+    const processHandle=spawn(python,args,{cwd:root,env:process.env,stdio:["ignore","pipe","pipe"]});
     let log="";
     processHandle.stdout.on("data",data=>{log+=data.toString();});
     processHandle.stderr.on("data",data=>{log+=data.toString();});
@@ -41,6 +42,7 @@ test("one command twice: live automatic selection, preserved models and restart"
       await expect.poll(()=>state().run_id,{timeout:60000}).not.toBe(previous);
       const run=state().run_id;
       expect(state().topic).toBe(run);expect(state().group_id).toBe(run);
+      expect(state().sleep).toBe(repetition===0?0.5:0.2);
       await expect(page.getByLabel("Запуск replay")).toHaveValue(run,{timeout:90000});
       const count=async()=>Number(await page.getByTestId("measurement-count").textContent());
       await expect.poll(count,{timeout:90000}).toBeGreaterThan(10);
