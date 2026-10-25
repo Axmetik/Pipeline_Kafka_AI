@@ -1,8 +1,28 @@
+# Energy Monitoring MVP
+
+## Демонстрація однією командою — Stage 7A
+
+Із кореня репозиторію, із запущеним Docker Desktop:
+
+```bash
+python3 -m integration.demo showcase
+```
+
+Відкрийте **http://127.0.0.1:8088** під час replay. Команда створює новий
+незалежний запуск і показує 300 вимірювань із паузою 0,5 с. Готове середовище
+не перебудовується; на першому запуску використовується наявний `prepare`.
+Історичні результати й перевірені моделі зберігаються. Параметри:
+`showcase --limit 300 --sleep 0.5`. Зупинка без видалення даних:
+`python3 -m integration.demo stop`.
+
+Повна інструкція: [docs/demo-showcase.md](docs/demo-showcase.md).
+
 # Kafka IoT pipeline
 
 Existing flow: synthetic data / Intel Lab → Kafka → rules → Isolation Forest →
-Autoencoder → CSV + Parquet. Energy forecasting, a database, API and dashboard
-are future stages. This baseline preserves the current four-feature models.
+Autoencoder → CSV + Parquet. This section documents the original IoT baseline;
+the Energy MVP is described above and in the later Stage 2–5 sections.
+This baseline preserves the current four-feature models.
 
 ## Setup
 
