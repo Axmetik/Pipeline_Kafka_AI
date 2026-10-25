@@ -107,7 +107,7 @@ def replay(args, context, project):
     from integration.demo import compose_command, environment
     name = project + '-showcase-producer-' + uuid.uuid4().hex[:12]
     env = {**environment(), **context}
-    command = [*compose_command(env), 'run', '--rm', '--no-deps', '--init', '--name', name,
+    command = [*compose_command(env), 'run', '--rm', '--no-deps', '--name', name,
                'tools', 'python', '-m', 'integration.replay', '--dataset', str(DATASET),
                '--limit', str(args.limit), '--sleep', str(args.sleep)]
     process = None
@@ -126,21 +126,23 @@ def replay(args, context, project):
     finally:
         # Stop only the exact producer owned by this invocation. A stopped --rm
         # container disappears automatically; no volumes or other producers touched.
-        try:
-            stopped = docker('stop', '--time', '30', name, check=False)
-            if stopped.returncode and process is not None and process.poll() is None:
-                announce(f'Не вдалося підтвердити зупинку producer. Після відновлення Docker виконайте: docker stop {name}')
-        except (OSError, subprocess.SubprocessError):
-            announce(f'Docker недоступний; після його відновлення зупиніть точний producer: docker stop {name}')
+        # Reap the attaching CLI first, so it cannot create a late container
+        # after an early Ctrl+C cleanup has already checked its name.
         if process is not None:
+            if process.poll() is None:
+                process.terminate()
             try:
                 process.wait(timeout=10)
             except subprocess.TimeoutExpired:
-                process.terminate()
-                try:
-                    process.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    process.kill(); process.wait(timeout=5)
+                process.kill(); process.wait(timeout=5)
+        try:
+            stopped = docker('stop', '--time', '30', name, check=False)
+            if stopped.returncode:
+                remaining = docker('inspect', '--format', '{{.State.Running}}', name, check=False)
+                if remaining.returncode == 0 and remaining.stdout.strip() == 'true':
+                    announce(f'Не вдалося підтвердити зупинку producer. Після відновлення Docker виконайте: docker stop {name}')
+        except (OSError, subprocess.SubprocessError):
+            announce(f'Docker недоступний; після його відновлення зупиніть точний producer: docker stop {name}')
 
 
 def _run(args):
@@ -198,6 +200,9 @@ def _run(args):
                       'python', '-c', 'pass', check=False)
     if acquired.returncode:
         raise ShowcaseError(f'Інша демонстрація активна або залишила lease {lease}. Не запускайте дві одночасно. Якщо попередню команду вже завершено, видаліть лише lease: docker rm {lease}')
+    lease_id = acquired.stdout.strip()
+    if not lease_id:
+        raise ShowcaseError('Docker не повернув ідентифікатор lease; перевірте Docker Desktop перед повторним запуском.')
     context = new_context()
     state = {'run_id': context['MVP_RUN_ID'], 'topic': context['MVP_TOPIC'], 'group_id': context['MVP_GROUP_ID'],
              'project': project, 'limit': args.limit, 'sleep': args.sleep, 'phase': 'starting',
@@ -224,7 +229,7 @@ def _run(args):
         announce('Дані збережено. Перевірка: python3 -m integration.demo status; python3 -m integration.demo logs. Новий showcase створить незалежний запуск.')
         raise
     finally:
-        docker('rm', lease, check=False)  # only the stopped lease container, no volumes
+        docker('rm', lease_id, check=False)  # only the stopped lease container, no volumes
 
 
 def run(args):

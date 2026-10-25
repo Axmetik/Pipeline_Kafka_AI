@@ -25,7 +25,7 @@ class ShowcaseTests(unittest.TestCase):
         self.setup = self.stack.enter_context(patch.object(demo, 'setup'))
         self.prepare = self.stack.enter_context(patch.object(demo, 'prepare'))
         self.compose = self.stack.enter_context(patch.object(demo, 'compose', return_value=SimpleNamespace(stdout='backend\ndashboard\n')))
-        self.docker = self.stack.enter_context(patch.object(showcase, 'docker', return_value=SimpleNamespace(stdout='', returncode=0)))
+        self.docker = self.stack.enter_context(patch.object(showcase, 'docker', side_effect=lambda *a, **kw: SimpleNamespace(stdout='owned-lease-id' if a[0]=='create' else '', returncode=0)))
         self.stack.enter_context(patch.object(showcase.shutil, 'which', return_value='/docker'))
         self.stack.enter_context(patch.object(showcase, 'announce'))
         self.replay = self.stack.enter_context(patch.object(showcase, 'replay'))
@@ -75,7 +75,7 @@ class ShowcaseTests(unittest.TestCase):
 
     def test_missing_image_reuses_prepare_without_overwriting_models(self):
         def docker(*args, **kwargs):
-            return SimpleNamespace(stdout='', returncode=1 if args[0]=='image' else 0)
+            return SimpleNamespace(stdout='owned-lease-id' if args[0]=='create' else '', returncode=1 if args[0]=='image' else 0)
         self.docker.side_effect=docker
         showcase.run(self.args)
         self.prepare.assert_called_once_with(self.args, build=True)
@@ -101,7 +101,7 @@ class ShowcaseTests(unittest.TestCase):
     def test_failure_releases_only_owned_lease_and_preserves_failure_context(self):
         self.compose.side_effect=lambda *a,**kw: (_ for _ in ()).throw(subprocess.CalledProcessError(1,['docker'])) if a[0]=='up' else SimpleNamespace(stdout='backend\n')
         with self.assertRaises(showcase.ShowcaseError): showcase.run(self.args)
-        self.docker.assert_any_call('rm','test-demo-showcase-lease',check=False)
+        self.docker.assert_any_call('rm','owned-lease-id',check=False)
         self.assertEqual(json.loads((self.root/'artifacts/mvp/showcase-last.json').read_text())['phase'],'interrupted_or_failed')
         self.replay.assert_not_called()
 
@@ -128,11 +128,13 @@ class ProducerCleanupTests(unittest.TestCase):
     def test_interrupt_reaps_cli_and_stops_exact_named_producer(self):
         args=SimpleNamespace(limit=300,sleep=.5)
         process=Mock(); process.poll.return_value=None
-        with patch.object(demo,'environment',return_value={}),patch.object(showcase.subprocess,'Popen',return_value=process),patch.object(showcase,'status',side_effect=KeyboardInterrupt),patch.object(showcase,'docker',return_value=SimpleNamespace(returncode=0)) as docker:
+        with patch.object(demo,'environment',return_value={}),patch.object(showcase.subprocess,'Popen',return_value=process) as popen,patch.object(showcase,'status',side_effect=KeyboardInterrupt),patch.object(showcase,'docker',return_value=SimpleNamespace(returncode=0)) as docker:
             with self.assertRaises(KeyboardInterrupt): showcase.replay(args,showcase.new_context(),'test-demo')
             call=docker.call_args
+            self.assertNotIn('--init',popen.call_args.args[0])
             self.assertEqual(call.args[:3],('stop','--time','30'))
             self.assertTrue(call.args[3].startswith('test-demo-showcase-producer-'))
+            process.terminate.assert_called_once()
             process.wait.assert_called_once_with(timeout=10)
 
     def test_completion_requires_exact_counts_and_checkpoint(self):
