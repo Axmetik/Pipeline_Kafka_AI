@@ -56,6 +56,26 @@ python3 -m integration.demo showcase
 
 Browser contracts перевіряють часові підписи в timezone Pacific/Honolulu, origin/target, різницю з табличним прогнозом, перемикання run/building/source/window, null/warm-up, область лічильників та mobile overflow. Повний GitHub Actions E2E порівнює текст Insights із реальними відповідями API після кожного з двох незалежних showcase, зберігає desktop/mobile screenshots і перевіряє збереження моделей та результатів після restart.
 
-Остаточні CI-посилання та реальні скриншоти додаються після завершення перевірок. Підставні дані browser contract tests не використовуються як демонстраційні результати чи фінальні скриншоти.
+## Фактичний результат CI та реальний вигляд
+
+Код `2a24af4478b0c6aa642743d8a16cf4eb8bd7527d` пройшов усі шість завдань [GitHub Actions](https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40243071339): 72 Python unit tests, 3 Kafka smoke tests, 12 PostgreSQL/recovery tests, 14 API/PostgreSQL tests, 23 frontend unit tests, TypeScript, production build, 2 browser contract tests, live/recovery E2E та два реальні showcase. Попередній збій нового browser contract test був пов'язаний із селектором: Recharts рендерить текст осей в окремому SVG label layer. Селектор виправлено, перевірку переходу через північ збережено.
+
+| Перевірка | Showcase 1 | Showcase 2 |
+|---|---:|---:|
+| Нові вимірювання, помічені під час replay | 11 | 18 |
+| Фінальні measurements | 300 | 300 |
+| Forecast records (HGB20 + RF21) | 600 | 600 |
+| Score records (IF + AE + residual) | 900 | 900 |
+| Duplicates / rejected | 0 / 0 | 0 / 0 |
+| Наступний offset | 300 | 300 |
+| Збережені незмінними прогнози після restart | 600 | 600 |
+
+Це функціональні перевірки демонстрації, не performance benchmark. Для обох запусків підтверджено автоматичний вибір run, оновлення без перезавантаження, відповідність усіх пояснень API-даним, незмінність контрольних сум моделей; browser errors — 0. Desktop/mobile screenshots і JSON збережено в [артефакті showcase-verification](https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40243071339/artifacts/12617907637). Компактні підтвердження: [verification.json](verification.json). Метрики попередніх ML-експериментів не змінювались.
+
+Нижче — реальний знімок CI після другого replay (`showcase-20261025-231351-76d8c63d3c1e`), а не mock. Останній факт — 180 Wh, HGB20 прогноз — 265,2 Wh із target 2016-01-13 19:00:00. Висновок «166,9% вище середнього» стосується останніх 144 точок, а не норми енерговикористання. Підставні дані browser contract tests не використовувалися для цього знімка або чисел.
+
+![Реальний Dashboard з Insights після 300 вимірювань](dashboard-real-preview.jpg)
+
+Повнорозмірні PNG `dashboard.png`, `dashboard-top.png` і `dashboard-mobile.png` доступні в артефакті. Компактний JPEG у Git експортовано з того самого реального браузерного сеансу. Подальший коміт документації та знімка не змінює перевірену логіку UI; актуальний CI фінального head видно у [PR #6](https://github.com/Axmetik/Pipeline_Kafka_AI/pull/6).
 
 Обмеження: описове середнє не є енергетичним нормативом; коротка динаміка не доводить причин чи довгострокових змін. Інтерфейс не встановлює несправності. Зведення обмежене завантаженим вікном; polling може пропускати проміжні стани швидкого replay. Production SLA та роботу з фізичними smart meters цими UX-перевірками не встановлено.

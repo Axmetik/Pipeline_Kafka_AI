@@ -1,0 +1,48 @@
+{
+  "verified_code_sha": "2a24af4478b0c6aa642743d8a16cf4eb8bd7527d",
+  "ci_run": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40243071339",
+  "artifact": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40243071339/artifacts/12617907637",
+  "frontend_unit_tests": 23,
+  "python_unit_tests": 72,
+  "all_ci_jobs": 6,
+  "runs": [
+    {
+      "run_id": "showcase-20261025-231059-a4776617ecb1",
+      "insights": [
+        "Останнє споживання на 166,9% вище середнього у видимому вікні.",
+        "На наступний інтервал прогноз на 47,3% вище останнього факту.",
+        "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
+      ],
+      "forecast_target": "2016-01-13T19:00:00",
+      "intermediate": 11,
+      "measurements": 300,
+      "forecasts": 600,
+      "scores": 900,
+      "duplicates": 0,
+      "rejected": 0,
+      "checkpoint": 300,
+      "immutable_forecasts": 600
+    },
+    {
+      "run_id": "showcase-20261025-231351-76d8c63d3c1e",
+      "insights": [
+        "Останнє споживання на 166,9% вище середнього у видимому вікні.",
+        "На наступний інтервал прогноз на 47,3% вище останнього факту.",
+        "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
+      ],
+      "forecast_target": "2016-01-13T19:00:00",
+      "intermediate": 18,
+      "measurements": 300,
+      "forecasts": 600,
+      "scores": 900,
+      "duplicates": 0,
+      "rejected": 0,
+      "checkpoint": 300,
+      "immutable_forecasts": 600
+    }
+  ],
+  "automatic_selection": true,
+  "page_reloads_during_replays": 0,
+  "models_unchanged": true,
+  "browser_errors": []
+}
