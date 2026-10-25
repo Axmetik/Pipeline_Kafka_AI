@@ -177,8 +177,8 @@ jobs:
       MVP_WEB_PORT: '8088'
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare clean-clone environment, dataset and frozen local models
-        run: python3 -m integration.demo prepare
+      - name: One-command showcase from a clean clone (automatic prepare)
+        run: python3 -m integration.demo showcase --limit 300 --sleep 0.2
       - name: Start the entire local stack
         run: |
           python3 -m integration.demo up
