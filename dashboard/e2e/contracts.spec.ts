@@ -293,6 +293,16 @@ test("insights follow real API contracts, targets and scoped window counts", asy
   await expect(page.getByTestId("demo-status")).toContainText(
     "2026-10-26 12:00:00Z",
   );
+  console.log(
+    "AXIS_DIAGNOSTICS",
+    await page
+      .getByTestId("forecast-chart")
+      .locator(".recharts-xAxis")
+      .evaluate((element) => ({
+        html: element.outerHTML,
+        width: element.closest("svg")?.getBoundingClientRect().width,
+      })),
+  );
   await expect(
     page.getByTestId("forecast-chart").locator(".recharts-xAxis"),
   ).toContainText("12.01");

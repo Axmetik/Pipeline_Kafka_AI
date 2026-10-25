@@ -485,7 +485,7 @@ export default function App() {
               <ResponsiveContainer width="100%" height={300}>
                 <ComposedChart
                   data={chart}
-                  margin={{ top: 15, right: 20, left: 0, bottom: 5 }}
+                  margin={{ top: 15, right: 45, left: 8, bottom: 5 }}
                 >
                   <defs>
                     <linearGradient
@@ -506,6 +506,8 @@ export default function App() {
                   <CartesianGrid vertical={false} stroke="#edf1ef" />
                   <XAxis
                     dataKey="timestamp"
+                    ticks={[chart[0].timestamp, chart.at(-1)!.timestamp]}
+                    interval={0}
                     tickFormatter={(v) => chartTime(String(v))}
                     minTickGap={48}
                     tick={{ fontSize: 11, fill: "#82908d" }}
