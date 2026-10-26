@@ -1,0 +1,28 @@
+{
+  "protocol_commit": "2510f7f",
+  "selection_commit_before_test": "9dfaa4e",
+  "model_training": false,
+  "threshold_recalibration": false,
+  "original_stage4_checksums_unchanged": true,
+  "python": "3.13.2",
+  "libraries": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyarrow": "24.0.0"
+  },
+  "sha256": {
+    "docs/stage7b/results/test-by_type.csv": "64364277215e29a3f26a55bae0e76005d9902e0f16602467f51ad0b54f5e10d0",
+    "docs/stage7b/results/test-controls.csv": "8612f06fe39643566bae165dc08e85804dc58fd8d7a429a21ff7148ef62d6883",
+    "docs/stage7b/results/test-coverage.csv": "412c0109cc55a9db3bf95bd9a995bafdcef79a0d003c86c68b21034a0b156e8d",
+    "docs/stage7b/results/test-event_outcomes.csv": "82f1e1f954600c073df0c7d7dbb3cd1c2d6df780ab9821bd71050beb8a00f056",
+    "docs/stage7b/results/test-metrics.csv": "7d5a9ccf64d519c4e3abeafebdb9b82c7e2037895ad612b39ce7ab9b4f2c853a",
+    "docs/stage7b/results/test-summary.csv": "59e6b5fbc9628859e5017ed248a2654c6c3b4a92f3587d3e1b5e1f049421ee24",
+    "docs/stage7b/results/validation-by_type.csv": "2623f006efe475522c6e8a76782b14cb0164a27ed831ce61f8c9f89a253b0045",
+    "docs/stage7b/results/validation-controls.csv": "c1add3d4ce07fd8b063c77d89f93c27a59a2fae001a832195f2bbdd35d8d2735",
+    "docs/stage7b/results/validation-coverage.csv": "4d64a398832c79ae67619286cee49dbc848d5f863f5d47d2495577b342e98774",
+    "docs/stage7b/results/validation-event_outcomes.csv": "ef870d373539134cdbcff17a6f77421af6da67080b7d5d20eefab8f9cc1ba9ad",
+    "docs/stage7b/results/validation-metrics.csv": "0562948c86e3da5f08fd74e45b24933b03cd5cf7389a63033bcf0d1f6677e1d5",
+    "docs/stage7b/results/validation-summary.csv": "74bfbfbc97f146c115640ee5a79762f04c593d11ac1e0ebc76b0e3ca4bab5a77"
+  },
+  "rule_config_sha256": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e"
+}

@@ -1,0 +1,188 @@
+{
+  "ci": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40406596831",
+  "verified_code_sha": "b7df2cad298e0107f25112108904e938e53afa81",
+  "combined": {
+    "rule": "combined-q99-v1-unanimous",
+    "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "manifest_sha256": "ef4c8267cf0317109238ccb4352190d7ffb2612a16380ca54efead1f7398464d",
+    "original_dataset_unchanged": true,
+    "scenarios": [
+      {
+        "run_id": "combined-clean-bf9e078b75824ce7a8823eaa4dd18f4d",
+        "scenario": "clean",
+        "measurements": 300,
+        "forecasts": 600,
+        "original_scores": 900,
+        "combined_decisions": 300,
+        "ready_combined": 156,
+        "combined_flags": 0,
+        "combined_episodes": 0,
+        "episodes_before_restart": 0,
+        "duplicate_deliveries": 1,
+        "next_offset": 301,
+        "kafka_committed": 301,
+        "original_forecast_score_parity": true,
+        "combined_offline_streaming_parity": true,
+        "restart_forecasts_immutable": true
+      },
+      {
+        "events": 3,
+        "matched_events": 0,
+        "during_event_alarms": 0,
+        "post_event_alarms": 0,
+        "event_recall": 0,
+        "event_f1": 0,
+        "delay_median_minutes": null,
+        "run_id": "combined-spike-s2-seed201-430f108760af45de8884e540a969b3b9",
+        "scenario": "spike-s2-seed201",
+        "measurements": 644,
+        "forecasts": 1288,
+        "original_scores": 1932,
+        "combined_decisions": 644,
+        "ready_combined": 500,
+        "combined_flags": 1,
+        "combined_episodes": 1,
+        "episodes_before_restart": 1,
+        "duplicate_deliveries": 1,
+        "next_offset": 645,
+        "kafka_committed": 645,
+        "original_forecast_score_parity": true,
+        "combined_offline_streaming_parity": true,
+        "restart_forecasts_immutable": true
+      }
+    ],
+    "injection": {
+      "events": [
+        {
+          "event_id": 0,
+          "type": "spike",
+          "severity": 2,
+          "strength": 6,
+          "start": 495,
+          "end": 495,
+          "duration": 1,
+          "start_timestamp": "2016-05-03T19:00:00",
+          "end_timestamp": "2016-05-03T19:00:00",
+          "changes": [
+            {
+              "index": 495,
+              "timestamp": "2016-05-03T19:00:00",
+              "original_wh": 130,
+              "modified_wh": 430
+            }
+          ]
+        },
+        {
+          "event_id": 1,
+          "type": "spike",
+          "severity": 2,
+          "strength": 6,
+          "start": 268,
+          "end": 268,
+          "duration": 1,
+          "start_timestamp": "2016-05-02T05:10:00",
+          "end_timestamp": "2016-05-02T05:10:00",
+          "changes": [
+            {
+              "index": 268,
+              "timestamp": "2016-05-02T05:10:00",
+              "original_wh": 70,
+              "modified_wh": 370
+            }
+          ]
+        },
+        {
+          "event_id": 2,
+          "type": "spike",
+          "severity": 2,
+          "strength": 6,
+          "start": 75,
+          "end": 77,
+          "duration": 3,
+          "start_timestamp": "2016-04-30T21:00:00",
+          "end_timestamp": "2016-04-30T21:20:00",
+          "changes": [
+            {
+              "index": 75,
+              "timestamp": "2016-04-30T21:00:00",
+              "original_wh": 70,
+              "modified_wh": 370
+            },
+            {
+              "index": 76,
+              "timestamp": "2016-04-30T21:10:00",
+              "original_wh": 70,
+              "modified_wh": 370
+            },
+            {
+              "index": 77,
+              "timestamp": "2016-04-30T21:20:00",
+              "original_wh": 70,
+              "modified_wh": 370
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "requested_points": 10,
+        "labeled_points": 5,
+        "numerically_changed_points": 5,
+        "achieved_fraction": 0.01
+      },
+      "labeled_points": 5,
+      "prefix": 144,
+      "selection_uses_demo": false
+    }
+  },
+  "standard_showcase": {
+    "runs": [
+      {
+        "run_id": "showcase-20261026-214910-fdcf80d1a256",
+        "insights": [
+          "Останнє споживання на 166,9% вище середнього у видимому вікні.",
+          "На наступний інтервал прогноз на 47,3% вище останнього факту.",
+          "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
+        ],
+        "forecast_target": "2016-01-13T19:00:00",
+        "intermediate": 12,
+        "measurements": 300,
+        "forecasts": 600,
+        "scores": 900,
+        "duplicates": 0,
+        "rejected": 0,
+        "checkpoint": 300,
+        "immutable_forecasts": 600
+      },
+      {
+        "run_id": "showcase-20261026-215201-32d8f18c2d72",
+        "insights": [
+          "Останнє споживання на 166,9% вище середнього у видимому вікні.",
+          "На наступний інтервал прогноз на 47,3% вище останнього факту.",
+          "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
+        ],
+        "forecast_target": "2016-01-13T19:00:00",
+        "intermediate": 14,
+        "measurements": 300,
+        "forecasts": 600,
+        "scores": 900,
+        "duplicates": 0,
+        "rejected": 0,
+        "checkpoint": 300,
+        "immutable_forecasts": 600
+      }
+    ],
+    "automatic_selection": true,
+    "page_reloads_during_replays": 0,
+    "models_unchanged": true,
+    "browser_errors": []
+  },
+  "local_tests": {
+    "unit": 78,
+    "kafka": 3,
+    "mvp": 13,
+    "api": 15,
+    "frontend_unit": 26,
+    "browser_contracts": 2
+  },
+  "stage7c_started": false
+}

@@ -134,12 +134,34 @@ python3 -c 'from integration.demo import compose; compose("run","--rm","--no-dep
 
 ## Тестування та межі
 
-Локально пройшли 76 Python unit tests, 13 Kafka/PostgreSQL/recovery integration tests і
-15 API/PostgreSQL tests; frontend unit tests, TypeScript та production build перевіряються після
-остаточних UI-змін. Нові кейси покривають 0/1/2/3 votes, partial/null/warm-up/gap/incompatible,
+Локально пройшли 78 Python unit tests, 13 Kafka/PostgreSQL/recovery integration tests і
+15 API/PostgreSQL tests; 26 frontend unit tests, TypeScript, production build та 2 browser contracts також пройшли локально. Нові кейси покривають 0/1/2/3 votes, partial/null/warm-up/gap/incompatible,
 source isolation, before/after commit failures, duplicate event/offset, restart та закриття епізоду,
 nullable API/pagination, часову семантику і React Insights. Попередні тести збережено.
 
-CI та реальний clean/injected E2E результат будуть зафіксовані після завершення перевірок.
+## Підтверджений CI та реальний Kafka E2E
+
+[GitHub Actions перевіреного коду b7df2ca](https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40406596831): усі 6 завдань успішні, до створення PR. Це 109 Python tests (78 unit + 3 Kafka + 13 recovery + 15 API), 26 frontend tests, TypeScript/build, browser contracts, live/recovery E2E, два showcase і контрольована демонстрація.
+
+| Сценарій | Measurements | Forecasts | Original scores | Combined decisions | Ready combined | Combined episodes | Ін'єкційні події / виявлено |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Окремий clean replay | 300 | 600 | 900 | 300 | 156 | 0 | — |
+| Spike s2, seed 201 | 644 | 1288 | 1932 | 644 | 500 | 1 | 3 / 0 |
+
+У кожному з цих двох verification contexts додано рівно одну контрольовану повторну доставку: отримано 1 duplicate, а не додаткове вимірювання. DB checkpoint і Kafka committed offset = 301 та 645. Після restart збережені прогнози незмінні; original forecasts/scores та combined decisions збігаються з causal offline обчисленням. Межі/довжини епізодів перевірено проти фактичних послідовностей flags.
+
+**Синтетичні ін'єкції не виявлено:** during_event_alarms=0, matched_events=0/3, event F1=0, delay=null. Єдине комбіноване перевищення відбулося поза ін'єкціями; post_event_alarms=0 у зафіксованому 144-інтервальному хвості. Не видаємо його за реакцію на втручання або підтверджену несправність.
+
+У demo запитано 10 модифікованих точок (2% від 500), але frozen placement із minimum_gap=144 фактично розмістив 3 події на 5 точках (1%). Це коротка окрема демонстрація механізму Stage 4, не повтор тих самих позицій повного 3946-точкового експерименту. Ці результати не використовувалися для вибору правила. Detection delay в таблицях виміряний інтервалами датасету (10 хв), не wall-clock latency системи.
+
+Стандартні два showcase, без контрольованих duplicate injections, завершились 300/600/900, duplicates=0, rejected=0, checkpoint=300 кожен. Проміжні counts у браузері — 12 і 14; reloads=0; моделі незмінні; browser errors=0. Derived records збережені окремо, не додані до original score count.
+
+[verification.json](verification.json) містить фактичні run IDs і manifests; [combined-verification artifact](https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40406596831/artifacts/12692700577) — real demo JSON; [showcase-verification artifact](https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40406596831/artifacts/12690398902) — повні desktop/mobile screenshots та JSON. Компактний знімок того самого реального браузерного сеансу:
+
+![Реальний Dashboard Stage 7B](dashboard-preview.jpg)
+
+За окремими типами є рідкісні спрацювання: Unanimous test level_shift macro event F1≈0,014815 та event recall≈0,011111; для решти типів, включно зі spike і mixed, event F1=0. Це не змінює validation-вибір або висновок про недостатню якість. Повтори severity для stuck успадковані від Stage 4; це не нові амплітуди чи незалежні експерименти.
+
+Фінальний коміт документації додає лише ці підтвердження; актуальний CI та PR наведені в завершальному повідомленні. Жодні початкові результати Stage 4 не змінені.
 Моделі, пороги, feature engineering, Kafka contracts, старі протоколи та performance кампанії не змінено.
 Telegram і Stage 7C не реалізовано.
