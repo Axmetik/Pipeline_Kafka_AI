@@ -73,7 +73,7 @@ def create_app(engine=None):
     @app.get('/health/ready',response_model=out.Health)
     def ready(c:DB):
         revision=c.execute(text('SELECT version_num FROM alembic_version')).scalar_one_or_none()
-        if revision!='0002_combined': raise HTTPException(503,'PostgreSQL schema not ready')
+        if revision!='0003_email': raise HTTPException(503,'PostgreSQL schema not ready')
         c.execute(select(s.runs.c.run_id).limit(1))
         return {'status':'ready'}
 
@@ -122,6 +122,16 @@ def create_app(engine=None):
 
     @app.get('/api/combined-events',response_model=out.Page[out.CombinedEpisode])
     def combined_events(c:DB,f:F): return series(c,'combined-events',f)
+
+    @app.get('/api/notifications',response_model=out.Page[out.Notification])
+    def notifications(c:DB,f:F):
+        reject_filters(f,{'run_id','building_id','source_id','status'})
+        fields=('notification_id','episode_id','run_id','building_id','source_id','kind','method','status',
+                'attempt_count','created_at','next_retry_at','sent_at','error_category','suppression_reason')
+        q=select(*(s.notifications.c[k] for k in fields))
+        for k in ('run_id','building_id','source_id','status'):
+            if getattr(f,k): q=q.where(s.notifications.c[k]==getattr(f,k))
+        return page(c,q,[s.notifications.c.created_at,s.notifications.c.notification_id],'notifications',f,['time','str'],descending=True)
 
     @app.get('/api/models',response_model=out.Page[out.Model])
     def models(c:DB,f:F):

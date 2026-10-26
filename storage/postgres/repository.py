@@ -27,11 +27,13 @@ def where_source(table,run,record):
 class Repository:
     def __init__(self,engine,settings):
         self.engine,self.settings=engine,settings
+        from notifications.config import EmailConfig
+        self.email_config=EmailConfig.from_env()
         self.registry={}
         try:
             with engine.connect() as c:
                 version=c.execute(text('SELECT version_num FROM alembic_version')).scalar_one()
-                if version!='0002_combined':
+                if version!='0003_email':
                     raise RepositoryError('Unsupported DB revision; apply reviewed Alembic migrations')
         except RepositoryError:
             raise
@@ -174,11 +176,15 @@ class Repository:
             c.execute(update(s.episodes).where(s.episodes.c.episode_id==old['episode_id']).values(
                 end_measurement_id=mid,end_timestamp=record['timestamp'],flagged_points=old['flagged_points']+1,updated_at=now()))
         else:
-            c.execute(insert(s.episodes).values(episode_id=identity(mid,score['model_id'],score['threshold_version']),
+            episode_id=identity(mid,score['model_id'],score['threshold_version'])
+            c.execute(insert(s.episodes).values(episode_id=episode_id,
                 run_id=self.settings.run_id,building_id=record['building_id'],source_id=record['source_id'],
                 model_id=score['model_id'],detector=score['detector'],model_version=score['model_version'],feature_version=score['feature_version'],
                 threshold_version=score['threshold_version'],maturity='experimental',start_measurement_id=mid,end_measurement_id=mid,
                 start_timestamp=record['timestamp'],end_timestamp=record['timestamp'],flagged_points=1,status='open'))
+            from notifications.outbox import enqueue
+            enqueue(c,'individual',{'episode_id':episode_id,'run_id':self.settings.run_id,'detector':score['detector']},mid,record,
+                {k:score[k] for k in ('score','threshold','model_version','feature_version','threshold_version')},self.email_config)
 
     def histories(self):
         with self.engine.connect() as c:

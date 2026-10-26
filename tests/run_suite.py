@@ -28,7 +28,7 @@ def main():
     for test in individual_tests(discovered):
         broker_test = test.id().split('.')[0].endswith('kafka_smoke')
         mvp_test = test.id().split('.')[0] == 'test_mvp_integration'
-        api_test = test.id().split('.')[0] == 'test_api_integration'
+        api_test = test.id().split('.')[0] in ('test_api_integration','test_email_postgres')
         kind = 'api' if api_test else ('mvp' if mvp_test else ('kafka' if broker_test else 'unit'))
         if args.suite == 'all' or args.suite == kind:
             selected.addTest(test)
