@@ -95,6 +95,9 @@ export interface Selection {
   source: string;
 }
 export interface Snapshot {
+  combined?: CombinedDecision[];
+  combinedEvents?: CombinedEpisode[];
+  moreCombinedEvents?: boolean;
   runs: Run[];
   sources: Source[];
   selection: Selection;
@@ -106,4 +109,30 @@ export interface Snapshot {
   models: Model[];
   status: Status;
   basis: Basis;
+}
+export interface CombinedDecision {
+  decision_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  rule: "or" | "majority" | "unanimous";
+  rule_version: string;
+  coverage_count: number;
+  available_trigger_count: number;
+  trigger_count: number | null;
+  triggered_methods: Detector[];
+  flag: boolean | null;
+  status: "ready" | "warmup" | "gap" | "incompatible" | "partial";
+  maturity: "experimental";
+}
+export interface CombinedEpisode {
+  episode_id: string;
+  start_timestamp: string;
+  end_timestamp: string;
+  max_trigger_count: number;
+  last_trigger_count: number;
+  triggered_methods: Detector[];
+  flagged_points: number;
+  status: "open" | "closed";
+  rule_version: string;
+  closed_reason: string | null;
 }

@@ -55,8 +55,11 @@ def persist(split,data,output):
     for name,rows in zip(('metrics','controls','coverage','event_outcomes'),data): pd.DataFrame(rows).to_csv(output/f'{split}-{name}.csv',index=False)
     frame=pd.DataFrame(data[0]);numeric=['precision','recall','f1','event_recall','event_f1','alarm_episodes','delay_median_minutes','post_event_alarms','onset_in_event_diagnostic_recall']
     frame.groupby(['split','type','method'])[numeric].mean().reset_index().to_csv(output/f'{split}-by_type.csv',index=False)
+    summary=frame[frame.scenario.str.startswith('mixed-')].groupby('method')[numeric].mean()
+    summary.join(pd.DataFrame(data[1]).set_index('method')[['background_alarm_rate','alarms_per_day']]).to_csv(output/f'{split}-summary.csv')
 
 def choose(rows,controls):
+    if any(r.get('split','validation')!='validation' for r in [*rows,*controls]): raise ValueError('Selection accepts validation only')
     f=pd.DataFrame(rows);c=pd.DataFrame(controls).set_index('method');values={}
     for name in RULES:
         r=f[(f.method==name)&f.scenario.str.startswith('mixed-')]
@@ -68,8 +71,8 @@ def choose(rows,controls):
     return {'rule':selected,'rule_version':'combined-q99-v1-'+selected,'uses_test':False,'eligible':bool(eligible),'candidates':values,'maturity':'experimental','test_previously_viewed':True}
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('phase',choices=['validation','test']);a=p.parse_args()
-    output=ROOT/'docs/stage7b/results';output.mkdir(exist_ok=True,parents=True)
+    p=argparse.ArgumentParser();p.add_argument('phase',choices=['validation','test']);p.add_argument('--output',type=Path,default=ROOT/'docs/stage7b/results');a=p.parse_args()
+    output=a.output;output.mkdir(exist_ok=True,parents=True)
     checks=json.loads((SOURCE/'checksums.json').read_text())
     for path,digest in checks.items():
         if sha(SOURCE/path)!=digest: raise ValueError('Original Stage 4 input changed: '+path)
@@ -78,7 +81,9 @@ def main():
     result=evaluate(a.phase);persist(a.phase,result,output)
     if a.phase=='validation':
         selection=choose(result[0],result[1]);write(output/'selection.json',selection)
-        write(ROOT/'configs/combined-rule-v1.json',selection)
+        frozen=ROOT/'configs/combined-rule-v1.json'
+        if frozen.exists() and json.loads(frozen.read_text())!=selection: raise ValueError('Frozen rule differs; do not overwrite')
+        if not frozen.exists(): write(frozen,selection)
         print(json.dumps(selection,indent=2))
     write(output/f'{a.phase}-provenance.json',{'source_checksums_sha256':sha(SOURCE/'checksums.json'),'protocol_sha256':sha(ROOT/'docs/stage7b/protocol.md'),'selection_sha256':sha(output/'selection.json'),'input_sha256':checks,'new_training':False})
 if __name__=='__main__': main()

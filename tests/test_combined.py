@@ -44,3 +44,24 @@ class CombinedTests(unittest.TestCase):
         self.assertEqual(selected['rule_version'],'combined-q99-v1-unanimous')
         # No test table is accepted by the selection function.
         self.assertEqual(selected,choose(copy.deepcopy(rows),copy.deepcopy(controls)))
+
+    def test_test_rows_cannot_enter_selection(self):
+        with self.assertRaisesRegex(ValueError,'validation only'):
+            choose([{'split':'test'}],[])
+
+    def test_saved_single_detector_metrics_match_stage4(self):
+        from pathlib import Path
+        import pandas as pd
+        root=Path(__file__).resolve().parents[1]
+        old=pd.read_csv(root/'docs/energy-anomaly/results/metrics.csv')
+        old=old[old['quantile']==.99]
+        for split in ['validation','test']:
+            path=root/f'docs/stage7b/results/{split}-metrics.csv'
+            if not path.exists(): continue
+            new=pd.read_csv(path);new=new[new.method.isin(NAMES)]
+            original=old[old.split==split].rename(columns={'detector':'method'})
+            joined=new.merge(original,on=['scenario','method'],suffixes=('_new','_old'),validate='one_to_one')
+            self.assertEqual(len(joined),len(new))
+            for field in ['precision','recall','f1','event_recall','event_f1','alarm_episodes','delay_median_minutes']:
+                import numpy as np
+                np.testing.assert_allclose(joined[field+'_new'],joined[field+'_old'],equal_nan=True,atol=1e-14)

@@ -11,6 +11,8 @@ import type {
   Episode,
   Model,
   Status,
+  CombinedDecision,
+  CombinedEpisode,
 } from "./types";
 
 // A naive dataset label is never passed to Date/Date.parse, even for sorting.
@@ -128,6 +130,9 @@ export async function load(
       events: [],
       moreEvents: false,
       models: [],
+      combined: [],
+      combinedEvents: [],
+      moreCombinedEvents: false,
       status,
       basis,
     };
@@ -139,7 +144,15 @@ export async function load(
   };
   const query = (extras: Record<string, string>) =>
     new URLSearchParams({ ...params, ...extras }).toString();
-  const [measurements, forecasts, scores, events, models] = await Promise.all([
+  const [
+    measurements,
+    forecasts,
+    scores,
+    events,
+    models,
+    combined,
+    combinedEvents,
+  ] = await Promise.all([
     fetchJSON<Page<Measurement>>(
       "/api/measurements?" + query({ limit: String(windowSize) }),
       signal,
@@ -158,6 +171,14 @@ export async function load(
       "/api/models?" + new URLSearchParams({ run_id: run, limit: "100" }),
       signal,
     ),
+    fetchJSON<Page<CombinedDecision>>(
+      "/api/combined-decisions?" + query({ limit: String(windowSize) }),
+      signal,
+    ),
+    fetchJSON<Page<CombinedEpisode>>(
+      "/api/combined-events?" + query({ limit: "50" }),
+      signal,
+    ),
   ]);
   const ids = new Set(measurements.items.map((m) => m.measurement_id));
   return {
@@ -172,5 +193,8 @@ export async function load(
     events: events.items,
     moreEvents: events.next_cursor !== null,
     models: models.items,
+    combined: combined.items,
+    combinedEvents: combinedEvents.items,
+    moreCombinedEvents: combinedEvents.next_cursor !== null,
   };
 }

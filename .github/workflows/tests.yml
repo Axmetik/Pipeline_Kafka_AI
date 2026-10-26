@@ -188,6 +188,15 @@ jobs:
         run: python3 -m integration.browser_tests --live
       - name: One-command showcase twice, automatic selection and preserved results
         run: python3 -m integration.browser_tests --showcase
+      - name: Combined clean and controlled injection Kafka DB parity
+        run: |
+          python3 -c 'from integration.demo import compose; compose("run","--rm","--no-deps","tools","python","-m","integration.combined_verify","--output","data/energy/stage7b-ci-verification.json")'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: combined-verification
+          path: data/energy/stage7b-ci-verification.json
+          if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         if: always()
         with:

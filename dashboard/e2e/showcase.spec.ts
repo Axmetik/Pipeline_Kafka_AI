@@ -165,6 +165,22 @@ test("one command twice: live automatic selection, preserved models and restart"
         expected.next!.forecast_target_timestamp.replace("T", " "),
       );
       await panel.locator("summary").click();
+      const combinedPage = await (
+        await request.get("/api/combined-decisions?" + query + "&limit=1000")
+      ).json();
+      expect(combinedPage.items).toHaveLength(300);
+      const latestDecision = combinedPage.items.find(
+        (d: { measurement_id: string }) =>
+          d.measurement_id === measurements[0].measurement_id,
+      );
+      await expect(page.getByTestId("combined-current")).toContainText(
+        `${latestDecision.trigger_count} із 3`,
+      );
+      expect(latestDecision.rule).toBe("unanimous");
+      const beforeDecisions = combinedPage.items;
+      const beforeCombinedEvents = await (
+        await request.get("/api/combined-events?" + query + "&limit=1000")
+      ).json();
       const forecastPage = await (
         await request.get("/api/forecasts?run_id=" + run + "&limit=1000")
       ).json();
@@ -181,6 +197,22 @@ test("one command twice: live automatic selection, preserved models and restart"
         stdio: "pipe",
         timeout: 60000,
       });
+      expect(
+        (
+          await (
+            await request.get(
+              "/api/combined-decisions?" + query + "&limit=1000",
+            )
+          ).json()
+        ).items,
+      ).toEqual(beforeDecisions);
+      expect(
+        (
+          await (
+            await request.get("/api/combined-events?" + query + "&limit=1000")
+          ).json()
+        ).items,
+      ).toEqual(beforeCombinedEvents.items);
       const restored = await (
         await request.get("/api/forecasts?run_id=" + run + "&limit=1000")
       ).json();
