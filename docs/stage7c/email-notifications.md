@@ -137,7 +137,9 @@ Backend image overlay — `energy-email-backend:local`; стандартний S
 не вмикає profile/overlay. Зупинка лише demo services, без видалення volumes:
 
 ```bash
-docker compose -p energy-email-demo stop
+docker compose --env-file .env.mvp -p energy-email-demo \
+  -f docker/docker-compose.dashboard.yml -f docker/docker-compose.email.yml \
+  --profile notifications stop
 ```
 
 ## Постійний локальний notifier та реальний SMTP
@@ -145,13 +147,15 @@ docker compose -p energy-email-demo stop
 Для наявного локального MVP скопіюйте `.env.mvp` у локальний `.env.email`
 (обидва поза Git). Додайте Email env із таблиці, точно узгодивши
 `MVP_RUN_ID` / `MVP_GROUP_ID` / `MVP_TOPIC` та `EMAIL_RUN_ID`.
+Для контейнерів задайте `MVP_ARTIFACT_MANIFEST=artifacts/mvp/docker/manifest.json`
+(наявний перевірений Docker manifest, не host manifest).
 Після перебудови image застосуйте міграції, потім запустіть scoped worker,
 notifier і Mailpit через overlay:
 
 ```bash
 docker compose --env-file .env.email -p energy-dashboard \
   -f docker/docker-compose.dashboard.yml -f docker/docker-compose.email.yml \
-  --profile notifications build worker notifier
+  --profile notifications build worker notifier api dashboard
 
 docker compose --env-file .env.email -p energy-dashboard \
   -f docker/docker-compose.dashboard.yml -f docker/docker-compose.email.yml \
@@ -159,7 +163,7 @@ docker compose --env-file .env.email -p energy-dashboard \
 
 docker compose --env-file .env.email -p energy-dashboard \
   -f docker/docker-compose.dashboard.yml -f docker/docker-compose.email.yml \
-  --profile notifications up -d worker notifier mailpit
+  --profile notifications up -d worker notifier mailpit api dashboard
 ```
 
 Перед цими командами чинний MVP PostgreSQL/Kafka має бути запущений.
