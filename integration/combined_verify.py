@@ -23,7 +23,7 @@ from anomaly.inject import inject
 from anomaly.combined import combine
 
 
-def verify(records,artifacts,kind):
+def verify(records,artifacts,kind,labels=None,injections=None,prefix=0):
     token='combined-'+kind+'-'+uuid4().hex
     settings=replace(Settings.from_env(),run_id=token,topic=token,group_id=token)
     admin=KafkaAdminClient(bootstrap_servers=settings.bootstrap_servers)
@@ -67,8 +67,21 @@ def verify(records,artifacts,kind):
     assert len(measured)==len(records) and len(forecasts)==2*len(records) and len(scores)==3*len(records) and len(decisions)==len(records)
     assert checkpoint==committed==len(records)+1 and duplicates==1
     assert len({e['episode_id'] for e in events})==len(events)
+    from anomaly.evaluate import runs,metrics
+    flags=np.array([dd[m['measurement_id']]['flag'] is True for m in measured])
+    groups=runs(flags,[m['measurement_timestamp'] for m in measured])
+    ordered=sorted(events,key=lambda e:e['start_timestamp'])
+    assert len(groups)==len(ordered)
+    for (start,end),episode in zip(groups,ordered):
+        assert episode['start_timestamp']==measured[start]['measurement_timestamp']
+        assert episode['end_timestamp']==measured[end]['measurement_timestamp']
+        assert episode['flagged_points']==end-start+1
+    extra={}
+    if labels is not None:
+        result,_=metrics(flags[prefix:],labels,[m['measurement_timestamp'] for m in measured[prefix:]],injections)
+        extra={k:result[k] for k in ('events','matched_events','during_event_alarms','post_event_alarms','event_recall','event_f1','delay_median_minutes')}
     engine.dispose()
-    return {'run_id':token,'scenario':kind,'measurements':len(measured),'forecasts':len(forecasts),'original_scores':len(scores),'combined_decisions':len(decisions),
+    return extra | {'run_id':token,'scenario':kind,'measurements':len(measured),'forecasts':len(forecasts),'original_scores':len(scores),'combined_decisions':len(decisions),
             'ready_combined':sum(d['status']=='ready' for d in decisions),'combined_flags':sum(d['flag'] is True for d in decisions),'combined_episodes':len(events),
             'episodes_before_restart':len(episodes_before),'duplicate_deliveries':duplicates,'next_offset':checkpoint,'kafka_committed':committed,
             'original_forecast_score_parity':True,'combined_offline_streaming_parity':True,'restart_forecasts_immutable':True}
@@ -84,7 +97,7 @@ def main():
     first=next(i for i,r in enumerate(raw) if r['timestamp']>=config['test_start'])
     modified,labels,events,summary=inject(raw[first-144:first+500],144,config['injection'],stats,'spike',2,201)
     report={'rule':combine([])['rule_version'],'dataset_sha256':digest,'manifest_sha256':artifacts.manifest_sha256,'original_dataset_unchanged':True,
-            'scenarios':[verify(raw[:300],artifacts,'clean'),verify(modified,artifacts,'spike-s2-seed201')],
+            'scenarios':[verify(raw[:300],artifacts,'clean'),verify(modified,artifacts,'spike-s2-seed201',labels,events,144)],
             'injection':{'events':events,'summary':summary,'labeled_points':int(labels.sum()),'prefix':144,'selection_uses_demo':False}}
     if dataset_sha256(dataset)!=digest: raise AssertionError('Original dataset changed')
     a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(report,indent=2)+'\n')
