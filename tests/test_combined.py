@@ -45,6 +45,18 @@ class CombinedTests(unittest.TestCase):
         # No test table is accepted by the selection function.
         self.assertEqual(selected,choose(copy.deepcopy(rows),copy.deepcopy(controls)))
 
+    def test_no_rule_is_selected_when_all_exceed_background_budget(self):
+        rows=[];controls=[]
+        for rule in ['or','majority','unanimous']:
+            rows.append(dict(method=rule,scenario='mixed-seed101',event_f1=.9,delay_median_minutes=0.))
+            controls.append(dict(method=rule,background_alarm_rate=.02))
+        selected=choose(rows,controls)
+        self.assertIsNone(selected['rule'])
+        self.assertIsNone(selected['rule_version'])
+        self.assertFalse(selected['eligible'])
+        self.assertFalse(selected['uses_test'])
+        self.assertEqual(set(selected['candidates']),{'or','majority','unanimous'})
+
     def test_test_rows_cannot_enter_selection(self):
         with self.assertRaisesRegex(ValueError,'validation only'):
             choose([{'split':'test'}],[])

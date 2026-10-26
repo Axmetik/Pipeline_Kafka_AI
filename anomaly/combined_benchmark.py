@@ -67,8 +67,8 @@ def choose(rows,controls):
         values[name]={'event_f1':float(r.event_f1.mean()),'background_alarm_rate':float(c.loc[name,'background_alarm_rate']),
                       'delay_minutes':float(delay) if pd.notna(delay) else None}
     eligible=[n for n in RULES if values[n]['background_alarm_rate']<=.01]
-    selected=min(eligible,key=lambda n:(-values[n]['event_f1'],values[n]['delay_minutes'] if values[n]['delay_minutes'] is not None else float('inf'),values[n]['background_alarm_rate'],list(RULES).index(n))) if eligible else 'or'
-    return {'rule':selected,'rule_version':'combined-q99-v1-'+selected,'uses_test':False,'eligible':bool(eligible),'candidates':values,'maturity':'experimental','test_previously_viewed':True}
+    selected=min(eligible,key=lambda n:(-values[n]['event_f1'],values[n]['delay_minutes'] if values[n]['delay_minutes'] is not None else float('inf'),values[n]['background_alarm_rate'],list(RULES).index(n))) if eligible else None
+    return {'rule':selected,'rule_version':'combined-q99-v1-'+selected if selected is not None else None,'uses_test':False,'eligible':bool(eligible),'candidates':values,'maturity':'experimental','test_previously_viewed':True}
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('phase',choices=['validation','test']);p.add_argument('--output',type=Path,default=ROOT/'docs/stage7b/results');a=p.parse_args()
