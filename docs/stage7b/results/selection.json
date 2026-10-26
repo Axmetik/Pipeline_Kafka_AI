@@ -1,0 +1,25 @@
+{
+  "rule": "unanimous",
+  "rule_version": "combined-q99-v1-unanimous",
+  "uses_test": false,
+  "eligible": true,
+  "candidates": {
+    "or": {
+      "event_f1": 0.01666666666666667,
+      "background_alarm_rate": 0.01419158641662443,
+      "delay_minutes": 40.0
+    },
+    "majority": {
+      "event_f1": 0.0,
+      "background_alarm_rate": 0.0015205271160669033,
+      "delay_minutes": null
+    },
+    "unanimous": {
+      "event_f1": 0.0,
+      "background_alarm_rate": 0.0,
+      "delay_minutes": null
+    }
+  },
+  "maturity": "experimental",
+  "test_previously_viewed": true
+}
