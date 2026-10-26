@@ -87,3 +87,38 @@ it("times out a stalled cycle and recovers with a new abort controller", async (
   expect(vi.mocked(load).mock.calls[1][2].aborted).toBe(false);
   hook.unmount();
 });
+it("reports observed run arrivals without inferring producer state and resets on selection", async () => {
+  let count = 10;
+  vi.mocked(load).mockImplementation(
+    async (chosen) =>
+      ({
+        selection: chosen,
+        status: { unique_measurements: count },
+      }) as Snapshot,
+  );
+  const hook = renderHook(
+    ({ run, source, windowSize }) =>
+      useMonitor({ ...selection, run, source }, windowSize),
+    { initialProps: { run: "run-a", source: "meter", windowSize: 144 } },
+  );
+  await act(() => Promise.resolve());
+  expect(hook.result.current.newMeasurements).toBeNull();
+  count = 15;
+  await act(() => vi.advanceTimersByTimeAsync(2000));
+  expect(hook.result.current.newMeasurements).toBe(5);
+  await act(() => vi.advanceTimersByTimeAsync(2000));
+  expect(hook.result.current.newMeasurements).toBe(0);
+  await act(async () =>
+    hook.rerender({ run: "run-b", source: "meter", windowSize: 144 }),
+  );
+  expect(hook.result.current.newMeasurements).toBeNull();
+  await act(async () =>
+    hook.rerender({ run: "run-b", source: "other", windowSize: 144 }),
+  );
+  expect(hook.result.current.newMeasurements).toBeNull();
+  await act(async () =>
+    hook.rerender({ run: "run-b", source: "other", windowSize: 72 }),
+  );
+  expect(hook.result.current.newMeasurements).toBeNull();
+  hook.unmount();
+});

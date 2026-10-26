@@ -7,13 +7,17 @@ export function useMonitor(selection: Selection, windowSize: number) {
     "loading" | "online" | "offline"
   >("loading");
   const [updated, setUpdated] = useState<string | null>(null);
+  const [newMeasurements, setNewMeasurements] = useState<number | null>(null);
   useEffect(() => {
     let active = true,
       timer: ReturnType<typeof setTimeout> | undefined,
       failures = 0;
     let controller: AbortController,
       deadline: ReturnType<typeof setTimeout> | undefined;
+    let previous: { run: string; count: number } | undefined;
     setData(null);
+    setUpdated(null);
+    setNewMeasurements(null);
     setConnection("loading");
     async function poll() {
       controller = new AbortController();
@@ -22,6 +26,14 @@ export function useMonitor(selection: Selection, windowSize: number) {
         const result = await load(selection, windowSize, controller.signal);
         if (!active) return;
         setData(result);
+        const count = result.status?.unique_measurements;
+        const run = result.selection?.run;
+        setNewMeasurements(
+          previous && previous.run === run && count >= previous.count
+            ? count - previous.count
+            : null,
+        );
+        previous = run && Number.isFinite(count) ? { run, count } : undefined;
         setConnection("online");
         setUpdated(new Date().toISOString());
         failures = 0;
@@ -47,5 +59,5 @@ export function useMonitor(selection: Selection, windowSize: number) {
       clearTimeout(deadline);
     };
   }, [selection.run, selection.building, selection.source, windowSize]);
-  return { data, connection, updated };
+  return { data, connection, updated, newMeasurements };
 }

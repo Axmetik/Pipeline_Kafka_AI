@@ -26,7 +26,7 @@ export function valueLabel(
   value: number | null | undefined,
   digits = 1,
 ): string {
-  return value == null
+  return value == null || !Number.isFinite(value)
     ? "—"
     : new Intl.NumberFormat("uk-UA", { maximumFractionDigits: digits }).format(
         value,
