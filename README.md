@@ -566,3 +566,17 @@ npm run dev
 Docker API не має опублікованого8000-порту. Єдиний зовнішній порт повного MVP —
 `127.0.0.1:8088`; моделі read-only, credentials і datasets поза Git. Публічний
 хостинг без автентифікації не підтримується. IoT і Stage5A Compose залишаються окремими.
+
+### Stage 7C — локальні Email-сповіщення (opt-in)
+
+Сповіщення про початок experimental episodes вимкнені за замовчуванням.
+Локальна перевірка справжнього HTML/plain-text листа без інтернет-доставки:
+
+```bash
+python3 -m integration.email_demo synthetic
+```
+
+Відкрийте Mailpit: http://127.0.0.1:8025. Для replay 300 вимірювань із уже
+підготовленими trusted Docker artifacts: `python3 -m integration.email_demo replay`.
+Моделі ці команди не навчають. Використовується окремий Compose project;
+стандартний Showcase не активує Email. [Налаштування, гарантії, retry/cooldown і результати](docs/stage7c/email-notifications.md).

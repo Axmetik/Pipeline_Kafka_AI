@@ -1,0 +1,101 @@
+{
+  "synthetic": {
+    "run_id": "email-delivery-test-19707adf94a1",
+    "mode": "both",
+    "individual_episodes": 1,
+    "combined_episodes": 0,
+    "notifications": [
+      {
+        "notification_id": "3ccd9cf5876f257af17d34129eaba1f92465d9611e370519cc9e0496ce7e5367",
+        "status": "sent",
+        "attempt_count": 1,
+        "suppression_reason": null
+      }
+    ],
+    "mailpit_messages": [
+      {
+        "id": "mALjnKBWj4bZUtwPJH72tc",
+        "html": true,
+        "plain_text": true
+      }
+    ],
+    "models_or_thresholds_modified": false
+  },
+  "replay": {
+    "run_id": "email-ml-80c4faf9725d",
+    "mode": "both",
+    "individual_episodes": 6,
+    "combined_episodes": 0,
+    "notifications": [
+      {
+        "notification_id": "26ecccac58569cca90400e6ef35686d334c94563a7b9680821a01bf656fb9f27",
+        "status": "sent",
+        "attempt_count": 1,
+        "suppression_reason": null
+      },
+      {
+        "notification_id": "b24faf32c10efe5350ee1a9b6df90fb411ed9f7bf0996bdcd41dd9ccfecc4764",
+        "status": "suppressed",
+        "attempt_count": 0,
+        "suppression_reason": "cooldown"
+      },
+      {
+        "notification_id": "5260bfd2a6cd1844d1b39bca313620cf32c9a9087dbc4ca51ea3d0f682c45439",
+        "status": "suppressed",
+        "attempt_count": 0,
+        "suppression_reason": "cooldown"
+      },
+      {
+        "notification_id": "331d2ecd15b384f43d2615442bdc455a29acd2ad07add57ee515b093a858296b",
+        "status": "sent",
+        "attempt_count": 1,
+        "suppression_reason": null
+      },
+      {
+        "notification_id": "55f42feddc03943e6a74a538c01204cf2147580d481fdc28ca80a0939129d2ab",
+        "status": "suppressed",
+        "attempt_count": 0,
+        "suppression_reason": "cooldown"
+      },
+      {
+        "notification_id": "873253a24094dfda298a9d406bfa526560830c21c549a06d532fbff210b9b0a3",
+        "status": "sent",
+        "attempt_count": 1,
+        "suppression_reason": null
+      }
+    ],
+    "mailpit_messages": [
+      {
+        "id": "dh57SXMoDpJFP69ukUQZac",
+        "html": true,
+        "plain_text": true
+      },
+      {
+        "id": "Ufgfj8tQrt2Xu2RNEwK7Hg",
+        "html": true,
+        "plain_text": true
+      },
+      {
+        "id": "SXGEcxDCyQ6iwSTJNU8uvJ",
+        "html": true,
+        "plain_text": true
+      }
+    ],
+    "models_or_thresholds_modified": false,
+    "counts": {
+      "measurements": 300,
+      "forecasts": 600,
+      "scores": 900
+    },
+    "worker": {
+      "run_id": "email-ml-80c4faf9725d",
+      "db_next_offset": 300,
+      "verified_journal_records": 0,
+      "accepted": 300,
+      "message_duplicate": 0,
+      "offset_duplicate": 0,
+      "quarantined": 0,
+      "processed_deliveries": 300
+    }
+  }
+}
