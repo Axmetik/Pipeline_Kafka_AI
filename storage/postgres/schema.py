@@ -88,3 +88,31 @@ errors = Table('mvp_errors', metadata,
     C('error_id', S(64), primary_key=True), C('run_id', FK('mvp_runs.run_id'), nullable=False),
     C('topic', S(249), nullable=False), C('partition', Integer, nullable=False), C('offset', BigInteger, nullable=False),
     C('kind', S(40), nullable=False), C('reason', S(1000), nullable=False), C('payload_base64', JSONB, nullable=False), utc('created_at'))
+
+# Stage 7B: derived results, deliberately separate from the original mvp_scores.
+combined_decisions = Table('mvp_combined_decisions', metadata,
+    C('decision_id', S(64), primary_key=True), C('measurement_id', FK('mvp_measurements.measurement_id'), nullable=False),
+    C('run_id', FK('mvp_runs.run_id'), nullable=False), C('rule', S(20), nullable=False),
+    C('rule_version', S(100), nullable=False), C('maturity', S(20), nullable=False),
+    C('coverage_count', Integer, nullable=False), C('available_detectors', JSONB, nullable=False),
+    C('triggered_methods', JSONB, nullable=False), C('available_trigger_count', Integer, nullable=False),
+    C('trigger_count', Integer), C('flag', Boolean), C('agreement', S(20)), C('status', S(30), nullable=False),
+    C('input_versions', JSONB, nullable=False), utc('decided_at'),
+    UniqueConstraint('measurement_id','rule_version'),
+    CheckConstraint("maturity = 'experimental' AND coverage_count BETWEEN 0 AND 3 AND available_trigger_count BETWEEN 0 AND coverage_count"),
+    CheckConstraint("(status = 'ready' AND coverage_count = 3 AND trigger_count BETWEEN 0 AND 3 AND flag IS NOT NULL AND agreement IS NOT NULL) OR (status IN ('warmup','gap','incompatible','partial') AND coverage_count < 3 AND trigger_count IS NULL AND flag IS NULL AND agreement IS NULL)"))
+combined_episodes = Table('mvp_combined_episodes', metadata,
+    C('episode_id', S(64), primary_key=True), C('run_id', FK('mvp_runs.run_id'), nullable=False),
+    C('building_id', S(160), nullable=False), C('source_id', S(160), nullable=False),
+    C('rule_version', S(100), nullable=False), C('input_versions', JSONB, nullable=False),
+    C('maturity', S(20), nullable=False),
+    C('start_measurement_id', FK('mvp_measurements.measurement_id'), nullable=False),
+    C('end_measurement_id', FK('mvp_measurements.measurement_id'), nullable=False),
+    C('start_timestamp', S(80), nullable=False), C('end_timestamp', S(80), nullable=False),
+    C('flagged_points', Integer, nullable=False), C('max_trigger_count', Integer, nullable=False),
+    C('last_trigger_count', Integer, nullable=False), C('triggered_methods', JSONB, nullable=False),
+    C('status', S(20), nullable=False), C('closed_reason', S(40)), utc('created_at'), utc('updated_at'),
+    CheckConstraint("maturity = 'experimental' AND status IN ('open','closed') AND flagged_points > 0 AND max_trigger_count BETWEEN 1 AND 3 AND last_trigger_count BETWEEN 1 AND 3"))
+Index('ux_mvp_combined_open',combined_episodes.c.run_id,combined_episodes.c.building_id,combined_episodes.c.source_id,
+      unique=True,postgresql_where=text("status = 'open'"))
+Index('ix_mvp_combined_rule',combined_decisions.c.run_id,combined_decisions.c.rule_version)

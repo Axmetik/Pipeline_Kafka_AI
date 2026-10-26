@@ -176,3 +176,40 @@ class Aggregate(Timed):
     complete: bool
     energy_wh: float | None
     energy_unit: Literal['Wh'] = 'Wh'
+
+
+class CombinedDecision(Timed):
+    decision_id: str
+    measurement_id: str
+    measurement_timestamp: str
+    rule: Literal['or','majority','unanimous']
+    rule_version: str
+    maturity: Literal['experimental']
+    coverage_count: int
+    available_detectors: list[str]
+    triggered_methods: list[str]
+    available_trigger_count: int
+    trigger_count: int | None
+    flag: bool | None
+    agreement: Literal['none','one','two','three'] | None
+    status: Literal['ready','warmup','gap','incompatible','partial']
+    input_versions: dict[str,dict[str,str | None]]
+    decided_at: datetime
+    semantics: Literal['experimental_detector_agreement_not_probability_or_fault_severity'] = 'experimental_detector_agreement_not_probability_or_fault_severity'
+
+
+class CombinedEpisode(Timed):
+    episode_id: str
+    rule_version: str
+    maturity: Literal['experimental']
+    start_timestamp: str
+    end_timestamp: str
+    flagged_points: int
+    max_trigger_count: int
+    last_trigger_count: int
+    triggered_methods: list[str]
+    status: Literal['open','closed']
+    closed_reason: str | None
+    input_versions: dict[str,dict[str,str | None]]
+    created_at: datetime
+    updated_at: datetime

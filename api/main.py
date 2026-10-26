@@ -57,7 +57,7 @@ def create_app(engine=None):
         return JSONResponse(status_code=422,content={'detail':errors})
 
     def reject_filters(f,allowed):
-        for field in ('run_id','building_id','source_id','model_id','model_version','detector','status','purpose','start','end'):
+        for field in ('run_id','building_id','source_id','model_id','model_version','detector','status','purpose','rule_version','start','end'):
             if field not in allowed and getattr(f,field) is not None:
                 raise HTTPException(422,f'{field} is not applicable to this resource')
 
@@ -73,7 +73,7 @@ def create_app(engine=None):
     @app.get('/health/ready',response_model=out.Health)
     def ready(c:DB):
         revision=c.execute(text('SELECT version_num FROM alembic_version')).scalar_one_or_none()
-        if revision!='0001_mvp': raise HTTPException(503,'PostgreSQL schema not ready')
+        if revision!='0002_combined': raise HTTPException(503,'PostgreSQL schema not ready')
         c.execute(select(s.runs.c.run_id).limit(1))
         return {'status':'ready'}
 
@@ -116,6 +116,12 @@ def create_app(engine=None):
 
     @app.get('/api/events',response_model=out.Page[out.Event])
     def events(c:DB,f:F): return series(c,'events',f)
+
+    @app.get('/api/combined-decisions',response_model=out.Page[out.CombinedDecision])
+    def combined_decisions(c:DB,f:F): return series(c,'combined-decisions',f)
+
+    @app.get('/api/combined-events',response_model=out.Page[out.CombinedEpisode])
+    def combined_events(c:DB,f:F): return series(c,'combined-events',f)
 
     @app.get('/api/models',response_model=out.Page[out.Model])
     def models(c:DB,f:F):

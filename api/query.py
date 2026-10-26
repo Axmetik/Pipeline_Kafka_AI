@@ -15,6 +15,7 @@ class Filters(BaseModel):
     run_id: str | None = Field(None, max_length=100)
     building_id: str | None = Field(None, max_length=160)
     source_id: str | None = Field(None, max_length=160)
+    rule_version: str | None = Field(None, max_length=100)
     model_id: str | None = Field(None, max_length=128)
     model_version: str | None = Field(None, max_length=160)
     detector: Literal['isolation_forest', 'autoencoder', 'residual'] | None = None
@@ -95,8 +96,8 @@ def series_query(kind, f):
         columns += [m.c.environment['temperature_c'].as_float().label('temperature_c'),m.c.environment['relative_humidity_pct'].as_float().label('relative_humidity_pct')]
         ident=m.c.measurement_id; status=m.c.feature_status
     else:
-        table={'forecasts':s.forecasts,'anomaly-scores':s.scores,'events':s.episodes}[kind]
-        joinid=table.c.start_measurement_id if kind=='events' else table.c.measurement_id
+        table={'forecasts':s.forecasts,'anomaly-scores':s.scores,'events':s.episodes,'combined-decisions':s.combined_decisions,'combined-events':s.combined_episodes}[kind]
+        joinid=table.c.start_measurement_id if kind in ('events','combined-events') else table.c.measurement_id
         joined=table.join(m,joinid==m.c.measurement_id)
         columns=list(table.c)+[m.c[x] for x in TIMED_FIELDS if x not in table.c]
         if kind=='forecasts':
@@ -104,18 +105,18 @@ def series_query(kind, f):
             ident=table.c.forecast_id
         else:
             timestamp=m.c.measurement_time_local if f.time_basis=='dataset_naive' else m.c.measurement_time_utc
-            ident=table.c.score_id if kind=='anomaly-scores' else table.c.episode_id
-            if kind=='anomaly-scores': columns.append(m.c.measurement_timestamp)
+            ident=table.c.decision_id if kind=='combined-decisions' else table.c.score_id if kind=='anomaly-scores' else table.c.episode_id
+            if kind in ('anomaly-scores','combined-decisions'): columns.append(m.c.measurement_timestamp)
         status=table.c.status
     stmt=select(*columns,timestamp.label('_sort_time')).select_from(joined).where(m.c.time_basis==f.time_basis)
     for field in ['run_id','building_id','source_id']:
         if getattr(f,field) is not None: stmt=stmt.where(m.c[field]==getattr(f,field))
     if f.status:
         allowed={'measurements':{'ready','warmup','incompatible'},'forecasts':{'ready','warmup','incompatible'},
-                 'anomaly-scores':{'ready','warmup','gap','incompatible'},'events':{'open','closed'}}[kind]
+                 'anomaly-scores':{'ready','warmup','gap','incompatible'},'events':{'open','closed'},'combined-decisions':{'ready','warmup','gap','incompatible','partial'},'combined-events':{'open','closed'}}[kind]
         if f.status not in allowed: raise HTTPException(422,'Unsupported status for this resource')
         stmt=stmt.where(status==f.status)
-    for field in ['model_id','model_version','detector','purpose']:
+    for field in ['model_id','model_version','detector','purpose','rule_version']:
         if getattr(f,field) is not None:
             if field not in table.c: raise HTTPException(422,f'{field} is not applicable to {kind}')
             stmt=stmt.where(table.c[field]==getattr(f,field))

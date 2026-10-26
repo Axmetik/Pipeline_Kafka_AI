@@ -1,0 +1,15 @@
+"""Stage 7B derived tables only; no historical record backfill."""
+from alembic import op
+revision = "0002_combined"
+down_revision = "0001_mvp"
+branch_labels = None
+depends_on = None
+
+DDL = ["\nCREATE TABLE mvp_combined_decisions (\n\tdecision_id VARCHAR(64) NOT NULL, \n\tmeasurement_id VARCHAR(64) NOT NULL, \n\trun_id VARCHAR(100) NOT NULL, \n\trule VARCHAR(20) NOT NULL, \n\trule_version VARCHAR(100) NOT NULL, \n\tmaturity VARCHAR(20) NOT NULL, \n\tcoverage_count INTEGER NOT NULL, \n\tavailable_detectors JSONB NOT NULL, \n\ttriggered_methods JSONB NOT NULL, \n\tavailable_trigger_count INTEGER NOT NULL, \n\ttrigger_count INTEGER, \n\tflag BOOLEAN, \n\tagreement VARCHAR(20), \n\tstatus VARCHAR(30) NOT NULL, \n\tinput_versions JSONB NOT NULL, \n\tdecided_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, \n\tPRIMARY KEY (decision_id), \n\tUNIQUE (measurement_id, rule_version), \n\tCHECK (maturity = 'experimental' AND coverage_count BETWEEN 0 AND 3 AND available_trigger_count BETWEEN 0 AND coverage_count), \n\tCHECK ((status = 'ready' AND coverage_count = 3 AND trigger_count BETWEEN 0 AND 3 AND flag IS NOT NULL AND agreement IS NOT NULL) OR (status IN ('warmup','gap','incompatible','partial') AND coverage_count < 3 AND trigger_count IS NULL AND flag IS NULL AND agreement IS NULL)), \n\tFOREIGN KEY(measurement_id) REFERENCES mvp_measurements (measurement_id), \n\tFOREIGN KEY(run_id) REFERENCES mvp_runs (run_id)\n)\n\n", 'CREATE INDEX ix_mvp_combined_rule ON mvp_combined_decisions (run_id, rule_version)', "\nCREATE TABLE mvp_combined_episodes (\n\tepisode_id VARCHAR(64) NOT NULL, \n\trun_id VARCHAR(100) NOT NULL, \n\tbuilding_id VARCHAR(160) NOT NULL, \n\tsource_id VARCHAR(160) NOT NULL, \n\trule_version VARCHAR(100) NOT NULL, \n\tinput_versions JSONB NOT NULL, \n\tmaturity VARCHAR(20) NOT NULL, \n\tstart_measurement_id VARCHAR(64) NOT NULL, \n\tend_measurement_id VARCHAR(64) NOT NULL, \n\tstart_timestamp VARCHAR(80) NOT NULL, \n\tend_timestamp VARCHAR(80) NOT NULL, \n\tflagged_points INTEGER NOT NULL, \n\tmax_trigger_count INTEGER NOT NULL, \n\tlast_trigger_count INTEGER NOT NULL, \n\ttriggered_methods JSONB NOT NULL, \n\tstatus VARCHAR(20) NOT NULL, \n\tclosed_reason VARCHAR(40), \n\tcreated_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, \n\tupdated_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, \n\tPRIMARY KEY (episode_id), \n\tCHECK (maturity = 'experimental' AND status IN ('open','closed') AND flagged_points > 0 AND max_trigger_count BETWEEN 1 AND 3 AND last_trigger_count BETWEEN 1 AND 3), \n\tFOREIGN KEY(run_id) REFERENCES mvp_runs (run_id), \n\tFOREIGN KEY(start_measurement_id) REFERENCES mvp_measurements (measurement_id), \n\tFOREIGN KEY(end_measurement_id) REFERENCES mvp_measurements (measurement_id)\n)\n\n", "CREATE UNIQUE INDEX ux_mvp_combined_open ON mvp_combined_episodes (run_id, building_id, source_id) WHERE status = 'open'"]
+
+def upgrade():
+    for sql in DDL: op.execute(sql)
+
+def downgrade():
+    op.drop_table("mvp_combined_episodes")
+    op.drop_table("mvp_combined_decisions")
