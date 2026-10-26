@@ -31,7 +31,7 @@ class Repository:
         try:
             with engine.connect() as c:
                 version=c.execute(text('SELECT version_num FROM alembic_version')).scalar_one()
-                if version!='0001_mvp':
+                if version!='0002_combined':
                     raise RepositoryError('Unsupported DB revision; apply reviewed Alembic migrations')
         except RepositoryError:
             raise
@@ -155,6 +155,8 @@ class Repository:
                       run_id=self.settings.run_id,measurement_id=mid,
                       reference_forecast_id=reference['forecast_id'] if reference else None,**score))
             self.update_episode(c,mid,record,score,result['gap_detected'])
+        from storage.postgres.combined import persist_combined
+        persist_combined(self,c,mid,record,result['scores'],result['gap_detected'])
         return mid
 
     def update_episode(self,c,mid,record,score,gap):

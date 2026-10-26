@@ -1,3 +1,4 @@
+import { combinedText } from "./combined";
 import { label, timeKey, valueLabel } from "./data";
 import type { Basis, Detector, Forecast, Measurement, Snapshot } from "./types";
 
@@ -211,6 +212,12 @@ export function buildInsights(data: Snapshot) {
         ? "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
         : "Оцінювання детекторами поки недоступне; відсутність оцінок не означає відсутність відхилень.",
   );
+  if (data.combined)
+    summary.push(
+      combinedText(
+        data.combined.find((d) => d.measurement_id === latest?.measurement_id),
+      ),
+    );
   return {
     consumption,
     trend,

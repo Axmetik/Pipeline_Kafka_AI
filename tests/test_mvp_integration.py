@@ -312,3 +312,48 @@ run_worker(Settings.from_env(),max_messages=170,idle_timeout=5,failpoint=crash)
         self.send_direct(recovered,1)
         self.assertEqual(self.count(s.measurements),2)
         self.assertEqual(repo.checkpoint()['next_offset'],2)
+
+    def test_combined_atomic_commit_duplicates_restart_and_gap(self):
+        repo=self.repo(self.open_artifacts);processor=Processor(repo,self.open_artifacts)
+        for i in range(150): self.send_direct(processor,i)
+        self.assertEqual(self.count(s.combined_decisions),150)
+        self.assertEqual(self.count(s.scores),450)
+        self.assertEqual(self.count(s.combined_episodes),1)
+        with self.engine.connect() as c:
+            original=[dict(r) for r in c.execute(select(s.forecasts)).mappings()]
+            episode=dict(c.execute(select(s.combined_episodes)).mappings().one())
+        def fail(stage):
+            if stage=='before_db_commit': raise RuntimeError('simulated rollback')
+        processor=Processor(repo,self.open_artifacts,fail)
+        with self.assertRaises(RuntimeError): self.send_direct(processor,150)
+        self.assertEqual(self.count(s.combined_decisions),150)
+        processor=Processor(repo,self.open_artifacts)
+        self.send_direct(processor,150)
+        self.send_direct(processor,151,self.records[150])  # event redelivery at new offset
+        restored=Processor(repo,self.open_artifacts)
+        self.send_direct(restored,150)  # previously committed Kafka coordinate
+        self.assertEqual(self.count(s.combined_decisions),151)
+        with self.engine.connect() as c:
+            current=c.execute(select(s.combined_episodes)).mappings().one()
+            self.assertEqual(current['episode_id'],episode['episode_id'])
+            self.assertEqual(current['flagged_points'],episode['flagged_points']+1)
+            for old in original:
+                self.assertEqual(dict(c.execute(select(s.forecasts).where(s.forecasts.c.forecast_id==old['forecast_id'])).mappings().one()),old)
+        def after(stage):
+            if stage=='after_db_commit': raise RuntimeError('simulated ambiguous commit')
+        processor=Processor(repo,self.open_artifacts,after)
+        with self.assertRaises(RuntimeError): self.send_direct(processor,152,self.records[151])
+        restored=Processor(repo,self.open_artifacts)
+        self.send_direct(restored,152,self.records[151])
+        self.assertEqual(self.count(s.combined_decisions),152)
+        other=copy.deepcopy(self.records[152]);other['source_id']='incompatible-other'
+        self.send_direct(restored,153,other)
+        with self.engine.connect() as c:
+            decision=c.execute(select(s.combined_decisions).join(s.measurements).where(s.measurements.c.source_id=='incompatible-other')).mappings().one()
+            self.assertEqual(decision['status'],'incompatible');self.assertIsNone(decision['flag'])
+            self.assertEqual(c.execute(select(s.combined_episodes.c.status)).scalar_one(),'open')
+        self.send_direct(restored,154,self.records[154])
+        with self.engine.connect() as c:
+            old=c.execute(select(s.combined_episodes).where(s.combined_episodes.c.episode_id==episode['episode_id'])).mappings().one()
+            self.assertEqual(old['status'],'closed');self.assertEqual(old['closed_reason'],'gap')
+        self.assertEqual(self.count(s.scores),self.count(s.combined_decisions)*3)

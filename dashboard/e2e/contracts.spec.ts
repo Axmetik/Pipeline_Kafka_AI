@@ -262,6 +262,23 @@ test("insights follow real API contracts, targets and scoped window counts", asy
           maturity: "experimental",
         })),
       );
+    if (url.pathname.endsWith("/combined-decisions"))
+      value = result([
+        {
+          decision_id: "d1",
+          measurement_id: "m1",
+          measurement_timestamp: "2016-01-12T00:00:00",
+          rule: "unanimous",
+          rule_version: "combined-q99-v1-unanimous",
+          status: exceed ? "ready" : "warmup",
+          coverage_count: exceed ? 3 : 2,
+          trigger_count: exceed ? 1 : null,
+          available_trigger_count: exceed ? 1 : 0,
+          flag: exceed ? false : null,
+          triggered_methods: exceed ? ["isolation_forest"] : [],
+          maturity: "experimental",
+        },
+      ]);
     if (url.pathname.endsWith("/events"))
       value = result([
         {
@@ -301,7 +318,15 @@ test("insights follow real API contracts, targets and scoped window counts", asy
   await expect(page.getByTestId("insight-residual")).toContainText(
     "оцінювання ще недоступне",
   );
+  await expect(page.getByTestId("combined-current")).toContainText("1 із 3");
+  await expect(page.getByTestId("combined-current")).toContainText(
+    "Правило комбінування не спрацювало",
+  );
   exceed = false;
+  await expect(page.getByTestId("combined-current")).toContainText(
+    "Неповне покриття",
+  );
+
   await expect(page.getByTestId("detector-isolation_forest")).toContainText(
     "Перевищень у вибраному вікні: 0",
   );

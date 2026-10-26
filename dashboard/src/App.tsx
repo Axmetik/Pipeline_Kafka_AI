@@ -24,6 +24,7 @@ import {
 } from "recharts";
 import { align, label, valueLabel } from "./data";
 import Insights from "./InsightsPanel";
+import CombinedPanel from "./CombinedPanel";
 import { nextPrimary, chartTime, scoreTick, finite } from "./insights";
 import { useMonitor } from "./useMonitor";
 import type { Detector, Selection, Score } from "./types";
@@ -590,6 +591,7 @@ export default function App() {
             </div>
           )}
         </section>
+        <CombinedPanel data={data} />
         <section id="detectors" className="section-heading">
           <div>
             <h2>Експериментальні детектори</h2>

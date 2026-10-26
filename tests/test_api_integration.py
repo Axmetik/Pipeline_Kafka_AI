@@ -86,6 +86,12 @@ class APIIntegration(unittest.TestCase):
                     detector=detector,model_version=detector+'-v1',feature_version='energy-21',threshold_version='q99',maturity='experimental',
                     start_measurement_id=f'run-a-dataset-{i}',end_measurement_id=f'run-a-dataset-{i+1}',start_timestamp=(self.start+timedelta(minutes=i*10)).isoformat(),
                     end_timestamp=(self.start+timedelta(minutes=(i+1)*10)).isoformat(),flagged_points=2,status=status,closed_reason=None if status=='open' else 'below_threshold'))
+            from anomaly.combined import combine
+            for measurement in c.execute(select(s.measurements)).mappings().all():
+                inputs=[dict(r) for r in c.execute(select(s.scores).where(s.scores.c.measurement_id==measurement['measurement_id'])).mappings()]
+                result=combine(inputs)
+                c.execute(s.combined_decisions.insert().values(decision_id=measurement['measurement_id'],measurement_id=measurement['measurement_id'],run_id=measurement['run_id'],**result))
+            c.execute(s.combined_episodes.insert().values(episode_id='combined-api',run_id='run-a',building_id='house',source_id='dataset',rule_version=result['rule_version'],input_versions=result['input_versions'],maturity='experimental',start_measurement_id='run-a-dataset-1',end_measurement_id='run-a-dataset-3',start_timestamp='2016-01-01T00:10:00',end_timestamp='2016-01-01T00:30:00',flagged_points=3,max_trigger_count=3,last_trigger_count=3,triggered_methods=['isolation_forest','autoencoder','residual'],status='open'))
             c.execute(s.checkpoints.insert().values(group_id='run-a',topic='run-a',partition=0,run_id='run-a',next_offset=11,updated_at=self.now))
             for i,outcome in enumerate(['accepted','message_duplicate','invalid_message']):
                 c.execute(s.receipts.insert().values(group_id='run-a',topic='run-a',partition=0,offset=i,run_id='run-a',payload_sha256='c'*64,outcome=outcome))
@@ -247,3 +253,25 @@ class APIIntegration(unittest.TestCase):
         rows=self.get('/api/measurements/aggregate',run_id='run-a',source_id='dataset')['items']
         self.assertEqual(rows[1]['observed_intervals'],6)
         self.assertFalse(rows[1]['complete']);self.assertIsNone(rows[1]['energy_wh'])
+
+    def test_combined_filters_pagination_and_nullable_coverage(self):
+        params={'run_id':'run-a','building_id':'house','source_id':'dataset','limit':2}
+        rows=[]
+        while True:
+            response=self.client.get('/api/combined-decisions',params=params)
+            self.assertEqual(response.status_code,200,response.text)
+            body=response.json();rows+=body['items']
+            if not body['next_cursor']: break
+            params['cursor']=body['next_cursor']
+        self.assertEqual(len(rows),8);self.assertEqual(len({r['decision_id'] for r in rows}),8)
+        self.assertTrue(all(r['run_id']=='run-a' and r['source_id']=='dataset' for r in rows))
+        self.assertEqual(rows[-1]['status'],'warmup');self.assertIsNone(rows[-1]['flag']);self.assertIsNone(rows[-1]['trigger_count'])
+        self.assertTrue(all(r['maturity']=='experimental' for r in rows))
+        self.assertTrue(all('Z' not in r['measurement_timestamp'] for r in rows))
+        self.assertEqual(self.client.get('/api/combined-decisions',params={'rule_version':'missing'}).json()['items'],[])
+        events=self.client.get('/api/combined-events',params={'run_id':'run-a','source_id':'dataset','status':'open','limit':1}).json()
+        self.assertEqual(events['items'][0]['max_trigger_count'],3)
+        self.assertEqual(self.client.get('/api/combined-events',params={'run_id':'run-b'}).json()['items'],[])
+        aware=self.client.get('/api/combined-decisions',params={'source_id':'meter','time_basis':'offset_aware'}).json()['items']
+        self.assertTrue(aware);self.assertTrue(all('+' in r['measurement_timestamp'] for r in aware))
+        self.assertEqual(self.client.get('/api/combined-decisions',params={'model_id':'not-applicable'}).status_code,422)
