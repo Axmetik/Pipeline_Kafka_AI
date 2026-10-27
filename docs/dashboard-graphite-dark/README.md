@@ -7,7 +7,7 @@ Frontend redesign from `a488faacdd04925c860c3d7ad2d19c0e99b8cfd7`, on `feature/d
 Production modules changed:
 
 - `dashboard/src/style.css`: one Graphite Dark theme with centralized color, radius, spacing and shadow tokens; sidebar, header, KPI cards, charts, tables, Insights, Combined Detection, Notifications, models, pipeline, details, error and empty states; focus outlines and responsive layouts.
-- `dashboard/src/App.tsx`: Energy Intelligence wordmark, selected run context, section-aware navigation with `aria-current`, shared dark chart tooltips, themed axes/grids/thresholds and distinct detector accents. Chart data, scales, ordering and formatters are unchanged.
+- `dashboard/src/App.tsx`: Energy Intelligence wordmark, selected run context, section-aware navigation with `aria-current`, shared dark chart tooltips, themed axes/grids/thresholds and distinct detector accents and explicit Wh labels for residual scores/thresholds. Chart data, scales, ordering and formatters are unchanged.
 
 `dashboard/e2e/graphite.spec.ts` adds seven browser checks and captures real Chromium screenshots from synthetic API fixtures. Existing contract tests are unchanged.
 
@@ -22,7 +22,7 @@ No backend, API, database, Kafka, ML, scientific results, notification delivery 
 | Production build (`npm run build`) | Passed |
 | Existing browser contracts | 2 passed |
 | Graphite browser checks | 7 passed |
-| Combined Chromium run | 9 passed, 23.6 s |
+| Combined Chromium run | 9 passed, 25.5 s |
 | Viewports | 1440 default, 1920, 1280, 834, 390 and 320 px |
 | Page-wide horizontal overflow | None at tested widths; wide tables scroll inside their wrappers |
 | Dark tooltip / forecast dash / section navigation | Passed |

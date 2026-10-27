@@ -97,9 +97,13 @@ function ScoreChart({
       <div className="score-values">
         <strong style={{ color: detector.color }}>
           {valueLabel(latest?.score, 4)}
+          {detector.id === "residual" && (
+            <small className="score-unit">Wh</small>
+          )}
         </strong>
         <span>
           Поріг <b>{valueLabel(latest?.threshold, 4)}</b>
+          {detector.id === "residual" ? " Wh" : ""}
         </span>
       </div>
       <div className="mini-chart" aria-label={`Score ${detector.name}`}>
@@ -123,7 +127,8 @@ function ScoreChart({
               <Tooltip
                 labelFormatter={(v) => label(String(v))}
                 formatter={(v, n) => [
-                  valueLabel(v as number | null, 4),
+                  valueLabel(v as number | null, 4) +
+                    (detector.id === "residual" ? " Wh" : ""),
                   n === "score" ? "Score" : "Поріг",
                 ]}
                 contentStyle={chartTooltipStyle}

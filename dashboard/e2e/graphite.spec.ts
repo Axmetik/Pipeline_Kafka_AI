@@ -176,6 +176,9 @@ test("graphite desktop, chart styling, sections and active navigation", async ({
   await expect(
     page.getByText("Час датасету, часовий пояс не визначено"),
   ).toBeVisible();
+  await expect(
+    page.getByTestId("detector-residual").locator(".score-unit"),
+  ).toHaveText("Wh");
   await expect(page.locator(".kpi .unknown")).toContainText("Невідомий");
   await expect(
     page.locator('.energy-plot path[stroke="var(--forecast)"]'),
