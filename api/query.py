@@ -60,7 +60,7 @@ def decode_cursor(value, endpoint, f, types):
             value=datetime.fromisoformat(item) if kind=='time' else item
             if kind=='time':
                 aware=value.utcoffset() is not None
-                expected=(endpoint=='runs' or f.time_basis=='offset_aware')
+                expected=(endpoint in ('runs','notifications') or f.time_basis=='offset_aware')
                 if aware!=expected: raise ValueError()
             values.append(value)
         return values

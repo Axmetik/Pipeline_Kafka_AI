@@ -11,6 +11,7 @@ import type {
   Episode,
   Model,
   Status,
+  EmailNotification,
   CombinedDecision,
   CombinedEpisode,
 } from "./types";
@@ -152,6 +153,7 @@ export async function load(
     models,
     combined,
     combinedEvents,
+    notifications,
   ] = await Promise.all([
     fetchJSON<Page<Measurement>>(
       "/api/measurements?" + query({ limit: String(windowSize) }),
@@ -179,6 +181,10 @@ export async function load(
       "/api/combined-events?" + query({ limit: "50" }),
       signal,
     ),
+    fetchJSON<Page<EmailNotification>>(
+      "/api/notifications?" + new URLSearchParams({ run_id: run, building_id: building, source_id: source.source_id, limit: "20" }),
+      signal,
+    ),
   ]);
   const ids = new Set(measurements.items.map((m) => m.measurement_id));
   return {
@@ -193,6 +199,7 @@ export async function load(
     events: events.items,
     moreEvents: events.next_cursor !== null,
     models: models.items,
+    notifications: notifications.items,
     combined: combined.items,
     combinedEvents: combinedEvents.items,
     moreCombinedEvents: combinedEvents.next_cursor !== null,

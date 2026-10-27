@@ -116,3 +116,18 @@ combined_episodes = Table('mvp_combined_episodes', metadata,
 Index('ux_mvp_combined_open',combined_episodes.c.run_id,combined_episodes.c.building_id,combined_episodes.c.source_id,
       unique=True,postgresql_where=text("status = 'open'"))
 Index('ix_mvp_combined_rule',combined_decisions.c.run_id,combined_decisions.c.rule_version)
+
+# Stage 7C: immutable episode-start snapshot and durable delivery lifecycle.
+notifications = Table('mvp_notification_outbox', metadata,
+    C('notification_id', S(64), primary_key=True), C('episode_id', S(64), nullable=False),
+    C('run_id', FK('mvp_runs.run_id'), nullable=False), C('building_id', S(160), nullable=False), C('source_id', S(160), nullable=False),
+    C('kind', S(20), nullable=False), C('method', S(160), nullable=False), C('recipient', S(254), nullable=False),
+    C('config_fingerprint', S(64), nullable=False), C('payload', JSONB, nullable=False),
+    C('status', S(20), nullable=False), C('attempt_count', Integer, nullable=False, server_default='0'),
+    utc('created_at'), utc('next_retry_at'), C('claimed_until', DateTime(timezone=True)), C('claim_token', S(64)),
+    C('sent_at', DateTime(timezone=True)), C('error_category', S(60)), C('suppression_reason', S(60)),
+    UniqueConstraint('kind','episode_id','recipient'),
+    CheckConstraint("kind IN ('individual','combined')"),
+    CheckConstraint("status IN ('pending','sending','sent','retrying','failed','suppressed') AND attempt_count >= 0"))
+Index('ix_mvp_notification_due',notifications.c.status,notifications.c.next_retry_at)
+Index('ix_mvp_notification_scope',notifications.c.run_id,notifications.c.building_id,notifications.c.source_id,notifications.c.kind,notifications.c.method,notifications.c.created_at)

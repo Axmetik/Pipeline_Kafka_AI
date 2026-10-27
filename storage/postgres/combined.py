@@ -27,8 +27,13 @@ def persist_combined(repo,c,mid,record,scores,gap):
             max_trigger_count=max(old['max_trigger_count'],decision['trigger_count']),last_trigger_count=decision['trigger_count'],
             triggered_methods=union,updated_at=now()))
     else:
-        c.execute(insert(s.combined_episodes).values(episode_id=identity(mid,decision['rule_version']),run_id=repo.settings.run_id,
+        episode_id=identity(mid,decision['rule_version'])
+        c.execute(insert(s.combined_episodes).values(episode_id=episode_id,run_id=repo.settings.run_id,
             building_id=record['building_id'],source_id=record['source_id'],rule_version=decision['rule_version'],input_versions=decision['input_versions'],
             maturity='experimental',start_measurement_id=mid,end_measurement_id=mid,start_timestamp=record['timestamp'],end_timestamp=record['timestamp'],
             flagged_points=1,max_trigger_count=decision['trigger_count'],last_trigger_count=decision['trigger_count'],
             triggered_methods=decision['triggered_methods'],status='open'))
+
+        from notifications.outbox import enqueue
+        enqueue(c,'combined',{'episode_id':episode_id,'run_id':repo.settings.run_id,'rule_version':decision['rule_version']},mid,record,
+            {k:decision[k] for k in ('trigger_count','triggered_methods','input_versions')},repo.email_config)

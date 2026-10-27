@@ -95,6 +95,7 @@ export interface Selection {
   source: string;
 }
 export interface Snapshot {
+  notifications?: EmailNotification[];
   combined?: CombinedDecision[];
   combinedEvents?: CombinedEpisode[];
   moreCombinedEvents?: boolean;
@@ -135,4 +136,16 @@ export interface CombinedEpisode {
   status: "open" | "closed";
   rule_version: string;
   closed_reason: string | null;
+}
+
+export interface EmailNotification {
+  notification_id: string;
+  episode_id: string;
+  kind: "individual" | "combined";
+  method: string;
+  created_at: string;
+  status: "pending" | "sending" | "sent" | "retrying" | "failed" | "suppressed";
+  attempt_count: number;
+  error_category: string | null;
+  suppression_reason: string | null;
 }

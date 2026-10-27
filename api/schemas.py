@@ -213,3 +213,20 @@ class CombinedEpisode(Timed):
     input_versions: dict[str,dict[str,str | None]]
     created_at: datetime
     updated_at: datetime
+
+class Notification(BaseModel):
+    notification_id: str
+    episode_id: str
+    run_id: str
+    building_id: str
+    source_id: str
+    kind: Literal['individual','combined']
+    method: str
+    status: Literal['pending','sending','sent','retrying','failed','suppressed']
+    attempt_count: int
+    created_at: datetime
+    next_retry_at: datetime
+    sent_at: datetime | None
+    error_category: str | None
+    suppression_reason: str | None
+    maturity: Literal['experimental']='experimental'
