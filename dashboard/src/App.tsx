@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Activity,
   ArrowUpRight,
@@ -28,7 +28,16 @@ import CombinedPanel from "./CombinedPanel";
 import NotificationsPanel from "./NotificationsPanel";
 import { nextPrimary, chartTime, scoreTick, finite } from "./insights";
 import { useMonitor } from "./useMonitor";
+import type { CSSProperties } from "react";
 import type { Detector, Selection, Score } from "./types";
+
+const chartTooltipStyle = {
+  background: "var(--surface-secondary)",
+  color: "var(--text)",
+  border: "1px solid var(--border-strong)",
+  borderRadius: 10,
+  fontSize: 12,
+};
 
 const detectors: {
   id: Detector;
@@ -40,19 +49,19 @@ const detectors: {
     id: "isolation_forest",
     name: "Isolation Forest",
     description: "Ізоляція незвичних спостережень",
-    color: "#5272c2",
+    color: "var(--detector-if)",
   },
   {
     id: "autoencoder",
     name: "Autoencoder",
     description: "Помилка відновлення енергетичних ознак",
-    color: "#9980bd",
+    color: "var(--detector-ae)",
   },
   {
     id: "residual",
     name: "Residual Detector",
     description: "Відхилення від окремого RF21-прогнозу",
-    color: "#ca8d43",
+    color: "var(--detector-residual)",
   },
 ];
 const statusName = (s: string) =>
@@ -73,7 +82,11 @@ function ScoreChart({
   const ordered = [...rows].reverse();
   const latest = rows[0];
   return (
-    <section className="card detector" data-testid={`detector-${detector.id}`}>
+    <section
+      className="card detector"
+      style={{ "--detector-color": detector.color } as CSSProperties}
+      data-testid={`detector-${detector.id}`}
+    >
       <div className="card-heading">
         <h3>{detector.name}</h3>
         <span className="badge experimental" title="Експериментальний метод">
@@ -96,10 +109,11 @@ function ScoreChart({
               data={ordered}
               margin={{ top: 8, right: 8, left: 4, bottom: 0 }}
             >
-              <CartesianGrid vertical={false} stroke="#eef1f0" />
+              <CartesianGrid vertical={false} stroke="var(--chart-grid)" />
               <XAxis dataKey="measurement_timestamp" hide />
               <YAxis
                 fontSize={10}
+                tick={{ fill: "var(--text-muted)" }}
                 tickLine={false}
                 axisLine={false}
                 width={74}
@@ -112,12 +126,16 @@ function ScoreChart({
                   valueLabel(v as number | null, 4),
                   n === "score" ? "Score" : "Поріг",
                 ]}
-                contentStyle={{ borderRadius: 10, fontSize: 12 }}
+                contentStyle={chartTooltipStyle}
+                cursor={{
+                  stroke: "var(--border-strong)",
+                  strokeDasharray: "3 3",
+                }}
               />
               <Line
                 dataKey="threshold"
                 name="threshold"
-                stroke="#cc7a68"
+                stroke="var(--threshold)"
                 strokeDasharray="4 4"
                 dot={false}
                 isAnimationActive={false}
@@ -127,6 +145,7 @@ function ScoreChart({
                 name="score"
                 stroke={detector.color}
                 strokeWidth={2}
+                activeDot={{ r: 4, stroke: "var(--surface)", strokeWidth: 2 }}
                 dot={false}
                 connectNulls={false}
                 isAnimationActive={false}
@@ -174,6 +193,30 @@ export default function App() {
     building: initial.get("building") || "",
     source: initial.get("source") || "",
   });
+  const [activeSection, setActiveSection] = useState("overview");
+  useEffect(() => {
+    const sections = ["overview", "detectors", "events", "models"];
+    const update = () => {
+      const atBottom =
+        window.scrollY > 0 &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 4;
+      setActiveSection(
+        atBottom
+          ? "models"
+          : (sections
+              .filter(
+                (id) =>
+                  (document.getElementById(id)?.getBoundingClientRect().top ??
+                    Infinity) <= 160,
+              )
+              .at(-1) ?? "overview"),
+      );
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => window.removeEventListener("scroll", update);
+  }, []);
   const [windowSize, setWindowSize] = useState(144);
   const [detail, setDetail] = useState<string | null>(null);
   const { data, connection, updated, newMeasurements } = useMonitor(
@@ -216,25 +259,43 @@ export default function App() {
             <Zap size={23} />
           </span>
           <span>
-            енергія<span className="brand-sub">BUILDING INTELLIGENCE</span>
+            Energy<span className="brand-sub">INTELLIGENCE</span>
           </span>
         </a>
         <div className="workspace-label">РОБОЧИЙ ПРОСТІР</div>
         <nav>
-          <a className="active" href="#overview">
+          <a
+            className={activeSection === "overview" ? "active" : undefined}
+            aria-current={activeSection === "overview" ? "location" : undefined}
+            href="#overview"
+          >
             <Gauge size={18} />
             Моніторинг
-            <span className="nav-dot" />
+            {activeSection === "overview" && <span className="nav-dot" />}
           </a>
-          <a href="#detectors">
+          <a
+            className={activeSection === "detectors" ? "active" : undefined}
+            aria-current={
+              activeSection === "detectors" ? "location" : undefined
+            }
+            href="#detectors"
+          >
             <Activity size={18} />
             Детектори
           </a>
-          <a href="#events">
+          <a
+            className={activeSection === "events" ? "active" : undefined}
+            aria-current={activeSection === "events" ? "location" : undefined}
+            href="#events"
+          >
             <Layers size={18} />
             Історія подій
           </a>
-          <a href="#models">
+          <a
+            className={activeSection === "models" ? "active" : undefined}
+            aria-current={activeSection === "models" ? "location" : undefined}
+            href="#models"
+          >
             <Box size={18} />
             Моделі
           </a>
@@ -258,10 +319,16 @@ export default function App() {
             Робочий простір <span className="slash">/</span>
             <b>Енергомоніторинг</b>
           </span>
-          <span className="dataset-tag">
-            <Database size={13} />
-            UCI Appliances
-          </span>
+          <div className="header-context">
+            <span className="run-context">
+              <small>Історичний replay</small>
+              <code title={chosen.run}>{chosen.run || "Очікуємо запуск"}</code>
+            </span>
+            <span className="dataset-tag">
+              <Database size={13} />
+              UCI Appliances
+            </span>
+          </div>
         </header>
         <div className="page-heading">
           <div>
@@ -499,24 +566,28 @@ export default function App() {
                     >
                       <stop
                         offset="0%"
-                        stopColor="#289680"
-                        stopOpacity={0.17}
+                        stopColor="var(--accent)"
+                        stopOpacity={0.14}
                       />
-                      <stop offset="100%" stopColor="#289680" stopOpacity={0} />
+                      <stop
+                        offset="100%"
+                        stopColor="var(--accent)"
+                        stopOpacity={0}
+                      />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid vertical={false} stroke="#edf1ef" />
+                  <CartesianGrid vertical={false} stroke="var(--chart-grid)" />
                   <XAxis
                     dataKey="timestamp"
                     interval="preserveStartEnd"
                     tickFormatter={(v) => chartTime(String(v))}
                     minTickGap={48}
-                    tick={{ fontSize: 11, fill: "#82908d" }}
+                    tick={{ fontSize: 11, fill: "var(--text-muted)" }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
-                    tick={{ fontSize: 11, fill: "#82908d" }}
+                    tick={{ fontSize: 11, fill: "var(--text-muted)" }}
                     axisLine={false}
                     tickLine={false}
                     width={45}
@@ -527,18 +598,23 @@ export default function App() {
                       valueLabel(v as number | null) + " Wh",
                       n === "actual" ? "Фактичне" : "Прогноз HGB20",
                     ]}
-                    contentStyle={{
-                      borderRadius: 12,
-                      border: "1px solid #e6ece9",
-                      fontSize: 12,
+                    contentStyle={chartTooltipStyle}
+                    cursor={{
+                      stroke: "var(--border-strong)",
+                      strokeDasharray: "3 3",
                     }}
                   />
                   <Area
                     dataKey="actual"
                     name="actual"
                     type="monotone"
-                    stroke="#218570"
+                    stroke="var(--accent)"
                     strokeWidth={2}
+                    activeDot={{
+                      r: 4,
+                      stroke: "var(--surface)",
+                      strokeWidth: 2,
+                    }}
                     fill="url(#energy-fill)"
                     dot={false}
                     connectNulls={false}
@@ -548,9 +624,14 @@ export default function App() {
                     dataKey="forecast"
                     name="forecast"
                     type="monotone"
-                    stroke="#6b8bc9"
+                    stroke="var(--forecast)"
                     strokeWidth={2}
                     strokeDasharray="5 4"
+                    activeDot={{
+                      r: 4,
+                      stroke: "var(--surface)",
+                      strokeWidth: 2,
+                    }}
                     dot={false}
                     connectNulls={false}
                     isAnimationActive={false}
