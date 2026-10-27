@@ -1,0 +1,346 @@
+{
+  "checked_on": "2026-10-27",
+  "base_commit": "c156668a1bc41e20eb7c3c175eb5da1afd9037d7",
+  "base_tree": "c04fde43e91256e337d51c9eac8992c831d75ec4",
+  "pr8_head_same_tree": "7e8b7d7e284cb5890f6eedd0e9c7b7a14839ff39",
+  "runs": [
+    {
+      "stage": "stage7c",
+      "run_id": 40420232238,
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238",
+      "head_sha": "7e8b7d7e284cb5890f6eedd0e9c7b7a14839ff39",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 121912551603,
+          "name": "Dashboard unit, TypeScript, build and browser contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238/job/121912551603"
+        },
+        {
+          "id": 121912551762,
+          "name": "Unit tests (no Kafka)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238/job/121912551762"
+        },
+        {
+          "id": 121912551840,
+          "name": "Read-only API PostgreSQL integration",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238/job/121912551840"
+        },
+        {
+          "id": 121912551844,
+          "name": "Kafka smoke tests",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238/job/121912551844"
+        },
+        {
+          "id": 121912551892,
+          "name": "Full Docker Kafka to live browser E2E",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238/job/121912551892"
+        },
+        {
+          "id": 121912551900,
+          "name": "PostgreSQL and MVP recovery integration",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40420232238/job/121912551900"
+        }
+      ]
+    },
+    {
+      "stage": "stage7b",
+      "run_id": 40412405686,
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686",
+      "head_sha": "dff6282a6b4868f4934d26ba2707bc6ec99eef12",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 121886139988,
+          "name": "Dashboard unit, TypeScript, build and browser contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686/job/121886139988"
+        },
+        {
+          "id": 121886140039,
+          "name": "Read-only API PostgreSQL integration",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686/job/121886140039"
+        },
+        {
+          "id": 121886140111,
+          "name": "Full Docker Kafka to live browser E2E",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686/job/121886140111"
+        },
+        {
+          "id": 121886140266,
+          "name": "Unit tests (no Kafka)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686/job/121886140266"
+        },
+        {
+          "id": 121886140405,
+          "name": "Kafka smoke tests",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686/job/121886140405"
+        },
+        {
+          "id": 121886140458,
+          "name": "PostgreSQL and MVP recovery integration",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40412405686/job/121886140458"
+        }
+      ]
+    },
+    {
+      "stage": "stage6",
+      "run_id": 39297827898,
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898",
+      "head_sha": "8c56e5afce028b0e727ee2a3536e328a797455cb",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 118214850968,
+          "name": "Kafka smoke tests",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898/job/118214850968"
+        },
+        {
+          "id": 118214851277,
+          "name": "Dashboard unit, TypeScript, build and browser contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898/job/118214851277"
+        },
+        {
+          "id": 118214851391,
+          "name": "Full Docker Kafka to live browser E2E",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898/job/118214851391"
+        },
+        {
+          "id": 118214851412,
+          "name": "Read-only API PostgreSQL integration",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898/job/118214851412"
+        },
+        {
+          "id": 118214851418,
+          "name": "Unit tests (no Kafka)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898/job/118214851418"
+        },
+        {
+          "id": 118214853756,
+          "name": "PostgreSQL and MVP recovery integration",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/39297827898/job/118214853756"
+        }
+      ]
+    }
+  ],
+  "stage7c_tests": {
+    "unit": 85,
+    "mvp_postgresql_recovery": 13,
+    "api_postgresql_including_email": 23
+  },
+  "stage7c_browser_proof": {
+    "SHOWCASE_VERIFIED": {
+      "runs": [
+        {
+          "run_id": "showcase-20261026-233614-ba05a987a837",
+          "insights": [
+            "Останнє споживання на 166,9% вище середнього у видимому вікні.",
+            "На наступний інтервал прогноз на 47,3% вище останнього факту.",
+            "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
+          ],
+          "forecast_target": "2016-01-13T19:00:00",
+          "intermediate": 14,
+          "measurements": 300,
+          "forecasts": 600,
+          "scores": 900,
+          "duplicates": 0,
+          "rejected": 0,
+          "checkpoint": 300,
+          "immutable_forecasts": 600
+        },
+        {
+          "run_id": "showcase-20261026-233903-b3a84f878b2d",
+          "insights": [
+            "Останнє споживання на 166,9% вище середнього у видимому вікні.",
+            "На наступний інтервал прогноз на 47,3% вище останнього факту.",
+            "У доступних оцінках цього вікна перевищень не зафіксовано; перевіряйте покриття кожного методу."
+          ],
+          "forecast_target": "2016-01-13T19:00:00",
+          "intermediate": 11,
+          "measurements": 300,
+          "forecasts": 600,
+          "scores": 900,
+          "duplicates": 0,
+          "rejected": 0,
+          "checkpoint": 300,
+          "immutable_forecasts": 600
+        }
+      ],
+      "automatic_selection": true,
+      "page_reloads_during_replays": 0,
+      "models_unchanged": true,
+      "browser_errors": []
+    },
+    "COMBINED_VERIFIED": {
+      "rule": "combined-q99-v1-unanimous",
+      "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+      "manifest_sha256": "82605d78ef524692d35228f6b895c203e4b8dbd794f118caff70730332c02f41",
+      "original_dataset_unchanged": true,
+      "scenarios": [
+        {
+          "run_id": "combined-clean-a60ff91e345f42dcaada5813d0fbf12f",
+          "scenario": "clean",
+          "measurements": 300,
+          "forecasts": 600,
+          "original_scores": 900,
+          "combined_decisions": 300,
+          "ready_combined": 156,
+          "combined_flags": 0,
+          "combined_episodes": 0,
+          "episodes_before_restart": 0,
+          "duplicate_deliveries": 1,
+          "next_offset": 301,
+          "kafka_committed": 301,
+          "original_forecast_score_parity": true,
+          "combined_offline_streaming_parity": true,
+          "restart_forecasts_immutable": true
+        },
+        {
+          "events": 3,
+          "matched_events": 0,
+          "during_event_alarms": 0,
+          "post_event_alarms": 0,
+          "event_recall": 0,
+          "event_f1": 0,
+          "delay_median_minutes": null,
+          "run_id": "combined-spike-s2-seed201-de0b5173434146b29aaced2177a276d2",
+          "scenario": "spike-s2-seed201",
+          "measurements": 644,
+          "forecasts": 1288,
+          "original_scores": 1932,
+          "combined_decisions": 644,
+          "ready_combined": 500,
+          "combined_flags": 1,
+          "combined_episodes": 1,
+          "episodes_before_restart": 1,
+          "duplicate_deliveries": 1,
+          "next_offset": 645,
+          "kafka_committed": 645,
+          "original_forecast_score_parity": true,
+          "combined_offline_streaming_parity": true,
+          "restart_forecasts_immutable": true
+        }
+      ],
+      "injection": {
+        "events": [
+          {
+            "event_id": 0,
+            "type": "spike",
+            "severity": 2,
+            "strength": 6,
+            "start": 495,
+            "end": 495,
+            "duration": 1,
+            "start_timestamp": "2016-05-03T19:00:00",
+            "end_timestamp": "2016-05-03T19:00:00",
+            "changes": [
+              {
+                "index": 495,
+                "timestamp": "2016-05-03T19:00:00",
+                "original_wh": 130,
+                "modified_wh": 430
+              }
+            ]
+          },
+          {
+            "event_id": 1,
+            "type": "spike",
+            "severity": 2,
+            "strength": 6,
+            "start": 268,
+            "end": 268,
+            "duration": 1,
+            "start_timestamp": "2016-05-02T05:10:00",
+            "end_timestamp": "2016-05-02T05:10:00",
+            "changes": [
+              {
+                "index": 268,
+                "timestamp": "2016-05-02T05:10:00",
+                "original_wh": 70,
+                "modified_wh": 370
+              }
+            ]
+          },
+          {
+            "event_id": 2,
+            "type": "spike",
+            "severity": 2,
+            "strength": 6,
+            "start": 75,
+            "end": 77,
+            "duration": 3,
+            "start_timestamp": "2016-04-30T21:00:00",
+            "end_timestamp": "2016-04-30T21:20:00",
+            "changes": [
+              {
+                "index": 75,
+                "timestamp": "2016-04-30T21:00:00",
+                "original_wh": 70,
+                "modified_wh": 370
+              },
+              {
+                "index": 76,
+                "timestamp": "2016-04-30T21:10:00",
+                "original_wh": 70,
+                "modified_wh": 370
+              },
+              {
+                "index": 77,
+                "timestamp": "2016-04-30T21:20:00",
+                "original_wh": 70,
+                "modified_wh": 370
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "requested_points": 10,
+          "labeled_points": 5,
+          "numerically_changed_points": 5,
+          "achieved_fraction": 0.01
+        },
+        "labeled_points": 5,
+        "prefix": 144,
+        "selection_uses_demo": false
+      }
+    }
+  }
+}

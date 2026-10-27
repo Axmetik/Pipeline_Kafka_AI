@@ -1,0 +1,53 @@
+{
+  "checked_on": "2026-10-27",
+  "base_commit": "c156668a1bc41e20eb7c3c175eb5da1afd9037d7",
+  "backend_image": {
+    "tag": "energy-monitoring-backend:local",
+    "id": "sha256:31ff3473738c886c04bed3cd052d6801c8d07086579bfabccbb3e60f3ab33000",
+    "current_checkout_sha256": {
+      "storage/postgres/schema.py": "119f2c682f0fbb9c5404a6500102484c72812cf14dc0823bbcc94f11cd3941ab",
+      "storage/postgres/repository.py": "3c5375e32499e10383a5ebc726b79dff618331d389dd973b8d1e0b7e52a126c5",
+      "api/main.py": "4157fd04186f964f3772b2827199e0aa62dd07c896dd6c96fc416cd0626de554",
+      "notifications/notifier.py": "127d6186f7e9a6f6d1a555f029b1c171f8cc17804a9c7074b8e2c36b49019e00",
+      "migrations/versions/0003_email.py": "c68bf039dd19ea3722901b76cbbc29ca921e65df078257f3f60ecf51ad957c58"
+    },
+    "image_sha256": {
+      "storage/postgres/schema.py": "2282b262b38a9a6b016f9cff1a00bd26807395df11c7bfc10cd2332e84c6ef45",
+      "storage/postgres/repository.py": "34a5973da8c22edf0dd9df51638101ed643b1727bce601bd7e997d30ad304ae2",
+      "api/main.py": "255cab148ffb8ce077ade8dbcb18d5bd0208940ec67d340c914ab248ba0a7b91",
+      "notifications/notifier.py": null,
+      "migrations/versions/0003_email.py": null
+    },
+    "matches_current_code": false
+  },
+  "local_docker_artifact_metadata_readonly": {
+    "manifest_sha256": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+    "feature_version": "energy-anomaly-20-v1",
+    "rf_feature_version": "benchmark-energy-v1",
+    "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+    "thresholds": {
+      "0.99": {
+        "isolation_forest": 0.6747213487966208,
+        "autoencoder": 0.8288868594169614,
+        "residual": 296.24602578530755
+      },
+      "0.995": {
+        "isolation_forest": 0.6928881719602268,
+        "autoencoder": 1.0901817536354175,
+        "residual": 399.1783091669025
+      },
+      "0.98": {
+        "isolation_forest": 0.6537878009841837,
+        "autoencoder": 0.6165361189842222,
+        "residual": 219.0285953467243
+      }
+    },
+    "training_fingerprint": "14c9c4ce4d835763bb25b5a8674e8ab1579c19350a711b938274bd544b2ff298",
+    "primary_version": "hgb-energy-v1-9bb48a66deb359e6"
+  },
+  "inspection_only": true,
+  "inference_or_training": false,
+  "services_started": false,
+  "image_rebuilt": false
+}

@@ -1,0 +1,1237 @@
+{
+  "verifier_sha256": "b92f5dc621d2c647bac2ed72a8bbb5ecd803f700f84613ae4902120e61203ba2",
+  "python": "3.13.2",
+  "pyarrow": "24.0.0",
+  "base_commit": "c156668a1bc41e20eb7c3c175eb5da1afd9037d7",
+  "audit_date": "2026-10-27",
+  "new_experiments": false,
+  "dataset": {
+    "count": 19735,
+    "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "first": "2016-01-11T17:00:00",
+    "last": "2016-05-27T18:00:00"
+  },
+  "forecast_stage3": {
+    "peak_threshold_wh": 210.0,
+    "peak_count": 312,
+    "test_metrics": {
+      "persistence": {
+        "count": 3946,
+        "mae_wh": 26.639635073492144,
+        "rmse_wh": 66.43671271786563
+      },
+      "seasonal_naive": {
+        "count": 3946,
+        "mae_wh": 53.62392295995945,
+        "rmse_wh": 112.10898144316097
+      },
+      "random_forest": {
+        "count": 3946,
+        "mae_wh": 26.630385037798437,
+        "rmse_wh": 59.37452074530445
+      },
+      "hist_gradient_boosting": {
+        "count": 3946,
+        "mae_wh": 26.132523496195255,
+        "rmse_wh": 58.92021237916734
+      }
+    },
+    "selection": {
+      "parameters": {
+        "persistence": {},
+        "seasonal_naive": {},
+        "random_forest": {
+          "max_depth": 12,
+          "min_samples_leaf": 10,
+          "n_estimators": 400
+        },
+        "hist_gradient_boosting": {
+          "l2_regularization": 0.0,
+          "learning_rate": 0.05,
+          "max_iter": 100,
+          "max_leaf_nodes": 15
+        }
+      },
+      "validation_metrics": {
+        "persistence": {
+          "count": 3946,
+          "mae_wh": 28.441459706031424,
+          "rmse_wh": 71.97330839370473,
+          "mean_signed_error_wh": -0.07856056766345666,
+          "underprediction_fraction": 0.3345159655347187
+        },
+        "seasonal_naive": {
+          "count": 3946,
+          "mae_wh": 60.25595539787126,
+          "rmse_wh": 127.37445743751479,
+          "mean_signed_error_wh": -1.8018246325392804,
+          "underprediction_fraction": 0.41130258489609733
+        },
+        "random_forest": {
+          "count": 3946,
+          "mae_wh": 26.443457732686625,
+          "rmse_wh": 61.23661769205663,
+          "mean_signed_error_wh": 0.08423253198702604,
+          "underprediction_fraction": 0.39559047136340597
+        },
+        "hist_gradient_boosting": {
+          "count": 3946,
+          "mae_wh": 26.54491374941168,
+          "rmse_wh": 60.992505747262285,
+          "mean_signed_error_wh": -0.5632991489418088,
+          "underprediction_fraction": 0.41510390268626457
+        }
+      },
+      "recommended_by_validation": "random_forest",
+      "selection_uses_test": false
+    },
+    "splits": {
+      "train": {
+        "count": 11699,
+        "first_target": "2016-01-12T17:00:00",
+        "last_target": "2016-04-02T22:40:00"
+      },
+      "validation": {
+        "count": 3946,
+        "first_target": "2016-04-02T22:50:00",
+        "last_target": "2016-04-30T08:20:00"
+      },
+      "test": {
+        "count": 3946,
+        "first_target": "2016-04-30T08:30:00",
+        "last_target": "2016-05-27T18:00:00"
+      }
+    },
+    "peaks": [
+      {
+        "model": "persistence",
+        "count": "312",
+        "mae_wh": "150.28846153846155",
+        "rmse_wh": "199.22365347157978",
+        "mean_signed_error_wh": "-59.455128205128204",
+        "underprediction_fraction": "0.5769230769230769",
+        "mae_wh_improvement_pct": "0.0",
+        "rmse_wh_improvement_pct": "0.0"
+      },
+      {
+        "model": "seasonal_naive",
+        "count": "312",
+        "mae_wh": "250.51282051282053",
+        "rmse_wh": "288.8704793608268",
+        "mean_signed_error_wh": "-211.21794871794873",
+        "underprediction_fraction": "0.8717948717948718",
+        "mae_wh_improvement_pct": "-66.68799317551716",
+        "rmse_wh_improvement_pct": "-44.99808347407681"
+      },
+      {
+        "model": "random_forest",
+        "count": "312",
+        "mae_wh": "127.31752820786166",
+        "rmse_wh": "176.81250733086324",
+        "mean_signed_error_wh": "-89.5908355856591",
+        "underprediction_fraction": "0.6794871794871795",
+        "mae_wh_improvement_pct": "15.284562164954501",
+        "rmse_wh_improvement_pct": "11.249239610954929"
+      },
+      {
+        "model": "hist_gradient_boosting",
+        "count": "312",
+        "mae_wh": "126.28273923621892",
+        "rmse_wh": "175.8249649244905",
+        "mean_signed_error_wh": "-91.78488308906604",
+        "underprediction_fraction": "0.7147435897435898",
+        "mae_wh_improvement_pct": "15.973097373213266",
+        "rmse_wh_improvement_pct": "11.744934971000928"
+      }
+    ],
+    "same_target_count": 3946,
+    "seasonal_exact_target_minus_day": true
+  },
+  "forecast_stage2_local_docker": {
+    "hgb20": {
+      "count": 3946,
+      "mae_wh": 28.34712524099276,
+      "rmse_wh": 61.10721633768512
+    },
+    "persistence": {
+      "count": 3946,
+      "mae_wh": 26.639635073492144,
+      "rmse_wh": 66.43671271786563
+    }
+  },
+  "trusted_local_artifacts": {
+    "hgb": true,
+    "anomaly": true
+  },
+  "original_archived_weights": {
+    "stage3": {
+      "hist_gradient_boosting.joblib": true,
+      "persistence.joblib": true,
+      "random_forest.joblib": true,
+      "seasonal_naive.joblib": true
+    },
+    "stage4": true
+  },
+  "stage4_original_checksums": {
+    "verified": 407,
+    "mismatches": []
+  },
+  "thresholds": {
+    "0.99": {
+      "isolation_forest": 0.6747213487966208,
+      "autoencoder": 0.828860602378845,
+      "residual": 296.24602578530755
+    },
+    "0.995": {
+      "isolation_forest": 0.6928881719602268,
+      "autoencoder": 1.090164976120006,
+      "residual": 399.1783091669025
+    },
+    "0.98": {
+      "isolation_forest": 0.6537878009841837,
+      "autoencoder": 0.6165048789978026,
+      "residual": 219.0285953467243
+    }
+  },
+  "anomaly_mixed_test_recomputed": {
+    "autoencoder": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0,
+      "event_recall": 0.0,
+      "event_f1": 0,
+      "alarm_episodes": 18,
+      "matched_events": 0,
+      "alarms": 23
+    },
+    "isolation_forest": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0,
+      "event_recall": 0.0,
+      "event_f1": 0,
+      "alarm_episodes": 8,
+      "matched_events": 0,
+      "alarms": 28
+    },
+    "majority": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0,
+      "event_recall": 0.0,
+      "event_f1": 0,
+      "alarm_episodes": 9,
+      "matched_events": 0,
+      "alarms": 12
+    },
+    "or": {
+      "precision": 0.002898550724637681,
+      "recall": 0.0027397260273972603,
+      "f1": 0.002816901408450704,
+      "event_recall": 0.05,
+      "event_f1": 0.008888888888888887,
+      "alarm_episodes": 39.8,
+      "matched_events": 0.2,
+      "alarms": 67.8
+    },
+    "residual": {
+      "precision": 0.006060606060606061,
+      "recall": 0.0027397260273972603,
+      "f1": 0.0037735849056603774,
+      "event_recall": 0.05,
+      "event_f1": 0.01111111111111111,
+      "alarm_episodes": 30.8,
+      "matched_events": 0.2,
+      "alarms": 31.8
+    },
+    "unanimous": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0,
+      "event_recall": 0.0,
+      "event_f1": 0,
+      "alarm_episodes": 3,
+      "matched_events": 0,
+      "alarms": 3
+    }
+  },
+  "combined_selection": {
+    "rule": "unanimous",
+    "rule_version": "combined-q99-v1-unanimous",
+    "uses_test": false,
+    "eligible": true,
+    "candidates": {
+      "or": {
+        "event_f1": 0.01666666666666667,
+        "background_alarm_rate": 0.01419158641662443,
+        "delay_minutes": 40.0
+      },
+      "majority": {
+        "event_f1": 0.0,
+        "background_alarm_rate": 0.0015205271160669033,
+        "delay_minutes": null
+      },
+      "unanimous": {
+        "event_f1": 0.0,
+        "background_alarm_rate": 0.0,
+        "delay_minutes": null
+      }
+    },
+    "maturity": "experimental",
+    "test_previously_viewed": true
+  },
+  "combined_test_summary": [
+    {
+      "method": "autoencoder",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "18.0",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0058286872782564",
+      "alarms_per_day": "0.8393309680689305"
+    },
+    {
+      "method": "isolation_forest",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "8.0",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0070957932083122",
+      "alarms_per_day": "1.021794221996959"
+    },
+    {
+      "method": "majority",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "9.0",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0030410542321338",
+      "alarms_per_day": "0.4379118094272681"
+    },
+    {
+      "method": "or",
+      "precision": "0.0028985507246376803",
+      "recall": "0.0027397260273972603",
+      "f1": "0.0028169014084507",
+      "event_recall": "0.05",
+      "event_f1": "0.00888888888888888",
+      "alarm_episodes": "39.8",
+      "delay_median_minutes": "0.0",
+      "onset_in_event_diagnostic_recall": "0.05",
+      "background_alarm_rate": "0.0172326406487582",
+      "alarms_per_day": "2.481500253421186"
+    },
+    {
+      "method": "residual",
+      "precision": "0.00606060606060606",
+      "recall": "0.0027397260273972603",
+      "f1": "0.00377358490566036",
+      "event_recall": "0.05",
+      "event_f1": "0.0111111111111111",
+      "alarm_episodes": "30.8",
+      "delay_median_minutes": "0.0",
+      "onset_in_event_diagnostic_recall": "0.05",
+      "background_alarm_rate": "0.0081094779523568",
+      "alarms_per_day": "1.1677648251393815"
+    },
+    {
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0007602635580334",
+      "alarms_per_day": "0.109477952356817"
+    }
+  ],
+  "combined_validation_summary": [
+    {
+      "method": "autoencoder",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "8.2",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0055752660922453",
+      "alarms_per_day": "0.8028383172833249"
+    },
+    {
+      "method": "isolation_forest",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "4.0",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0040547389761784",
+      "alarms_per_day": "0.5838824125696908"
+    },
+    {
+      "method": "majority",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "2.2",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0015205271160669",
+      "alarms_per_day": "0.218955904713634"
+    },
+    {
+      "method": "or",
+      "precision": "0.00689655172413792",
+      "recall": "0.0051282051282051195",
+      "f1": "0.00588235294117646",
+      "event_recall": "0.05",
+      "event_f1": "0.01666666666666666",
+      "alarm_episodes": "19.2",
+      "delay_median_minutes": "40.0",
+      "onset_in_event_diagnostic_recall": "0.05",
+      "background_alarm_rate": "0.0141915864166244",
+      "alarms_per_day": "2.043588443993918"
+    },
+    {
+      "method": "residual",
+      "precision": "0.01538461538461538",
+      "recall": "0.0051282051282051195",
+      "f1": "0.007692307692307681",
+      "event_recall": "0.05",
+      "event_f1": "0.02352941176470588",
+      "alarm_episodes": "12.2",
+      "delay_median_minutes": "40.0",
+      "onset_in_event_diagnostic_recall": "0.05",
+      "background_alarm_rate": "0.0060821084642676",
+      "alarms_per_day": "0.8758236188545362"
+    },
+    {
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "0.0",
+      "delay_median_minutes": "",
+      "onset_in_event_diagnostic_recall": "0.0",
+      "background_alarm_rate": "0.0",
+      "alarms_per_day": "0.0"
+    }
+  ],
+  "combined_unanimous_by_type": [
+    {
+      "split": "test",
+      "type": "context_load",
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "post_event_alarms": "0.2",
+      "onset_in_event_diagnostic_recall": "0.0"
+    },
+    {
+      "split": "test",
+      "type": "drift",
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "post_event_alarms": "0.0",
+      "onset_in_event_diagnostic_recall": "0.0"
+    },
+    {
+      "split": "test",
+      "type": "drop",
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "post_event_alarms": "1.8",
+      "onset_in_event_diagnostic_recall": "0.0"
+    },
+    {
+      "split": "test",
+      "type": "level_shift",
+      "method": "unanimous",
+      "precision": "0.02222222222222222",
+      "recall": "0.0008658008658008659",
+      "f1": "0.0016666666666666668",
+      "event_recall": "0.01111111111111111",
+      "event_f1": "0.014814814814814814",
+      "alarm_episodes": "2.933333333333333",
+      "delay_median_minutes": "70.0",
+      "post_event_alarms": "0.26666666666666666",
+      "onset_in_event_diagnostic_recall": "0.01111111111111111"
+    },
+    {
+      "split": "test",
+      "type": "mixed",
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "post_event_alarms": "0.6",
+      "onset_in_event_diagnostic_recall": "0.0"
+    },
+    {
+      "split": "test",
+      "type": "spike",
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "post_event_alarms": "2.0",
+      "onset_in_event_diagnostic_recall": "0.0"
+    },
+    {
+      "split": "test",
+      "type": "stuck",
+      "method": "unanimous",
+      "precision": "0.0",
+      "recall": "0.0",
+      "f1": "0.0",
+      "event_recall": "0.0",
+      "event_f1": "0.0",
+      "alarm_episodes": "3.0",
+      "delay_median_minutes": "",
+      "post_event_alarms": "0.0",
+      "onset_in_event_diagnostic_recall": "0.0"
+    }
+  ],
+  "stage4_mixed_q99_fpr": {
+    "isolation_forest": 0.007236639881009426,
+    "autoencoder": 0.0059443827594005995,
+    "residual": 0.008167032961957293
+  },
+  "sole_residual_hit": [
+    {
+      "measurement_timestamp": "2016-05-26T13:40:00",
+      "modified_actual_energy_wh": "80.0",
+      "modified_prediction_wh": "90.89144850642386",
+      "modified_residual": "10.891448506423856",
+      "clean_actual_energy_wh": "80.0",
+      "clean_prediction_wh": "90.89144850642386",
+      "clean_residual": "10.891448506423856",
+      "threshold": "296.24602578530755"
+    },
+    {
+      "measurement_timestamp": "2016-05-26T13:50:00",
+      "modified_actual_energy_wh": "70.0",
+      "modified_prediction_wh": "97.98218179634567",
+      "modified_residual": "27.98218179634567",
+      "clean_actual_energy_wh": "70.0",
+      "clean_prediction_wh": "97.98218179634567",
+      "clean_residual": "27.98218179634567",
+      "threshold": "296.24602578530755"
+    },
+    {
+      "measurement_timestamp": "2016-05-26T14:00:00",
+      "modified_actual_energy_wh": "380.0",
+      "modified_prediction_wh": "79.43206597736729",
+      "modified_residual": "300.5679340226327",
+      "clean_actual_energy_wh": "80.0",
+      "clean_prediction_wh": "79.43206597736729",
+      "clean_residual": "0.5679340226327128",
+      "threshold": "296.24602578530755"
+    },
+    {
+      "measurement_timestamp": "2016-05-26T14:10:00",
+      "modified_actual_energy_wh": "370.0",
+      "modified_prediction_wh": "372.59635115610166",
+      "modified_residual": "2.5963511561016617",
+      "clean_actual_energy_wh": "70.0",
+      "clean_prediction_wh": "88.0166954805128",
+      "clean_residual": "18.016695480512794",
+      "threshold": "296.24602578530755"
+    },
+    {
+      "measurement_timestamp": "2016-05-26T14:20:00",
+      "modified_actual_energy_wh": "70.0",
+      "modified_prediction_wh": "217.19301456654838",
+      "modified_residual": "147.19301456654838",
+      "clean_actual_energy_wh": "70.0",
+      "clean_prediction_wh": "77.76629658538991",
+      "clean_residual": "7.7662965853899095",
+      "threshold": "296.24602578530755"
+    },
+    {
+      "measurement_timestamp": "2016-05-26T14:30:00",
+      "modified_actual_energy_wh": "70.0",
+      "modified_prediction_wh": "99.36893544148771",
+      "modified_residual": "29.368935441487707",
+      "clean_actual_energy_wh": "70.0",
+      "clean_prediction_wh": "79.4732459230228",
+      "clean_residual": "9.473245923022802",
+      "threshold": "296.24602578530755"
+    }
+  ],
+  "stage6_archive_checksums": {
+    "verified": 291,
+    "mismatches": []
+  },
+  "stage6": {
+    "location": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6",
+    "pilots": [
+      {
+        "run_id": "s6-pilot-v7-demo-20261019t175423-81d47a",
+        "mode": "demo",
+        "warmup": 150,
+        "measured": 60,
+        "send_to_db_ack_ms": {
+          "p50": 57.408916500000004,
+          "p95": 160.1764319,
+          "p99": 172.09420521999996
+        },
+        "clocks_valid": true,
+        "integrity": {
+          "measurements": 210,
+          "forecasts": 420,
+          "scores": 630,
+          "event_ids": 210,
+          "receipts": 210,
+          "duplicate_deliveries": 0,
+          "errors": 0,
+          "next_offset": 210,
+          "broker_next_offset": 210,
+          "kafka_end_offset": 210
+        },
+        "throughput": {
+          "run_id": "s6-pilot-v7-demo-20261019t175423-81d47a",
+          "series": "pilot-v7",
+          "mode": "demo",
+          "status": "complete",
+          "publications": "60",
+          "processed": "60",
+          "publication_per_second": "6.442462566913416",
+          "commit_per_second": "6.480652264530949",
+          "completion_per_second": "6.476351402626114",
+          "controller_completion_per_second": "5.306307835853524"
+        },
+        "dashboard": {
+          "committed_measured_ids": 60,
+          "observed_measured_ids": 60,
+          "censored": 0,
+          "invalid_clock_observations": 0,
+          "availability_to_dom_lower_ms": {
+            "n": 60,
+            "p50": 1186.304938454181,
+            "p95": 1939.3957475997504,
+            "p99": 2083.0064932857454
+          },
+          "availability_to_dom_upper_ms": {
+            "n": 60,
+            "p50": 1393.395181607455,
+            "p95": 2147.1191893551495,
+            "p99": 2288.8189876009524
+          },
+          "availability_to_dom_midpoint_ms": {
+            "n": 60,
+            "p50": 1289.850060030818,
+            "p95": 2043.25746847745,
+            "p99": 2185.912740443349
+          },
+          "fetch_to_dom_ms": {
+            "n": 5,
+            "p50": 20.800048828125,
+            "p95": 31.180078124999998,
+            "p99": 33.11609375
+          },
+          "clock_uncertainty_ms": {
+            "n": 2,
+            "p50": 3.175048828125,
+            "p95": 4.637548828125,
+            "p99": 4.767548828124999
+          },
+          "latest_displayed_availability_age_lower_ms": {
+            "n": 5,
+            "p50": 81.04592479765415,
+            "p95": 1018.4594585582612,
+            "p99": 1197.9316362139582
+          },
+          "latest_displayed_availability_age_upper_ms": {
+            "n": 5,
+            "p50": 290.6710976883769,
+            "p95": 1226.3570312112568,
+            "p99": 1406.3433288663625
+          },
+          "known_db_head_gap_records": {
+            "n": 5,
+            "p50": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          },
+          "actual_poll_interval_ms": {
+            "n": 13,
+            "p50": 2115.39990234375,
+            "p95": 2245.0599609375,
+            "p99": 2248.1319140625
+          },
+          "cross_process_clock_valid": true,
+          "clock_method": "verified_vm_monotonic_bridge",
+          "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+        }
+      },
+      {
+        "run_id": "s6-pilot-v7-max-20261019t175518-4fed12",
+        "mode": "max",
+        "warmup": 150,
+        "measured": 60,
+        "send_to_db_ack_ms": {
+          "p50": 1481.7790215,
+          "p95": 2954.58345165,
+          "p99": 3140.7005572199996
+        },
+        "clocks_valid": true,
+        "integrity": {
+          "measurements": 210,
+          "forecasts": 420,
+          "scores": 630,
+          "event_ids": 210,
+          "receipts": 210,
+          "duplicate_deliveries": 0,
+          "errors": 0,
+          "next_offset": 210,
+          "broker_next_offset": 210,
+          "kafka_end_offset": 210
+        },
+        "throughput": {
+          "run_id": "s6-pilot-v7-max-20261019t175518-4fed12",
+          "series": "pilot-v7",
+          "mode": "max",
+          "status": "complete",
+          "publications": "60",
+          "processed": "60",
+          "publication_per_second": "384.8662752772342",
+          "commit_per_second": "18.227988254902662",
+          "completion_per_second": "17.90040281923862",
+          "controller_completion_per_second": "16.18328778314127"
+        },
+        "dashboard": {
+          "committed_measured_ids": 60,
+          "observed_measured_ids": 60,
+          "censored": 0,
+          "invalid_clock_observations": 0,
+          "availability_to_dom_lower_ms": {
+            "n": 60,
+            "p50": 826.6777338385582,
+            "p95": 1834.201525837183,
+            "p99": 2034.4606508389115
+          },
+          "availability_to_dom_upper_ms": {
+            "n": 60,
+            "p50": 1033.5573393180966,
+            "p95": 2041.425339318812,
+            "p99": 2242.6042143180966
+          },
+          "availability_to_dom_midpoint_ms": {
+            "n": 60,
+            "p50": 930.1175365783274,
+            "p95": 1937.8134325779974,
+            "p99": 2138.532432578504
+          },
+          "fetch_to_dom_ms": {
+            "n": 2,
+            "p50": 10.449951171875,
+            "p95": 11.574951171875,
+            "p99": 11.674951171875
+          },
+          "clock_uncertainty_ms": {
+            "n": 2,
+            "p50": 2.675048828125,
+            "p95": 3.10252685546875,
+            "p99": 3.14052490234375
+          },
+          "latest_displayed_availability_age_lower_ms": {
+            "n": 2,
+            "p50": 87.58119966462255,
+            "p95": 204.14960571713743,
+            "p99": 214.51124181069434
+          },
+          "latest_displayed_availability_age_upper_ms": {
+            "n": 2,
+            "p50": 298.29967964813113,
+            "p95": 417.18551055453713,
+            "p99": 427.75313996843994
+          },
+          "known_db_head_gap_records": {
+            "n": 2,
+            "p50": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          },
+          "actual_poll_interval_ms": {
+            "n": 10,
+            "p50": 2104.1500244140625,
+            "p95": 2388.1300537109373,
+            "p99": 2408.5060888671874
+          },
+          "cross_process_clock_valid": true,
+          "clock_method": "verified_vm_monotonic_bridge",
+          "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+        }
+      },
+      {
+        "run_id": "s6-pilot-v7-slow-20261019t175239-0ed37d",
+        "mode": "slow",
+        "warmup": 150,
+        "measured": 60,
+        "send_to_db_ack_ms": {
+          "p50": 61.0411045,
+          "p95": 101.13396699999998,
+          "p99": 131.73465299999984
+        },
+        "clocks_valid": true,
+        "integrity": {
+          "measurements": 210,
+          "forecasts": 420,
+          "scores": 630,
+          "event_ids": 210,
+          "receipts": 210,
+          "duplicate_deliveries": 0,
+          "errors": 0,
+          "next_offset": 210,
+          "broker_next_offset": 210,
+          "kafka_end_offset": 210
+        },
+        "throughput": {
+          "run_id": "s6-pilot-v7-slow-20261019t175239-0ed37d",
+          "series": "pilot-v7",
+          "mode": "slow",
+          "status": "complete",
+          "publications": "60",
+          "processed": "60",
+          "publication_per_second": "0.993423327354435",
+          "commit_per_second": "0.9935352850839464",
+          "completion_per_second": "1.0088519644447118",
+          "controller_completion_per_second": "0.9712402233213924"
+        },
+        "dashboard": {
+          "committed_measured_ids": 60,
+          "observed_measured_ids": 60,
+          "censored": 0,
+          "invalid_clock_observations": 0,
+          "availability_to_dom_lower_ms": {
+            "n": 60,
+            "p50": 976.3702509738505,
+            "p95": 1881.5983535520731,
+            "p99": 2003.6917328139393
+          },
+          "availability_to_dom_upper_ms": {
+            "n": 60,
+            "p50": 1192.3270423077047,
+            "p95": 2088.121046676859,
+            "p99": 2214.2295772673187
+          },
+          "availability_to_dom_midpoint_ms": {
+            "n": 60,
+            "p50": 1086.0505703110248,
+            "p95": 1984.859700114466,
+            "p99": 2108.9606550406293
+          },
+          "fetch_to_dom_ms": {
+            "n": 29,
+            "p50": 9.0,
+            "p95": 17.63994140624999,
+            "p99": 38.408007812499974
+          },
+          "clock_uncertainty_ms": {
+            "n": 3,
+            "p50": 1.0999755859375,
+            "p95": 7.399975585937499,
+            "p99": 7.959975585937499
+          },
+          "latest_displayed_availability_age_lower_ms": {
+            "n": 29,
+            "p50": 526.5862149745226,
+            "p95": 877.4239166080948,
+            "p99": 1001.2931440740823
+          },
+          "latest_displayed_availability_age_upper_ms": {
+            "n": 29,
+            "p50": 737.3265622854233,
+            "p95": 1095.7713597849008,
+            "p99": 1208.7536170122025
+          },
+          "known_db_head_gap_records": {
+            "n": 29,
+            "p50": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          },
+          "actual_poll_interval_ms": {
+            "n": 38,
+            "p50": 2065.14990234375,
+            "p95": 2231.0050537109373,
+            "p99": 2437.745927734375
+          },
+          "cross_process_clock_valid": true,
+          "clock_method": "verified_vm_monotonic_bridge",
+          "fetch_to_dom_scope": "load() resolved (JSON decoded and snapshot prepared) to React layout commitment, for refreshes with new measured IDs; excludes warm-up/unchanged refreshes"
+        }
+      }
+    ],
+    "closure": {
+      "phase": "closed_partial_by_user",
+      "checked_at": "2026-10-19T18:25:57.737740+00:00",
+      "full_campaign_resume_authorized": false,
+      "controller_sessions": "Campaign exited 1 after controlled producer SIGINT; finalizer exited 130; both tool sessions are no longer present.",
+      "running_stage6_containers": [],
+      "remaining_mvp_containers": [
+        "energy-dashboard-dashboard-1",
+        "energy-dashboard-worker-1",
+        "energy-dashboard-api-1",
+        "energy-dashboard-postgres-1",
+        "energy-dashboard-kafka-1"
+      ],
+      "periodic_restarts": "No periodic automation or restart scheduler was created for Stage 6; finalizer was a stopped one-shot process.",
+      "host_process_inventory_limit": "Global ps is denied by the sandbox. Verification uses known controller termination, retained exit logs and Docker inventory; no unrestricted OS-wide process audit is claimed.",
+      "mvp": {
+        "/": {
+          "http_status": 200
+        },
+        "/health/ready": {
+          "http_status": 200
+        },
+        "/api/pipeline-status?run_id=demo-001": {
+          "http_status": 200,
+          "response": {
+            "worker_status": "unknown",
+            "status_reason": "No heartbeat is recorded; checkpoints do not prove liveness",
+            "last_processed_at": "2026-10-19T11:34:05.868106Z",
+            "unique_measurements": 300,
+            "forecasts": 600,
+            "anomaly_scores": 900,
+            "duplicate_deliveries": 0,
+            "rejected_messages": 0,
+            "checkpoint_count": 1,
+            "checkpoints_truncated": false,
+            "checkpoints": [
+              {
+                "run_id": "demo-001",
+                "topic": "energy-mvp-demo-001",
+                "partition": 0,
+                "next_offset": 300,
+                "last_processed_at": "2026-10-19T11:34:05.868106Z"
+              }
+            ],
+            "recent_errors": [],
+            "scope_run_id": "demo-001"
+          }
+        }
+      },
+      "raw_archives_verified": 291,
+      "completed_primary_runs": 0,
+      "interrupted_primary_runs": 1,
+      "planned_primary_runs": 15,
+      "completed_full_recovery_trials": 0,
+      "completed_api_load_scenarios": 0,
+      "no_new_experiments": true,
+      "no_model_training": true,
+      "no_functional_changes": true,
+      "no_merge": true
+    },
+    "recovery": {
+      "recovery_open_episodes_before": 0,
+      "recovery_closed_episodes_before": 1,
+      "recovery_start_epoch_ns": 1792432609566260000,
+      "recovery_resumed_observed_ns": 8014616750,
+      "recovery_first_db_ack_epoch_ns": 1792432617564902763,
+      "recovery_forecasts_unchanged": true,
+      "recovery_episode_continuity": true,
+      "recovery_history_restore_ns": 1991130043,
+      "recovery_startup_ns": 6330347211
+    },
+    "overhead": {
+      "checks": [
+        {
+          "run_id": "s6-pilot-v7-demo-20261019t175423-81d47a",
+          "issues": []
+        },
+        {
+          "run_id": "s6-pilot-v7-max-20261019t175518-4fed12",
+          "issues": []
+        },
+        {
+          "run_id": "s6-pilot-v7-slow-20261019t175239-0ed37d",
+          "issues": []
+        },
+        {
+          "run_id": "s6-overhead-v7-1-max-20261019t172102-3e0127",
+          "issues": []
+        },
+        {
+          "run_id": "s6-overhead-v7-1-max-20261019t172219-3f3288",
+          "issues": []
+        },
+        {
+          "run_id": "s6-overhead-v7-2-max-20261019t172332-e46abe",
+          "issues": []
+        },
+        {
+          "run_id": "s6-overhead-v7-2-max-20261019t172457-65ff6d",
+          "issues": []
+        },
+        {
+          "run_id": "s6-overhead-v7-3-max-20261019t172617-f5e6b4",
+          "issues": []
+        },
+        {
+          "run_id": "s6-overhead-v7-3-max-20261019t172735-34dee9",
+          "issues": []
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "overhead-v7-1",
+          "on_run": "s6-overhead-v7-1-max-20261019t172102-3e0127",
+          "off_run": "s6-overhead-v7-1-max-20261019t172219-3f3288",
+          "on_per_second": 21.86636734039374,
+          "off_per_second": 22.143110390131042,
+          "throughput_overhead_percent": 1.2497930275443307,
+          "model_output_parity": true
+        },
+        {
+          "pair": "overhead-v7-2",
+          "on_run": "s6-overhead-v7-2-max-20261019t172457-65ff6d",
+          "off_run": "s6-overhead-v7-2-max-20261019t172332-e46abe",
+          "on_per_second": 20.44125245580888,
+          "off_per_second": 17.106879623752686,
+          "throughput_overhead_percent": -19.491414596888017,
+          "model_output_parity": true
+        },
+        {
+          "pair": "overhead-v7-3",
+          "on_run": "s6-overhead-v7-3-max-20261019t172617-f5e6b4",
+          "off_run": "s6-overhead-v7-3-max-20261019t172735-34dee9",
+          "on_per_second": 19.767734148059397,
+          "off_per_second": 21.562948644100228,
+          "throughput_overhead_percent": 8.325459220216684,
+          "model_output_parity": true
+        }
+      ],
+      "median_throughput_overhead_percent": 1.2497930275443307,
+      "correctness_passed": true,
+      "overhead_budget_exceeded": false,
+      "overhead_investigation_completed": true,
+      "overhead_under_investigation": false,
+      "config_sha256": "442a803d36b1ae0c12d4b5c5f3cd1b8317bf61b502d4097a31aa42768b0aa05a",
+      "instrumentation_sha256": "12e06aef4461868ecd43d34dc2d165d028f802905ff17ffa13ba1bc0ad5bbb64",
+      "manifest_sha256": "38415dc95ade11bfce5fc2cadea883ce01dd976ad84498df0dd98f7d05a7cde1",
+      "environment_sha256": "38a1115d40c91051e28c04863e0bcae8868a82d7308f2b43ef91fc1db3b37072"
+    }
+  },
+  "email": {
+    "synthetic": {
+      "run_id": "email-delivery-test-19707adf94a1",
+      "mode": "both",
+      "individual_episodes": 1,
+      "combined_episodes": 0,
+      "notifications": [
+        {
+          "notification_id": "3ccd9cf5876f257af17d34129eaba1f92465d9611e370519cc9e0496ce7e5367",
+          "status": "sent",
+          "attempt_count": 1,
+          "suppression_reason": null
+        }
+      ],
+      "mailpit_messages": [
+        {
+          "id": "mALjnKBWj4bZUtwPJH72tc",
+          "html": true,
+          "plain_text": true
+        }
+      ],
+      "models_or_thresholds_modified": false
+    },
+    "replay": {
+      "run_id": "email-ml-80c4faf9725d",
+      "mode": "both",
+      "individual_episodes": 6,
+      "combined_episodes": 0,
+      "notifications": [
+        {
+          "notification_id": "26ecccac58569cca90400e6ef35686d334c94563a7b9680821a01bf656fb9f27",
+          "status": "sent",
+          "attempt_count": 1,
+          "suppression_reason": null
+        },
+        {
+          "notification_id": "b24faf32c10efe5350ee1a9b6df90fb411ed9f7bf0996bdcd41dd9ccfecc4764",
+          "status": "suppressed",
+          "attempt_count": 0,
+          "suppression_reason": "cooldown"
+        },
+        {
+          "notification_id": "5260bfd2a6cd1844d1b39bca313620cf32c9a9087dbc4ca51ea3d0f682c45439",
+          "status": "suppressed",
+          "attempt_count": 0,
+          "suppression_reason": "cooldown"
+        },
+        {
+          "notification_id": "331d2ecd15b384f43d2615442bdc455a29acd2ad07add57ee515b093a858296b",
+          "status": "sent",
+          "attempt_count": 1,
+          "suppression_reason": null
+        },
+        {
+          "notification_id": "55f42feddc03943e6a74a538c01204cf2147580d481fdc28ca80a0939129d2ab",
+          "status": "suppressed",
+          "attempt_count": 0,
+          "suppression_reason": "cooldown"
+        },
+        {
+          "notification_id": "873253a24094dfda298a9d406bfa526560830c21c549a06d532fbff210b9b0a3",
+          "status": "sent",
+          "attempt_count": 1,
+          "suppression_reason": null
+        }
+      ],
+      "mailpit_messages": [
+        {
+          "id": "dh57SXMoDpJFP69ukUQZac",
+          "html": true,
+          "plain_text": true
+        },
+        {
+          "id": "Ufgfj8tQrt2Xu2RNEwK7Hg",
+          "html": true,
+          "plain_text": true
+        },
+        {
+          "id": "SXGEcxDCyQ6iwSTJNU8uvJ",
+          "html": true,
+          "plain_text": true
+        }
+      ],
+      "models_or_thresholds_modified": false,
+      "counts": {
+        "measurements": 300,
+        "forecasts": 600,
+        "scores": 900
+      },
+      "worker": {
+        "run_id": "email-ml-80c4faf9725d",
+        "db_next_offset": 300,
+        "verified_journal_records": 0,
+        "accepted": 300,
+        "message_duplicate": 0,
+        "offset_duplicate": 0,
+        "quarantined": 0,
+        "processed_deliveries": 300
+      }
+    }
+  },
+  "tracked_secret_pattern_scan": {
+    "scope": "current tracked text <=2MB; selected private-key/GitHub/AWS patterns; not full history or secret-scanner guarantee",
+    "suspect_paths": [],
+    "tracked_env_files": [
+      ".env.example"
+    ]
+  },
+  "sources_sha256": {
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/artifacts/energy-anomaly/v1/bundle.joblib": "2ac3a9c71a78a09ea5ba5845d47e68ae79f23a1b696d3f9daf23fbbad0f569ee",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/artifacts/forecast-benchmark/v1/hist_gradient_boosting.joblib": "835d53e4762f51e130ff905079427d0fce523d3a10cc72685e15f84dbcedca2d",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/artifacts/forecast-benchmark/v1/persistence.joblib": "718b2f220d0acfd32d2cb8ddbc9067c78d0a77631320ecefddefe41ebf777cbb",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/artifacts/forecast-benchmark/v1/random_forest.joblib": "4e53cbbac28ce64f2c823c2319917e13af8126297763f13d7842897e83c48bc9",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/artifacts/forecast-benchmark/v1/seasonal_naive.joblib": "b6be5255b137be5a52da79a3a613200803b7a3f88cfe3ea8e64aa0b4ad837198",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/closure-status.json": "27dd9c4477012778b144bc669805ec334972c6cf47ac67d3ce3d0e6c1c54618a",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/evidence-index.json": "1e0358d949ee38534905cacd378af99aeee80d2fbfec59a65bba656c0a2999bc",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/pilot-latencies.csv": "ff6b3b5247f04e7a51972346d8d9ec5278f742996199d83eeed729f59487c547",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/pilot-validation.json": "5930616fa8a0fea1299ff2240cea278571886710d47c1734ed1764465eedd196",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw-checksums.json": "949b60147c64888f358de61bfeff0a3768d2acd4346e722a0cc80c84e62bac50",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-recovery-v7-demo-20261019t175618-a15932/run.json": "5d66923d5b7d59c062ee07d3e47e0ba306a6ab07297443dec0a4e6e3b88db4a9",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-demo-20261019t175423-81d47a/integrity.json.gz": "0bbb509a4995c753d78ac3fd2f160b7f620059141c83b847a5d835c3b56fe835",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-demo-20261019t175423-81d47a/producer.jsonl.gz": "2b980192a0884361ffbeba71094ea6afba1f9c189c3996eb1e5de9610f5ec37f",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-demo-20261019t175423-81d47a/run.json": "6f5e94e207a69c7cf1224cb4b60f627f4539a1d4cfe126911688d59cb18d8849",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-demo-20261019t175423-81d47a/summary.json": "c9e8e50456beb53f4708a00f4f0157f5ecbf79899d190fc0eeb0a8fd0884b01f",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-demo-20261019t175423-81d47a/worker.jsonl.gz": "5c855d8e5e29572e91bf243c94b2638be9c6e68721bc4ce74a1b9b885bc5f3ae",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-max-20261019t175518-4fed12/integrity.json.gz": "48d65bbca09d9921c4e99720c1e9424a9fb18382a00d40fdaaf404ac199a4700",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-max-20261019t175518-4fed12/producer.jsonl.gz": "dbff8c01cecce72aa7de40c7c758220d3e40064cf60c5649fbe704573673a901",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-max-20261019t175518-4fed12/run.json": "86c8ef40f0468903d9076ff930b05626c2c94caa4a31cc0826accd74e23ff1f3",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-max-20261019t175518-4fed12/summary.json": "95677afd4d2872f398faca54f67d94677561c03884fecda40e7bf9c512d49a5b",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-max-20261019t175518-4fed12/worker.jsonl.gz": "fcad137e4d9e546cba81a396537b9ba4416bcc4b516514ce2f1f2a88a406807c",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-slow-20261019t175239-0ed37d/integrity.json.gz": "7e41291d9f093e00ef25b3ad564b74a5f450f42c2075f6ef3d3a2bbb38b4af0a",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-slow-20261019t175239-0ed37d/producer.jsonl.gz": "820e2812dd19a61f3a22948e3e8f316c10d8ebee0cffadd70cc1bf2e3143f76c",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-slow-20261019t175239-0ed37d/run.json": "c55971d4d1ca27ea82d18a77e462a2b557ca6ad4598ba07076cec16177d5cde2",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-slow-20261019t175239-0ed37d/summary.json": "060fa0d22a2d256f18c41200c5224521f0c848f1a768efb72d3c363261a2a803",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/raw/s6-pilot-v7-slow-20261019t175239-0ed37d/worker.jsonl.gz": "ecb75f8f28ea05fe04c055b88035583284aaea2859b71f44b0f0c69e958853f3",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docs/stage6/throughput.csv": "6d7ca262d30eaf7925bf4d405cec2efdcd87953b25b40b4a114cfb9c164567ae",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/metrics.json": "11a9b0dfbc35b03b9e811720daa43b502cd7005bffd5718990740af8fe8b8f51",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "artifacts/mvp/docker/hgb/test_predictions.parquet": "a4d70e991178f7621fc2f8ced0941a283ad65c548637f3fc7e05b06a2dbcbff6",
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "docs/energy-anomaly/diagnostics/sole_residual_hit.csv": "251ee4cd28ec199e8b3afdb6ea10a239b4ad42494af840b0375af3d4b46781b4",
+    "docs/energy-anomaly/results/checksums.json": "80f1c48973573a7bf29e50ef6606ae812c8381a4ab05a6478ad2ddb40ca66d14",
+    "docs/energy-anomaly/results/manifests/test-mixed-seed201.json": "9f596e7e833da1e7fcda20132c62bf0461e6da849748d12c84fa2dea200dd262",
+    "docs/energy-anomaly/results/manifests/test-mixed-seed202.json": "3b69ba039bb2cbb844188fc1aee6bde73fbccedc7b60219ce9ec867d860010c9",
+    "docs/energy-anomaly/results/manifests/test-mixed-seed203.json": "cb02a600b374f73c14c6337a6af329422f61ff6fd30400731b94a773749d5485",
+    "docs/energy-anomaly/results/manifests/test-mixed-seed204.json": "14ef027ca7b949c30fae8a47a160fbb72dec5fe115a357653731924a7ed4d14e",
+    "docs/energy-anomaly/results/manifests/test-mixed-seed205.json": "58b6f035a3b16829bc58538d5d114a6b05bc4d950b736d29850713efc7399616",
+    "docs/energy-anomaly/results/metadata.json": "1974dafd15481d5ce229fd036c5c7b0b7eb8f1d9f79a34176aa98494fa2591a6",
+    "docs/energy-anomaly/results/metrics.csv": "66a9a4b3307e4ce8127c3fdaa2512319f8567e3ee9604c72ae243b7fb5577adb",
+    "docs/energy-anomaly/results/scores/test-mixed-seed201.parquet": "1290e8351b950e7836f11b9b8b8f5124719f5f27d87ce4843247f886270d5fcb",
+    "docs/energy-anomaly/results/scores/test-mixed-seed202.parquet": "8ad188c9f1479656ebf31b3ad3916be4315572ea77ef1dde497104354421248e",
+    "docs/energy-anomaly/results/scores/test-mixed-seed203.parquet": "45e89188d2327560532b2d254b151996db9e6da22f3a16d75a5ceaf395e6ce36",
+    "docs/energy-anomaly/results/scores/test-mixed-seed204.parquet": "80e97c15076e9cee74798fd3dc3a3214f1ff88773449e7b88879e306dc2d0baf",
+    "docs/energy-anomaly/results/scores/test-mixed-seed205.parquet": "1f0b223e4a8f28accb3cd8949e61f1faf7504be320efb59e4a044ea1aba924f5",
+    "docs/energy-anomaly/results/thresholds.json": "851f51230c314a9718c5b66d306b50eb5b7a7885858c4e892983742df51e77dd",
+    "docs/forecast-benchmark/results/metadata.json": "e09d29c633902a9104099cbe7c372c8967bc5daf4f1eacc0ebc114f5b00ea36e",
+    "docs/forecast-benchmark/results/metrics.csv": "55983a54470781e91c822d8c30fa6f490db9e18e5a63183bd09b17ffde5f971e",
+    "docs/forecast-benchmark/results/peak_metrics.csv": "845fc20f0233aa4bb6de66648f0aa757b68998fea12b96f28658148c9d0b8a5e",
+    "docs/forecast-benchmark/results/selection.json": "27b7316e40b8accc26da1c06caea829d2d0e9863aea8136884010d4876880c18",
+    "docs/forecast-benchmark/results/split_membership.csv": "d2112aba21f7c1ee878a06e3c59e382567823a20d3eb17d3d24e6ae258122acb",
+    "docs/forecast-benchmark/results/splits.json": "ad242f2daf1996ace6602754844889b9fbc15672fac73ed40597dad5acb57aad",
+    "docs/forecast-benchmark/results/test_predictions.csv": "66d38a366cbd36cade4c6588763503531783051f62f0843f537b1c471446d33b",
+    "docs/stage7b/results/selection.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e",
+    "docs/stage7b/results/test-by_type.csv": "64364277215e29a3f26a55bae0e76005d9902e0f16602467f51ad0b54f5e10d0",
+    "docs/stage7b/results/test-summary.csv": "59e6b5fbc9628859e5017ed248a2654c6c3b4a92f3587d3e1b5e1f049421ee24",
+    "docs/stage7b/results/validation-summary.csv": "74bfbfbc97f146c115640ee5a79762f04c593d11ac1e0ebc76b0e3ca4bab5a77",
+    "docs/stage7c/verification.json": "b2fc7fdc3ab09ac6866afab3eab2d8a81caf1f4a27db26869762e841a9c84d7c",
+    "docs/stage8a/verify_evidence.py": "b92f5dc621d2c647bac2ed72a8bbb5ecd803f700f84613ae4902120e61203ba2"
+  },
+  "read_sources_unchanged_at_end": true
+}
