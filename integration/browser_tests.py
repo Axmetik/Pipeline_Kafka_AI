@@ -31,7 +31,7 @@ def main():
         for name in ['MVP_RUN_ID','MVP_GROUP_ID','MVP_TOPIC','MVP_COMPOSE_PROJECT','MVP_DOCKER_ARTIFACT_MANIFEST','MVP_WEB_PORT']:
             if name in env: command+=['-e',name+'='+env[name]]
     if a.capture: command+=['-e','E2E_CAPTURE=1']
-    spec='e2e/showcase.spec.ts' if a.showcase else ('e2e/live.spec.ts' if a.live else 'e2e/contracts.spec.ts')
+    spec='e2e/showcase.spec.ts' if a.showcase else ('e2e/live.spec.ts' if a.live else 'e2e/contracts.spec.ts e2e/graphite.spec.ts e2e/product.spec.ts')
     command+=['energy-dashboard-e2e:local','sh','-c','npm ci && npm run e2e -- '+spec]
     subprocess.run(command,cwd=ROOT,check=True)
 

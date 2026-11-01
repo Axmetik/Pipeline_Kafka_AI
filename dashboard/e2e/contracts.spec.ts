@@ -87,7 +87,8 @@ test("naive labels, target alignment, warmup, filters, experimental and offline 
       );
     await route.fulfill({ json: value });
   });
-  await page.goto("/");
+  await page.goto("/#analytics");
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   await expect(page.getByTestId("connection-status")).toContainText(
     "API на зв’язку",
   );
@@ -293,7 +294,8 @@ test("insights follow real API contracts, targets and scoped window counts", asy
       ]);
     await route.fulfill({ json: value });
   });
-  await page.goto("/");
+  await page.goto("/#analytics");
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   const insights = page.getByTestId("energy-insights");
   await expect(insights).toContainText("33,3% вище");
   await expect(insights).toContainText("Isolation Forest");
@@ -330,10 +332,12 @@ test("insights follow real API contracts, targets and scoped window counts", asy
   await expect(page.getByTestId("detector-isolation_forest")).toContainText(
     "Перевищень у вибраному вікні: 0",
   );
+  await page.getByRole("link", { name: "Події", exact: true }).click();
   await expect(page.locator("#events")).toContainText("2016-01-11 10:00:00");
   await expect(page.locator("#events")).toContainText(
     "за весь вибраний запуск",
   );
+  await page.getByRole("link", { name: "Аналітика", exact: true }).click();
   await page.getByLabel("Видиме вікно").selectOption("72");
   await expect
     .poll(() =>

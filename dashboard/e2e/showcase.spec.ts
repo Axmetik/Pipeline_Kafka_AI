@@ -38,7 +38,8 @@ test("one command twice: live automatic selection, preserved models and restart"
   const hashes = paths.map(digest);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/#analytics");
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   let navigations = 0;
   page.on("framenavigated", (frame) => {
     if (frame === page.mainFrame()) navigations++;

@@ -5,8 +5,8 @@ export default defineConfig({
   server: {
     host: "127.0.0.1",
     proxy: {
-      "/api": "http://127.0.0.1:8000",
-      "/health": "http://127.0.0.1:8000",
+      "/api": process.env.DASHBOARD_API_TARGET || "http://127.0.0.1:8000",
+      "/health": process.env.DASHBOARD_API_TARGET || "http://127.0.0.1:8000",
     },
   },
   test: {
