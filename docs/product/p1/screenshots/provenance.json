@@ -1,0 +1,91 @@
+{
+  "captured_at": "2026-11-01T20:59:31.487Z",
+  "run": "showcase-20261101-112252-c10e040c0b71",
+  "source": {
+    "building_id": "appliances-house-1",
+    "source_id": "uci-appliances",
+    "source_type": "dataset",
+    "energy_scope": "appliances",
+    "interval_seconds": 600,
+    "timestamp_reference": "dataset_label",
+    "timezone": null,
+    "timestamp_has_offset": false
+  },
+  "timezone_under_test": "Pacific/Honolulu",
+  "measurements_in_window": 144,
+  "primary_forecasts_in_window": 144,
+  "latest_measurement": {
+    "run_id": "showcase-20261101-112252-c10e040c0b71",
+    "building_id": "appliances-house-1",
+    "source_id": "uci-appliances",
+    "time_basis": "dataset_naive",
+    "timezone": null,
+    "timestamp_reference": "dataset_label",
+    "measurement_id": "63f055f47b7f0fa0952f911e6701604b822990fefa83ae531e7929c322be8b56",
+    "event_id": "appliances-house-1:uci-appliances:2016-01-13T18:50:00",
+    "measurement_timestamp": "2016-01-13T18:50:00",
+    "interval_seconds": 600,
+    "energy_wh": 180,
+    "energy_unit": "Wh",
+    "temperature_c": 19.29,
+    "relative_humidity_pct": 40.8266666666667,
+    "compatible": true,
+    "feature_status": "ready",
+    "gap_detected": false,
+    "received_at": "2026-11-01T11:23:52.636278Z"
+  },
+  "pipeline_before": {
+    "worker_status": "unknown",
+    "status_reason": "No heartbeat is recorded; checkpoints do not prove liveness",
+    "last_processed_at": "2026-11-01T11:23:52.693890Z",
+    "unique_measurements": 300,
+    "forecasts": 600,
+    "anomaly_scores": 900,
+    "duplicate_deliveries": 0,
+    "rejected_messages": 0,
+    "checkpoint_count": 1,
+    "checkpoints_truncated": false,
+    "checkpoints": [
+      {
+        "run_id": "showcase-20261101-112252-c10e040c0b71",
+        "topic": "showcase-20261101-112252-c10e040c0b71",
+        "partition": 0,
+        "next_offset": 300,
+        "last_processed_at": "2026-11-01T11:23:52.693890Z"
+      }
+    ],
+    "recent_errors": [],
+    "scope_run_id": "showcase-20261101-112252-c10e040c0b71"
+  },
+  "pipeline_after": {
+    "worker_status": "unknown",
+    "status_reason": "No heartbeat is recorded; checkpoints do not prove liveness",
+    "last_processed_at": "2026-11-01T11:23:52.693890Z",
+    "unique_measurements": 300,
+    "forecasts": 600,
+    "anomaly_scores": 900,
+    "duplicate_deliveries": 0,
+    "rejected_messages": 0,
+    "checkpoint_count": 1,
+    "checkpoints_truncated": false,
+    "checkpoints": [
+      {
+        "run_id": "showcase-20261101-112252-c10e040c0b71",
+        "topic": "showcase-20261101-112252-c10e040c0b71",
+        "partition": 0,
+        "next_offset": 300,
+        "last_processed_at": "2026-11-01T11:23:52.693890Z"
+      }
+    ],
+    "recent_errors": [],
+    "scope_run_id": "showcase-20261101-112252-c10e040c0b71"
+  },
+  "captured": [
+    "overview",
+    "buildings",
+    "analytics",
+    "analytics-advanced",
+    "events"
+  ],
+  "method": "Read-only existing API and real rendered React UI; no replay, training or service restart"
+}

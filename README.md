@@ -580,3 +580,9 @@ python3 -m integration.email_demo synthetic
 підготовленими trusted Docker artifacts: `python3 -m integration.email_demo replay`.
 Моделі ці команди не навчають. Використовується окремий Compose project;
 стандартний Showcase не активує Email. [Налаштування, гарантії, retry/cooldown і результати](docs/stage7c/email-notifications.md).
+
+### Product Dashboard P1
+
+Чотири розділи: **Огляд / Будівлі / Аналітика / Події**. Фільтри запуску й джерела спільні; technical scores/models/pipeline diagnostics містяться в розширеній секції Аналітики. Події experimental і read-only; Email delivery має окрему часову семантику.
+
+[Оцінка P0](docs/product/p0-assessment.md) · [Звіт, screenshot evidence і frontend preview P1](docs/product/p1/report.md). P1 не змінює inference, API або моделі.
