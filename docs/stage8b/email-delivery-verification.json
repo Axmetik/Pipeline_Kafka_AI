@@ -1,0 +1,35 @@
+{
+  "run_id": "email-delivery-test-d2cca7d8d321",
+  "mode": "both",
+  "individual_episodes": 1,
+  "combined_episodes": 0,
+  "notifications": [
+    {
+      "notification_id": "bf80122b7eada3118c760df6a8ce53d10e4e01c284bb4c8847846ec54a98ac3f",
+      "status": "sent",
+      "attempt_count": 1,
+      "suppression_reason": null
+    }
+  ],
+  "mailpit_messages": [
+    {
+      "id": "6uMyeFmiJxyf8aTWx9GHyL",
+      "html": true,
+      "plain_text": true
+    }
+  ],
+  "models_or_thresholds_modified": false,
+  "project": "energy-email-defense",
+  "url": "http://127.0.0.1:8026",
+  "scenario": "synthetic_delivery_not_detection_quality",
+  "duplicate_event_and_notifier_restart_checked": true,
+  "real_smtp": false,
+  "mime_content_type": "multipart/alternative",
+  "mime_parts": [
+    "multipart/alternative",
+    "text/plain",
+    "text/html"
+  ],
+  "mime_sha256": "044b353d570faedfaf54dce70fd073531e469905c18cc2c6242cde43f3b0f7a4",
+  "observed_message_total": 1
+}

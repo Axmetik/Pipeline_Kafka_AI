@@ -1,0 +1,42 @@
+{
+  "source_commit": "51e4b94635ec775a6ab2111b894b8cc8034fd45b",
+  "run_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518",
+  "checks": [
+    {
+      "name": "Read-only API PostgreSQL integration",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518/job/122399249155"
+    },
+    {
+      "name": "Full Docker Kafka to live browser E2E",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518/job/122399248992"
+    },
+    {
+      "name": "Unit tests (no Kafka)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518/job/122399248950"
+    },
+    {
+      "name": "Kafka smoke tests",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518/job/122399248917"
+    },
+    {
+      "name": "PostgreSQL and MVP recovery integration",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518/job/122399248876"
+    },
+    {
+      "name": "Dashboard unit, TypeScript, build and browser contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518/job/122399248375"
+    }
+  ]
+}

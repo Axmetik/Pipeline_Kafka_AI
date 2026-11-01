@@ -1,0 +1,142 @@
+{
+  "screenshots": [
+    {
+      "path": "screenshots/live/combined.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "fc779fea61535cd235775af74ee2923fafb6ef13fbf64193eba4e5fdc440cca4"
+    },
+    {
+      "path": "screenshots/live/desktop-full.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "ce876414e8f247fd15fceb77dd3276d7e2c564cb3c066d381c74449385fa77de"
+    },
+    {
+      "path": "screenshots/live/detectors.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "1841004b18ca28adf227e2b85df0a23ce56e3f9fbbfe2cc767be54d7aa4ad36f"
+    },
+    {
+      "path": "screenshots/live/email-standard-project.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "b6c7afb3a75cae79d7307ff097c62cf6340ada017fa03d4591334a29124965ee"
+    },
+    {
+      "path": "screenshots/live/episodes.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "c500aeee618faec449c69b76a7f20f96bf08b0ee511302e270bbfbda0fd2912e"
+    },
+    {
+      "path": "screenshots/live/forecast.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "c8f5bc0e428ac12591ac5ed0ac9255f78bc0803a15ed8de34914d963b2ddb35c"
+    },
+    {
+      "path": "screenshots/live/insights.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "8ad843329bd722b073db7980eaf60865a67965515831e50124aada0819ef8127"
+    },
+    {
+      "path": "screenshots/live/kpi.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "59a82367d82d415a3f7ce9074f3894f01d7e3f8494bdcf4c40ad1e562d913251"
+    },
+    {
+      "path": "screenshots/live/models.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "b2a1e78575faaf6c7db2c9c99a7ee41c1fbe47cbe955199ca76319fc79c67567"
+    },
+    {
+      "path": "screenshots/live/overview.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "9cc6face673c3f9b2a272f45d8b4d8f262f512e6e704dfe32ad338309944a4a0"
+    },
+    {
+      "path": "screenshots/live/pipeline.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "988f42f25ea6b889b4c7a58345d59fdf14884b0fe1ea8a9f5fbfc90b78aa25ba"
+    },
+    {
+      "path": "screenshots/live/replay-in-progress.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "c218a01f34b7823cea3a70c3418b310b741a0b4c947a2c284eb42fb791c3680a"
+    },
+    {
+      "path": "screenshots/live/timestamps.png",
+      "category": "real_pipeline",
+      "run_id": "showcase-20261101-112252-c10e040c0b71",
+      "project": "energy-dashboard-main",
+      "model_context": "image-artifact-verification.json",
+      "sha256": "574b6049f36f84a6f8684c4be69d385a311e7ea88cde09ee2c6bc457a2343dbd"
+    },
+    {
+      "path": "screenshots/synthetic-email/mailpit-html-details.png",
+      "category": "synthetic_delivery_test",
+      "run_id": "email-delivery-test-d2cca7d8d321",
+      "project": "energy-email-defense",
+      "model_context": "email-delivery-test-fixture; not a trained detector",
+      "sha256": "a76a07ab9809f207fa235d8f9e636a82d9d0a20edfa6ccdbba9bbdf626062347"
+    },
+    {
+      "path": "screenshots/synthetic-email/mailpit-html.png",
+      "category": "synthetic_delivery_test",
+      "run_id": "email-delivery-test-d2cca7d8d321",
+      "project": "energy-email-defense",
+      "model_context": "email-delivery-test-fixture; not a trained detector",
+      "sha256": "5654e2d657bb3187444061384716803e9bbbd7e193793ffa883672da59bb5972"
+    },
+    {
+      "path": "screenshots/synthetic-email/mailpit-inbox.png",
+      "category": "synthetic_delivery_test",
+      "run_id": "email-delivery-test-d2cca7d8d321",
+      "project": "energy-email-defense",
+      "model_context": "email-delivery-test-fixture; not a trained detector",
+      "sha256": "dd71945233fa2808b9ec6820d7c56917b021d5331d5571a49d33356fe989b665"
+    },
+    {
+      "path": "screenshots/synthetic-email/mailpit-text.png",
+      "category": "synthetic_delivery_test",
+      "run_id": "email-delivery-test-d2cca7d8d321",
+      "project": "energy-email-defense",
+      "model_context": "email-delivery-test-fixture; not a trained detector",
+      "sha256": "c020eabec0a1ed65ad028a289676991fec71870a1f350ac4cc9c1b20381cb7c9"
+    }
+  ],
+  "offline_benchmark_plots_added": false,
+  "frontend_fixture_screenshots_used": false
+}

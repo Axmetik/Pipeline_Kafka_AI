@@ -1,0 +1,170 @@
+{
+  "checked_at": "2026-11-01T11:29:40.983827+00:00",
+  "protected_files_sha256": {
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/metrics.json": "11a9b0dfbc35b03b9e811720daa43b502cd7005bffd5718990740af8fe8b8f51",
+    "artifacts/mvp/docker/hgb/test_predictions.parquet": "a4d70e991178f7621fc2f8ced0941a283ad65c548637f3fc7e05b06a2dbcbff6",
+    "artifacts/mvp/docker/hgb/metadata.json": "a5270bf15a76e3edb1e401e08cfb65c4ba0f5247b9a8e6d917a25aa55f3870c0"
+  },
+  "all_artifacts_and_dataset_unchanged": true,
+  "all_preexisting_volumes_preserved": true,
+  "prior_volume_names": [
+    "4b5498e7707db7b9bec0ef101350f10c9b821af1b4d0596c6cd53984f2e08e39",
+    "6af1cf1cfbce3d56a46080c4243b7cd7dca78ab57b5d832c6d542a1634ddd1bc",
+    "9c1b0688da99cf55c7c21e8ceafc5ed4a41814485bf3ff7245ceb5a3222563ce",
+    "47f1ae52615dfc950c4cb0c9cbc3860c9efe8f36c11ca08d591fec108183d2f7",
+    "3954ea756641d6d1766c780514d0935ea2a4119940b8c633057750cec732dd69",
+    "71879febd952bf0776e99b6810e321eba4d06313c4c6db5a9e3d611d733632cb",
+    "42079113f9b12d96717e18b3cd0ad8e975799f61eb5388270b4e17b754662fe4",
+    "a261bb6991348bb3aecbcf11f7026005d596199e036a6d4ff43e0e879dc9aee9",
+    "d489c041ed1bc1a5a403dcc37eda4ba9e1fbcc6f63fed29bddb070b7bff86e01",
+    "e3135cb756f3c440cfba2093f663f848741e127d71538e249244b17658890250",
+    "energy-dashboard-main_kafkadata",
+    "energy-dashboard-main_pgdata",
+    "energy-dashboard_kafkadata",
+    "energy-dashboard_pgdata",
+    "energy-email-demo_kafkadata",
+    "energy-email-demo_mailpitdata",
+    "energy-email-demo_pgdata",
+    "energy-mvp_kafkadata",
+    "energy-mvp_pgdata",
+    "energy-stage7b-tests-20261026_kafkadata",
+    "energy-stage7b-tests-20261026_pgdata",
+    "energy-stage7c-tests-20261027_pgdata",
+    "f3a5dfe2843f5fb83e4650f6966d0980f37ffa32b6ee3339751eaff2445e96b0",
+    "f7184d12bcc1261137749b2cefa7fa97d3f039576aa34d6cc9f28f77ae3f9b18",
+    "fcc7808e652823369e088c5578ab0a70a470df4ed497ac8f41223481814ff296",
+    "fd50df8d7e2f6ae10d4ec6124236063086c73f599cf1e05a8b621be89b4fe1e2"
+  ],
+  "additional_volumes": [
+    "energy-email-defense_mailpitdata",
+    "energy-email-defense_pgdata"
+  ],
+  "approved_services": {
+    "energy-dashboard-main-worker-1": {
+      "state": "running",
+      "image": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+      "health": null,
+      "ports": {},
+      "volumes": []
+    },
+    "energy-dashboard-main-bootstrap-1": {
+      "state": "exited",
+      "image": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+      "health": null,
+      "ports": {},
+      "volumes": []
+    },
+    "energy-dashboard-main-dashboard-1": {
+      "state": "running",
+      "image": "sha256:d38a48d60fdb74dd0cbb0f830404fa09c4024a4738aae3fd4ce80ea14a42f65f",
+      "health": "healthy",
+      "ports": {},
+      "volumes": []
+    },
+    "energy-dashboard-main-api-1": {
+      "state": "running",
+      "image": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+      "health": "healthy",
+      "ports": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8088"
+          }
+        ]
+      },
+      "volumes": []
+    },
+    "energy-dashboard-main-migrate-1": {
+      "state": "exited",
+      "image": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+      "health": null,
+      "ports": {},
+      "volumes": []
+    },
+    "energy-dashboard-main-postgres-1": {
+      "state": "running",
+      "image": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "health": "healthy",
+      "ports": {
+        "5432/tcp": null
+      },
+      "volumes": [
+        {
+          "name": "energy-dashboard-main_pgdata",
+          "source": "/var/lib/docker/volumes/energy-dashboard-main_pgdata/_data",
+          "destination": "/var/lib/postgresql"
+        }
+      ]
+    },
+    "energy-dashboard-main-kafka-1": {
+      "state": "running",
+      "image": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "health": "healthy",
+      "ports": {
+        "9092/tcp": null
+      },
+      "volumes": [
+        {
+          "name": "9c1b0688da99cf55c7c21e8ceafc5ed4a41814485bf3ff7245ceb5a3222563ce",
+          "source": "/var/lib/docker/volumes/9c1b0688da99cf55c7c21e8ceafc5ed4a41814485bf3ff7245ceb5a3222563ce/_data",
+          "destination": "/etc/kafka/secrets"
+        },
+        {
+          "name": "f3a5dfe2843f5fb83e4650f6966d0980f37ffa32b6ee3339751eaff2445e96b0",
+          "source": "/var/lib/docker/volumes/f3a5dfe2843f5fb83e4650f6966d0980f37ffa32b6ee3339751eaff2445e96b0/_data",
+          "destination": "/mnt/shared/config"
+        },
+        {
+          "name": "energy-dashboard-main_kafkadata",
+          "source": "/var/lib/docker/volumes/energy-dashboard-main_kafkadata/_data",
+          "destination": "/var/lib/kafka/data"
+        }
+      ]
+    },
+    "energy-email-defense-postgres-1": {
+      "state": "running",
+      "image": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "health": "healthy",
+      "ports": {
+        "5432/tcp": null
+      },
+      "volumes": [
+        {
+          "name": "energy-email-defense_pgdata",
+          "source": "/var/lib/docker/volumes/energy-email-defense_pgdata/_data",
+          "destination": "/var/lib/postgresql"
+        }
+      ]
+    },
+    "energy-email-defense-mailpit-1": {
+      "state": "running",
+      "image": "sha256:6abc8e633df15eaf785cfcf38bae48e66f64beecdc03121e249d0f9ec15f0707",
+      "health": "healthy",
+      "ports": {
+        "8025/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8026"
+          }
+        ]
+      },
+      "volumes": [
+        {
+          "name": "energy-email-defense_mailpitdata",
+          "source": "/var/lib/docker/volumes/energy-email-defense_mailpitdata/_data",
+          "destination": "/data"
+        }
+      ]
+    }
+  },
+  "postgres_kafka_original_volumes_reused": true,
+  "published_ports_localhost_only": true,
+  "worker_cannot_connect_api_8000": true,
+  "security_check_command": "MVP_COMPOSE_PROJECT=energy-dashboard-main python3 -m integration.security_check",
+  "email_backend_image": "sha256:26a4783befe05d5f2d9a6ca33f2902b9ef6aac4a902722188dc6df46a3aebe8e"
+}

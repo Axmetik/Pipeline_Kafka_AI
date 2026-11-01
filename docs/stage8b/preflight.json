@@ -1,0 +1,768 @@
+{
+  "checked_at": "2026-11-01T11:18:43.134460+00:00",
+  "base_commit": "51e4b94635ec775a6ab2111b894b8cc8034fd45b",
+  "branch": "feature/stage8b-final-demonstration",
+  "worktree_initially_clean": true,
+  "docker": {
+    "Client": {
+      "Version": "29.4.2",
+      "ApiVersion": "1.54",
+      "DefaultAPIVersion": "1.54",
+      "GitCommit": "055a478",
+      "GoVersion": "go1.26.2",
+      "Os": "darwin",
+      "Arch": "arm64",
+      "BuildTime": "Fri May  1 01:23:38 2026",
+      "Context": "desktop-linux"
+    },
+    "Server": {
+      "Platform": {
+        "Name": "Docker Desktop 4.72.0 (225998)"
+      },
+      "Version": "29.4.2",
+      "ApiVersion": "1.54",
+      "MinAPIVersion": "1.40",
+      "Os": "linux",
+      "Arch": "arm64",
+      "Components": [
+        {
+          "Name": "Engine",
+          "Version": "29.4.2",
+          "Details": {
+            "ApiVersion": "1.54",
+            "Arch": "arm64",
+            "BuildTime": "Fri May  1 01:25:57 2026",
+            "Experimental": "false",
+            "GitCommit": "d329809",
+            "GoVersion": "go1.26.2",
+            "KernelVersion": "6.12.76-linuxkit",
+            "MinAPIVersion": "1.40",
+            "Module": "github.com/moby/moby/v2",
+            "ModuleVersion": "v2.0.0+unknown",
+            "Os": "linux"
+          }
+        },
+        {
+          "Name": "containerd",
+          "Version": "v2.2.3",
+          "Details": {
+            "GitCommit": "77c84241c7cbdd9b4eca2591793e3d4f4317c590"
+          }
+        },
+        {
+          "Name": "runc",
+          "Version": "1.3.5",
+          "Details": {
+            "GitCommit": "v1.3.5-0-g488fc13e"
+          }
+        },
+        {
+          "Name": "docker-init",
+          "Version": "0.19.0",
+          "Details": {
+            "GitCommit": "de40ad0"
+          }
+        }
+      ],
+      "GitCommit": "d329809",
+      "GoVersion": "go1.26.2",
+      "KernelVersion": "6.12.76-linuxkit",
+      "BuildTime": "2026-05-01T01:25:57.000000000+00:00"
+    }
+  },
+  "compose_version": "5.1.3",
+  "compose_projects": [
+    {
+      "Name": "docker",
+      "Status": "exited(2)",
+      "ConfigFiles": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker/docker-compose.yml"
+    },
+    {
+      "Name": "docker-test",
+      "Status": "exited(1)",
+      "ConfigFiles": "/Users/oslavych/docker-test/docker-compose.yml"
+    },
+    {
+      "Name": "energy-dashboard",
+      "Status": "exited(7)",
+      "ConfigFiles": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker/docker-compose.dashboard.yml,/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker/docker-compose.dashboard.yml"
+    },
+    {
+      "Name": "energy-dashboard-main",
+      "Status": "exited(7)",
+      "ConfigFiles": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker/docker-compose.dashboard.yml"
+    },
+    {
+      "Name": "energy-email-demo",
+      "Status": "exited(3)",
+      "ConfigFiles": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker/docker-compose.dashboard.yml,/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker/docker-compose.email.yml"
+    },
+    {
+      "Name": "energy-mvp",
+      "Status": "exited(2)",
+      "ConfigFiles": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker/docker-compose.mvp.yml"
+    },
+    {
+      "Name": "energy-stage7b-tests-20261026",
+      "Status": "exited(2)",
+      "ConfigFiles": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker/docker-compose.mvp.yml"
+    },
+    {
+      "Name": "energy-stage7c-tests-20261027",
+      "Status": "exited(1)",
+      "ConfigFiles": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker/docker-compose.mvp.yml"
+    }
+  ],
+  "containers": [
+    {
+      "name": "energy-dashboard-main-worker-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:003d20b6eaab79ce586e3e5a59ca478b24c0c75faff3c97178c9160306cfeb92",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/artifacts",
+          "Destination": "/app/artifacts",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/data",
+          "Destination": "/app/data",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-main-dashboard-1",
+      "image_reference": "energy-dashboard-main-dashboard",
+      "image_id": "sha256:cab2f4662b6e6653b41c028468ffe7c7d3d58ead4332d8e517195777cfa8231b",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": []
+    },
+    {
+      "name": "energy-dashboard-main-bootstrap-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:003d20b6eaab79ce586e3e5a59ca478b24c0c75faff3c97178c9160306cfeb92",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/artifacts",
+          "Destination": "/app/artifacts",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/data",
+          "Destination": "/app/data",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-main-api-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:003d20b6eaab79ce586e3e5a59ca478b24c0c75faff3c97178c9160306cfeb92",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": []
+    },
+    {
+      "name": "energy-dashboard-main-migrate-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:003d20b6eaab79ce586e3e5a59ca478b24c0c75faff3c97178c9160306cfeb92",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/artifacts",
+          "Destination": "/app/artifacts",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/data",
+          "Destination": "/app/data",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "name": "energy-email-demo-mailpit-1",
+      "image_reference": "axllent/mailpit:v1.27.8@sha256:6abc8e633df15eaf785cfcf38bae48e66f64beecdc03121e249d0f9ec15f0707",
+      "image_id": "sha256:6abc8e633df15eaf785cfcf38bae48e66f64beecdc03121e249d0f9ec15f0707",
+      "state": "exited",
+      "project": "energy-email-demo",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-email-demo_mailpitdata",
+          "Source": "/var/lib/docker/volumes/energy-email-demo_mailpitdata/_data",
+          "Destination": "/data",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-email-demo-kafka-1",
+      "image_reference": "apache/kafka:3.9.0",
+      "image_id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "state": "exited",
+      "project": "energy-email-demo",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "e3135cb756f3c440cfba2093f663f848741e127d71538e249244b17658890250",
+          "Source": "/var/lib/docker/volumes/e3135cb756f3c440cfba2093f663f848741e127d71538e249244b17658890250/_data",
+          "Destination": "/etc/kafka/secrets",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "3954ea756641d6d1766c780514d0935ea2a4119940b8c633057750cec732dd69",
+          "Source": "/var/lib/docker/volumes/3954ea756641d6d1766c780514d0935ea2a4119940b8c633057750cec732dd69/_data",
+          "Destination": "/mnt/shared/config",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "energy-email-demo_kafkadata",
+          "Source": "/var/lib/docker/volumes/energy-email-demo_kafkadata/_data",
+          "Destination": "/var/lib/kafka/data",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-email-demo-postgres-1",
+      "image_reference": "postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "image_id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "state": "exited",
+      "project": "energy-email-demo",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-email-demo_pgdata",
+          "Source": "/var/lib/docker/volumes/energy-email-demo_pgdata/_data",
+          "Destination": "/var/lib/postgresql",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-stage7c-tests-20261027-postgres-1",
+      "image_reference": "postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "image_id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "state": "exited",
+      "project": "energy-stage7c-tests-20261027",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-stage7c-tests-20261027_pgdata",
+          "Source": "/var/lib/docker/volumes/energy-stage7c-tests-20261027_pgdata/_data",
+          "Destination": "/var/lib/postgresql",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-stage7b-tests-20261026-postgres-1",
+      "image_reference": "postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "image_id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "state": "exited",
+      "project": "energy-stage7b-tests-20261026",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-stage7b-tests-20261026_pgdata",
+          "Source": "/var/lib/docker/volumes/energy-stage7b-tests-20261026_pgdata/_data",
+          "Destination": "/var/lib/postgresql",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-stage7b-tests-20261026-kafka-1",
+      "image_reference": "apache/kafka:3.9.0",
+      "image_id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "state": "exited",
+      "project": "energy-stage7b-tests-20261026",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "42079113f9b12d96717e18b3cd0ad8e975799f61eb5388270b4e17b754662fe4",
+          "Source": "/var/lib/docker/volumes/42079113f9b12d96717e18b3cd0ad8e975799f61eb5388270b4e17b754662fe4/_data",
+          "Destination": "/etc/kafka/secrets",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "6af1cf1cfbce3d56a46080c4243b7cd7dca78ab57b5d832c6d542a1634ddd1bc",
+          "Source": "/var/lib/docker/volumes/6af1cf1cfbce3d56a46080c4243b7cd7dca78ab57b5d832c6d542a1634ddd1bc/_data",
+          "Destination": "/mnt/shared/config",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "energy-stage7b-tests-20261026_kafkadata",
+          "Source": "/var/lib/docker/volumes/energy-stage7b-tests-20261026_kafkadata/_data",
+          "Destination": "/var/lib/kafka/data",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-main-postgres-1",
+      "image_reference": "postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "image_id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-dashboard-main_pgdata",
+          "Source": "/var/lib/docker/volumes/energy-dashboard-main_pgdata/_data",
+          "Destination": "/var/lib/postgresql",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-main-kafka-1",
+      "image_reference": "apache/kafka:3.9.0",
+      "image_id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "state": "exited",
+      "project": "energy-dashboard-main",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "9c1b0688da99cf55c7c21e8ceafc5ed4a41814485bf3ff7245ceb5a3222563ce",
+          "Source": "/var/lib/docker/volumes/9c1b0688da99cf55c7c21e8ceafc5ed4a41814485bf3ff7245ceb5a3222563ce/_data",
+          "Destination": "/etc/kafka/secrets",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "f3a5dfe2843f5fb83e4650f6966d0980f37ffa32b6ee3339751eaff2445e96b0",
+          "Source": "/var/lib/docker/volumes/f3a5dfe2843f5fb83e4650f6966d0980f37ffa32b6ee3339751eaff2445e96b0/_data",
+          "Destination": "/mnt/shared/config",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "energy-dashboard-main_kafkadata",
+          "Source": "/var/lib/docker/volumes/energy-dashboard-main_kafkadata/_data",
+          "Destination": "/var/lib/kafka/data",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-dashboard-1",
+      "image_reference": "energy-dashboard-dashboard",
+      "image_id": "sha256:1fd5a0a3588a92199348ac2ec09370253da8943e3c04e0d2d6660541329a2bbc",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": []
+    },
+    {
+      "name": "energy-dashboard-worker-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:d4e7a3c610c638aa4337a7f9a22388b71b97da8cf61d2a08e5738c6a7c819d1f",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/artifacts",
+          "Destination": "/app/artifacts",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/data",
+          "Destination": "/app/data",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-bootstrap-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:d4e7a3c610c638aa4337a7f9a22388b71b97da8cf61d2a08e5738c6a7c819d1f",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/artifacts",
+          "Destination": "/app/artifacts",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/data",
+          "Destination": "/app/data",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-api-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:d4e7a3c610c638aa4337a7f9a22388b71b97da8cf61d2a08e5738c6a7c819d1f",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": []
+    },
+    {
+      "name": "energy-dashboard-migrate-1",
+      "image_reference": "energy-monitoring-backend:local",
+      "image_id": "sha256:d4e7a3c610c638aa4337a7f9a22388b71b97da8cf61d2a08e5738c6a7c819d1f",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/artifacts",
+          "Destination": "/app/artifacts",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/oslavych/Documents/ChatGPT/Energy Intelligence — Master's Thesis/pipeline-demo-showcase/data",
+          "Destination": "/app/data",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-postgres-1",
+      "image_reference": "postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "image_id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-dashboard_pgdata",
+          "Source": "/var/lib/docker/volumes/energy-dashboard_pgdata/_data",
+          "Destination": "/var/lib/postgresql",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-dashboard-kafka-1",
+      "image_reference": "apache/kafka:3.9.0",
+      "image_id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "state": "exited",
+      "project": "energy-dashboard",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-dashboard_kafkadata",
+          "Source": "/var/lib/docker/volumes/energy-dashboard_kafkadata/_data",
+          "Destination": "/var/lib/kafka/data",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "4b5498e7707db7b9bec0ef101350f10c9b821af1b4d0596c6cd53984f2e08e39",
+          "Source": "/var/lib/docker/volumes/4b5498e7707db7b9bec0ef101350f10c9b821af1b4d0596c6cd53984f2e08e39/_data",
+          "Destination": "/etc/kafka/secrets",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "fd50df8d7e2f6ae10d4ec6124236063086c73f599cf1e05a8b621be89b4fe1e2",
+          "Source": "/var/lib/docker/volumes/fd50df8d7e2f6ae10d4ec6124236063086c73f599cf1e05a8b621be89b4fe1e2/_data",
+          "Destination": "/mnt/shared/config",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-mvp-kafka-1",
+      "image_reference": "apache/kafka:3.9.0",
+      "image_id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "state": "exited",
+      "project": "energy-mvp",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "71879febd952bf0776e99b6810e321eba4d06313c4c6db5a9e3d611d733632cb",
+          "Source": "/var/lib/docker/volumes/71879febd952bf0776e99b6810e321eba4d06313c4c6db5a9e3d611d733632cb/_data",
+          "Destination": "/etc/kafka/secrets",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "a261bb6991348bb3aecbcf11f7026005d596199e036a6d4ff43e0e879dc9aee9",
+          "Source": "/var/lib/docker/volumes/a261bb6991348bb3aecbcf11f7026005d596199e036a6d4ff43e0e879dc9aee9/_data",
+          "Destination": "/mnt/shared/config",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "energy-mvp_kafkadata",
+          "Source": "/var/lib/docker/volumes/energy-mvp_kafkadata/_data",
+          "Destination": "/var/lib/kafka/data",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "energy-mvp-postgres-1",
+      "image_reference": "postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "image_id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873",
+      "state": "exited",
+      "project": "energy-mvp",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "energy-mvp_pgdata",
+          "Source": "/var/lib/docker/volumes/energy-mvp_pgdata/_data",
+          "Destination": "/var/lib/postgresql",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "kafka-ui",
+      "image_reference": "provectuslabs/kafka-ui:latest",
+      "image_id": "sha256:8f2ff02d64b0a7a2b71b6b3b3148b85f66d00ec20ad40c30bdcd415d46d31818",
+      "state": "exited",
+      "project": "docker",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker",
+      "ports": {},
+      "mounts": []
+    },
+    {
+      "name": "kafka",
+      "image_reference": "apache/kafka:3.9.0",
+      "image_id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+      "state": "exited",
+      "project": "docker",
+      "working_dir": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI/docker",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "d489c041ed1bc1a5a403dcc37eda4ba9e1fbcc6f63fed29bddb070b7bff86e01",
+          "Source": "/var/lib/docker/volumes/d489c041ed1bc1a5a403dcc37eda4ba9e1fbcc6f63fed29bddb070b7bff86e01/_data",
+          "Destination": "/etc/kafka/secrets",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "fcc7808e652823369e088c5578ab0a70a470df4ed497ac8f41223481814ff296",
+          "Source": "/var/lib/docker/volumes/fcc7808e652823369e088c5578ab0a70a470df4ed497ac8f41223481814ff296/_data",
+          "Destination": "/mnt/shared/config",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "f7184d12bcc1261137749b2cefa7fa97d3f039576aa34d6cc9f28f77ae3f9b18",
+          "Source": "/var/lib/docker/volumes/f7184d12bcc1261137749b2cefa7fa97d3f039576aa34d6cc9f28f77ae3f9b18/_data",
+          "Destination": "/var/lib/kafka/data",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "name": "docker-test-test-1",
+      "image_reference": "alpine",
+      "image_id": "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+      "state": "exited",
+      "project": "docker-test",
+      "working_dir": "/Users/oslavych/docker-test",
+      "ports": {},
+      "mounts": []
+    }
+  ],
+  "images": [
+    {
+      "tag": "energy-dashboard-main-dashboard:latest",
+      "id": "sha256:cab2f4662b6e6653b41c028468ffe7c7d3d58ead4332d8e517195777cfa8231b"
+    },
+    {
+      "tag": "energy-monitoring-backend:local",
+      "id": "sha256:003d20b6eaab79ce586e3e5a59ca478b24c0c75faff3c97178c9160306cfeb92"
+    },
+    {
+      "tag": "energy-email-backend:local",
+      "id": "sha256:423616d5509f2ea04916a96b4d377baed9f5a5214b0d3abf337b6b33f6787dcb"
+    },
+    {
+      "tag": "energy-dashboard-e2e:local",
+      "id": "sha256:c70244c804e71837687da08a9a43815948f4ee145390f5b78dd31dd8895fab4a"
+    },
+    {
+      "tag": "energy-performance-browser:local",
+      "id": "sha256:337658fea254a361001bd2b6584e3a20e3c5149a052bde565e0003c93d74dbab"
+    },
+    {
+      "tag": "energy-dashboard-dashboard:latest",
+      "id": "sha256:1fd5a0a3588a92199348ac2ec09370253da8943e3c04e0d2d6660541329a2bbc"
+    },
+    {
+      "tag": "energy-performance-build-dashboard:latest",
+      "id": "sha256:0a192e2fadf1b63f912451241e2cc1f97ca9adec5ae5a35231845cff98fa245c"
+    },
+    {
+      "tag": "energy-performance-dashboard:local",
+      "id": "sha256:0a192e2fadf1b63f912451241e2cc1f97ca9adec5ae5a35231845cff98fa245c"
+    },
+    {
+      "tag": "postgres:18-alpine",
+      "id": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873"
+    },
+    {
+      "tag": "alpine:latest",
+      "id": "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11"
+    },
+    {
+      "tag": "hello-world:latest",
+      "id": "sha256:f9078146db2e05e794366b1bfe584a14ea6317f44027d10ef7dad65279026885"
+    },
+    {
+      "tag": "axllent/mailpit:v1.27.8",
+      "id": "sha256:6abc8e633df15eaf785cfcf38bae48e66f64beecdc03121e249d0f9ec15f0707"
+    },
+    {
+      "tag": "apache/kafka:3.9.0",
+      "id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f"
+    },
+    {
+      "tag": "provectuslabs/kafka-ui:latest",
+      "id": "sha256:8f2ff02d64b0a7a2b71b6b3b3148b85f66d00ec20ad40c30bdcd415d46d31818"
+    }
+  ],
+  "volumes": [
+    "4b5498e7707db7b9bec0ef101350f10c9b821af1b4d0596c6cd53984f2e08e39",
+    "6af1cf1cfbce3d56a46080c4243b7cd7dca78ab57b5d832c6d542a1634ddd1bc",
+    "9c1b0688da99cf55c7c21e8ceafc5ed4a41814485bf3ff7245ceb5a3222563ce",
+    "47f1ae52615dfc950c4cb0c9cbc3860c9efe8f36c11ca08d591fec108183d2f7",
+    "3954ea756641d6d1766c780514d0935ea2a4119940b8c633057750cec732dd69",
+    "71879febd952bf0776e99b6810e321eba4d06313c4c6db5a9e3d611d733632cb",
+    "42079113f9b12d96717e18b3cd0ad8e975799f61eb5388270b4e17b754662fe4",
+    "a261bb6991348bb3aecbcf11f7026005d596199e036a6d4ff43e0e879dc9aee9",
+    "d489c041ed1bc1a5a403dcc37eda4ba9e1fbcc6f63fed29bddb070b7bff86e01",
+    "e3135cb756f3c440cfba2093f663f848741e127d71538e249244b17658890250",
+    "energy-dashboard-main_kafkadata",
+    "energy-dashboard-main_pgdata",
+    "energy-dashboard_kafkadata",
+    "energy-dashboard_pgdata",
+    "energy-email-demo_kafkadata",
+    "energy-email-demo_mailpitdata",
+    "energy-email-demo_pgdata",
+    "energy-mvp_kafkadata",
+    "energy-mvp_pgdata",
+    "energy-stage7b-tests-20261026_kafkadata",
+    "energy-stage7b-tests-20261026_pgdata",
+    "energy-stage7c-tests-20261027_pgdata",
+    "f3a5dfe2843f5fb83e4650f6966d0980f37ffa32b6ee3339751eaff2445e96b0",
+    "f7184d12bcc1261137749b2cefa7fa97d3f039576aa34d6cc9f28f77ae3f9b18",
+    "fcc7808e652823369e088c5578ab0a70a470df4ed497ac8f41223481814ff296",
+    "fd50df8d7e2f6ae10d4ec6124236063086c73f599cf1e05a8b621be89b4fe1e2"
+  ],
+  "dataset_rows": 19735,
+  "protected_files_sha256": {
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/metrics.json": "11a9b0dfbc35b03b9e811720daa43b502cd7005bffd5718990740af8fe8b8f51",
+    "artifacts/mvp/docker/hgb/test_predictions.parquet": "a4d70e991178f7621fc2f8ced0941a283ad65c548637f3fc7e05b06a2dbcbff6",
+    "artifacts/mvp/docker/hgb/metadata.json": "a5270bf15a76e3edb1e401e08cfb65c4ba0f5247b9a8e6d917a25aa55f3870c0"
+  },
+  "trusted_libraries": {
+    "numpy": "2.4.4",
+    "scikit-learn": "1.8.0",
+    "torch": "2.11.0+cpu",
+    "joblib": "1.5.3"
+  },
+  "selected_project": "energy-dashboard-main",
+  "selected_web_port": 8088,
+  "email_project": "energy-email-defense",
+  "email_web_port": 8026,
+  "listening_tcp_ports_before": [
+    5000,
+    6188,
+    6189,
+    7000,
+    10533,
+    30000,
+    30001,
+    50055,
+    50216,
+    55831,
+    58682,
+    58729,
+    59412,
+    59415,
+    59416,
+    59417,
+    59418,
+    59419,
+    61274,
+    63342,
+    63343,
+    64642
+  ],
+  "demo_ports_before": {
+    "8088_listed": false,
+    "8026_listed": false
+  }
+}

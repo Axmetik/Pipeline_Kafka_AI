@@ -1,0 +1,414 @@
+{
+  "run_id": "showcase-20261101-112252-c10e040c0b71",
+  "revision": "0003_email",
+  "counts": {
+    "measurements": 300,
+    "forecasts": 600,
+    "scores": 900,
+    "combined_decisions": 300,
+    "episodes": 1,
+    "combined_episodes": 0,
+    "receipts": 300,
+    "checkpoints": 1,
+    "notifications": 0,
+    "errors": 0
+  },
+  "unique_event_ids": 300,
+  "kafka": {
+    "topic": "showcase-20261101-112252-c10e040c0b71",
+    "group_id": "showcase-20261101-112252-c10e040c0b71",
+    "begin_offset": 0,
+    "end_offset": 300,
+    "committed_offset": 300,
+    "journal_payloads_verified": 300
+  },
+  "forecast_states": [
+    {
+      "purpose": "primary_forecast",
+      "rows": 300,
+      "ready": 294,
+      "null_values": 6,
+      "states": {
+        "warmup": 6,
+        "ready": 294
+      }
+    },
+    {
+      "purpose": "residual_reference",
+      "rows": 300,
+      "ready": 157,
+      "null_values": 143,
+      "states": {
+        "warmup": 143,
+        "ready": 157
+      }
+    }
+  ],
+  "score_states": [
+    {
+      "detector": "autoencoder",
+      "rows": 300,
+      "ready": 294,
+      "null_values": 6,
+      "states": {
+        "warmup": 6,
+        "ready": 294
+      }
+    },
+    {
+      "detector": "isolation_forest",
+      "rows": 300,
+      "ready": 294,
+      "null_values": 6,
+      "states": {
+        "warmup": 6,
+        "ready": 294
+      }
+    },
+    {
+      "detector": "residual",
+      "rows": 300,
+      "ready": 156,
+      "null_values": 144,
+      "states": {
+        "warmup": 144,
+        "ready": 156
+      }
+    }
+  ],
+  "combined_states": {
+    "warmup": 144,
+    "ready": 156
+  },
+  "combined_flags": 0,
+  "original_flags_by_detector": {
+    "autoencoder": 1
+  },
+  "episodes": [
+    {
+      "detector": "autoencoder",
+      "status": "closed",
+      "flagged_points": 1,
+      "start": "2016-01-11T19:20:00",
+      "end": "2016-01-11T19:20:00"
+    }
+  ],
+  "time_range": [
+    "2016-01-11T17:00:00",
+    "2016-01-13T18:50:00"
+  ],
+  "model_registry": [
+    {
+      "model_id": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3:primary_forecast",
+      "artifact_sha256": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+      "role": "primary_forecast",
+      "model_version": "hgb-energy-v1-9bb48a66deb359e6",
+      "feature_version": "energy-features-v1",
+      "threshold_version": null,
+      "maturity": "existing",
+      "details": {
+        "thresholds": null,
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "allowed_sources": [
+          {
+            "timezone": null,
+            "source_id": "uci-appliances",
+            "building_id": "appliances-house-1",
+            "source_type": "dataset",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "timestamp_reference": "dataset_label",
+            "timestamp_has_offset": false
+          }
+        ],
+        "horizon_seconds": 600
+      }
+    },
+    {
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual_reference",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "role": "residual_reference",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "benchmark-energy-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "maturity": "experimental",
+      "details": {
+        "thresholds": {
+          "0.98": {
+            "residual": 219.0285953467243,
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837
+          },
+          "0.99": {
+            "residual": 296.24602578530755,
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208
+          },
+          "0.995": {
+            "residual": 399.1783091669025,
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268
+          }
+        },
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend",
+          "seasonal_energy_wh"
+        ],
+        "allowed_sources": [
+          {
+            "timezone": null,
+            "source_id": "uci-appliances",
+            "building_id": "appliances-house-1",
+            "source_type": "dataset",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "timestamp_reference": "dataset_label",
+            "timestamp_has_offset": false
+          }
+        ],
+        "horizon_seconds": 600
+      }
+    },
+    {
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "role": "isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "energy-anomaly-20-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "maturity": "experimental",
+      "details": {
+        "thresholds": {
+          "0.98": {
+            "residual": 219.0285953467243,
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837
+          },
+          "0.99": {
+            "residual": 296.24602578530755,
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208
+          },
+          "0.995": {
+            "residual": 399.1783091669025,
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268
+          }
+        },
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "allowed_sources": [
+          {
+            "timezone": null,
+            "source_id": "uci-appliances",
+            "building_id": "appliances-house-1",
+            "source_type": "dataset",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "timestamp_reference": "dataset_label",
+            "timestamp_has_offset": false
+          }
+        ],
+        "horizon_seconds": 600
+      }
+    },
+    {
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "role": "autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "energy-anomaly-20-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "maturity": "experimental",
+      "details": {
+        "thresholds": {
+          "0.98": {
+            "residual": 219.0285953467243,
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837
+          },
+          "0.99": {
+            "residual": 296.24602578530755,
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208
+          },
+          "0.995": {
+            "residual": 399.1783091669025,
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268
+          }
+        },
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "allowed_sources": [
+          {
+            "timezone": null,
+            "source_id": "uci-appliances",
+            "building_id": "appliances-house-1",
+            "source_type": "dataset",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "timestamp_reference": "dataset_label",
+            "timestamp_has_offset": false
+          }
+        ],
+        "horizon_seconds": 600
+      }
+    },
+    {
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "role": "residual",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "benchmark-energy-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "maturity": "experimental",
+      "details": {
+        "thresholds": {
+          "0.98": {
+            "residual": 219.0285953467243,
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837
+          },
+          "0.99": {
+            "residual": 296.24602578530755,
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208
+          },
+          "0.995": {
+            "residual": 399.1783091669025,
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268
+          }
+        },
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend",
+          "seasonal_energy_wh"
+        ],
+        "allowed_sources": [
+          {
+            "timezone": null,
+            "source_id": "uci-appliances",
+            "building_id": "appliances-house-1",
+            "source_type": "dataset",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "timestamp_reference": "dataset_label",
+            "timestamp_has_offset": false
+          }
+        ],
+        "horizon_seconds": 600
+      }
+    }
+  ],
+  "persisted_forecasts_sha256": "c101081291ed9ce5a9348fa427dd9674053aeba0883516a8142bc0458c2984bf",
+  "persisted_scores_sha256": "54f790c67d2cda97549ccc27539c21409775961e94d2d262a4c8eeb29ed63344",
+  "checks": {
+    "dataset_values_exact": true,
+    "forecast_target_alignment_600s": true,
+    "residual_uses_preceding_forecast": true,
+    "combined_unanimous_and_coverage": true,
+    "kafka_db_checkpoint_and_payloads": true,
+    "dataset_naive_semantics": true,
+    "no_duplicates_or_rejections": true
+  }
+}
