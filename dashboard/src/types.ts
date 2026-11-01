@@ -10,6 +10,8 @@ export interface Run {
   topic: string;
 }
 export interface Source {
+  energy_scope?: string;
+  timestamp_reference?: string;
   building_id: string;
   source_id: string;
   source_type: string;

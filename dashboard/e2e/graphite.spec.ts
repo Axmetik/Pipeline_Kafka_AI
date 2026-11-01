@@ -152,7 +152,8 @@ async function fixture(page: Page) {
             },
     });
   });
-  await page.goto("/");
+  await page.goto("/#analytics");
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   await expect(page.getByTestId("connection-status")).toContainText(
     "API на зв’язку",
   );
@@ -160,7 +161,7 @@ async function fixture(page: Page) {
     page.locator(".energy-plot .recharts-line-curve").first(),
   ).toBeVisible();
 }
-const shots = "../docs/dashboard-graphite-dark/screenshots/";
+const shots = "test-results/graphite/";
 test("graphite desktop, chart styling, sections and active navigation", async ({
   page,
 }) => {
@@ -179,7 +180,7 @@ test("graphite desktop, chart styling, sections and active navigation", async ({
   await expect(
     page.getByTestId("detector-residual").locator(".score-unit"),
   ).toHaveText("Wh");
-  await expect(page.locator(".kpi .unknown")).toContainText("Невідомий");
+  await expect(page.locator(".pipeline .unknown")).toContainText("Невідомий");
   await expect(
     page.locator('.energy-plot path[stroke="var(--forecast)"]'),
   ).toHaveAttribute("stroke-dasharray", /.+/);
@@ -191,8 +192,13 @@ test("graphite desktop, chart styling, sections and active navigation", async ({
   await page
     .locator(".detector-grid")
     .screenshot({ path: shots + "detectors.png" });
-  for (const id of ["energy-insights", "combined-panel", "email-notifications"])
+  for (const id of ["energy-insights", "combined-panel"])
     await page.getByTestId(id).screenshot({ path: shots + id + ".png" });
+  await page.getByRole("link", { name: "Події", exact: true }).click();
+  await page
+    .getByTestId("email-notifications")
+    .screenshot({ path: shots + "email-notifications.png" });
+  await page.getByRole("link", { name: "Аналітика", exact: true }).click();
   const plot = await page.locator(".energy-plot").boundingBox();
   await page.mouse.move(plot!.x + plot!.width / 2, plot!.y + plot!.height / 2);
   await expect(
@@ -201,11 +207,10 @@ test("graphite desktop, chart styling, sections and active navigation", async ({
   await expect(
     page.locator(".energy-plot .recharts-default-tooltip"),
   ).toHaveCSS("background-color", "rgb(27, 40, 54)");
-  await page.locator('nav a[href="#models"]').click();
-  await expect(page.locator('nav a[href="#models"]')).toHaveAttribute(
-    "aria-current",
-    "location",
-  );
+  await page.getByRole("link", { name: "Будівлі", exact: true }).click();
+  await expect(
+    page.getByRole("link", { name: "Будівлі", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
 });
 for (const width of [1920, 1280, 834, 390, 320])
   test(`responsive graphite ${width}px without page overflow`, async ({
@@ -272,7 +277,8 @@ test("dark empty and API unavailable states retain their meaning", async ({
         : { items: [], next_cursor: null, order: "descending" },
     }),
   );
-  await page.goto("/");
+  await page.goto("/#analytics");
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   await expect(page.getByTestId("empty-state")).toBeVisible();
   await page.screenshot({ path: shots + "empty.png", fullPage: true });
   await page.route("**/api/**", (route) =>
