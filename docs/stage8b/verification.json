@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "stage": "8B",
+  "date": "2026-11-01",
+  "decision": "GO",
+  "decision_scope": "Local historical-data demonstration only; not production fault monitoring",
+  "runtime_source_commit": "51e4b94635ec775a6ab2111b894b8cc8034fd45b",
+  "branch": "feature/stage8b-final-demonstration",
+  "project": "energy-dashboard-main",
+  "run_id": "showcase-20261101-112252-c10e040c0b71",
+  "topic": "showcase-20261101-112252-c10e040c0b71",
+  "group_id": "showcase-20261101-112252-c10e040c0b71",
+  "limit": 300,
+  "sleep_seconds": 0.15,
+  "dashboard_url": "http://127.0.0.1:8088/?run=showcase-20261101-112252-c10e040c0b71",
+  "email_project": "energy-email-defense",
+  "email_run_id": "email-delivery-test-d2cca7d8d321",
+  "mailpit_url": "http://127.0.0.1:8026",
+  "alembic_before": "0003_email",
+  "alembic_after": "0003_email",
+  "schema_upgrade_applied": false,
+  "showcase_migrate_service": "Existing orchestrator ran upgrade head as a no-op at current revision",
+  "images": {
+    "energy-monitoring-backend:local": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+    "energy-dashboard-main-dashboard:latest": "sha256:d38a48d60fdb74dd0cbb0f830404fa09c4024a4738aae3fd4ce80ea14a42f65f",
+    "energy-email-backend:local": "sha256:26a4783befe05d5f2d9a6ca33f2902b9ef6aac4a902722188dc6df46a3aebe8e"
+  },
+  "trusted_manifest_sha256": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "protected_files_sha256": {
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/metrics.json": "11a9b0dfbc35b03b9e811720daa43b502cd7005bffd5718990740af8fe8b8f51",
+    "artifacts/mvp/docker/hgb/test_predictions.parquet": "a4d70e991178f7621fc2f8ced0941a283ad65c548637f3fc7e05b06a2dbcbff6",
+    "artifacts/mvp/docker/hgb/metadata.json": "a5270bf15a76e3edb1e401e08cfb65c4ba0f5247b9a8e6d917a25aa55f3870c0"
+  },
+  "libraries": {
+    "numpy": "2.4.4",
+    "scikit-learn": "1.8.0",
+    "torch": "2.11.0+cpu",
+    "joblib": "1.5.3"
+  },
+  "counts": {
+    "measurements": 300,
+    "forecasts": 600,
+    "scores": 900,
+    "combined_decisions": 300,
+    "episodes": 1,
+    "combined_episodes": 0,
+    "receipts": 300,
+    "checkpoints": 1,
+    "notifications": 0,
+    "errors": 0
+  },
+  "forecast_states": [
+    {
+      "purpose": "primary_forecast",
+      "rows": 300,
+      "ready": 294,
+      "null_values": 6,
+      "states": {
+        "warmup": 6,
+        "ready": 294
+      }
+    },
+    {
+      "purpose": "residual_reference",
+      "rows": 300,
+      "ready": 157,
+      "null_values": 143,
+      "states": {
+        "warmup": 143,
+        "ready": 157
+      }
+    }
+  ],
+  "score_states": [
+    {
+      "detector": "autoencoder",
+      "rows": 300,
+      "ready": 294,
+      "null_values": 6,
+      "states": {
+        "warmup": 6,
+        "ready": 294
+      }
+    },
+    {
+      "detector": "isolation_forest",
+      "rows": 300,
+      "ready": 294,
+      "null_values": 6,
+      "states": {
+        "warmup": 6,
+        "ready": 294
+      }
+    },
+    {
+      "detector": "residual",
+      "rows": 300,
+      "ready": 156,
+      "null_values": 144,
+      "states": {
+        "warmup": 144,
+        "ready": 156
+      }
+    }
+  ],
+  "combined_states": {
+    "warmup": 144,
+    "ready": 156
+  },
+  "combined_flags": 0,
+  "original_flags_by_detector": {
+    "autoencoder": 1
+  },
+  "kafka": {
+    "topic": "showcase-20261101-112252-c10e040c0b71",
+    "group_id": "showcase-20261101-112252-c10e040c0b71",
+    "begin_offset": 0,
+    "end_offset": 300,
+    "committed_offset": 300,
+    "journal_payloads_verified": 300
+  },
+  "unchanged_artifacts_and_dataset": true,
+  "all_prior_volumes_preserved": true,
+  "prior_run_history_unchanged": true,
+  "local_model_metrics_recomputed": false,
+  "screenshots_use_real_pipeline_data": true,
+  "synthetic_email_evidence_separate": true,
+  "live_worker_restart_performed": false,
+  "recovery_evidence_reused": "PR10 successful 6-job CI, source unchanged; see prior CI link and Stage8A traceability",
+  "evidence": {
+    "runtime": "runtime-verification.json",
+    "api": "api-verification.json",
+    "browser": "browser-verification.json",
+    "email": "email-delivery-verification.json",
+    "preflight": "preflight.json",
+    "images": "image-artifact-verification.json",
+    "operational_final": "operational-final.json",
+    "checks": "targeted-checks.json",
+    "screenshots": "screenshots/manifest.json",
+    "base_ci": "base-ci-evidence.json"
+  },
+  "base_ci_url": "https://github.com/Axmetik/Pipeline_Kafka_AI/actions/runs/40563712518"
+}

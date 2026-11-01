@@ -1,0 +1,47 @@
+{
+  "showcase_safety_unit": {
+    "passed": 14,
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m unittest discover -s tests -p 'test_demo_showcase.py' -v",
+    "network": "none required; Docker mocked"
+  },
+  "email_unit": {
+    "passed": 6,
+    "command": "docker run --rm --network none --read-only --tmpfs /tmp --cap-drop ALL -v \"$PWD/tests:/app/tests:ro\" energy-monitoring-backend:local python -m unittest discover -s tests -p test_email.py -v",
+    "smtp": "mocked"
+  },
+  "initial_host_email_check": {
+    "result": "import_error",
+    "reason": "host .venv lacks SQLAlchemy",
+    "resolution": "Ran six tests successfully in the verified backend image; did not install/change host dependencies"
+  },
+  "live_browser": {
+    "passed": true,
+    "console_errors": [],
+    "count_samples": 23,
+    "intermediate_updates": true,
+    "reload_preserved_count": true
+  },
+  "runtime_readonly_verifier": {
+    "dataset_values_exact": true,
+    "forecast_target_alignment_600s": true,
+    "residual_uses_preceding_forecast": true,
+    "combined_unanimous_and_coverage": true,
+    "kafka_db_checkpoint_and_payloads": true,
+    "dataset_naive_semantics": true,
+    "no_duplicates_or_rejections": true
+  },
+  "api_smoke": {
+    "passed": true,
+    "health_live": true,
+    "health_ready": true,
+    "counts_and_versions_verified": true,
+    "insights_arithmetic_matches_browser": true
+  },
+  "mailpit_synthetic": {
+    "passed": true,
+    "multipart": true,
+    "duplicate_event_and_notifier_restart_checked": true
+  },
+  "full_e2e_suite_repeated_locally": false,
+  "performance_or_training_started": false
+}
