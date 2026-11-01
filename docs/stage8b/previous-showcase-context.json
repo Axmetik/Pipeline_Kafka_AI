@@ -1,0 +1,33 @@
+{
+  "run_id": "showcase-20261027-184310-e0281f023458",
+  "topic": "showcase-20261027-184310-e0281f023458",
+  "group_id": "showcase-20261027-184310-e0281f023458",
+  "project": "energy-dashboard-main",
+  "limit": 300,
+  "sleep": 0.5,
+  "phase": "complete",
+  "dashboard_url": "http://127.0.0.1:8089/?run=showcase-20261027-184310-e0281f023458",
+  "results": {
+    "worker_status": "unknown",
+    "status_reason": "No heartbeat is recorded; checkpoints do not prove liveness",
+    "last_processed_at": "2026-10-27T18:45:59.094312Z",
+    "unique_measurements": 300,
+    "forecasts": 600,
+    "anomaly_scores": 900,
+    "duplicate_deliveries": 0,
+    "rejected_messages": 0,
+    "checkpoint_count": 1,
+    "checkpoints_truncated": false,
+    "checkpoints": [
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "topic": "showcase-20261027-184310-e0281f023458",
+        "partition": 0,
+        "next_offset": 300,
+        "last_processed_at": "2026-10-27T18:45:59.094312Z"
+      }
+    ],
+    "recent_errors": [],
+    "scope_run_id": "showcase-20261027-184310-e0281f023458"
+  }
+}

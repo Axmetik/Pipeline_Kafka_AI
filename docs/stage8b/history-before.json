@@ -1,0 +1,99 @@
+{
+  "checked_at": "2026-11-01T11:20:55.363175+00:00",
+  "revision": "0003_email",
+  "tables": {
+    "mvp_runs": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 1,
+        "content_md5": "22241b37fef734e446031344678a47b8"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 1,
+        "content_md5": "cb2a5938c567f2538a14b6b634c91b55"
+      }
+    ],
+    "mvp_measurements": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 300,
+        "content_md5": "3246c6d1d23e1ad9752388e957dc1a02"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 300,
+        "content_md5": "e89443b1c52df8b0fe13e846e05d88d1"
+      }
+    ],
+    "mvp_forecasts": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 600,
+        "content_md5": "a277df066dfeb7bb26e30a9074a1e5d2"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 600,
+        "content_md5": "3fd7483969de202296ffc9e6d28209fc"
+      }
+    ],
+    "mvp_scores": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 900,
+        "content_md5": "abda29a5600fc64ccd69bb2c34002c94"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 900,
+        "content_md5": "972a7902b255d8e0a740819ed35ab9b6"
+      }
+    ],
+    "mvp_episodes": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 1,
+        "content_md5": "8713f80876437ee812be0cc8e567124e"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 1,
+        "content_md5": "7d9294b2752c7f90c05998d7da9a04e4"
+      }
+    ],
+    "mvp_combined_decisions": [
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 300,
+        "content_md5": "75f59cfafaa8fb8f9e77409e3b3dddd4"
+      }
+    ],
+    "mvp_combined_episodes": [],
+    "mvp_checkpoints": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 1,
+        "content_md5": "6e4ee9da5a578cd71fd99fa79219aacc"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 1,
+        "content_md5": "0386cf450a96c524bba1e907eddf65b7"
+      }
+    ],
+    "mvp_receipts": [
+      {
+        "run_id": "showcase-20261026-083156-d25570d1a42e",
+        "rows": 300,
+        "content_md5": "144b4e70ce839c0fc0413ca8c57c6698"
+      },
+      {
+        "run_id": "showcase-20261027-184310-e0281f023458",
+        "rows": 300,
+        "content_md5": "ddbee27fc29a3195d8a8a5ae7865fd79"
+      }
+    ],
+    "mvp_notification_outbox": []
+  }
+}

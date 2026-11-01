@@ -1,0 +1,10 @@
+{
+  "run_id": "showcase-20261101-112252-c10e040c0b71",
+  "topic": "showcase-20261101-112252-c10e040c0b71",
+  "group_id": "showcase-20261101-112252-c10e040c0b71",
+  "project": "energy-dashboard-main",
+  "limit": 300,
+  "sleep": 0.15,
+  "phase": "replaying",
+  "dashboard_url": "http://127.0.0.1:8088/?run=showcase-20261101-112252-c10e040c0b71"
+}
