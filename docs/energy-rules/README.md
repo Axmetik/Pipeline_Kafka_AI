@@ -107,3 +107,7 @@ for item in assessment["signals"]:
 2. Evaluate flatline separately as telemetry quality and sustained-high as behavior; preserve legitimate zero load, normal peaks and shift-work controls. Report event recall/precision/F1, review signals/day and event-time detection delay, including missed events. Synthetic examples remain separate from real labels.
 3. If approved, design additive rule assessment/event tables, explicit version/config binding, state recovery and idempotent writes in the existing DB transaction. Do not reuse ML score scales or modify Unanimous.
 4. Add read-only API and a separate rule-signals Dashboard section, with warm-up/unknown/experimental labels and no default Email policy. Verify crash/restart and offline/streaming parity before enabling it for a new run. Never silently backfill or change previously committed forecasts/scores.
+
+## Completed controlled comparison (2026-11-08)
+
+The separately preregistered 24-case comparison is complete: [report, tables, manifest and plots](controlled-20261108/README.md). All scores were recomputed on each modified stream and its untouched pair using existing compatible artifacts. Rules v2, model weights, thresholds and Unanimous remain unchanged. This synthetic historical comparison does not establish real fault-detection accuracy or authorize runtime integration.

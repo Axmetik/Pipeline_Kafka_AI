@@ -1,0 +1,24 @@
+{
+  "registration_commit": "19ee8b5",
+  "runner_commit": "d2e27584b0307ea001ffdc975aec72f8b6d04060",
+  "runner_matches_provenance_sha256": true,
+  "note": "git was not installed in the inference image, so run1 provenance.git_commit is null; host Git now verifies the exact executed runner hash against this pre-execution commit.",
+  "protected_inputs_preserved": true,
+  "all_output_hashes_verified": true,
+  "scenarios_planned": 24,
+  "scenarios_completed": 24,
+  "point_files": 48,
+  "plots": 9,
+  "targeted_tests": 62,
+  "scenario_ids_and_all_seven_method_rows_verified": true,
+  "returned_gap_checks": 3,
+  "streaming_parity_records": 150,
+  "limits": {
+    "cpu": 1,
+    "memory": "2g",
+    "threads": 1,
+    "network": "none",
+    "source_dataset_models_mount": "read_only",
+    "write_mount": "new results directory only"
+  }
+}
