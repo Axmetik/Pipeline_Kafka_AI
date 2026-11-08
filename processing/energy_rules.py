@@ -54,7 +54,7 @@ class RuleConfig:
     @property
     def version(self):
         content = json.dumps(asdict(self), sort_keys=True, separators=(',', ':'), allow_nan=False)
-        return 'energy-rules-v1-' + hashlib.sha256(content.encode()).hexdigest()[:16]
+        return 'energy-rules-v2-' + hashlib.sha256(content.encode()).hexdigest()[:16]
 
 
 @dataclass
@@ -65,14 +65,10 @@ class _SourceState:
     last_event_id: str | None = None
     last_fingerprint: str | None = None
     last_result: dict | None = None
-    contiguous: int = 0
-    plateau_count: int = 0
-    plateau_min: float = 0.0
-    plateau_max: float = 0.0
-    plateau_start: str | None = None
+    plateau_window: deque = field(default_factory=deque)
     high_count: int = 0
     high_start: str | None = None
-    high_reference: dict | None = None
+    high_references: dict | None = None
 
 
 def _signal(rule, category, status, flag, **evidence):
@@ -100,6 +96,7 @@ class EnergyRules:
 
     def metadata(self):
         return {'schema_version': 'energy-rule-assessment-v1',
+                'algorithm_version': 'energy-rules-v2',
                 'rule_version': self.config.version, 'configuration': asdict(self.config),
                 'interval_seconds': 600, 'energy_unit': 'Wh',
                 'calibration': 'unvalidated_engineering_defaults',
@@ -120,7 +117,7 @@ class EnergyRules:
                    'required_context_days': self.config.minimum_context_days}
         if (len(dates) < self.config.minimum_context_days or
                 len(selected) < self.config.minimum_context_points):
-            return details
+            return {**details, 'unavailable_reason': 'insufficient_hourly_context'}
         center = median(value for _, value in selected)
         mad = median(abs(value - center) for _, value in selected)
         threshold = center + max(self.config.mad_multiplier * 1.4826 * mad,
@@ -135,7 +132,7 @@ class EnergyRules:
     def process(self, message):
         record = validate_energy(message)
         if record['interval_seconds'] != 600:
-            raise InvalidMessage('Energy rules v1 support 600-second interval energy only')
+            raise InvalidMessage('Energy rules v2 support 600-second interval energy only')
         timestamp = parse_timestamp(record['timestamp'])
         timestamp_label = timestamp.isoformat()
         key = record['building_id'], record['source_id']
@@ -157,9 +154,9 @@ class EnergyRules:
                  if state.last_timestamp is not None else None)
         cadence_broken = delta is not None and delta != 600
         if cadence_broken:
-            state.contiguous = state.plateau_count = state.high_count = 0
-            state.high_reference = state.high_start = None
-        state.contiguous += 1
+            state.high_count = 0
+            state.plateau_window.clear()
+            state.high_references = state.high_start = None
         value = record['energy']['value']
 
         if delta is None:
@@ -174,47 +171,61 @@ class EnergyRules:
                           expected_timestamp=(state.last_timestamp + timedelta(seconds=600)).isoformat(),
                           detection='on_next_received_measurement')
 
-        low = min(state.plateau_min, value) if state.plateau_count else value
-        high = max(state.plateau_max, value) if state.plateau_count else value
-        if state.plateau_count and high - low <= self.config.plateau_tolerance_wh:
-            state.plateau_count += 1
-            state.plateau_min, state.plateau_max = low, high
-        else:
-            state.plateau_count = 1
-            state.plateau_min = state.plateau_max = value
-            state.plateau_start = timestamp_label
-        plateau_ready = state.contiguous >= self.config.plateau_intervals
+        # Test the most recent complete duration window. Retiring an old extreme
+        # must not discard an otherwise valid suffix. Whole-window range (not
+        # neighbor differences) still rejects transitive drift.
+        state.plateau_window.append((timestamp_label, value))
+        while len(state.plateau_window) > self.config.plateau_intervals:
+            state.plateau_window.popleft()
+        window_count = len(state.plateau_window)
+        window_range = (max(v for _, v in state.plateau_window)
+                        - min(v for _, v in state.plateau_window))
+        plateau_ready = window_count == self.config.plateau_intervals
         plateau = _signal('flatline', 'telemetry_quality', 'ready' if plateau_ready else 'warmup',
-                          state.plateau_count >= self.config.plateau_intervals if plateau_ready else None,
-                          consecutive_intervals=state.plateau_count,
+                          window_range <= self.config.plateau_tolerance_wh if plateau_ready else None,
+                          consecutive_intervals=window_count,
+                          window_scope='last_required_intervals',
                           required_intervals=self.config.plateau_intervals,
                           tolerance_wh=self.config.plateau_tolerance_wh,
-                          range_wh=state.plateau_max - state.plateau_min,
-                          evidence_start_timestamp=state.plateau_start,
-                          observed_label_span_seconds=(state.plateau_count - 1) * 600,
-                          represented_interval_seconds=state.plateau_count * 600,
+                          range_wh=window_range,
+                          evidence_start_timestamp=state.plateau_window[0][0],
+                          observed_label_span_seconds=(window_count - 1) * 600,
+                          represented_interval_seconds=window_count * 600,
                           interpretation='Repeated values can also be normal, zero load, or meter rounding')
 
-        reference = state.high_reference or self._context(state, timestamp)
+        reference = (state.high_references[timestamp.hour] if state.high_references is not None
+                     else self._context(state, timestamp))
         threshold = reference.get('threshold_wh')
         if threshold is None:
+            # Missing hour-specific context breaks an assessable candidate; never
+            # substitute the previous hour's threshold or silently mark it normal.
+            state.high_count = 0
+            state.high_references = state.high_start = None
             elevated_status, elevated_flag = 'warmup', None
         elif value > threshold:
             if state.high_count == 0:
-                state.high_reference = deepcopy(reference)
+                # Freeze a full context profile before the current value enters
+                # history. Different hours retain different thresholds, all from
+                # the same pre-candidate cutoff, even on the next labelled date.
+                state.high_references = {
+                    hour: {**self._context(state, timestamp.replace(hour=hour)),
+                           'reference_cutoff_timestamp': timestamp_label}
+                    for hour in range(24)
+                }
+                reference = state.high_references[timestamp.hour]
                 state.high_start = timestamp_label
             state.high_count += 1
             elevated_flag = state.high_count >= self.config.high_intervals
             elevated_status = 'ready' if elevated_flag else 'observing'
         else:
             state.high_count = 0
-            state.high_reference = state.high_start = None
+            state.high_references = state.high_start = None
             elevated_status, elevated_flag = 'ready', False
         elevated = _signal('sustained_high', 'consumption_pattern', elevated_status, elevated_flag,
                            **reference, energy_wh=value, consecutive_intervals=state.high_count,
                            required_intervals=self.config.high_intervals,
                            candidate_start_timestamp=state.high_start,
-                           reference_frozen=state.high_reference is not None,
+                           reference_frozen=state.high_references is not None,
                            interpretation='High consumption relative to historical context, not a diagnosed fault')
 
         result = {'schema_version': 'energy-rule-assessment-v1', 'rule_version': self.config.version,

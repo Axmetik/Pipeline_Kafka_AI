@@ -43,6 +43,7 @@ def primed_context(config=None):
 class RuleConfigurationTests(unittest.TestCase):
     def test_defaults_and_configuration_are_versioned(self):
         self.assertEqual(RuleConfig().version, RuleConfig().version)
+        self.assertTrue(RuleConfig().version.startswith('energy-rules-v2-'))
         self.assertNotEqual(RuleConfig().version, RuleConfig(high_intervals=3).version)
         self.assertEqual(EnergyRules().metadata()['calibration'], 'unvalidated_engineering_defaults')
         with self.assertRaises(FrozenInstanceError):
@@ -74,7 +75,9 @@ class FlatlineTests(unittest.TestCase):
         self.assertEqual(found['evidence']['observed_label_span_seconds'], 3000)
         self.assertEqual(found['evidence']['represented_interval_seconds'], 3600)
         self.assertEqual(results[5]['measurement_timestamp'], '2016-01-01T00:50:00')
-        self.assertEqual(signal(results[6], 'flatline')['evidence']['consecutive_intervals'], 7)
+        self.assertEqual(signal(results[6], 'flatline')['evidence']['consecutive_intervals'], 6)
+        self.assertEqual(signal(results[6], 'flatline')['evidence']['evidence_start_timestamp'],
+                         '2016-01-01T00:10:00')
 
     def test_variation_and_return_to_normal_clear_flag(self):
         engine = EnergyRules()
@@ -98,6 +101,30 @@ class FlatlineTests(unittest.TestCase):
         self.assertFalse(signal(result, 'flatline')['flag'])
         result = evaluate([record(i, value) for i, value in enumerate([10, 10.5, 11])], config)[-1]
         self.assertTrue(signal(result, 'flatline')['flag'])
+
+    def test_old_extreme_leaves_a_valid_last_window_without_resetting_suffix(self):
+        rows = [record(i, v) for i, v in enumerate([0, 1, 2, 2, 2, 2, 2])]
+        results = evaluate(rows, RuleConfig(plateau_tolerance_wh=1, plateau_intervals=6))
+        self.assertFalse(signal(results[5], 'flatline')['flag'])
+        last = signal(results[6], 'flatline')
+        self.assertTrue(last['flag'])
+        self.assertEqual(last['evidence']['range_wh'], 1)
+        self.assertEqual(last['evidence']['evidence_start_timestamp'], '2016-01-01T00:10:00')
+        self.assertEqual(last['evidence']['consecutive_intervals'], 6)
+
+    def test_sliding_window_still_rejects_gradual_drift(self):
+        results = evaluate([record(i, i*0.5) for i in range(12)],
+                           RuleConfig(plateau_tolerance_wh=1, plateau_intervals=6))
+        self.assertTrue(all(signal(r, 'flatline')['flag'] is False for r in results[5:]))
+
+    def test_sliding_flatline_matches_direct_window_definition(self):
+        values = [0, 1, 2, 2, 2, 2, 2, 4, 3, 3, 3, 3, 3, 0]
+        for tolerance in (0, 1, 2):
+            rows = evaluate([record(i, v) for i, v in enumerate(values)],
+                            RuleConfig(plateau_tolerance_wh=tolerance, plateau_intervals=6))
+            for i, row in enumerate(rows):
+                expected = None if i < 5 else max(values[i-5:i+1])-min(values[i-5:i+1]) <= tolerance
+                self.assertIs(signal(row, 'flatline')['flag'], expected)
 
     def test_gap_resets_duration(self):
         engine = EnergyRules()
@@ -178,7 +205,64 @@ class SustainedHighTests(unittest.TestCase):
         self.assertTrue(found['evidence']['reference_frozen'])
         self.assertEqual(found['evidence']['consecutive_intervals'], 12)
         self.assertEqual(found['evidence']['candidate_start_timestamp'], '2016-01-02T00:00:00')
-        self.assertEqual(found['evidence']['context_hour'], 0)
+        self.assertEqual(found['evidence']['context_hour'], 1)
+        self.assertEqual(found['evidence']['reference_cutoff_timestamp'], '2016-01-02T00:00:00')
+
+    def test_0750_candidate_does_not_apply_night_threshold_to_normal_0800_load(self):
+        engine = EnergyRules()  # Real defaults: three previous dates /18 samples.
+        onset_index = 3*144 + 47  # fourth labelled date,07:50
+        for i in range(onset_index):
+            engine.process(record(i, 100 if (i%144) < 48 else 1000))
+        onset = signal(engine.process(record(onset_index, 200)), 'sustained_high')
+        self.assertEqual(onset['evidence']['threshold_wh'], 150)
+        self.assertEqual(onset['status'], 'observing')
+        for i in range(onset_index+1, onset_index+7):
+            normal = signal(engine.process(record(i, 1000)), 'sustained_high')
+            self.assertFalse(normal['flag'])
+            self.assertEqual(normal['evidence']['context_hour'], 8)
+            self.assertEqual(normal['evidence']['threshold_wh'], 1500)
+            self.assertEqual(normal['evidence']['consecutive_intervals'], 0)
+
+    def test_missing_0800_context_is_null_and_breaks_candidate(self):
+        engine = EnergyRules()
+        onset_index = 3*144 + 47
+        # One previous08h bin absent:12 points across2 dates cannot satisfy18/3.
+        for i in list(range(48)) + list(range(54, onset_index)):
+            engine.process(record(i))
+        engine.process(record(onset_index, 200))
+        for i in range(onset_index+1, onset_index+7):
+            unavailable = signal(engine.process(record(i, 1000)), 'sustained_high')
+            self.assertIsNone(unavailable['flag'])
+            self.assertEqual(unavailable['status'], 'warmup')
+            self.assertEqual(unavailable['evidence']['unavailable_reason'], 'insufficient_hourly_context')
+            self.assertEqual(unavailable['evidence']['context_hour'], 8)
+            self.assertNotIn('threshold_wh', unavailable['evidence'])
+            self.assertEqual(unavailable['evidence']['consecutive_intervals'], 0)
+            self.assertFalse(unavailable['evidence']['reference_frozen'])
+
+    def test_high_values_can_continue_across_hours_against_their_own_frozen_thresholds(self):
+        engine = EnergyRules(context_config())
+        for i in range(191):
+            engine.process(record(i, 100 if (i%144) < 48 else 1000))
+        engine.process(record(191, 200))
+        for i in range(192, 197):
+            result = signal(engine.process(record(i, 2000)), 'sustained_high')
+            self.assertEqual(result['evidence']['threshold_wh'], 1500)
+            self.assertEqual(result['evidence']['reference_cutoff_timestamp'], '2016-01-02T07:50:00')
+            self.assertIs(result['flag'], i == 196)
+        self.assertEqual(result['evidence']['candidate_start_timestamp'], '2016-01-02T07:50:00')
+
+    def test_cross_midnight_profile_does_not_learn_from_candidate_day(self):
+        engine = EnergyRules(context_config(context_days=1))
+        for i in range(144):
+            engine.process(record(i))
+        # Starts day2 00:00; every hour uses day1's pre-candidate profile.
+        for i in range(144, 289):
+            result = signal(engine.process(record(i, 1000)), 'sustained_high')
+        self.assertTrue(result['flag'])
+        self.assertEqual(result['evidence']['threshold_wh'], 150)
+        self.assertEqual(result['evidence']['context_hour'], 0)
+        self.assertEqual(result['evidence']['reference_cutoff_timestamp'], '2016-01-02T00:00:00')
 
     def test_gap_clears_high_candidate_and_requires_duration_again(self):
         engine = primed_context()
@@ -262,7 +346,7 @@ class IntegrityTests(unittest.TestCase):
         self.assertEqual(evaluate(rows), [engine.process(item) for item in rows])
 
     def test_same_last_message_retry_does_not_advance_state(self):
-        engine = EnergyRules()
+        engine = EnergyRules(RuleConfig(plateau_intervals=8))
         for i in range(5):
             engine.process(record(i))
         original = engine.process(record(5))
