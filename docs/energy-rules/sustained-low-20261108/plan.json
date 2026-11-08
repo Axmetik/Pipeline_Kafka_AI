@@ -1,0 +1,100 @@
+{
+  "plan_version": "sustained-low-controlled-v1",
+  "base_commit": "5a933372170bfc92fae3af8b7112110fd5d64a37",
+  "manifest_sha256": "ac20bc6c828b5d4dfbf8f342c79d6a83d22e0b61c0e338aae005928c3aa8cb44",
+  "input_sha256": {
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "processing/energy_rules.py": "4fd53075e7f784056656dcc283047c69a307c01816f71a27948a69f43a80a91f",
+    "configs/combined-rule-v1.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e",
+    "anomaly/artifacts.py": "77acff536b2db5219d69f49d406b0d09801e2aa1dcf0f638cd05f453e52458cf",
+    "anomaly/features.py": "8f7ffea0a9399e7047d37b7733b9675a012d7d9a0ae60cdb504f4867dbd5a12c",
+    "anomaly/residual.py": "7bae011bcce4aae059d5736e8b8d9ef7ab4d7ab6878542f55d978e3a735dad50",
+    "anomaly/combined.py": "d8dbf3dbfdb5f7de1d81fe1b985b225ea6bc8db47fad4aabf0981a6fd7c2c601",
+    "processing/energy_processor.py": "d56d698c70a4fa40b5c0c9416b944409891c23e36b75c97a6fe2927379ae5c27",
+    "processing/energy_schema.py": "16dfd57f1e11eb2df84d3bfa6d71703afddbf65876d9b7a0848131b8dcc9a510",
+    "benchmark/features.py": "254fad194af82a391cfb0fc1738cbe62987428a882d662bf41a3cfc758a7fa65",
+    "diagnostics/rule_comparison.py": "f02b89456ada1a5d61dd4e20379ff0ccd9943452a42b688867f5c8e7006092e7",
+    "diagnostics/rule_complementarity.py": "efecad62714faa6212e0d43ada6fbf619a14cd5a86b58aa6a268d87d2cb6329e"
+  },
+  "docker_image_id": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+  "low_config": {
+    "low_intervals": 6,
+    "context_days": 7,
+    "minimum_context_days": 3,
+    "minimum_context_points": 18,
+    "mad_multiplier": 3.0,
+    "minimum_drop_wh": 10.0,
+    "minimum_relative_drop": 0.5,
+    "minimum_reference_wh": 20.0
+  },
+  "formula": "m=median(eligible prior-date same-hour Wh); d=MAD; L=m-max(3*1.4826*d,10Wh,0.5*m). If m<20Wh -> null low_reference_energy; if L<=0 -> null no_positive_lower_threshold; otherwise point is low iff 0<=energy<L. No arbitrary negative/clamped threshold is used.",
+  "duration": "6 consecutive assessable low observations (3600s interval energy, 3000s measurement-label span); short cases retained as misses",
+  "context": "7 previous source-labelled calendar dates, >=3 dates and >=18 cadence-eligible same-hour points; no current day. Freeze24 distinct hourly profiles before first candidate, use the next hour own frozen profile even across midnight. Missing/unusable next hour -> null with reason, reset. Gap breaks candidate and excludes cadence-violating value from reference eligibility.",
+  "calendar": "No workday, occupancy or holiday model; regular nonwork can trigger review despite legitimate usage. Weekday control explicitly tests this limitation without changing policy.",
+  "methods": [
+    "residual",
+    "sustained_high",
+    "sustained_low",
+    "residual_high_or",
+    "residual_high_low_or"
+  ],
+  "union_inputs": {
+    "residual_high_or": [
+      "residual",
+      "sustained_high"
+    ],
+    "residual_high_low_or": [
+      "residual",
+      "sustained_high",
+      "sustained_low"
+    ]
+  },
+  "scenarios": 32,
+  "new_consumption_events": 18,
+  "known_regression_events": 6,
+  "controls": 6,
+  "telemetry": 2,
+  "matching": "Episodes built from complete per-method tri-state series before masks; false/null/cadence gaps break episodes. One event per independent case; credit only onset inside inclusive first..last modified labels; no overlap-only credit, no post-event grace. Rebuild union episodes, never sum component detections.",
+  "comparison": "Primary own-available onset matches, all targets retained; per-point/event/full-stream coverage, common-ready-onset diagnostic; unions reconstructed from full tri-state decisions with provenance. Telemetry excluded. Report new18 and known6 separately, never pool as independent holdout.",
+  "preservation": "Frozen v2/source hashes and original known-six Parquet compared only for regression verification; scores are recalculated fresh on modified/raw pairs. Save old outputs unchanged. Batch low wrapper and direct streaming process must exactly match for all cases.",
+  "contributions": "Per cohort per event: all3 individual hit booleans, component-only and overlap counts; recompute both OR hit sets, added and lost vs residual and vs residual_high. Pair new-crossing only if raw flag explicitly false; unknown separate.",
+  "timing": {
+    "clock": "time.perf_counter_ns monotonic, single process",
+    "repeats": 5,
+    "measured_records": 144,
+    "measurement_start": "2016-05-12T08:00:00",
+    "warmup": "7 dates from midnight before start; load raw records/artifacts once before timing; prime V2+low state once and prime StreamDetector once. Restore deep-copied state outside timers, share immutable bundle.",
+    "order": [
+      "baseline,plus_low",
+      "plus_low,baseline",
+      "baseline,plus_low",
+      "plus_low,baseline",
+      "baseline,plus_low"
+    ],
+    "scopes": [
+      "rules_only: V2 + residual flag from the same precomputed causal stream + union, vs that and low",
+      "full_scoring: existing StreamDetector (all3 scores+RF forecast) + V2 + union, vs same and low"
+    ],
+    "boundary": "Each per-record timer starts before processing, ends after rule(s)/ML/union decisions are formed; total timer spans identical144 record loop. No loading, state cloning, warmup, disk IO or serialization in timed loop. Include validation/feature/state/decision costs. No clock synchronization across processes needed.",
+    "statistics": "Per repetition/variant p50,p95 per-record ms, loop total ms; no pooling as independent records. Separate per-low-rule compute sample; paired deltas described as local overhead not universal guarantee.",
+    "environment": "Exact existing CPU image; cpus1 memory2g threads1 networknone; capture platform, CPU visibility/cgroup, libraries, image ID and hashes. No Kafka/performance campaign."
+  },
+  "plots": [
+    "known-drop-s1-n6",
+    "new-drop-s1-n6-f0.2",
+    "new-drop-s2-n12-f0.6",
+    "control-normal-night",
+    "control-regular-nonwork",
+    "control-zero-background"
+  ],
+  "limits": [
+    "Same previously studied historical house and viewed period",
+    "Synthetic targets are not verified physical failures",
+    "No parameter/scenario changes after results; all32 cases retained",
+    "Existing local trusted artifact differs from original archived Stage4 binary",
+    "No integration/training/merge"
+  ]
+}
