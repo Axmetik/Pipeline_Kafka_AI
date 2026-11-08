@@ -580,3 +580,7 @@ python3 -m integration.email_demo synthetic
 підготовленими trusted Docker artifacts: `python3 -m integration.email_demo replay`.
 Моделі ці команди не навчають. Використовується окремий Compose project;
 стандартний Showcase не активує Email. [Налаштування, гарантії, retry/cooldown і результати](docs/stage7c/email-notifications.md).
+
+### Standalone experimental energy rules
+
+[Rules module and controlled test report](docs/energy-rules/README.md): repeated readings, measurement-time gaps and sustained high consumption against historical same-hour context. This first phase is **not connected to Worker/API/Dashboard/Email**, does not alter ML models and does not claim improved real-data detection metrics.
