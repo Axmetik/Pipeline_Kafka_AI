@@ -1,0 +1,88 @@
+{
+  "plan_version": "complementarity-v1",
+  "base_commit": "311b9a89a9ea76bb2791cfd7210fad4f294c3f7b",
+  "manifest_sha256": "652808935b09da846e32637adc07a275163bcafc22fff922ed405b6bb372d19f",
+  "input_sha256": {
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "processing/energy_rules.py": "4fd53075e7f784056656dcc283047c69a307c01816f71a27948a69f43a80a91f",
+    "configs/combined-rule-v1.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e",
+    "anomaly/artifacts.py": "77acff536b2db5219d69f49d406b0d09801e2aa1dcf0f638cd05f453e52458cf",
+    "anomaly/features.py": "8f7ffea0a9399e7047d37b7733b9675a012d7d9a0ae60cdb504f4867dbd5a12c",
+    "anomaly/residual.py": "7bae011bcce4aae059d5736e8b8d9ef7ab4d7ab6878542f55d978e3a735dad50",
+    "anomaly/combined.py": "d8dbf3dbfdb5f7de1d81fe1b985b225ea6bc8db47fad4aabf0981a6fd7c2c601",
+    "processing/energy_processor.py": "d56d698c70a4fa40b5c0c9416b944409891c23e36b75c97a6fe2927379ae5c27",
+    "processing/energy_schema.py": "16dfd57f1e11eb2df84d3bfa6d71703afddbf65876d9b7a0848131b8dcc9a510",
+    "benchmark/features.py": "254fad194af82a391cfb0fc1738cbe62987428a882d662bf41a3cfc758a7fa65",
+    "diagnostics/rule_comparison.py": "f02b89456ada1a5d61dd4e20379ff0ccd9943452a42b688867f5c8e7006092e7"
+  },
+  "rule_config": {
+    "plateau_intervals": 6,
+    "plateau_tolerance_wh": 0.0,
+    "high_intervals": 6,
+    "context_days": 7,
+    "minimum_context_days": 3,
+    "minimum_context_points": 18,
+    "mad_multiplier": 3.0,
+    "minimum_excess_wh": 50.0,
+    "minimum_relative_excess": 0.5
+  },
+  "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+  "docker_image_id": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+  "scenarios": 33,
+  "consumption_events": 22,
+  "flatline_events": 6,
+  "gap_events": 2,
+  "controls": 3,
+  "primary_methods": [
+    "isolation_forest",
+    "autoencoder",
+    "residual",
+    "ml_or",
+    "sustained_high",
+    "ml_high_or",
+    "unanimous"
+  ],
+  "union_inputs": {
+    "ml_or": [
+      "isolation_forest",
+      "autoencoder",
+      "residual"
+    ],
+    "ml_high_or": [
+      "isolation_forest",
+      "autoencoder",
+      "residual",
+      "sustained_high"
+    ]
+  },
+  "union_semantics": "true if any available input true; false only if all required inputs available and false; otherwise null; record required/available/missing/positive inputs",
+  "matching": "Episodes built from complete per-method tri-state series before masks; false/null/cadence gaps break episodes. One event per independent case; credit only onset inside inclusive first..last modified labels; no overlap-only credit, no post-event grace. Rebuild union episodes, never sum component detections.",
+  "comparison": "Primary strict own-available matches with all events retained, per-method coverage; secondary common-ready onset matches reported separately, never invent onset at mask boundary.",
+  "contributions": "For each consumption event compute ML_OR vs sustained_high component hit sets, their intersection, ML-only, rule-only and neither. Separately match ML+high OR and report added and lost events relative to ML_OR; an overlapping union may lose onset credit. Do not assume set union equals union-episode matches.",
+  "pairing": "Fresh inference on each modified stream and untouched original UCI pair; per-point flags/scores, provenance; paired onset counts whole stream and event windows; raw pair is not labeled normal. Additional paired new crossing excludes raw true at matched timestamp; raw null is unavailable, not negative.",
+  "warmup": "7 calendar dates from midnight before start; all prefix and 144 post-event intervals. No reset at event. Modified history propagates. Report event/full stream/common coverage, unavailable points and undetected events with null delay.",
+  "delay": "Minutes between event label and matched alarm onset, detected events only; not wall-clock system latency.",
+  "control_semantics": "Raw UCI morning is an unmodified observational control, not certified normal. Modeled normal morning replaces energy in all context+observation with 50Wh before08h /200Wh from08h. Benign zero is assumed normal, not verified stuck meter. Controls excluded from target recall.",
+  "operations": "hold: preceding raw value; high:+200Wh; peak:+400Wh; drop:raw*0.2; ramp:raw+300*(i+1)/n, returns to raw after event; other fields unchanged. Fixed time grid chosen without new score inspection.",
+  "telemetry": "Flatline vs ML methods reported separately for6 telemetry targets. interval_gap first-return count and timing separately, never consumption detections.",
+  "preselected_plots": [
+    "flatline-s1-n6",
+    "sustained_high-s1-n6",
+    "short_peak-s1-n1",
+    "drop-s2-n6",
+    "gradual_change-s2-n12",
+    "control-modeled-morning",
+    "control-benign-zero",
+    "gap-n3"
+  ],
+  "limits": [
+    "Same previously studied house and viewed historical period, not blind holdout",
+    "Synthetic manipulation labels are not real faults",
+    "No fitting/calibration/scenario replacement or threshold selection",
+    "Unchanged existing local CPU bundle differs from archived original Stage4 binary",
+    "All33 scenarios kept including failures; old24-case results only historical separate reference"
+  ]
+}

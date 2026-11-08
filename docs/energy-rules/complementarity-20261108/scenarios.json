@@ -1,0 +1,335 @@
+{
+  "manifest_version": "complementarity-v1",
+  "seed": 20261108,
+  "interval_seconds": 600,
+  "history_days": 7,
+  "post_event_intervals": 144,
+  "source": {
+    "building_id": "appliances-house-1",
+    "source_id": "uci-appliances"
+  },
+  "scenarios": [
+    {
+      "scenario_id": "flatline-s1-n3",
+      "family": "flatline",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 3,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-s1-n6",
+      "family": "flatline",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 6,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-s1-n12",
+      "family": "flatline",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 12,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "sustained_high-s1-n3",
+      "family": "sustained_high",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 3,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 200
+    },
+    {
+      "scenario_id": "sustained_high-s1-n6",
+      "family": "sustained_high",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 6,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 200
+    },
+    {
+      "scenario_id": "sustained_high-s1-n12",
+      "family": "sustained_high",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 12,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 200
+    },
+    {
+      "scenario_id": "short_peak-s1-n1",
+      "family": "short_peak",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 1,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 400
+    },
+    {
+      "scenario_id": "short_peak-s1-n2",
+      "family": "short_peak",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 2,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 400
+    },
+    {
+      "scenario_id": "drop-s1-n3",
+      "family": "drop",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 3,
+      "operation": "scale_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "factor": 0.2
+    },
+    {
+      "scenario_id": "drop-s1-n6",
+      "family": "drop",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 6,
+      "operation": "scale_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "factor": 0.2
+    },
+    {
+      "scenario_id": "drop-s1-n12",
+      "family": "drop",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 12,
+      "operation": "scale_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "factor": 0.2
+    },
+    {
+      "scenario_id": "gradual_change-s1-n3",
+      "family": "gradual_change",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 3,
+      "operation": "ramp_add_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "final_addition_wh": 300
+    },
+    {
+      "scenario_id": "gradual_change-s1-n6",
+      "family": "gradual_change",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 6,
+      "operation": "ramp_add_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "final_addition_wh": 300
+    },
+    {
+      "scenario_id": "gradual_change-s1-n12",
+      "family": "gradual_change",
+      "start": "2016-05-08T07:50:00",
+      "intervals": 12,
+      "operation": "ramp_add_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "final_addition_wh": 300
+    },
+    {
+      "scenario_id": "flatline-s2-n3",
+      "family": "flatline",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 3,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-s2-n6",
+      "family": "flatline",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 6,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-s2-n12",
+      "family": "flatline",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 12,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "sustained_high-s2-n3",
+      "family": "sustained_high",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 3,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 200
+    },
+    {
+      "scenario_id": "sustained_high-s2-n6",
+      "family": "sustained_high",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 6,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 200
+    },
+    {
+      "scenario_id": "sustained_high-s2-n12",
+      "family": "sustained_high",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 12,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 200
+    },
+    {
+      "scenario_id": "short_peak-s2-n1",
+      "family": "short_peak",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 1,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 400
+    },
+    {
+      "scenario_id": "short_peak-s2-n2",
+      "family": "short_peak",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 2,
+      "operation": "add_energy_wh",
+      "target": true,
+      "category": "consumption_pattern",
+      "amplitude_wh": 400
+    },
+    {
+      "scenario_id": "drop-s2-n3",
+      "family": "drop",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 3,
+      "operation": "scale_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "factor": 0.2
+    },
+    {
+      "scenario_id": "drop-s2-n6",
+      "family": "drop",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 6,
+      "operation": "scale_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "factor": 0.2
+    },
+    {
+      "scenario_id": "drop-s2-n12",
+      "family": "drop",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 12,
+      "operation": "scale_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "factor": 0.2
+    },
+    {
+      "scenario_id": "gradual_change-s2-n3",
+      "family": "gradual_change",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 3,
+      "operation": "ramp_add_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "final_addition_wh": 300
+    },
+    {
+      "scenario_id": "gradual_change-s2-n6",
+      "family": "gradual_change",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 6,
+      "operation": "ramp_add_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "final_addition_wh": 300
+    },
+    {
+      "scenario_id": "gradual_change-s2-n12",
+      "family": "gradual_change",
+      "start": "2016-05-09T22:50:00",
+      "intervals": 12,
+      "operation": "ramp_add_energy",
+      "target": true,
+      "category": "consumption_pattern",
+      "final_addition_wh": 300
+    },
+    {
+      "scenario_id": "control-raw-morning",
+      "family": "control",
+      "start": "2016-05-10T07:50:00",
+      "intervals": 13,
+      "operation": "identity",
+      "target": false,
+      "category": "normal_control"
+    },
+    {
+      "scenario_id": "control-modeled-morning",
+      "family": "control",
+      "start": "2016-05-10T07:50:00",
+      "intervals": 13,
+      "operation": "scheduled_control_profile",
+      "target": false,
+      "category": "normal_control",
+      "before_08_wh": 50,
+      "from_08_wh": 200
+    },
+    {
+      "scenario_id": "control-benign-zero",
+      "family": "control",
+      "start": "2016-05-10T14:00:00",
+      "intervals": 12,
+      "operation": "set_energy_wh",
+      "target": false,
+      "category": "normal_control",
+      "value_wh": 0
+    },
+    {
+      "scenario_id": "gap-n1",
+      "family": "interval_gap",
+      "start": "2016-05-10T08:00:00",
+      "intervals": 1,
+      "operation": "remove_records",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "gap-n3",
+      "family": "interval_gap",
+      "start": "2016-05-10T14:00:00",
+      "intervals": 3,
+      "operation": "remove_records",
+      "target": true,
+      "category": "telemetry_quality"
+    }
+  ]
+}
