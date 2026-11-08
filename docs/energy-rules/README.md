@@ -111,3 +111,7 @@ for item in assessment["signals"]:
 ## Completed controlled comparison (2026-11-08)
 
 The separately preregistered 24-case comparison is complete: [report, tables, manifest and plots](controlled-20261108/README.md). All scores were recomputed on each modified stream and its untouched pair using existing compatible artifacts. Rules v2, model weights, thresholds and Unanimous remain unchanged. This synthetic historical comparison does not establish real fault-detection accuracy or authorize runtime integration.
+
+## ML–rules complementarity (2026-11-08)
+
+A new separately preregistered 33-case controlled comparison is complete: [contribution table, coverage, paired alarms, plots and limitations](complementarity-20261108/README.md). Consumption and telemetry-quality targets remain separate; every OR episode was reconstructed from fresh nullable decisions. Previous24-case results and frozen configurations remain unchanged. No runtime integration or merge.

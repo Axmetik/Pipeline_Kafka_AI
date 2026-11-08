@@ -1,0 +1,25 @@
+{
+  "registration_commit": "950d6b7",
+  "runner_commit": "3a0f86ef70d936a6d2f9886e85d3181f8781d265",
+  "runner_matches_provenance_sha256": true,
+  "note": "git is absent inside inference image; provenance git_commit is null. Exact runner hash verified against host pre-execution Git commit.",
+  "all_output_hashes_verified": true,
+  "protected_inputs_preserved": true,
+  "scenarios_completed": 33,
+  "point_files": 66,
+  "plots": 8,
+  "cases_method_rows": 297,
+  "consumption_events": 22,
+  "all_point_union_and_provenance_checks": 82232,
+  "causal_residual_prediction_alignments": 72440,
+  "independent_saved_point_episode_and_match_reconstruction": true,
+  "targeted_tests": 79,
+  "limits": {
+    "cpu": 1,
+    "memory": "2g",
+    "threads": 1,
+    "network": "none",
+    "source_artifacts_dataset": "read-only",
+    "write": "new result directory"
+  }
+}
