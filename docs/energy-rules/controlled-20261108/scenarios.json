@@ -1,0 +1,251 @@
+{
+  "manifest_version": "rules-controlled-v1",
+  "interval_seconds": 600,
+  "seed": 20261108,
+  "source": {
+    "building_id": "appliances-house-1",
+    "source_id": "uci-appliances"
+  },
+  "history_days": 7,
+  "history_start_policy": "midnight seven calendar dates before scenario start",
+  "post_event_intervals": 144,
+  "scenarios": [
+    {
+      "scenario_id": "flatline-04-0750-n3",
+      "family": "flatline",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 3,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-04-0750-n6",
+      "family": "flatline",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 6,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-04-0750-n12",
+      "family": "flatline",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 12,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-05-1400-n3",
+      "family": "flatline",
+      "start": "2016-05-05T14:00:00",
+      "intervals": 3,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-05-1400-n6",
+      "family": "flatline",
+      "start": "2016-05-05T14:00:00",
+      "intervals": 6,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "flatline-05-1400-n12",
+      "family": "flatline",
+      "start": "2016-05-05T14:00:00",
+      "intervals": 12,
+      "operation": "hold_previous_energy",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "high-04-0750-n3-add100",
+      "family": "sustained_high",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 3,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 100,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-04-0750-n3-add300",
+      "family": "sustained_high",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 3,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-04-0750-n6-add100",
+      "family": "sustained_high",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 6,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 100,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-04-0750-n6-add300",
+      "family": "sustained_high",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 6,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-04-0750-n12-add100",
+      "family": "sustained_high",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 12,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 100,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-04-0750-n12-add300",
+      "family": "sustained_high",
+      "start": "2016-05-04T07:50:00",
+      "intervals": 12,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-05-2250-n3-add100",
+      "family": "sustained_high",
+      "start": "2016-05-05T22:50:00",
+      "intervals": 3,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 100,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-05-2250-n3-add300",
+      "family": "sustained_high",
+      "start": "2016-05-05T22:50:00",
+      "intervals": 3,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-05-2250-n6-add100",
+      "family": "sustained_high",
+      "start": "2016-05-05T22:50:00",
+      "intervals": 6,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 100,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-05-2250-n6-add300",
+      "family": "sustained_high",
+      "start": "2016-05-05T22:50:00",
+      "intervals": 6,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-05-2250-n12-add100",
+      "family": "sustained_high",
+      "start": "2016-05-05T22:50:00",
+      "intervals": 12,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 100,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "high-05-2250-n12-add300",
+      "family": "sustained_high",
+      "start": "2016-05-05T22:50:00",
+      "intervals": 12,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": true,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "gap-04-n1",
+      "family": "interval_gap",
+      "start": "2016-05-04T08:00:00",
+      "intervals": 1,
+      "operation": "remove_records",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "gap-05-n3",
+      "family": "interval_gap",
+      "start": "2016-05-05T14:00:00",
+      "intervals": 3,
+      "operation": "remove_records",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "gap-06-n6",
+      "family": "interval_gap",
+      "start": "2016-05-06T23:50:00",
+      "intervals": 6,
+      "operation": "remove_records",
+      "target": true,
+      "category": "telemetry_quality"
+    },
+    {
+      "scenario_id": "control-single-peak",
+      "family": "control",
+      "control": "single_peak",
+      "start": "2016-05-04T14:00:00",
+      "intervals": 1,
+      "operation": "add_energy_wh",
+      "amplitude_wh": 300,
+      "target": false,
+      "category": "consumption_pattern"
+    },
+    {
+      "scenario_id": "control-morning-rise",
+      "family": "control",
+      "control": "modeled_normal_morning",
+      "start": "2016-05-05T07:50:00",
+      "intervals": 13,
+      "operation": "scheduled_control_profile",
+      "before_08_wh": 50,
+      "from_08_wh": 200,
+      "target": false,
+      "category": "consumption_pattern",
+      "note": "Synthetic normal-schedule control across the entire context/evaluation stream, not verified natural UCI normality"
+    },
+    {
+      "scenario_id": "control-normal-zero",
+      "family": "control",
+      "control": "modeled_normal_zero",
+      "start": "2016-05-05T14:00:00",
+      "intervals": 12,
+      "operation": "set_energy_wh",
+      "value_wh": 0,
+      "target": false,
+      "category": "telemetry_quality",
+      "note": "Assumed benign zero load in a controlled example; repeated zero is an observable pattern, not a confirmed device fault"
+    }
+  ]
+}
