@@ -14,11 +14,11 @@ Add simple, interpretable review signals alongside the existing research detecto
 
 | Rule | Meaning | Default / trigger |
 |---|---|---|
-| `flatline` | Repeated energy readings; a data-quality review candidate, not proof of a stuck device | At least 6 consecutive intervals; total min–max range ≤0 Wh (exact equality). Tolerance configurable. A gap resets the duration |
+| `flatline` | Repeated energy readings; a data-quality review candidate, not proof of a stuck device | Last 6 consecutive intervals; min–max of that window ≤0 Wh (exact equality). Tolerance configurable. A gap clears the window |
 | `interval_gap` | Discontinuity between received source measurement timestamps | After the first point, elapsed time differs from 600 seconds. Exact aligned gaps report missing intervals; fractional/short intervals report irregular cadence without inventing a missing count |
 | `sustained_high` | Sustained consumption above historical same-hour context | At least 6 consecutive intervals strictly above the contextual threshold. Requires ≥18 eligible observations across ≥3 previous labelled dates in the last 7 calendar days, all in the same labelled hour |
 
-These are **unvalidated engineering defaults**, not parameters selected for high accuracy. They need a separately approved calibration/evaluation protocol before any operational claim. A configuration change creates a different `rule_version` (SHA256-derived); settings are immutable within an engine.
+These are **unvalidated engineering defaults**, not parameters selected for high accuracy. They need a separately approved calibration/evaluation protocol before any operational claim. Algorithm v2 and a SHA256 of the configuration identify `rule_version`; settings are immutable within an engine. Version v1 remains identifiable in Git and is not retroactively rewritten into experimental artifacts.
 
 High threshold:
 
@@ -27,7 +27,7 @@ median(previous-date same-hour Wh)
   + max(3 × 1.4826 × MAD, 50 Wh, 0.5 × median)
 ```
 
-The current point, current-day points and future points are excluded from the contextual reference. Cadence-violating samples do not inflate reference coverage. When the first above-threshold point appears, freeze that reference for the candidate; keep it frozen until consumption falls to/below it or a cadence break occurs. This avoids immediate threshold adaptation during that candidate. A single peak does not meet the duration requirement. No occupancy/work schedule or universal "night = anomalous" assumption is made.
+The current point, current-day points and future points are excluded from the contextual reference. Cadence-violating samples do not inflate reference coverage. When the first above-threshold point appears, freeze a separate reference for each of the 24 source-labelled hours using only the pre-candidate history. At an hour transition, use that hour’s frozen reference, never the previous hour’s threshold. Missing context returns `flag=null` and resets the candidate. End the candidate on a normal observation or cadence break. This avoids immediate threshold adaptation during that candidate. A single peak does not meet the duration requirement. No occupancy/work schedule or universal "night = anomalous" assumption is made.
 
 A robust reference is not guaranteed to be normal: historical contamination, seasonality, legitimate changes in usage and limited coverage remain concerns. A long valid increase can remain flagged against a frozen reference; that is a review signal, not an instruction to reset a device or declare a fault.
 
@@ -39,9 +39,18 @@ A robust reference is not guaranteed to be normal: historical contamination, sea
 - The gap rule detects a gap **when the next record arrives**. It cannot detect a completely silent meter or infer replay completion. A wall-clock missing-data watchdog requires a later design that distinguishes live meters from historical replay.
 - First gap assessment / insufficient plateau history / unavailable contextual reference use `flag=null`, `status=warmup`. A high candidate awaiting duration uses `observing`, `flag=false`; a completed condition is `ready`, `flag=true`.
 - Each output is `experimental`, `review_signal_not_confirmed_fault`; no score is represented as a probability. There is no fabricated fault severity or automatic Email.
-- State is independent per building/source, with at most `(context_days + 1) × 144` history entries per source (context_days capped at31); the caller owns source lifecycle. Bounded history does not create durable recovery.
+- State is independent per building/source, with at most `(context_days + 1) × 144` context-history entries, a `plateau_intervals`-entry flatline window and 24 frozen hourly summaries per source (context_days capped at31); the caller owns source lifecycle. Bounded history does not create durable recovery.
 - Exact retries of the last message return a defensive copy without advancing state. Conflicting retries, duplicate timestamp/out-of-order input and source-semantic changes fail explicitly before changing state. Older duplicate deliveries require the worker's durable ledger; this in-memory primitive does not replace that ledger or verify global event-ID uniqueness.
 - There is no automatic recovery/backfill, persisted rule episode, database write or change to Kafka offsets. A later integration must restore both context and frozen candidate state and preserve idempotency.
+
+## Review corrections (2026-11-08)
+
+- `flatline` evaluates the last complete duration window, rather than discarding a valid suffix when an old extreme expires. With duration6/tolerance1, `0,1,2,2,2,2,2` is false at point6 and true at point7 (last window `1,2,2,2,2,2`). `consecutive_intervals` now counts observations in the bounded inspected window, capped at the configured duration; it is not lifetime episode length. Whole-window range still rejects transitive drift.
+- `sustained_high` freezes all hour-specific contextual summaries at candidate onset. A07:50 candidate cannot apply its07h threshold to08h normal load. An08h threshold unavailable at the frozen cutoff produces null, not a borrowed threshold or normal result. Frozen-cutoff evidence remains explicit across hours and midnight; duration can continue only when each observation exceeds its own hour's available threshold.
+- Categories remain `telemetry_quality` (flatline/gap) and `consumption_pattern` (sustained high). No watchdog, ML-score, model or runtime integration was added.
+- Seven new regressions include the requested transitions/window case, missing08h context, sustained excess against different hourly thresholds, midnight contamination protection and a direct sliding-window oracle.
+
+[Offline evaluation protocol](evaluation-protocol.md) and [dataset compatibility assessment](dataset-compatibility.md) are plans/preflight findings only, not executed experiments.
 
 ## Controlled checks (not measured detection quality)
 
@@ -62,10 +71,10 @@ All fixtures are generated in memory by tests; no UCI/model files or experiment 
 
 ## Verification performed
 
-- New rule tests: **34 passed**.
+- New rule tests, including review regressions: **41 passed**.
 - Existing energy schema tests: **4 passed**.
 - Existing feature tests: **5 passed**.
-- Total targeted/regression checks: **43 passed**. AST syntax validation passed for module/tests; `git diff --check` passed.
+- Total targeted/regression checks: **50 passed**. AST syntax validation passed for module/tests; `git diff --check` passed.
 - No Kafka/Docker/browser E2E, training or real-dataset performance experiment was run for this phase. No current Dashboard claim or new scientific metrics are derived from unit-test success.
 
 To repeat only these approved checks from the repository root:
