@@ -1,0 +1,54 @@
+{"case": "known-drop-s1-n3", "phase": "fresh_paired_inference"}
+{"case": "known-drop-s1-n6", "phase": "fresh_paired_inference"}
+{"case": "known-drop-s1-n12", "phase": "fresh_paired_inference"}
+{"case": "known-drop-s2-n3", "phase": "fresh_paired_inference"}
+{"case": "known-drop-s2-n6", "phase": "fresh_paired_inference"}
+{"case": "known-drop-s2-n12", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s1-n3-f0.2", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s1-n3-f0.6", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s1-n6-f0.2", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s1-n6-f0.6", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s1-n12-f0.2", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s1-n12-f0.6", "phase": "fresh_paired_inference"}
+{"case": "new-sustained_high-s1", "phase": "fresh_paired_inference"}
+{"case": "new-short_peak-s1", "phase": "fresh_paired_inference"}
+{"case": "new-gradual_change-s1", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s2-n3-f0.2", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s2-n3-f0.6", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s2-n6-f0.2", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s2-n6-f0.6", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s2-n12-f0.2", "phase": "fresh_paired_inference"}
+{"case": "new-drop-s2-n12-f0.6", "phase": "fresh_paired_inference"}
+{"case": "new-sustained_high-s2", "phase": "fresh_paired_inference"}
+{"case": "new-short_peak-s2", "phase": "fresh_paired_inference"}
+{"case": "new-gradual_change-s2", "phase": "fresh_paired_inference"}
+{"case": "control-raw", "phase": "fresh_paired_inference"}
+{"case": "control-zero-background", "phase": "fresh_paired_inference"}
+{"case": "control-low-background", "phase": "fresh_paired_inference"}
+{"case": "control-normal-night", "phase": "fresh_paired_inference"}
+{"case": "control-regular-nonwork", "phase": "fresh_paired_inference"}
+{"case": "control-benign-zero", "phase": "fresh_paired_inference"}
+{"case": "telemetry-flatline", "phase": "fresh_paired_inference"}
+{"case": "telemetry-interval_gap", "phase": "fresh_paired_inference"}
+{"phase": "timing_prime", "records": 1056}
+{"phase": "timing", "scope": "rules_only", "repeat": 1, "variant": "baseline", "total_ms": 509.216959}
+{"phase": "timing", "scope": "rules_only", "repeat": 1, "variant": "plus_low", "total_ms": 600.886834}
+{"phase": "timing", "scope": "rules_only", "repeat": 2, "variant": "plus_low", "total_ms": 588.619333}
+{"phase": "timing", "scope": "rules_only", "repeat": 2, "variant": "baseline", "total_ms": 519.07475}
+{"phase": "timing", "scope": "rules_only", "repeat": 3, "variant": "baseline", "total_ms": 488.390708}
+{"phase": "timing", "scope": "rules_only", "repeat": 3, "variant": "plus_low", "total_ms": 625.990042}
+{"phase": "timing", "scope": "rules_only", "repeat": 4, "variant": "plus_low", "total_ms": 609.481584}
+{"phase": "timing", "scope": "rules_only", "repeat": 4, "variant": "baseline", "total_ms": 510.547833}
+{"phase": "timing", "scope": "rules_only", "repeat": 5, "variant": "baseline", "total_ms": 513.094792}
+{"phase": "timing", "scope": "rules_only", "repeat": 5, "variant": "plus_low", "total_ms": 601.750834}
+{"phase": "timing", "scope": "full_scoring", "repeat": 1, "variant": "baseline", "total_ms": 4251.699044}
+{"phase": "timing", "scope": "full_scoring", "repeat": 1, "variant": "plus_low", "total_ms": 4683.046711}
+{"phase": "timing", "scope": "full_scoring", "repeat": 2, "variant": "plus_low", "total_ms": 3916.959168}
+{"phase": "timing", "scope": "full_scoring", "repeat": 2, "variant": "baseline", "total_ms": 4121.626544}
+{"phase": "timing", "scope": "full_scoring", "repeat": 3, "variant": "baseline", "total_ms": 4290.551586}
+{"phase": "timing", "scope": "full_scoring", "repeat": 3, "variant": "plus_low", "total_ms": 4089.433168}
+{"phase": "timing", "scope": "full_scoring", "repeat": 4, "variant": "plus_low", "total_ms": 4086.469125}
+{"phase": "timing", "scope": "full_scoring", "repeat": 4, "variant": "baseline", "total_ms": 4065.808544}
+{"phase": "timing", "scope": "full_scoring", "repeat": 5, "variant": "baseline", "total_ms": 4011.428002}
+{"phase": "timing", "scope": "full_scoring", "repeat": 5, "variant": "plus_low", "total_ms": 4100.520585}
+{"complete": true, "scenarios": 32, "low_parity_records": 79899, "v2_exact_regression_pairs": 12}

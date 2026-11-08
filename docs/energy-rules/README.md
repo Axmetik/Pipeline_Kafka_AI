@@ -115,3 +115,7 @@ The separately preregistered 24-case comparison is complete: [report, tables, ma
 ## ML–rules complementarity (2026-11-08)
 
 A new separately preregistered 33-case controlled comparison is complete: [contribution table, coverage, paired alarms, plots and limitations](complementarity-20261108/README.md). Consumption and telemetry-quality targets remain separate; every OR episode was reconstructed from fresh nullable decisions. Previous24-case results and frozen configurations remain unchanged. No runtime integration or merge.
+
+## Sustained low v1 — separate standalone extension
+
+[Preregistered32-case experiment, cost and limitations](sustained-low-20261108/README.md). New low rule/config/version lives in processing/energy_low_rule.py; frozen energy_rules v2 is unchanged. Two incremental new-event detections, the known-six drops remain missed, with explicit null coverage and legitimate low-use controls. No runtime integration.

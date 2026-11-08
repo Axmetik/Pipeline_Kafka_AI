@@ -1,0 +1,61 @@
+{
+  "registration_commit": "8cc7334",
+  "runner_commit": "a228124751770e04e01e98f686e1f014eeedec1c",
+  "note": "git absent in container: original provenance git_commit=null; exact source hashes verified on host against pre-execution commit.",
+  "scenarios_completed": 32,
+  "points_files": 64,
+  "rows_checked": 79899,
+  "all_or_decisions_and_sources_verified": true,
+  "episode_onsets_independently_reconstructed": true,
+  "known_v2_exact_pairs": 12,
+  "known_v2_exact_records": 15012,
+  "low_exact_offline_streaming_records": 79899,
+  "timing_rows": 2880,
+  "timing_pairs": 10,
+  "timing_percentiles_independently_verified": true,
+  "all_input_output_checksums_preserved": true,
+  "targeted_tests": 107
+}
+          cohort          family               method  target_events  detected_events  missed_events  common_onset_detected_events  event_coverage_percent  stream_coverage_percent  common_event_coverage_percent  unavailable_event_points  unavailable_stream_points  delay_median_minutes                           delay_values_minutes  new_paired_crossings  paired_unknown_matches  paired_episode_onsets  modified_episode_onsets  paired_event_onsets  modified_tail_onsets
+known_regression all_consumption             residual              6                0              6                             0              100.000000                88.474192                           50.0                         0                        864                   NaN                                             []                     0                       0                     33                       31                    2                     1
+known_regression all_consumption residual_high_low_or              6                0              6                             0               50.000000                50.260928                           50.0                        21                       3731                   NaN                                             []                     0                       0                     33                       31                    2                     1
+known_regression all_consumption     residual_high_or              6                0              6                             0              100.000000                65.461155                           50.0                         0                       2589                   NaN                                             []                     0                       0                     33                       31                    2                     1
+known_regression all_consumption       sustained_high              6                0              6                             0              100.000000                65.422575                           50.0                         0                       2592                   NaN                                             []                     0                       0                      0                        0                    0                     0
+known_regression all_consumption        sustained_low              6                0              6                             0               50.000000                50.089861                           50.0                        21                       3744                   NaN                                             []                     0                       0                      0                        0                    0                     0
+             new all_consumption             residual             18                2             16                             1              100.000000                88.478261                           50.0                         0                       2592                   0.0                                     [0.0, 0.0]                     2                       0                    162                      164                    0                    27
+             new all_consumption residual_high_low_or             18                8             10                             5               60.185185                52.571577                           50.0                        56                      10670                  50.0 [50.0, 0.0, 90.0, 50.0, 50.0, 50.0, 0.0, 70.0]                     5                       3                    204                      212                    0                    33
+             new all_consumption     residual_high_or             18                6             12                             3              100.000000                65.636251                           50.0                         0                       7731                  50.0             [50.0, 0.0, 90.0, 50.0, 0.0, 70.0]                     6                       0                    204                      210                    0                    33
+             new all_consumption       sustained_high             18                4             14                             2              100.000000                65.434782                           50.0                         0                       7776                  60.0                       [50.0, 90.0, 50.0, 70.0]                     4                       0                     51                       55                    0                     6
+             new all_consumption        sustained_low             18                2             16                             2               50.000000                51.743570                           50.0                        67                      10858                  50.0                                   [50.0, 50.0]                     2                       0                      0                        2                    0                     0
+       scope  repeat  variant  records  record_p50_ms  record_p95_ms    total_ms  low_p50_ms  low_p95_ms
+  rules_only       1 baseline      144       3.189541       4.916329  509.216959         NaN         NaN
+  rules_only       1 plus_low      144       3.678125       6.225550  600.886834    0.491208    0.768114
+  rules_only       2 plus_low      144       3.651166       5.896210  588.619333    0.479917    0.687431
+  rules_only       2 baseline      144       3.215750       5.461904  519.074750         NaN         NaN
+  rules_only       3 baseline      144       3.113520       4.269321  488.390708         NaN         NaN
+  rules_only       3 plus_low      144       3.712250       7.960119  625.990042    0.486042    1.000283
+  rules_only       4 plus_low      144       3.783479       5.876009  609.481584    0.509625    0.908452
+  rules_only       4 baseline      144       3.226187       4.630513  510.547833         NaN         NaN
+  rules_only       5 baseline      144       3.247645       4.698483  513.094792         NaN         NaN
+  rules_only       5 plus_low      144       3.734917       5.814005  601.750834    0.502229    0.818931
+full_scoring       1 baseline      144      28.825104      33.074106 4251.699044         NaN         NaN
+full_scoring       1 plus_low      144      29.031458      38.755617 4683.046711    0.659563    0.956448
+full_scoring       2 plus_low      144      27.072791      30.001015 3916.959168    0.644125    0.748206
+full_scoring       2 baseline      144      28.034479      33.588313 4121.626544         NaN         NaN
+full_scoring       3 baseline      144      28.967042      34.850208 4290.551586         NaN         NaN
+full_scoring       3 plus_low      144      28.130958      30.930629 4089.433168    0.650750    0.766250
+full_scoring       4 plus_low      144      28.026062      31.872013 4086.469125    0.657583    0.782913
+full_scoring       4 baseline      144      27.611687      30.159885 4065.808544         NaN         NaN
+full_scoring       5 baseline      144      27.735374      30.787350 4011.428002         NaN         NaN
+full_scoring       5 plus_low      144      28.190312      31.628625 4100.520585    0.653167    0.763548
+       scope  repeat  baseline_total_ms  plus_total_ms    delta_ms  delta_percent
+  rules_only       1         509.216959     600.886834   91.669875      18.002125
+  rules_only       2         519.074750     588.619333   69.544583      13.397797
+  rules_only       3         488.390708     625.990042  137.599334      28.174028
+  rules_only       4         510.547833     609.481584   98.933751      19.377959
+  rules_only       5         513.094792     601.750834   88.656042      17.278687
+full_scoring       1        4251.699044    4683.046711  431.347667      10.145301
+full_scoring       2        4121.626544    3916.959168 -204.667376      -4.965694
+full_scoring       3        4290.551586    4089.433168 -201.118418      -4.687472
+full_scoring       4        4065.808544    4086.469125   20.660581       0.508154
+full_scoring       5        4011.428002    4100.520585   89.092583       2.220969
