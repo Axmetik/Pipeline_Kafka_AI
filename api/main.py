@@ -123,6 +123,20 @@ def create_app(engine=None):
     @app.get('/api/combined-events',response_model=out.Page[out.CombinedEpisode])
     def combined_events(c:DB,f:F): return series(c,'combined-events',f)
 
+    def rule_results(c, kind, f):
+        reject_filters(f, {'run_id','building_id','source_id','start','end','status'})
+        from .rules import optional_series
+        return optional_series(c, kind, f)
+
+    @app.get('/api/rule-assessments', response_model=out.OptionalPage[out.RuleAssessment])
+    def rule_assessments(c:DB, f:F): return rule_results(c, 'rule-assessments', f)
+
+    @app.get('/api/hybrid-decisions', response_model=out.OptionalPage[out.HybridDecision])
+    def hybrid_decisions(c:DB, f:F): return rule_results(c, 'hybrid-decisions', f)
+
+    @app.get('/api/hybrid-events', response_model=out.OptionalPage[out.HybridEpisode])
+    def hybrid_events(c:DB, f:F): return rule_results(c, 'hybrid-events', f)
+
     @app.get('/api/notifications',response_model=out.Page[out.Notification])
     def notifications(c:DB,f:F):
         reject_filters(f,{'run_id','building_id','source_id','status'})

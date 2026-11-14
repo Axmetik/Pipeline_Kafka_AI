@@ -1,4 +1,8 @@
 import type {
+  OptionalPage,
+  RuleAssessment,
+  HybridDecision,
+  HybridEpisode,
   Basis,
   Forecast,
   Measurement,
@@ -154,6 +158,9 @@ export async function load(
     combined,
     combinedEvents,
     notifications,
+    ruleAssessments,
+    hybridDecisions,
+    hybridEvents,
   ] = await Promise.all([
     fetchJSON<Page<Measurement>>(
       "/api/measurements?" + query({ limit: String(windowSize) }),
@@ -185,6 +192,18 @@ export async function load(
       "/api/notifications?" + new URLSearchParams({ run_id: run, building_id: building, source_id: source.source_id, limit: "20" }),
       signal,
     ),
+    fetchJSON<OptionalPage<RuleAssessment>>(
+      "/api/rule-assessments?" + query({ limit: String(windowSize * 3) }),
+      signal,
+    ),
+    fetchJSON<OptionalPage<HybridDecision>>(
+      "/api/hybrid-decisions?" + query({ limit: String(windowSize) }),
+      signal,
+    ),
+    fetchJSON<OptionalPage<HybridEpisode>>(
+      "/api/hybrid-events?" + query({ limit: "50" }),
+      signal,
+    ),
   ]);
   const ids = new Set(measurements.items.map((m) => m.measurement_id));
   return {
@@ -199,6 +218,9 @@ export async function load(
     events: events.items,
     moreEvents: events.next_cursor !== null,
     models: models.items,
+    ruleAssessments,
+    hybridDecisions,
+    hybridEvents,
     notifications: notifications.items,
     combined: combined.items,
     combinedEvents: combinedEvents.items,
