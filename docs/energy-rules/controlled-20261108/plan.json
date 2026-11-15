@@ -1,0 +1,52 @@
+{
+  "plan_version": "rules-controlled-offline-v1",
+  "registered_date": "2026-11-08",
+  "base_commit": "5e88d2cf223af72c4d079db029e62f5c5967db7c",
+  "manifest_sha256": "70bf4ee2f3113e584398cc4d65031a8ff10873c22e8cb4c32890cd5769269806",
+  "rule_config": {
+    "plateau_intervals": 6,
+    "plateau_tolerance_wh": 0.0,
+    "high_intervals": 6,
+    "context_days": 7,
+    "minimum_context_days": 3,
+    "minimum_context_points": 18,
+    "mad_multiplier": 3.0,
+    "minimum_excess_wh": 50.0,
+    "minimum_relative_excess": 0.5
+  },
+  "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+  "input_sha256": {
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "processing/energy_rules.py": "4fd53075e7f784056656dcc283047c69a307c01816f71a27948a69f43a80a91f",
+    "configs/combined-rule-v1.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e",
+    "anomaly/artifacts.py": "77acff536b2db5219d69f49d406b0d09801e2aa1dcf0f638cd05f453e52458cf",
+    "anomaly/features.py": "8f7ffea0a9399e7047d37b7733b9675a012d7d9a0ae60cdb504f4867dbd5a12c",
+    "anomaly/residual.py": "7bae011bcce4aae059d5736e8b8d9ef7ab4d7ab6878542f55d978e3a735dad50",
+    "anomaly/combined.py": "d8dbf3dbfdb5f7de1d81fe1b985b225ea6bc8db47fad4aabf0981a6fd7c2c601",
+    "processing/energy_processor.py": "d56d698c70a4fa40b5c0c9416b944409891c23e36b75c97a6fe2927379ae5c27",
+    "processing/energy_schema.py": "16dfd57f1e11eb2df84d3bfa6d71703afddbf65876d9b7a0848131b8dcc9a510",
+    "benchmark/features.py": "254fad194af82a391cfb0fc1738cbe62987428a882d662bf41a3cfc758a7fa65"
+  },
+  "artifact_identity": "existing trusted local Docker bundle, not the original Stage4 binary",
+  "docker_image_id": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+  "scenarios": 24,
+  "no_fit_no_calibration": true,
+  "frozen_quantile": "0.99",
+  "unanimous": "unchanged configs/combined-rule-v1.json",
+  "comparison": "flatline vs ML on flatline targets; sustained_high vs ML on sustained_high targets; no cross-category aggregation; gap separate",
+  "matching": "contiguous true episode onset inside inclusive event labels; no pre-existing/overlap-only credit; one-to-one; no post-event grace",
+  "availability": "per-method flag nonnull; common mask for each rule/three ML/Unanimous comparison family; report all 6 events or all12 events including insufficient-coverage/missed events",
+  "signal_counts": "episode onsets and flagged points separately, whole observed stream and event window, altered and raw paired stream",
+  "delay": "source event-time minutes, detected events only; misses null; not processing latency",
+  "controls": "single peak is not a sustained-high target; scheduled morning control has engineered historical energy profile; zero control is not a confirmed stuck meter",
+  "limitations": [
+    "Historical UCI and already viewed dates, exploratory controlled comparison only",
+    "Artificial labels define manipulations/review situations, not real equipment failures",
+    "Positive and benign repeated constants can both trigger flatline",
+    "No parameter selection or model/threshold changes based on outputs",
+    "All24 cases retained; no resampling or post-result scenario replacement"
+  ]
+}

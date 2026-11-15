@@ -591,3 +591,10 @@ python3 -m integration.email_demo synthetic
 Каталог розширено реальними `lights` та парами `T1–T9` / `RH_1–RH_9`: українські назви зон за UCI, категорії/пошук, окремі графіки й статистика. HGB20, детектори та події залишаються лише в аналітиці Appliances. Історичні дані не означають активний фізичний пристрій. Нові канали читаються зі збереженого wire_record; без підміни пропусків нулями, міграцій або backfill.
 
 [Походження даних, можливості, обмеження, перевірки й шість desktop/mobile скриншотів](docs/sources-catalog/channels-20261115/README.md). Основний demo для цього етапу не перебудовувався.
+### Standalone experimental energy rules
+
+[Rules module and controlled test report](docs/energy-rules/README.md): repeated readings, measurement-time gaps and sustained high consumption against historical same-hour context. This first phase is **not connected to Worker/API/Dashboard/Email**, does not alter ML models and does not claim improved real-data detection metrics.
+
+## Experimental rules: Worker/PostgreSQL integration (default off)
+
+`MVP_ENERGY_RULES_ENABLED=false` preserves the existing pipeline. The optional layer stores frozen-v2 rule assessments, separate telemetry-quality signals, `residual OR sustained_high` decisions/episodes and durable per-source state. It does not enable low candidates or alter ML/Unanimous, API, Dashboard or Email. Separate optional Alembic migration required only when enabled; no backfill. See [setup, recovery and targeted verification](docs/energy-rules/worker-integration-20261109/README.md).

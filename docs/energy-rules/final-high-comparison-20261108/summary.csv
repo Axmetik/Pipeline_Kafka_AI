@@ -1,0 +1,4 @@
+method,detected_events,target_events,added_vs_residual,lost_vs_residual,median_delay_minutes,paired_episode_onsets,paired_event_onsets,target_coverage_percent
+residual,8,22,0,0,15.0,121,6,100.0
+residual_high_or,11,22,3,0,30.0,121,6,100.0
+ml_high_or,11,22,3,0,30.0,231,9,100.0

@@ -28,6 +28,7 @@ import CombinedPanel from "./CombinedPanel";
 import ScoreChart, { detectors, statusName } from "./ScoreChart";
 import SourcesWorkspace from "./SourcesWorkspace";
 import { sourceHref } from "./sourceData";
+import RulePanel from "./RulePanel";
 import NotificationsPanel from "./NotificationsPanel";
 import { nextPrimary, chartTime, scoreTick, finite } from "./insights";
 import { useMonitor } from "./useMonitor";
@@ -539,6 +540,7 @@ function MonitoringApp() {
           )}
         </section>
         <CombinedPanel data={data} />
+        <RulePanel data={data} />
         <NotificationsPanel rows={data?.notifications} />
         <section id="detectors" className="section-heading">
           <div>
@@ -609,7 +611,8 @@ function MonitoringApp() {
             </div>
           )}
         </section>
-        <section id="events" className="card table-card">
+        <div id="events"><RulePanel data={data} events /></div>
+        <section className="card table-card">
           <div className="card-heading">
             <div>
               <h2>Історія експериментальних подій</h2>

@@ -98,6 +98,9 @@ export interface Selection {
   source: string;
 }
 export interface Snapshot {
+  ruleAssessments?: OptionalPage<RuleAssessment>;
+  hybridDecisions?: OptionalPage<HybridDecision>;
+  hybridEvents?: OptionalPage<HybridEpisode>;
   notifications?: EmailNotification[];
   combined?: CombinedDecision[];
   combinedEvents?: CombinedEpisode[];
@@ -202,4 +205,43 @@ export interface ChannelSeries extends Page<ChannelSummary> {
     mean: number | null;
   }[];
   statistics_scope: "returned_window";
+}
+
+export interface OptionalPage<T> extends Page<T> {
+  channel_status: "not_connected" | "no_data" | "available";
+  status_reason: string;
+}
+export interface RuleAssessment {
+  assessment_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  rule: "flatline" | "interval_gap" | "sustained_high";
+  category: "telemetry_quality" | "consumption_pattern";
+  flag: boolean | null;
+  status: string;
+  evidence: Record<string, unknown>;
+  rule_version: string;
+  layer_version: string;
+  activation: string;
+}
+export interface HybridDecision {
+  decision_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  flag: boolean | null;
+  status: string;
+  coverage_count: number;
+  available_inputs: string[];
+  triggered_inputs: string[];
+  layer_version: string;
+}
+export interface HybridEpisode {
+  episode_id: string;
+  start_timestamp: string;
+  end_timestamp: string;
+  flagged_points: number;
+  triggered_inputs: string[];
+  status: "open" | "closed";
+  closed_reason: string | null;
+  layer_version: string;
 }

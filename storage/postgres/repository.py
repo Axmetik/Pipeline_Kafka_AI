@@ -39,6 +39,9 @@ class Repository:
             raise
         except Exception:
             raise RepositoryError('PostgreSQL unavailable or schema missing. Run alembic upgrade head; see docs/stage5/5a-runbook.md') from None
+        if getattr(settings,'energy_rules_enabled',False):
+            from storage.postgres.rules import require_schema
+            require_schema(engine)
 
     @contextmanager
     def worker_lock(self):

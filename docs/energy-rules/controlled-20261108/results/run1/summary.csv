@@ -1,0 +1,11 @@
+family,method,target_events,detected_events,detected_method_only,new_paired_crossings,event_coverage_percent,common_event_coverage_percent,stream_coverage_percent,delay_median_minutes,delay_values_minutes,paired_episode_onsets_sum,paired_event_onsets_sum,modified_event_onsets_sum,preexisting_overlap_cases
+flatline,autoencoder,6,0,0,0,100.0,100.0,99.50988763620101,,[],30,0,0,0
+flatline,flatline,6,4,4,4,100.0,100.0,99.5915730301675,35.0,"[30.0, 30.0, 40.0, 40.0]",36,0,4,0
+flatline,isolation_forest,6,0,0,0,100.0,100.0,99.50988763620101,,[],12,0,0,0
+flatline,residual,6,0,0,0,100.0,100.0,88.23730326882432,,[],51,3,0,0
+flatline,unanimous,6,0,0,0,100.0,100.0,88.23730326882432,,[],6,0,0,0
+sustained_high,autoencoder,12,3,3,3,100.0,100.0,99.51975798060549,50.0,"[60.0, 50.0, 50.0]",60,0,5,0
+sustained_high,isolation_forest,12,1,1,1,100.0,100.0,99.51975798060549,60.0,[60.0],24,0,1,0
+sustained_high,residual,12,6,6,3,100.0,100.0,88.47419153453188,10.0,"[20.0, 0.0, 20.0, 0.0, 20.0, 0.0]",102,6,9,0
+sustained_high,sustained_high,12,8,8,8,100.0,100.0,65.4225746035956,50.0,"[50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]",12,0,8,0
+sustained_high,unanimous,12,0,0,0,100.0,100.0,88.47419153453188,,[],12,0,0,0

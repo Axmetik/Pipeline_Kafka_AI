@@ -1,0 +1,9 @@
+{
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "cpu": "Apple M1",
+  "memory_bytes": 17179869184,
+  "logical_cpus": 8,
+  "docker_server": "29.4.2",
+  "image": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865 arm64 linux",
+  "note": "Existing local workload not stopped or changed; virtualization, scheduling, clocks and thermal state can affect timings. Container1CPU/2GB/1thread."
+}

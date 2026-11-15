@@ -1,4 +1,8 @@
 import type {
+  OptionalPage,
+  RuleAssessment,
+  HybridDecision,
+  HybridEpisode,
   Basis,
   Forecast,
   Measurement,
@@ -177,6 +181,9 @@ export async function loadSourceSeries(
     combined,
     combinedEvents,
     notifications,
+    ruleAssessments,
+    hybridDecisions,
+    hybridEvents,
   ] = await Promise.all([
     fetchJSON<Page<Measurement>>(
       "/api/measurements?" + query({ limit: String(windowSize) }),
@@ -210,6 +217,18 @@ export async function loadSourceSeries(
         }),
       signal,
     ),
+    fetchJSON<OptionalPage<RuleAssessment>>(
+      "/api/rule-assessments?" + query({ limit: String(windowSize * 3) }),
+      signal,
+    ),
+    fetchJSON<OptionalPage<HybridDecision>>(
+      "/api/hybrid-decisions?" + query({ limit: String(windowSize) }),
+      signal,
+    ),
+    fetchJSON<OptionalPage<HybridEpisode>>(
+      "/api/hybrid-events?" + query({ limit: "50" }),
+      signal,
+    ),
   ]);
   const ids = new Set(measurements.items.map((m) => m.measurement_id));
   return {
@@ -218,6 +237,9 @@ export async function loadSourceSeries(
     scores: scores.items.filter((s) => ids.has(s.measurement_id)),
     events: events.items,
     moreEvents: events.next_cursor !== null,
+    ruleAssessments,
+    hybridDecisions,
+    hybridEvents,
     notifications: notifications.items,
     combined: combined.items,
     combinedEvents: combinedEvents.items,
