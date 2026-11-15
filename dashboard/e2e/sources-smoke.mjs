@@ -56,11 +56,11 @@ try {
     expect(overflow).toEqual([]);
   };
   await page.goto(url("sources"));
-  await expect(page.getByTestId("source-card")).toHaveCount(1);
-  await expect(page.getByTestId("source-card")).toContainText("uci-appliances");
+  await expect(page.getByTestId("source-card")).toHaveCount(11);
+  await expect(page.locator('[data-channel="appliances"]')).toContainText("uci-appliances");
   await noOverflow();
   await page.screenshot({ path: out + "/catalog-desktop.png", fullPage: true });
-  await page.getByRole("link", { name: "Переглянути аналітику" }).click();
+  await page.locator('[data-channel="appliances"]').getByRole("link", { name: "Переглянути аналітику" }).click();
   await expect(page.getByTestId("source-latest-energy")).not.toHaveText("—");
   await expect(
     page
@@ -89,7 +89,7 @@ try {
   await noOverflow();
   await page.screenshot({ path: out + "/detail-mobile.png", fullPage: true });
   await page.getByRole("link", { name: "До каталогу", exact: true }).click();
-  await expect(page.getByTestId("source-card")).toHaveCount(1);
+  await expect(page.getByTestId("source-card")).toHaveCount(11);
   await noOverflow();
   await page.screenshot({ path: out + "/catalog-mobile.png", fullPage: true });
   await page.setViewportSize({ width: 900, height: 1100 });
@@ -127,12 +127,12 @@ try {
   ).toBeVisible();
   await page.getByRole("textbox", { name: "Пошук джерел" }).fill("");
   await expect(page.getByTestId("source-card")).toHaveCount(5);
-  await page.route("**/api/source-summaries?**", (r) =>
+  await page.route("**/api/channels?**", (r) =>
     r.fulfill({ status: 503, body: "{}" }),
   );
   await page.reload();
   await expect(page.getByRole("alert")).toContainText("Не вдалося");
-  await page.unroute("**/api/source-summaries?**");
+  await page.unroute("**/api/channels?**");
   await page.getByRole("button", { name: "Повторити", exact: true }).click();
   await expect(page.getByTestId("source-card")).toHaveCount(5);
   await page.goto(
@@ -157,7 +157,7 @@ try {
   await page
     .getByRole("link", { name: "Пристрої та джерела", exact: true })
     .click();
-  await expect(page.getByTestId("source-card")).toHaveCount(1);
+  await expect(page.getByTestId("source-card")).toHaveCount(11);
   expect(new URL(page.url()).searchParams.get("run")).toBe(
     "source-saved-review",
   );

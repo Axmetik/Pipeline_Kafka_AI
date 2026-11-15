@@ -1,0 +1,55 @@
+{
+  "base_commit": "b73e65aa273b6d187ecce5b613592d73ce208d43",
+  "api_commit": "6d20ef0",
+  "ui_commit": "eaef51c",
+  "checks": {
+    "postgresql_api": {
+      "passed": 22,
+      "skipped": 0,
+      "modules": [
+        "test_api_integration",
+        "test_source_catalog_api",
+        "test_channels_api"
+      ],
+      "log": "api-tests.log"
+    },
+    "frontend_unit": {
+      "passed": 38,
+      "files": 9,
+      "command": "npm --prefix dashboard test",
+      "log": "frontend-tests.log"
+    },
+    "typescript": {
+      "exit_code": 0,
+      "command": "npm --prefix dashboard run typecheck",
+      "log": "typecheck.log"
+    },
+    "production_build": {
+      "exit_code": 0,
+      "command": "npm --prefix dashboard run build",
+      "warning": "bundle exceeds 500 kB; existing single bundle architecture",
+      "log": "build.log"
+    },
+    "browser": {
+      "result": "browser-verification.json",
+      "isolated": true,
+      "viewports": [
+        1440,
+        900,
+        390
+      ],
+      "timezone": "Pacific/Honolulu",
+      "model_inference": false,
+      "smtp_sender_started": false
+    }
+  },
+  "not_run": [
+    "training",
+    "scientific experiments",
+    "Kafka replay",
+    "full performance campaign",
+    "deployment",
+    "main demo rebuild"
+  ],
+  "environment_preserved": true
+}

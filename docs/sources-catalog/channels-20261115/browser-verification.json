@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "channels": 11,
+  "real_channel_series": 10,
+  "points_per_series": 144,
+  "all_original_columns_and_window_statistics_verified": true,
+  "naive_timezone": "Pacific/Honolulu",
+  "viewports": [
+    1440,
+    900,
+    390
+  ],
+  "screenshots": 6,
+  "model_leakage": false,
+  "deep_links_reload": true,
+  "filters_search_context_isolation": true,
+  "api_failure_recovery": true,
+  "appliances_hgb_detectors_events_preserved": true,
+  "unexpected_errors": [],
+  "no_inference": true,
+  "no_notifications_sent": true
+}

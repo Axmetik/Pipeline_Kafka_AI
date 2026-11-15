@@ -10,6 +10,7 @@ from alembic import command
 from alembic.config import Config
 from storage.postgres import schema as s
 from test_source_catalog_api import SourceCatalogAPI
+from producer.appliances_dataset import iter_appliances
 
 engine=create_engine(os.environ['MVP_DATABASE_URL'])
 config=Config('alembic.ini')
@@ -23,6 +24,8 @@ meta=json.loads((root/'artifacts/mvp/docker/hgb/metadata.json').read_text())
 ameta=json.loads((root/'docs/energy-anomaly/results/model_metadata.json').read_text())
 thresholds=json.loads((root/'docs/energy-anomaly/results/thresholds.json').read_text())['0.99']
 rows=pq.read_table(hgb_file).slice(1,144).to_pylist()
+csv_file=root/'data/energy/raw/energydata_complete.csv'
+originals={record['timestamp']:record for record in iter_appliances(csv_file)}
 scores={r['measurement_timestamp']:r for r in pq.read_table(score_file).to_pylist()}
 now=datetime(2026,11,15,tzinfo=timezone.utc) # Operational timestamps are fixture-only, not archived inference times.
 run='source-saved-review';building='appliances-house-1';source='uci-appliances'
@@ -34,7 +37,10 @@ with engine.begin() as c:
   c.execute(s.models.insert().values(model_id='review-'+role,artifact_sha256='review-'+role,role=role,model_version=meta['model_version'] if primary else ameta['model_version'],feature_version='energy-features-v1' if primary else ('benchmark-energy-v1' if role=='residual' else 'energy-anomaly-20-v1'),threshold_version=None if primary else ameta['threshold_version'],maturity='existing' if primary else 'experimental',details={'saved_fixture':True}))
  for i,row in enumerate(rows):
   stamp=row['forecast_origin'];mid='review-'+str(i);dt=datetime.fromisoformat(stamp)
-  c.execute(s.measurements.insert().values(measurement_id=mid,run_id=run,building_id=building,source_id=source,event_id=stamp,kafka_offset=i,measurement_timestamp=stamp,measurement_time_local=dt,measurement_time_utc=None,time_basis='dataset_naive',timezone=None,timestamp_reference='dataset_label',interval_seconds=600,energy_wh=row['baseline_energy_wh'],environment={},wire_record={},normalized_sha256='a'*64,compatible=True,feature_status='ready',gap_detected=False,received_at=now))
+  original=originals[stamp]
+  assert original['building_id']==building and original['source_id']==source
+  assert original['energy']['value']==row['baseline_energy_wh']
+  c.execute(s.measurements.insert().values(measurement_id=mid,run_id=run,building_id=building,source_id=source,event_id=stamp,kafka_offset=i,measurement_timestamp=stamp,measurement_time_local=dt,measurement_time_utc=None,time_basis='dataset_naive',timezone=None,timestamp_reference='dataset_label',interval_seconds=600,energy_wh=row['baseline_energy_wh'],environment=original['environment'],wire_record=original,normalized_sha256='a'*64,compatible=True,feature_status='ready',gap_detected=False,received_at=now))
   c.execute(s.forecasts.insert().values(forecast_id=mid+'-hgb',measurement_id=mid,run_id=run,model_id='review-primary_forecast',purpose='primary_forecast',model_version=meta['model_version'],feature_version='energy-features-v1',forecast_origin=stamp,forecast_target_timestamp=row['forecast_target_timestamp'],target_time_local=datetime.fromisoformat(row['forecast_target_timestamp']),target_time_utc=None,generated_at=now,predicted_energy_wh=row['predicted_energy_wh'],status='ready',horizon_seconds=600))
   score=scores[stamp]
   assert score['actual_energy_wh']==row['baseline_energy_wh']
@@ -60,5 +66,14 @@ with engine.begin() as c:
  c.execute(s.sources.insert().values(building_id=long_building,source_id=long_source,binding=binding))
  measurement.update(measurement_id='long-identifiers-fixture',source_id=long_source,building_id=long_building)
  c.execute(s.measurements.insert().values(**measurement))
-print(json.dumps({'saved_points':len(rows),'hgb_sha256':hashlib.sha256(hgb_file.read_bytes()).hexdigest(),'score_sha256':hashlib.sha256(score_file.read_bytes()).hexdigest(),'no_inference':True,'isolated_only':True,'operational_timestamps':'fixture only; not archived generation/receipt times','episode_and_outbox':'synthetic functional fixtures; no sending'},indent=2))
+expected={}
+for column in ['lights']+[v for i in range(1,10) for v in (f'T{i}',f'RH_{i}')]:
+ def value(record):
+  if column=='T1':return record['environment']['temperature_c']
+  if column=='RH_1':return record['environment']['relative_humidity_pct']
+  return record['additional_parameters'].get(column)
+ values=[value(originals[row['forecast_origin']]) for row in rows]
+ valid=[v for v in values if v is not None]
+ expected[column]={'last':values[-1],'minimum':min(valid) if valid else None,'maximum':max(valid) if valid else None,'mean':sum(valid)/len(valid) if valid else None,'count':len(valid)}
+print(json.dumps({'expected_channels':expected,'first_timestamp':rows[0]['forecast_origin'],'last_timestamp':rows[-1]['forecast_origin'],'csv_sha256':hashlib.sha256(csv_file.read_bytes()).hexdigest(),'channel_join':'exact forecast_origin = original dataset timestamp; matching building/source and energy asserted','saved_points':len(rows),'hgb_sha256':hashlib.sha256(hgb_file.read_bytes()).hexdigest(),'score_sha256':hashlib.sha256(score_file.read_bytes()).hexdigest(),'no_inference':True,'isolated_only':True,'operational_timestamps':'fixture only; not archived generation/receipt times','episode_and_outbox':'synthetic functional fixtures; no sending'},indent=2))
 engine.dispose()

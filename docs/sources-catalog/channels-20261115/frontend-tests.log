@@ -1,0 +1,17 @@
+
+> energy-monitoring-dashboard@5.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/dashboard
+
+
+ Test Files  9 passed (9)
+      Tests  38 passed (38)
+   Start at  17:13:44
+   Duration  3.01s (environment 70%, setup 17%, worker 6%, transform 3%, import 2%, tests 2%)
+
+Environment  jsdom was created 9 times · 12.13s total, 70% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

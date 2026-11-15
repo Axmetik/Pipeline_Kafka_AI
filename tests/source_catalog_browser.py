@@ -2,7 +2,7 @@
 import json,os,subprocess,tempfile,time,uuid
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'docs/sources-catalog'
+OUT=ROOT/os.environ.get('SOURCE_UI_RELATIVE_OUTPUT','docs/sources-catalog')
 def run(args,**kw):return subprocess.run(args,check=True,**kw)
 def main():
  OUT.mkdir(parents=True,exist_ok=True)
@@ -35,7 +35,7 @@ uvicorn.run('api.main:create_app',factory=True,host='127.0.0.1',port=8000,log_le
    with (OUT/'fixture-provenance.json').open('w') as output:run(['docker','run','--rm',*common,'energy-monitoring-backend:local','python','tests/source_catalog_browser_fixture.py'],stdout=output)
    run(['docker','run','-d','--name',api,*common,'-p','127.0.0.1::8099','energy-monitoring-backend:local','python','/checks/serve.py'],stdout=subprocess.DEVNULL)
    binding=subprocess.check_output(['docker','port',api,'8099/tcp'],text=True).strip();assert binding.startswith('127.0.0.1:')
-   run(['node','dashboard/e2e/sources-smoke.mjs'],env={**os.environ,'SOURCE_UI_BASE':'http://'+binding,'SOURCE_UI_OUTPUT':str(OUT)})
+   run(['node',os.environ.get('SOURCE_UI_SCRIPT','dashboard/e2e/sources-smoke.mjs')],env={**os.environ,'SOURCE_UI_BASE':'http://'+binding,'SOURCE_UI_OUTPUT':str(OUT)})
   except Exception:
    subprocess.run(['docker','logs',api],check=False);raise
   finally:

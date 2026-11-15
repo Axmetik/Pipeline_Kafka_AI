@@ -1,0 +1,148 @@
+{
+  "expected_channels": {
+    "lights": {
+      "last": 0.0,
+      "minimum": 0.0,
+      "maximum": 10.0,
+      "mean": 0.7638888888888888,
+      "count": 144
+    },
+    "T1": {
+      "last": 20.5,
+      "minimum": 20.39,
+      "maximum": 22.1,
+      "mean": 21.29585648148148,
+      "count": 144
+    },
+    "RH_1": {
+      "last": 38.53,
+      "minimum": 35.09,
+      "maximum": 44.69333333333329,
+      "mean": 38.08984375,
+      "count": 144
+    },
+    "T2": {
+      "last": 20.0633333333333,
+      "minimum": 17.39,
+      "maximum": 21.2,
+      "mean": 19.347025462962964,
+      "count": 144
+    },
+    "RH_2": {
+      "last": 39.33,
+      "minimum": 34.0,
+      "maximum": 42.4666666666667,
+      "mean": 39.72619791666667,
+      "count": 144
+    },
+    "T3": {
+      "last": 23.0,
+      "minimum": 22.6,
+      "maximum": 25.7,
+      "mean": 23.59208333333333,
+      "count": 144
+    },
+    "RH_3": {
+      "last": 35.4333333333333,
+      "minimum": 34.3266666666667,
+      "maximum": 41.09,
+      "mean": 36.7544849537037,
+      "count": 144
+    },
+    "T4": {
+      "last": 19.3566666666667,
+      "minimum": 19.2,
+      "maximum": 20.29,
+      "mean": 19.78480902777778,
+      "count": 144
+    },
+    "RH_4": {
+      "last": 37.9666666666667,
+      "minimum": 36.5,
+      "maximum": 40.19,
+      "mean": 37.75267361111111,
+      "count": 144
+    },
+    "T5": {
+      "last": 19.39,
+      "minimum": 19.1333333333333,
+      "maximum": 21.7666666666667,
+      "mean": 19.5455787037037,
+      "count": 144
+    },
+    "RH_5": {
+      "last": 41.93,
+      "minimum": 41.93,
+      "maximum": 85.06333333333329,
+      "mean": 50.26175925925926,
+      "count": 144
+    },
+    "T6": {
+      "last": 8.099999999999998,
+      "minimum": 2.32666666666667,
+      "maximum": 13.495,
+      "mean": 8.067210648148148,
+      "count": 144
+    },
+    "RH_6": {
+      "last": 33.23,
+      "minimum": 1.0,
+      "maximum": 55.26,
+      "mean": 25.88958912037037,
+      "count": 144
+    },
+    "T7": {
+      "last": 19.1333333333333,
+      "minimum": 19.1,
+      "maximum": 19.7,
+      "mean": 19.425028935185185,
+      "count": 144
+    },
+    "RH_7": {
+      "last": 31.7,
+      "minimum": 30.0,
+      "maximum": 33.9,
+      "mean": 31.643498263888887,
+      "count": 144
+    },
+    "T8": {
+      "last": 21.39,
+      "minimum": 21.1333333333333,
+      "maximum": 22.79,
+      "mean": 22.09913773148148,
+      "count": 144
+    },
+    "RH_8": {
+      "last": 41.363333333333294,
+      "minimum": 36.79,
+      "maximum": 43.6566666666667,
+      "mean": 40.01113425925926,
+      "count": 144
+    },
+    "T9": {
+      "last": 19.39,
+      "minimum": 19.1,
+      "maximum": 19.5,
+      "mean": 19.28642361111111,
+      "count": 144
+    },
+    "RH_9": {
+      "last": 39.6333333333333,
+      "minimum": 37.0,
+      "maximum": 41.6633333333333,
+      "mean": 39.32020833333333,
+      "count": 144
+    }
+  },
+  "first_timestamp": "2016-04-30T08:30:00",
+  "last_timestamp": "2016-05-01T08:20:00",
+  "csv_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "channel_join": "exact forecast_origin = original dataset timestamp; matching building/source and energy asserted",
+  "saved_points": 144,
+  "hgb_sha256": "a4d70e991178f7621fc2f8ced0941a283ad65c548637f3fc7e05b06a2dbcbff6",
+  "score_sha256": "d159ba4c30061e783193c4d8ef4f5cfbd33958d393412b8cbe38a8fe93c46f70",
+  "no_inference": true,
+  "isolated_only": true,
+  "operational_timestamps": "fixture only; not archived generation/receipt times",
+  "episode_and_outbox": "synthetic functional fixtures; no sending"
+}
