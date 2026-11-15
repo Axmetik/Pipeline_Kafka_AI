@@ -1,0 +1,174 @@
+[
+  {
+    "timestamp": "2016-05-01T13:20:00",
+    "control_energy_wh": 90.0,
+    "modified_energy_wh": 540.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": true,
+    "modified_sustained_high": false,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "residual"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T13:30:00",
+    "control_energy_wh": 70.0,
+    "modified_energy_wh": 520.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": false,
+    "modified_hybrid": false,
+    "modified_positive_sources": []
+  },
+  {
+    "timestamp": "2016-05-01T13:40:00",
+    "control_energy_wh": 60.0,
+    "modified_energy_wh": 510.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": false,
+    "modified_hybrid": false,
+    "modified_positive_sources": []
+  },
+  {
+    "timestamp": "2016-05-01T13:50:00",
+    "control_energy_wh": 60.0,
+    "modified_energy_wh": 510.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": false,
+    "modified_hybrid": false,
+    "modified_positive_sources": []
+  },
+  {
+    "timestamp": "2016-05-01T14:00:00",
+    "control_energy_wh": 80.0,
+    "modified_energy_wh": 530.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": false,
+    "modified_hybrid": false,
+    "modified_positive_sources": []
+  },
+  {
+    "timestamp": "2016-05-01T14:10:00",
+    "control_energy_wh": 80.0,
+    "modified_energy_wh": 530.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T14:20:00",
+    "control_energy_wh": 120.0,
+    "modified_energy_wh": 570.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T14:30:00",
+    "control_energy_wh": 120.0,
+    "modified_energy_wh": 570.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T14:40:00",
+    "control_energy_wh": 110.0,
+    "modified_energy_wh": 560.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T14:50:00",
+    "control_energy_wh": 140.0,
+    "modified_energy_wh": 590.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T15:00:00",
+    "control_energy_wh": 110.0,
+    "modified_energy_wh": 560.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  },
+  {
+    "timestamp": "2016-05-01T15:10:00",
+    "control_energy_wh": 110.0,
+    "modified_energy_wh": 560.0,
+    "control_residual": false,
+    "control_sustained_high": false,
+    "control_hybrid": false,
+    "control_positive_sources": [],
+    "modified_residual": false,
+    "modified_sustained_high": true,
+    "modified_hybrid": true,
+    "modified_positive_sources": [
+      "sustained_high"
+    ]
+  }
+]

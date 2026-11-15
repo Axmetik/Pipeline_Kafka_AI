@@ -1,0 +1,25 @@
+{
+  "offline_reanalysis_byte_identical": true,
+  "verified_output_files_sha256": {
+    "hybrid-contribution.json": "3579d2c7bca2cb97d744c5ce28868fefbb587d637b98710fb4bd81ccc7587cf7",
+    "intervention-episodes.json": "70156e17916a9a5701ea505e2d5f4a56685d53d1d49e169e233492948d0411ab",
+    "paired-episode-bounds.json": "f127ade30d73a9f550d022e5d6164e7af579e374b150c47b52c7bad45a0c20d8",
+    "hybrid-12-points.csv": "bc1c1e9015fe263bf740b258d3065722f2b0205bf10ea9590826b76e65ebdb0f",
+    "hybrid-12-points.json": "2036e103467809bf09266e467afbfb1e07913bc83dbbc0bf0bffe0da69774a71",
+    "common-availability.json": "e832c81a9908eb8a55f9ec652308b13ccacdf3049d6942725aa54331c835427b",
+    "method-summary.json": "3f6efa368751ab008b9151450778ec244a4e328e7516c99804590c570cc04bab",
+    "paired-periods.csv": "9714a28858b956775bc619afd24184c5e5691756973854511bedd2cc275f1840",
+    "paired-periods.json": "b44b08e4c27ae47ac42692c034cd6ecdce9a475ad555ee21458e2dc0ec149065",
+    "method-summary.csv": "3a6cbef40809e1741ea9f251362ffef04735e5daef7f7be670c836e97d455279",
+    "post-return-signals.json": "8a393869c7de134d09f3d72a67552c13f44a36b14f4ca135122f23bae38091a9",
+    "verification.json": "6499dc30d164be4eeb92c39fdfab663778d57ca127ac8c679bbec5b11ef1f7e1",
+    "post-return-signals.csv": "8a52cb7458df14b13f4fef2defb5d6325a89e9ab0d44761d7a35925a0a7ddfd6",
+    "telemetry-quality.json": "84569b91f266b707f37614ab89651a16657b9932317d2f8627aa3e0e71f7a01f",
+    "all-episodes.csv": "c3bd25121f8a410a3f07484999f82b2e0a67a3fb657510581f31456cc8f5e026",
+    "source-flags.csv": "f7bb036f0f1c83e471e07cd5d1c1f9e4a5a04b76acfd5e24c0656af23ee09ecb"
+  },
+  "stage2_tracked_evidence_unchanged": true,
+  "production_code_and_config_unchanged": true,
+  "analysis_syntax_valid": true,
+  "full_tests_or_new_experiments_run": false
+}

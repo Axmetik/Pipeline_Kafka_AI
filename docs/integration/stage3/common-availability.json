@@ -1,0 +1,68 @@
+[
+  {
+    "period": "before",
+    "all_six_methods_paired_available_points": 752,
+    "positive_counts": {
+      "control": {
+        "residual": 6,
+        "autoencoder": 4,
+        "isolation_forest": 6,
+        "unanimous": 1,
+        "sustained_high": 24,
+        "hybrid": 30
+      },
+      "plus-450": {
+        "residual": 6,
+        "autoencoder": 4,
+        "isolation_forest": 6,
+        "unanimous": 1,
+        "sustained_high": 24,
+        "hybrid": 30
+      }
+    }
+  },
+  {
+    "period": "intervention",
+    "all_six_methods_paired_available_points": 12,
+    "positive_counts": {
+      "control": {
+        "residual": 0,
+        "autoencoder": 0,
+        "isolation_forest": 0,
+        "unanimous": 0,
+        "sustained_high": 0,
+        "hybrid": 0
+      },
+      "plus-450": {
+        "residual": 1,
+        "autoencoder": 9,
+        "isolation_forest": 7,
+        "unanimous": 0,
+        "sustained_high": 7,
+        "hybrid": 8
+      }
+    }
+  },
+  {
+    "period": "after",
+    "all_six_methods_paired_available_points": 108,
+    "positive_counts": {
+      "control": {
+        "residual": 1,
+        "autoencoder": 0,
+        "isolation_forest": 0,
+        "unanimous": 0,
+        "sustained_high": 0,
+        "hybrid": 1
+      },
+      "plus-450": {
+        "residual": 2,
+        "autoencoder": 1,
+        "isolation_forest": 2,
+        "unanimous": 0,
+        "sustained_high": 0,
+        "hybrid": 2
+      }
+    }
+  }
+]

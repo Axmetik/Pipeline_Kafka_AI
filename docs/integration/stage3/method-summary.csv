@@ -1,0 +1,13 @@
+scenario,method,total,positive,negative,unavailable,first_positive,first_delay_event_minutes,overlapping_episodes,episode_bounds,post_return_positive_points_in_overlapping_episodes,post_return_represented_minutes_in_overlapping_episodes
+control,residual,12,0,12,0,null,null,0,[],0,0
+control,autoencoder,12,0,12,0,null,null,0,[],0,0
+control,isolation_forest,12,0,12,0,null,null,0,[],0,0
+control,unanimous,12,0,12,0,null,null,0,[],0,0
+control,sustained_high,12,0,12,0,null,null,0,[],0,0
+control,hybrid,12,0,12,0,null,null,0,[],0,0
+plus-450,residual,12,1,11,0,2016-05-01T13:20:00,0.0,1,"[""2016-05-01T13:20:00..2016-05-01T13:20:00""]",0,0
+plus-450,autoencoder,12,9,3,0,2016-05-01T13:40:00,20.0,2,"[""2016-05-01T13:40:00..2016-05-01T13:50:00"",""2016-05-01T14:10:00..2016-05-01T15:10:00""]",0,0
+plus-450,isolation_forest,12,7,5,0,2016-05-01T14:10:00,50.0,1,"[""2016-05-01T14:10:00..2016-05-01T15:30:00""]",2,20
+plus-450,unanimous,12,0,12,0,null,null,0,[],0,0
+plus-450,sustained_high,12,7,5,0,2016-05-01T14:10:00,50.0,1,"[""2016-05-01T14:10:00..2016-05-01T15:10:00""]",0,0
+plus-450,hybrid,12,8,4,0,2016-05-01T13:20:00,0.0,2,"[""2016-05-01T13:20:00..2016-05-01T13:20:00"",""2016-05-01T14:10:00..2016-05-01T15:20:00""]",1,10

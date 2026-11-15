@@ -1,0 +1,295 @@
+[
+  {
+    "period": "before",
+    "method": "residual",
+    "control_episodes": 7,
+    "modified_episodes": 7,
+    "same_bounds_episodes": 7,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "autoencoder",
+    "control_episodes": 4,
+    "modified_episodes": 4,
+    "same_bounds_episodes": 4,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "isolation_forest",
+    "control_episodes": 2,
+    "modified_episodes": 2,
+    "same_bounds_episodes": 2,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "unanimous",
+    "control_episodes": 1,
+    "modified_episodes": 1,
+    "same_bounds_episodes": 1,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "sustained_high",
+    "control_episodes": 7,
+    "modified_episodes": 7,
+    "same_bounds_episodes": 7,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "hybrid",
+    "control_episodes": 14,
+    "modified_episodes": 14,
+    "same_bounds_episodes": 14,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "flatline",
+    "control_episodes": 8,
+    "modified_episodes": 8,
+    "same_bounds_episodes": 8,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "before",
+    "method": "interval_gap",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "residual",
+    "control_episodes": 0,
+    "modified_episodes": 1,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T13:20:00",
+        "2016-05-01T13:20:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "autoencoder",
+    "control_episodes": 0,
+    "modified_episodes": 2,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T13:40:00",
+        "2016-05-01T13:50:00"
+      ],
+      [
+        "2016-05-01T14:10:00",
+        "2016-05-01T15:10:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "isolation_forest",
+    "control_episodes": 0,
+    "modified_episodes": 1,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T14:10:00",
+        "2016-05-01T15:30:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "unanimous",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "sustained_high",
+    "control_episodes": 0,
+    "modified_episodes": 1,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T14:10:00",
+        "2016-05-01T15:10:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "hybrid",
+    "control_episodes": 0,
+    "modified_episodes": 2,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T13:20:00",
+        "2016-05-01T13:20:00"
+      ],
+      [
+        "2016-05-01T14:10:00",
+        "2016-05-01T15:20:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "flatline",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "intervention",
+    "method": "interval_gap",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "residual",
+    "control_episodes": 1,
+    "modified_episodes": 2,
+    "same_bounds_episodes": 1,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T15:20:00",
+        "2016-05-01T15:20:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "autoencoder",
+    "control_episodes": 0,
+    "modified_episodes": 1,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T15:30:00",
+        "2016-05-01T15:30:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "isolation_forest",
+    "control_episodes": 0,
+    "modified_episodes": 1,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T14:10:00",
+        "2016-05-01T15:30:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "unanimous",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "sustained_high",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "hybrid",
+    "control_episodes": 1,
+    "modified_episodes": 2,
+    "same_bounds_episodes": 1,
+    "modified_only_bounds": [
+      [
+        "2016-05-01T14:10:00",
+        "2016-05-01T15:20:00"
+      ]
+    ],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "flatline",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  },
+  {
+    "period": "after",
+    "method": "interval_gap",
+    "control_episodes": 0,
+    "modified_episodes": 0,
+    "same_bounds_episodes": 0,
+    "modified_only_bounds": [],
+    "control_only_bounds": [],
+    "note": "Bounds changes are not automatically new physical events; one episode can intersect two periods"
+  }
+]

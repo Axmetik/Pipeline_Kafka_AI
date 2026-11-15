@@ -1,0 +1,167 @@
+[
+  {
+    "method": "residual",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [
+      "2016-05-01T15:20:00"
+    ],
+    "additional_positive_points": 1,
+    "additional_represented_interval_minutes": 10,
+    "additional_label_span_minutes": 0.0,
+    "affected_episodes": [
+      {
+        "scenario": "plus-450",
+        "method": "residual",
+        "start_timestamp": "2016-05-01T15:20:00",
+        "last_positive_timestamp": "2016-05-01T15:20:00",
+        "positive_points": 1,
+        "closed_on_measurement_timestamp": "2016-05-01T15:30:00",
+        "closing_flag": false,
+        "closed_reason": "below_threshold",
+        "status": "closed",
+        "represented_positive_minutes": 10,
+        "positive_label_span_minutes": 0.0,
+        "overlaps_intervention": false,
+        "post_return_positive_points": 1,
+        "post_return_represented_minutes": 10,
+        "episode_storage": "persisted",
+        "episode_id": "08ee8e32947fb1db81dc768996abb99653906ee74643d00bb7d5d266c814c0bf",
+        "closed_updated_at_utc": "2026-11-15T21:15:28.977731Z",
+        "closure_wall_timestamp_within_next_measurement_transaction": true
+      }
+    ]
+  },
+  {
+    "method": "autoencoder",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [
+      "2016-05-01T15:30:00"
+    ],
+    "additional_positive_points": 1,
+    "additional_represented_interval_minutes": 10,
+    "additional_label_span_minutes": 0.0,
+    "affected_episodes": [
+      {
+        "scenario": "plus-450",
+        "method": "autoencoder",
+        "start_timestamp": "2016-05-01T15:30:00",
+        "last_positive_timestamp": "2016-05-01T15:30:00",
+        "positive_points": 1,
+        "closed_on_measurement_timestamp": "2016-05-01T15:40:00",
+        "closing_flag": false,
+        "closed_reason": "below_threshold",
+        "status": "closed",
+        "represented_positive_minutes": 10,
+        "positive_label_span_minutes": 0.0,
+        "overlaps_intervention": false,
+        "post_return_positive_points": 1,
+        "post_return_represented_minutes": 10,
+        "episode_storage": "persisted",
+        "episode_id": "dc4a55fe3cc78d70cd3bd6cd924781792233e8f5260731f0b5bcc4d3fad4d366",
+        "closed_updated_at_utc": "2026-11-15T21:15:29.022454Z",
+        "closure_wall_timestamp_within_next_measurement_transaction": true
+      }
+    ]
+  },
+  {
+    "method": "isolation_forest",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [
+      "2016-05-01T15:20:00",
+      "2016-05-01T15:30:00"
+    ],
+    "additional_positive_points": 2,
+    "additional_represented_interval_minutes": 20,
+    "additional_label_span_minutes": 10.0,
+    "affected_episodes": [
+      {
+        "scenario": "plus-450",
+        "method": "isolation_forest",
+        "start_timestamp": "2016-05-01T14:10:00",
+        "last_positive_timestamp": "2016-05-01T15:30:00",
+        "positive_points": 9,
+        "closed_on_measurement_timestamp": "2016-05-01T15:40:00",
+        "closing_flag": false,
+        "closed_reason": "below_threshold",
+        "status": "closed",
+        "represented_positive_minutes": 90,
+        "positive_label_span_minutes": 80.0,
+        "overlaps_intervention": true,
+        "post_return_positive_points": 2,
+        "post_return_represented_minutes": 20,
+        "episode_storage": "persisted",
+        "episode_id": "94aabea04f0b0ffa6f10d0e1a7699ccaf5a64954416ac69b578679c4fccf9a35",
+        "closed_updated_at_utc": "2026-11-15T21:15:29.021356Z",
+        "closure_wall_timestamp_within_next_measurement_transaction": true
+      }
+    ]
+  },
+  {
+    "method": "unanimous",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [],
+    "additional_positive_points": 0,
+    "additional_represented_interval_minutes": 0,
+    "additional_label_span_minutes": null,
+    "affected_episodes": []
+  },
+  {
+    "method": "sustained_high",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [],
+    "additional_positive_points": 0,
+    "additional_represented_interval_minutes": 0,
+    "additional_label_span_minutes": null,
+    "affected_episodes": []
+  },
+  {
+    "method": "hybrid",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [
+      "2016-05-01T15:20:00"
+    ],
+    "additional_positive_points": 1,
+    "additional_represented_interval_minutes": 10,
+    "additional_label_span_minutes": 0.0,
+    "affected_episodes": [
+      {
+        "scenario": "plus-450",
+        "method": "hybrid",
+        "start_timestamp": "2016-05-01T14:10:00",
+        "last_positive_timestamp": "2016-05-01T15:20:00",
+        "positive_points": 8,
+        "closed_on_measurement_timestamp": "2016-05-01T15:30:00",
+        "closing_flag": false,
+        "closed_reason": "negative",
+        "status": "closed",
+        "represented_positive_minutes": 80,
+        "positive_label_span_minutes": 70.0,
+        "overlaps_intervention": true,
+        "post_return_positive_points": 1,
+        "post_return_represented_minutes": 10,
+        "episode_storage": "persisted",
+        "episode_id": "e09987f2170fe45912bebc823d41072d381c618d74f8ae679ad70f0cb59ee17f",
+        "closed_updated_at_utc": "2026-11-15T21:15:28.984743Z",
+        "closure_wall_timestamp_within_next_measurement_transaction": true
+      }
+    ]
+  },
+  {
+    "method": "flatline",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [],
+    "additional_positive_points": 0,
+    "additional_represented_interval_minutes": 0,
+    "additional_label_span_minutes": null,
+    "affected_episodes": []
+  },
+  {
+    "method": "interval_gap",
+    "post_period_points": 108,
+    "additional_positive_timestamps": [],
+    "additional_positive_points": 0,
+    "additional_represented_interval_minutes": 0,
+    "additional_label_span_minutes": null,
+    "affected_episodes": []
+  }
+]

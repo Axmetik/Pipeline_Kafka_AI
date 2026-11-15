@@ -1,0 +1,182 @@
+[
+  {
+    "scenario": "control",
+    "method": "residual",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "control",
+    "method": "autoencoder",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "control",
+    "method": "isolation_forest",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "control",
+    "method": "unanimous",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "control",
+    "method": "sustained_high",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "control",
+    "method": "hybrid",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "plus-450",
+    "method": "residual",
+    "total": 12,
+    "positive": 1,
+    "negative": 11,
+    "unavailable": 0,
+    "first_positive": "2016-05-01T13:20:00",
+    "first_delay_event_minutes": 0.0,
+    "overlapping_episodes": 1,
+    "episode_bounds": [
+      "2016-05-01T13:20:00..2016-05-01T13:20:00"
+    ],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "plus-450",
+    "method": "autoencoder",
+    "total": 12,
+    "positive": 9,
+    "negative": 3,
+    "unavailable": 0,
+    "first_positive": "2016-05-01T13:40:00",
+    "first_delay_event_minutes": 20.0,
+    "overlapping_episodes": 2,
+    "episode_bounds": [
+      "2016-05-01T13:40:00..2016-05-01T13:50:00",
+      "2016-05-01T14:10:00..2016-05-01T15:10:00"
+    ],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "plus-450",
+    "method": "isolation_forest",
+    "total": 12,
+    "positive": 7,
+    "negative": 5,
+    "unavailable": 0,
+    "first_positive": "2016-05-01T14:10:00",
+    "first_delay_event_minutes": 50.0,
+    "overlapping_episodes": 1,
+    "episode_bounds": [
+      "2016-05-01T14:10:00..2016-05-01T15:30:00"
+    ],
+    "post_return_positive_points_in_overlapping_episodes": 2,
+    "post_return_represented_minutes_in_overlapping_episodes": 20
+  },
+  {
+    "scenario": "plus-450",
+    "method": "unanimous",
+    "total": 12,
+    "positive": 0,
+    "negative": 12,
+    "unavailable": 0,
+    "first_positive": null,
+    "first_delay_event_minutes": null,
+    "overlapping_episodes": 0,
+    "episode_bounds": [],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "plus-450",
+    "method": "sustained_high",
+    "total": 12,
+    "positive": 7,
+    "negative": 5,
+    "unavailable": 0,
+    "first_positive": "2016-05-01T14:10:00",
+    "first_delay_event_minutes": 50.0,
+    "overlapping_episodes": 1,
+    "episode_bounds": [
+      "2016-05-01T14:10:00..2016-05-01T15:10:00"
+    ],
+    "post_return_positive_points_in_overlapping_episodes": 0,
+    "post_return_represented_minutes_in_overlapping_episodes": 0
+  },
+  {
+    "scenario": "plus-450",
+    "method": "hybrid",
+    "total": 12,
+    "positive": 8,
+    "negative": 4,
+    "unavailable": 0,
+    "first_positive": "2016-05-01T13:20:00",
+    "first_delay_event_minutes": 0.0,
+    "overlapping_episodes": 2,
+    "episode_bounds": [
+      "2016-05-01T13:20:00..2016-05-01T13:20:00",
+      "2016-05-01T14:10:00..2016-05-01T15:20:00"
+    ],
+    "post_return_positive_points_in_overlapping_episodes": 1,
+    "post_return_represented_minutes_in_overlapping_episodes": 10
+  }
+]

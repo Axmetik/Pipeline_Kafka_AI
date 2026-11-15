@@ -1,0 +1,13 @@
+timestamp,control_energy_wh,modified_energy_wh,control_residual,control_sustained_high,control_hybrid,control_positive_sources,modified_residual,modified_sustained_high,modified_hybrid,modified_positive_sources
+2016-05-01T13:20:00,90.0,540.0,false,false,false,[],true,false,true,"[""residual""]"
+2016-05-01T13:30:00,70.0,520.0,false,false,false,[],false,false,false,[]
+2016-05-01T13:40:00,60.0,510.0,false,false,false,[],false,false,false,[]
+2016-05-01T13:50:00,60.0,510.0,false,false,false,[],false,false,false,[]
+2016-05-01T14:00:00,80.0,530.0,false,false,false,[],false,false,false,[]
+2016-05-01T14:10:00,80.0,530.0,false,false,false,[],false,true,true,"[""sustained_high""]"
+2016-05-01T14:20:00,120.0,570.0,false,false,false,[],false,true,true,"[""sustained_high""]"
+2016-05-01T14:30:00,120.0,570.0,false,false,false,[],false,true,true,"[""sustained_high""]"
+2016-05-01T14:40:00,110.0,560.0,false,false,false,[],false,true,true,"[""sustained_high""]"
+2016-05-01T14:50:00,140.0,590.0,false,false,false,[],false,true,true,"[""sustained_high""]"
+2016-05-01T15:00:00,110.0,560.0,false,false,false,[],false,true,true,"[""sustained_high""]"
+2016-05-01T15:10:00,110.0,560.0,false,false,false,[],false,true,true,"[""sustained_high""]"
