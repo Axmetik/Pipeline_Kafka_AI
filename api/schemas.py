@@ -230,3 +230,20 @@ class Notification(BaseModel):
     error_category: str | None
     suppression_reason: str | None
     maturity: Literal['experimental']='experimental'
+
+
+class SourceSummary(Source):
+    run_id: str
+    measurement_id: str
+    measurement_timestamp: str
+    latest_energy_wh: float
+    received_at: datetime
+    feature_status: Literal['ready','warmup','incompatible']
+    time_basis: Literal['dataset_naive','offset_aware']
+    energy_unit: Literal['Wh'] = 'Wh'
+    activity_status: Literal['unknown'] = 'unknown'
+
+
+class SourceCatalog(Page[SourceSummary]):
+    building_ids: list[str]
+    buildings_truncated: bool
