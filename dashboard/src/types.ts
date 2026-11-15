@@ -167,3 +167,39 @@ export interface SourceCatalog extends Page<SourceSummary> {
   building_ids: string[];
   buildings_truncated: boolean;
 }
+
+export type ChannelCategory = "appliances" | "lighting" | "zones";
+export interface ChannelSummary extends Source {
+  run_id: string;
+  measurement_id: string;
+  channel_id: string;
+  category: ChannelCategory;
+  name: string;
+  columns: string[];
+  units: string[];
+  capabilities: string[];
+  measurement_timestamp: string;
+  value: number | null;
+  secondary_value: number | null;
+  received_at: string;
+  time_basis: Basis;
+  activity_status: "unknown";
+  provenance: string;
+}
+export interface ChannelCatalog extends Page<ChannelSummary> {
+  building_ids: string[];
+  buildings_truncated: boolean;
+}
+export interface ChannelSeries extends Page<ChannelSummary> {
+  definition: Pick<
+    ChannelSummary,
+    "channel_id" | "category" | "name" | "columns" | "units" | "capabilities"
+  >;
+  statistics: {
+    count: number;
+    minimum: number | null;
+    maximum: number | null;
+    mean: number | null;
+  }[];
+  statistics_scope: "returned_window";
+}

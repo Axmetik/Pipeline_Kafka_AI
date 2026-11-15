@@ -2,7 +2,7 @@ import { fetchJSON, loadSourceSeries } from "./data";
 import type { Page, Run, Source, Selection, Basis } from "./types";
 export function sourceHref(
   view: "sources" | "source",
-  selection: Partial<Selection> = {},
+  selection: Partial<Selection> & { channel?: string; category?: string } = {},
 ) {
   const q = new URLSearchParams({ view });
   for (const [key, value] of Object.entries(selection))

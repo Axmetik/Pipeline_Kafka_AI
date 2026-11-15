@@ -23,6 +23,8 @@ import {
   Copy,
   Check,
   Box,
+  Lightbulb,
+  Thermometer,
 } from "lucide-react";
 import {
   Area,
@@ -47,11 +49,12 @@ import {
   timeContext,
 } from "./sourceData";
 import { useResource } from "./useResource";
-import type { Selection, SourceCatalog, SourceSummary } from "./types";
+import type { Selection, ChannelCatalog, ChannelSummary } from "./types";
 import ScoreChart, { detectors } from "./ScoreChart";
 import CombinedPanel from "./CombinedPanel";
 import NotificationsPanel from "./NotificationsPanel";
 import "./sources.css";
+import ChannelView from "./ChannelView";
 
 function Link({
   href,
@@ -235,27 +238,66 @@ function CopyId({ value }: { value: string }) {
     </button>
   );
 }
-function SourceCard({ row }: { row: SourceSummary }) {
+function SourceCard({ row }: { row: ChannelSummary }) {
+  const Icon =
+    row.category === "lighting"
+      ? Lightbulb
+      : row.category === "zones"
+        ? Thermometer
+        : Zap;
   return (
-    <article className="card source-card" data-testid="source-card">
+    <article
+      className="card source-card"
+      data-testid="source-card"
+      data-channel={row.channel_id}
+    >
       <div className="source-card-top">
         <span className="source-icon">
-          <Database size={22} />
+          <Icon size={22} />
         </span>
-        <span className="source-type">{sourceType(row)}</span>
+        <span className="source-type">
+          {row.category === "zones"
+            ? "Сенсори зони"
+            : row.category === "lighting"
+              ? "Освітлення"
+              : sourceType(row)}
+        </span>
       </div>
-      <h2 title={row.source_id}>{row.source_id}</h2>
+      <h2>
+        {row.channel_id === "appliances" && row.energy_scope !== "appliances"
+          ? row.source_id
+          : row.name}
+      </h2>
+      <p className="channel-identity" title={row.source_id}>
+        {row.source_id}
+        {row.channel_id !== "appliances" ? ` / ${row.columns.join(" + ")}` : ""}
+      </p>
       <p className="source-building">
         <Building2 size={14} />
         {row.building_id}
       </p>
-      <p className="source-description">{sourceDescription(row)}</p>
+      <p className="source-description">
+        {row.category === "zones"
+          ? "Канали температури та вологості. Ідентифікація фізичного пристрою не відома."
+          : row.category === "lighting"
+            ? "Інтервальна енергія освітлення будинку. Окремий ряд lights із датасету UCI."
+            : sourceDescription(row)}
+      </p>
       <div className="source-reading">
-        <span>Остання інтервальна енергія</span>
+        <span>Останнє збережене вимірювання</span>
         <strong>
-          {valueLabel(row.latest_energy_wh)}
-          <small>Wh / {intervalLabel(row)}</small>
+          {valueLabel(row.value)}
+          <small>
+            {row.units[0]}
+            {row.category !== "zones" ? ` / ${intervalLabel(row)}` : ""}
+          </small>
         </strong>
+        {row.category === "zones" && (
+          <strong>
+            {valueLabel(row.secondary_value)}
+            <small>% вологості</small>
+          </strong>
+        )}
         <time>{label(row.measurement_timestamp)}</time>
       </div>
       <div className="source-card-meta">
@@ -263,15 +305,21 @@ function SourceCard({ row }: { row: SourceSummary }) {
           <Clock3 size={14} />
           {intervalLabel(row)}
         </span>
-        <span>Активність невідома</span>
+        <span>Історичні дані</span>
       </div>
       <p className="source-time-note">{timeContext(row)}</p>
+      <p className="channel-capability">
+        {row.channel_id === "appliances"
+          ? "Споживання · прогноз · детектори"
+          : "Графіки та описова статистика · без ML"}
+      </p>
       <Link
         className="source-button"
         href={sourceHref("source", {
           run: row.run_id,
           building: row.building_id,
           source: row.source_id,
+          channel: row.channel_id,
         })}
       >
         Переглянути аналітику
@@ -289,6 +337,7 @@ export default function SourcesWorkspace({ route }: { route: string }) {
   const runs = useResource("source-runs", fetchRuns, 10000);
   const run = q.get("run") || runs.data?.items.at(-1)?.run_id || "";
   const building = q.get("building") || "";
+  const category = q.get("category") || "";
   useEffect(() => {
     const t = setTimeout(() => {
       setDebounced(search);
@@ -298,18 +347,26 @@ export default function SourcesWorkspace({ route }: { route: string }) {
   }, [search]);
   useEffect(() => {
     setCursor(null);
-  }, [run, building]);
-  const key = JSON.stringify([isDetail, run, building, debounced, cursor]);
+  }, [run, building, category]);
+  const key = JSON.stringify([
+    isDetail,
+    run,
+    building,
+    category,
+    debounced,
+    cursor,
+  ]);
   const resource = useResource(
     key,
     async (signal) => {
       if (isDetail || !run) return null;
-      return fetchJSON<SourceCatalog>(
-        "/api/source-summaries?" +
+      return fetchJSON<ChannelCatalog>(
+        "/api/channels?" +
           new URLSearchParams({
             run_id: run,
             limit: "24",
             ...(building ? { building_id: building } : {}),
+            ...(category ? { category } : {}),
             ...(debounced ? { search: debounced } : {}),
             ...(cursor ? { cursor } : {}),
           }),
@@ -325,6 +382,19 @@ export default function SourcesWorkspace({ route }: { route: string }) {
       : runs.status === "loading" || (run && resource.status === "loading")
         ? "loading"
         : "online";
+  if (isDetail && q.get("channel") && q.get("channel") !== "appliances")
+    return (
+      <Frame detail selection={{ run, building }}>
+        <ChannelView
+          selection={{
+            run: q.get("run") || "",
+            building,
+            source: q.get("source") || "",
+          }}
+          channel={q.get("channel")!}
+        />
+      </Frame>
+    );
   if (isDetail)
     return (
       <SourceDetails
@@ -350,8 +420,8 @@ export default function SourcesWorkspace({ route }: { route: string }) {
             Пристрої та джерела<span>.</span>
           </h1>
           <p>
-            Відкрийте джерело, щоб побачити його споживання, прогнози та історію
-            оцінок.
+            Енергія приладів і освітлення, температура та вологість зон — кожен
+            вимірювальний канал у власному контексті.
           </p>
         </div>
         <span className="source-heading-icon">
@@ -378,7 +448,9 @@ export default function SourcesWorkspace({ route }: { route: string }) {
             value={run}
             onChange={(e) => {
               setCursor(null);
-              navigate(sourceHref("sources", { run: e.target.value }));
+              navigate(
+                sourceHref("sources", { run: e.target.value, category }),
+              );
             }}
           >
             <option value="">Оберіть запуск</option>
@@ -397,7 +469,11 @@ export default function SourcesWorkspace({ route }: { route: string }) {
             onChange={(e) => {
               setCursor(null);
               navigate(
-                sourceHref("sources", { run, building: e.target.value }),
+                sourceHref("sources", {
+                  run,
+                  building: e.target.value,
+                  category,
+                }),
               );
             }}
           >
@@ -407,13 +483,35 @@ export default function SourcesWorkspace({ route }: { route: string }) {
             ))}
           </select>
         </label>
+        <label>
+          Категорія
+          <select
+            aria-label="Категорія каталогу"
+            value={category}
+            onChange={(e) => {
+              setCursor(null);
+              navigate(
+                sourceHref("sources", {
+                  run,
+                  building,
+                  category: e.target.value,
+                }),
+              );
+            }}
+          >
+            <option value="">Усі категорії</option>
+            <option value="appliances">Побутові прилади</option>
+            <option value="lighting">Освітлення</option>
+            <option value="zones">Сенсори зон</option>
+          </select>
+        </label>
         <label className="source-search">
-          Пошук за ID
+          Пошук за назвою та ID
           <div>
             <Search size={17} />
             <input
               aria-label="Пошук джерел"
-              placeholder="Джерело або будівля…"
+              placeholder="Назва, колонка або ID…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -441,7 +539,11 @@ export default function SourcesWorkspace({ route }: { route: string }) {
         <div className="source-grid">
           {data.items.map((row) => (
             <SourceCard
-              key={JSON.stringify([row.building_id, row.source_id])}
+              key={JSON.stringify([
+                row.building_id,
+                row.source_id,
+                row.channel_id,
+              ])}
               row={row}
             />
           ))}
