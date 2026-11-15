@@ -1,0 +1,11 @@
+{
+  "phase": "infrastructure before first publication",
+  "component": "ei-stage2-aedbd416-kafka",
+  "initial_error": "AccessDeniedException writing /tmp/stage2-kafka-logs/bootstrap.checkpoint.tmp",
+  "cause": "New volume root owned by root; Kafka image uses uid1000",
+  "correction": "Set ownership of newly created ei-stage2-aedbd416-kafka-data root to 1000:1000, then start the same container",
+  "replay_repeated": false,
+  "production_code_changed": false,
+  "reproducible_script_updated": true,
+  "models_thresholds_rules_changed": false
+}

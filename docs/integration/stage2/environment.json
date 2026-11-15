@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-11-15T21:12:52.395433+00:00",
+  "code_sha": "a6c1287ea8532aacb2d04c346d96d5d2595b9ad1",
+  "prefix": "ei-stage2-aedbd416",
+  "network": "ei-stage2-aedbd416",
+  "postgres": "ei-stage2-aedbd416-pg",
+  "kafka": "ei-stage2-aedbd416-kafka",
+  "api": "ei-stage2-aedbd416-api",
+  "postgres_volume": "ei-stage2-aedbd416-pg-data",
+  "kafka_volume": "ei-stage2-aedbd416-kafka-data",
+  "rules_enabled": true,
+  "email_enabled": false,
+  "main_environment_modified": false,
+  "status": "completed_retained",
+  "plan_sha256": "a017e6235e166ebd69c82f08c66fb129af2756cda5febe4a538a890cbf31645e",
+  "inputs_sha256": {
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main/artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "/Users/oslavych/Documents/Codex/energy-intelligence-integration/configs/combined-rule-v1.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e",
+    "/Users/oslavych/Documents/Codex/energy-intelligence-integration/processing/energy_rules.py": "4fd53075e7f784056656dcc283047c69a307c01816f71a27948a69f43a80a91f",
+    "/Users/oslavych/Documents/Codex/energy-intelligence-integration/integration/rule_layer.py": "b049b0d431daa054baf924bccc6ab6cb59920474ddf06079e7e1559828d724c5"
+  },
+  "scenarios": {
+    "control": {
+      "run_id": "ei-stage2-aedbd416-control",
+      "topic": "ei-stage2-aedbd416-control",
+      "group_id": "ei-stage2-aedbd416-control"
+    },
+    "plus-450": {
+      "run_id": "ei-stage2-aedbd416-plus-450",
+      "topic": "ei-stage2-aedbd416-plus-450",
+      "group_id": "ei-stage2-aedbd416-plus-450"
+    }
+  },
+  "base_url": "http://127.0.0.1:49308",
+  "finished_at": "2026-11-15T21:15:38.322615+00:00",
+  "inputs_unchanged": true,
+  "worker_status": "Both finite replays stopped normally; PG/Kafka/API+Dashboard retained",
+  "access": {
+    "control": "http://127.0.0.1:49308/?run=ei-stage2-aedbd416-control&building=appliances-house-1&source=uci-appliances#analytics",
+    "plus-450": "http://127.0.0.1:49308/?run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances#analytics"
+  }
+}
