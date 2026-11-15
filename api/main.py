@@ -12,6 +12,7 @@ from storage.postgres import schema as s
 from . import schemas as out
 from .query import Filters, AggregateFilters, page, series, aggregation
 from .source_catalog import CatalogFilters, catalog
+from . import channels
 
 
 @contextmanager
@@ -85,6 +86,15 @@ def create_app(engine=None):
         q=select(s.runs.c.run_id,s.runs.c.group_id,s.runs.c.topic,s.runs.c.created_at)
         if f.run_id: q=q.where(s.runs.c.run_id==f.run_id)
         return page(c,q,[s.runs.c.created_at,s.runs.c.run_id],'runs',f,['time','str'])
+
+    @app.get('/api/channels',response_model=out.ChannelCatalog)
+    def channel_catalog(c:DB,f:Annotated[channels.ChannelFilters,Query()]):
+        return channels.catalog(c,f)
+
+    @app.get('/api/channel-series',response_model=out.ChannelSeries)
+    def channel_series(c:DB,f:Annotated[channels.ChannelSeriesFilters,Query()]):
+        reject_filters(f,{'run_id','building_id','source_id','start','end'})
+        return channels.series(c,f)
 
     @app.get('/api/source-summaries',response_model=out.SourceCatalog)
     def source_summaries(c:DB,f:CF):

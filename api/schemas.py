@@ -247,3 +247,44 @@ class SourceSummary(Source):
 class SourceCatalog(Page[SourceSummary]):
     building_ids: list[str]
     buildings_truncated: bool
+
+
+class ChannelSummary(Source):
+    run_id: str
+    measurement_id: str
+    channel_id: str
+    category: Literal['appliances','lighting','zones']
+    name: str
+    columns: list[str]
+    units: list[str]
+    capabilities: list[str]
+    measurement_timestamp: str
+    value: float | None
+    secondary_value: float | None
+    received_at: datetime
+    time_basis: Literal['dataset_naive','offset_aware']
+    activity_status: Literal['unknown']
+    provenance: Literal['stored_measurement','archived_uci_wire_columns']
+
+class ChannelCatalog(Page[ChannelSummary]):
+    building_ids: list[str]
+    buildings_truncated: bool
+
+class ChannelDefinition(Public):
+    channel_id: str
+    category: str
+    name: str
+    columns: list[str]
+    units: list[str]
+    capabilities: list[str]
+
+class ChannelStatistic(Public):
+    count: int
+    minimum: float | None
+    maximum: float | None
+    mean: float | None
+
+class ChannelSeries(Page[ChannelSummary]):
+    definition: ChannelDefinition
+    statistics: list[ChannelStatistic]
+    statistics_scope: Literal['returned_window']
