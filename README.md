@@ -593,13 +593,17 @@ python3 -m integration.email_demo synthetic
 [Походження даних, можливості, обмеження, перевірки й шість desktop/mobile скриншотів](docs/sources-catalog/channels-20261115/README.md). Основний demo для цього етапу не перебудовувався.
 ### Standalone experimental energy rules
 
-[Rules module and controlled test report](docs/energy-rules/README.md): repeated readings, measurement-time gaps and sustained high consumption against historical same-hour context. This first phase is **not connected to Worker/API/Dashboard/Email**, does not alter ML models and does not claim improved real-data detection metrics.
+[Rules module and controlled test report](docs/energy-rules/README.md): repeated readings, measurement-time gaps and sustained high consumption against historical same-hour context. This historical first phase was **not connected to Worker/API/Dashboard/Email**, does not alter ML models and does not claim improved real-data detection metrics.
 
 ## Experimental rules: Worker/PostgreSQL integration (default off)
 
-`MVP_ENERGY_RULES_ENABLED=false` preserves the existing pipeline. The optional layer stores frozen-v2 rule assessments, separate telemetry-quality signals, `residual OR sustained_high` decisions/episodes and durable per-source state. It does not enable low candidates or alter ML/Unanimous, API, Dashboard or Email. Separate optional Alembic migration required only when enabled; no backfill. See [setup, recovery and targeted verification](docs/energy-rules/worker-integration-20261109/README.md).
+`MVP_ENERGY_RULES_ENABLED=false` preserves the existing pipeline. The optional layer stores frozen-v2 rule assessments, separate telemetry-quality signals, `residual OR sustained_high` decisions/episodes and durable per-source state. It does not enable low candidates or alter ML/Unanimous or Email. Read-only API/Dashboard integration is now included; the linked report describes its earlier Worker-only phase. Separate optional Alembic migration required only when enabled; no backfill. See [setup, recovery and targeted verification](docs/energy-rules/worker-integration-20261109/README.md).
 ### Product Dashboard P1
 
 Чотири розділи: **Огляд / Будівлі / Аналітика / Події**. Фільтри запуску й джерела спільні; technical scores/models/pipeline diagnostics містяться в розширеній секції Аналітики. Події experimental і read-only; Email delivery має окрему часову семантику.
 
 [Оцінка P0](docs/product/p0-assessment.md) · [Звіт, screenshot evidence і frontend preview P1](docs/product/p1/report.md). P1 не змінює inference, API або моделі.
+
+### Єдина інтеграційна версія — етап 1 із 6
+
+Локальна `integration/energy-intelligence-complete` поєднує Product Dashboard P1, каталог 11 каналів та opt-in experimental rules/hybrid із їхнім read-only API/UI. [Аудит, джерела комітів, перевірки, обмеження та підготовка наступного етапу](docs/integration/stage1/README.md). Контрольного досліду після інтеграції ще не виконували; правила залишаються default-off, hybrid Email не підключений.

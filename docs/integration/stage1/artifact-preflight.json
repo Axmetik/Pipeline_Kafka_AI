@@ -1,0 +1,81 @@
+{
+  "compatible": true,
+  "inference_executed": false,
+  "manifest_sha256": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+  "models": [
+    {
+      "role": "primary_forecast",
+      "model_version": "hgb-energy-v1-9bb48a66deb359e6",
+      "feature_version": "energy-features-v1",
+      "threshold_version": null,
+      "artifact_sha256": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3"
+    },
+    {
+      "role": "residual_reference",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "benchmark-energy-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566"
+    },
+    {
+      "role": "isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "energy-anomaly-20-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566"
+    },
+    {
+      "role": "autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "energy-anomaly-20-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566"
+    },
+    {
+      "role": "residual",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "feature_version": "benchmark-energy-v1",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566"
+    }
+  ],
+  "rule_config": {
+    "plateau_intervals": 6,
+    "plateau_tolerance_wh": 0.0,
+    "high_intervals": 6,
+    "context_days": 7,
+    "minimum_context_days": 3,
+    "minimum_context_points": 18,
+    "mad_multiplier": 3.0,
+    "minimum_excess_wh": 50.0,
+    "minimum_relative_excess": 0.5
+  },
+  "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+  "layer_version": "residual-high-v1-0e2d29e530f2d68e910d5ea5",
+  "configuration": {
+    "algorithm": "residual-high-layer-v1",
+    "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+    "rules": {
+      "plateau_intervals": 6,
+      "plateau_tolerance_wh": 0.0,
+      "high_intervals": 6,
+      "context_days": 7,
+      "minimum_context_days": 3,
+      "minimum_context_points": 18,
+      "mad_multiplier": 3.0,
+      "minimum_excess_wh": 50.0,
+      "minimum_relative_excess": 0.5
+    },
+    "inputs": {
+      "residual": {
+        "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+        "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+        "feature_version": "benchmark-energy-v1",
+        "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+      }
+    },
+    "hybrid": "residual OR sustained_high",
+    "low_enabled": false
+  },
+  "combined_rule": "unanimous"
+}

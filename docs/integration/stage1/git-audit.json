@@ -1,0 +1,22 @@
+{
+  "remote_fetched": true,
+  "repository": "https://github.com/Axmetik/Pipeline_Kafka_AI",
+  "integration_branch": "integration/energy-intelligence-complete",
+  "worktree": "/Users/oslavych/Documents/Codex/energy-intelligence-integration",
+  "source_checkout": "/Users/oslavych/PycharmProjects/Pipeline_Kafka_AI_main",
+  "source_checkout_preserved_head": "516dfaef1f758bacbae84e2da59f26d6c530f22e",
+  "source_untracked_material": "docs/energy-rules/ preserved in source checkout; not copied into commits",
+  "source_refs": {
+    "origin/main": "e285efd926c5f9682243a4f571b35ee141c5af15",
+    "feature/sources-catalog": "516dfaef1f758bacbae84e2da59f26d6c530f22e",
+    "origin/feature/sources-catalog": "5eab359e9e2956e4bdc0becbe9945ea653e38f18",
+    "feature/energy-rule-detectors": "c2bf4a29a03134b1276015277b7dd10b33f6d225",
+    "feature/product-dashboard-p1": "e778932b5075a029e9b9222e807141f956e961a9"
+  },
+  "integration_merge_commits": [
+    "854f757b14b5952cefd0f4ce77e0c13d9c182236",
+    "a07430653d0adcbb84c42cd8b689c4d63c5b7f17"
+  ],
+  "all_three_source_heads_are_ancestors": true,
+  "push_performed": false
+}

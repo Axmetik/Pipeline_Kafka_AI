@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "git_blob_checks": [
+    {
+      "source_ref": "feature/energy-rule-detectors",
+      "prefix": "docs/energy-rules",
+      "unchanged_blobs": 279
+    },
+    {
+      "source_ref": "516dfae",
+      "prefix": "docs/controlled-demo-20261115",
+      "unchanged_blobs": 32
+    },
+    {
+      "source_ref": "516dfae",
+      "prefix": "docs/sources-catalog",
+      "unchanged_blobs": 24
+    },
+    {
+      "source_ref": "origin/main",
+      "prefix": "docs/energy-anomaly",
+      "unchanged_blobs": 437
+    },
+    {
+      "source_ref": "origin/main",
+      "prefix": "docs/forecast-benchmark",
+      "unchanged_blobs": 27
+    }
+  ],
+  "scientific_code_unchanged_from_catalog": true
+}

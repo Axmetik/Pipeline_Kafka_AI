@@ -52,6 +52,7 @@ import { useResource } from "./useResource";
 import type { Selection, ChannelCatalog, ChannelSummary } from "./types";
 import ScoreChart, { detectors } from "./ScoreChart";
 import RulePanel from "./RulePanel";
+import { selectionQuery } from "./navigation";
 import CombinedPanel from "./CombinedPanel";
 import NotificationsPanel from "./NotificationsPanel";
 import "./sources.css";
@@ -93,10 +94,19 @@ function Frame({
   detail?: boolean;
   selection?: Partial<Selection>;
 }) {
+  const productHref = (hash = "") =>
+    selectionQuery(
+      {
+        run: selection.run || "",
+        building: selection.building || "",
+        source: selection.source || "",
+      },
+      hash,
+    );
   return (
     <div className="app-shell sources-workspace">
       <aside className="sidebar">
-        <a className="brand" href="?">
+        <a className="brand" href={productHref()}>
           <span className="brand-symbol">
             <Zap size={23} />
           </span>
@@ -106,7 +116,7 @@ function Frame({
         </a>
         <div className="workspace-label">РОБОЧИЙ ПРОСТІР</div>
         <nav>
-          <a href="?">
+          <a href={productHref()}>
             <Gauge size={18} />
             Моніторинг
           </a>
@@ -119,15 +129,15 @@ function Frame({
             Пристрої та джерела
             <span className="nav-dot" />
           </Link>
-          <a href="?#detectors">
+          <a href={productHref("#detectors")}>
             <Activity size={18} />
             Детектори
           </a>
-          <a href="?#events">
+          <a href={productHref("#events")}>
             <Layers size={18} />
             Історія подій
           </a>
-          <a href="?#models">
+          <a href={productHref("#models")}>
             <Box size={18} />
             Моделі
           </a>
