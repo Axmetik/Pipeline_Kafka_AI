@@ -51,6 +51,7 @@ import {
 import { useResource } from "./useResource";
 import type { Selection, ChannelCatalog, ChannelSummary } from "./types";
 import ScoreChart, { detectors } from "./ScoreChart";
+import RulePanel from "./RulePanel";
 import CombinedPanel from "./CombinedPanel";
 import NotificationsPanel from "./NotificationsPanel";
 import "./sources.css";
@@ -955,61 +956,67 @@ function SourceDetails({ selection }: { selection: Selection }) {
                   ))}
                 </div>
                 <CombinedPanel data={data} localized />
+                <RulePanel data={data} />
               </>
             )}
             {tab === "events" && (
-              <section className="card table-card">
-                <div className="card-heading">
-                  <h2>Історія епізодів</h2>
-                  <span className="badge experimental">Експериментально</span>
-                </div>
-                <p className="muted small">
-                  Останні 50 епізодів цього джерела у вибраному запуску, не лише
-                  видиме вікно. Це не підтверджені несправності.
-                </p>
-                {data.events.length ? (
-                  <div className="table-scroll">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Початок / останнє перевищення</th>
-                          <th>Метод</th>
-                          <th>Точок</th>
-                          <th>Стан</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.events.map((e) => (
-                          <tr key={e.episode_id}>
-                            <td>
-                              {label(e.start_timestamp)}
-                              <small>{label(e.end_timestamp)}</small>
-                            </td>
-                            <td>
-                              {detectorNames[e.detector]}
-                              <small>{e.model_version}</small>
-                            </td>
-                            <td>{e.flagged_points}</td>
-                            <td>
-                              {e.status === "open" ? "Відкритий" : "Завершений"}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+              <>
+                <RulePanel data={data} events />
+                <section className="card table-card">
+                  <div className="card-heading">
+                    <h2>Історія епізодів</h2>
+                    <span className="badge experimental">Експериментально</span>
                   </div>
-                ) : (
-                  <p className="source-tab-empty">
-                    Збережених епізодів немає. Відсутність оцінок не означає
-                    відсутності відхилень.
-                  </p>
-                )}
-                {data.moreEvents && (
                   <p className="muted small">
-                    Повна історія доступна через cursor API.
+                    Останні 50 епізодів цього джерела у вибраному запуску, не
+                    лише видиме вікно. Це не підтверджені несправності.
                   </p>
-                )}
-              </section>
+                  {data.events.length ? (
+                    <div className="table-scroll">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Початок / останнє перевищення</th>
+                            <th>Метод</th>
+                            <th>Точок</th>
+                            <th>Стан</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {data.events.map((e) => (
+                            <tr key={e.episode_id}>
+                              <td>
+                                {label(e.start_timestamp)}
+                                <small>{label(e.end_timestamp)}</small>
+                              </td>
+                              <td>
+                                {detectorNames[e.detector]}
+                                <small>{e.model_version}</small>
+                              </td>
+                              <td>{e.flagged_points}</td>
+                              <td>
+                                {e.status === "open"
+                                  ? "Відкритий"
+                                  : "Завершений"}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <p className="source-tab-empty">
+                      Збережених епізодів немає. Відсутність оцінок не означає
+                      відсутності відхилень.
+                    </p>
+                  )}
+                  {data.moreEvents && (
+                    <p className="muted small">
+                      Повна історія доступна через cursor API.
+                    </p>
+                  )}
+                </section>
+              </>
             )}
             {tab === "notifications" && (
               <NotificationsPanel rows={data.notifications} localized />

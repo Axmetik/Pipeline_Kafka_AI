@@ -598,3 +598,8 @@ python3 -m integration.email_demo synthetic
 ## Experimental rules: Worker/PostgreSQL integration (default off)
 
 `MVP_ENERGY_RULES_ENABLED=false` preserves the existing pipeline. The optional layer stores frozen-v2 rule assessments, separate telemetry-quality signals, `residual OR sustained_high` decisions/episodes and durable per-source state. It does not enable low candidates or alter ML/Unanimous, API, Dashboard or Email. Separate optional Alembic migration required only when enabled; no backfill. See [setup, recovery and targeted verification](docs/energy-rules/worker-integration-20261109/README.md).
+### Product Dashboard P1
+
+Чотири розділи: **Огляд / Будівлі / Аналітика / Події**. Фільтри запуску й джерела спільні; technical scores/models/pipeline diagnostics містяться в розширеній секції Аналітики. Події experimental і read-only; Email delivery має окрему часову семантику.
+
+[Оцінка P0](docs/product/p0-assessment.md) · [Звіт, screenshot evidence і frontend preview P1](docs/product/p1/report.md). P1 не змінює inference, API або моделі.

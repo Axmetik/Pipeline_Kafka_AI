@@ -32,7 +32,10 @@ export default function RulePanel({
   data,
   events = false,
 }: {
-  data: Snapshot | null;
+  data: Pick<
+    Snapshot,
+    "measurements" | "ruleAssessments" | "hybridDecisions" | "hybridEvents"
+  > | null;
   events?: boolean;
 }) {
   const latest = data?.measurements[0]?.measurement_id;
