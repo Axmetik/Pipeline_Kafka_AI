@@ -580,3 +580,8 @@ python3 -m integration.email_demo synthetic
 підготовленими trusted Docker artifacts: `python3 -m integration.email_demo replay`.
 Моделі ці команди не навчають. Використовується окремий Compose project;
 стандартний Showcase не активує Email. [Налаштування, гарантії, retry/cooldown і результати](docs/stage7c/email-notifications.md).
+
+
+### Пристрої та джерела
+
+Каталог доступний через `?view=sources`, персональна аналітика — через `?view=source&run=...&building=...&source=...`. Використовуйте API й frontend однієї версії. [Сценарій, API, результати перевірок і desktop/mobile скриншоти](docs/sources-catalog/README.md).
