@@ -1,0 +1,17 @@
+delta_wh,method,total_positive_points,target_positive_points,new_positive_points_vs_control,lost_positive_points_vs_control,first_positive_during_intervention,delay_dataset_minutes,target_available_points,target_points,whole_run_available_points,total_episodes,onsets_inside_intervention,positive_points_after_intervention,new_positive_points_after_intervention,final_flag,final_timestamp
+0,residual,1,0,0,0,,,12,12,156,1,0,1,0,False,2016-05-02T09:10:00
+0,autoencoder,3,0,0,0,,,12,12,294,3,0,0,0,False,2016-05-02T09:10:00
+0,isolation_forest,6,0,0,0,,,12,12,294,2,0,0,0,False,2016-05-02T09:10:00
+0,unanimous,0,0,0,0,,,12,12,156,0,0,0,0,False,2016-05-02T09:10:00
+150,residual,1,0,0,0,,,12,12,156,1,0,1,0,False,2016-05-02T09:10:00
+150,autoencoder,3,0,0,0,,,12,12,294,3,0,0,0,False,2016-05-02T09:10:00
+150,isolation_forest,6,0,0,0,,,12,12,294,2,0,0,0,False,2016-05-02T09:10:00
+150,unanimous,0,0,0,0,,,12,12,156,0,0,0,0,False,2016-05-02T09:10:00
+300,residual,1,0,0,0,,,12,12,156,1,0,1,0,False,2016-05-02T09:10:00
+300,autoencoder,3,0,0,0,,,12,12,294,3,0,0,0,False,2016-05-02T09:10:00
+300,isolation_forest,6,0,0,0,,,12,12,294,2,0,0,0,False,2016-05-02T09:10:00
+300,unanimous,0,0,0,0,,,12,12,156,0,0,0,0,False,2016-05-02T09:10:00
+450,residual,3,1,1,0,2016-05-01T13:20:00,0.0,12,12,156,3,1,2,1,False,2016-05-02T09:10:00
+450,autoencoder,13,9,9,0,2016-05-01T13:40:00,20.0,12,12,294,6,2,1,1,False,2016-05-02T09:10:00
+450,isolation_forest,15,7,7,0,2016-05-01T14:10:00,50.0,12,12,294,3,1,2,2,False,2016-05-02T09:10:00
+450,unanimous,0,0,0,0,,,12,12,156,0,0,0,0,False,2016-05-02T09:10:00

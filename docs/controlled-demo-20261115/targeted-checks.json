@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "plan_checksum_matches_pre_execution_record": true,
+  "all_six_control_episode_signatures_preserved": true,
+  "python_syntax": [
+    "run.py",
+    "pipeline.py",
+    "analyze.py"
+  ],
+  "javascript_syntax": "browser.mjs",
+  "full_tests_or_ci_run": false,
+  "screenshots": {
+    "episodes-desktop.png": {
+      "width": 1500,
+      "height": 1549,
+      "sha256": "6df4e1ef1970ec8c1515de00db247042bd3bd596ca1ebe3530696003d0034899"
+    },
+    "detectors-desktop.png": {
+      "width": 1500,
+      "height": 1301,
+      "sha256": "70c6d560c0ef5010503f7b82d5bb2d9266b921e60d021295a409e93d0ae2be9c"
+    },
+    "after-intervention-desktop.png": {
+      "width": 1500,
+      "height": 1321,
+      "sha256": "ee38cb91901e649c2bc9ff4c25fd6eba50fbb76fcfd888c691cd65bf96dfcfd9"
+    },
+    "control-overview-desktop.png": {
+      "width": 1500,
+      "height": 1321,
+      "sha256": "12553ffbe2e07c005761089ba806adc4872d4e9b869e63abe0c7dcbc5b8e73d6"
+    },
+    "injection-overview-desktop.png": {
+      "width": 1500,
+      "height": 1321,
+      "sha256": "797755473e431c2307b46d12711460ddec85deba2cc8203db3910ab1d3d517ee"
+    }
+  },
+  "production_code_changed": false
+}

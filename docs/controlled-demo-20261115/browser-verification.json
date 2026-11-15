@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "api_checks": [
+    {
+      "run_id": "controlled-demo-1a21d84b-control",
+      "measurements": 300,
+      "forecasts": 600,
+      "scores": 900,
+      "combined_decisions": 300,
+      "episodes": 6,
+      "notifications": 0,
+      "all_exported_values_flags_and_timestamps_match": true
+    },
+    {
+      "run_id": "controlled-demo-1a21d84b-plus-450",
+      "measurements": 300,
+      "forecasts": 600,
+      "scores": 900,
+      "combined_decisions": 300,
+      "episodes": 12,
+      "notifications": 0,
+      "all_exported_values_flags_and_timestamps_match": true
+    }
+  ],
+  "selected_run": "controlled-demo-1a21d84b-plus-450",
+  "window_start": "2016-05-01T09:20:00",
+  "window_end": "2016-05-02T09:10:00",
+  "forecast_tail": "one next-interval HGB20 forecast, no fabricated actual",
+  "browser_timezone": "Pacific/Honolulu",
+  "dataset_labels_unshifted": true,
+  "runtime_errors": [],
+  "screenshots": [
+    {
+      "file": "control-overview-desktop.png",
+      "url": "http://127.0.0.1:<isolated-port>/?view=source&run=controlled-demo-1a21d84b-control&building=appliances-house-1&source=uci-appliances&channel=appliances",
+      "run_id": "controlled-demo-1a21d84b-control",
+      "building_id": "appliances-house-1",
+      "source_id": "uci-appliances",
+      "window_measurements": 144,
+      "description": "Незмінений парний потік, 144 останні вимірювання"
+    },
+    {
+      "file": "injection-overview-desktop.png",
+      "url": "http://127.0.0.1:<isolated-port>/?view=source&run=controlled-demo-1a21d84b-plus-450&building=appliances-house-1&source=uci-appliances&channel=appliances",
+      "run_id": "controlled-demo-1a21d84b-plus-450",
+      "building_id": "appliances-house-1",
+      "source_id": "uci-appliances",
+      "window_measurements": 144,
+      "description": "Факт + HGB20: до, під час і після ін’єкції; tooltip на початку втручання"
+    },
+    {
+      "file": "detectors-desktop.png",
+      "url": "http://127.0.0.1:<isolated-port>/?view=source&run=controlled-demo-1a21d84b-plus-450&building=appliances-house-1&source=uci-appliances&channel=appliances",
+      "run_id": "controlled-demo-1a21d84b-plus-450",
+      "building_id": "appliances-house-1",
+      "source_id": "uci-appliances",
+      "window_measurements": 144,
+      "description": "Реальні scores і q99 пороги всіх методів; останні оцінки після втручання"
+    },
+    {
+      "file": "episodes-desktop.png",
+      "url": "http://127.0.0.1:<isolated-port>/?view=source&run=controlled-demo-1a21d84b-plus-450&building=appliances-house-1&source=uci-appliances&channel=appliances",
+      "run_id": "controlled-demo-1a21d84b-plus-450",
+      "building_id": "appliances-house-1",
+      "source_id": "uci-appliances",
+      "window_measurements": null,
+      "description": "Фактичний журнал епізодів; статуси не редагувалися",
+      "scope": "last 50 episodes over complete selected run; original UI explicitly labels this broader scope"
+    },
+    {
+      "file": "after-intervention-desktop.png",
+      "url": "http://127.0.0.1:<isolated-port>/?view=source&run=controlled-demo-1a21d84b-plus-450&building=appliances-house-1&source=uci-appliances&channel=appliances",
+      "run_id": "controlled-demo-1a21d84b-plus-450",
+      "building_id": "appliances-house-1",
+      "source_id": "uci-appliances",
+      "window_measurements": 144,
+      "description": "Початковий ряд після втручання, tooltip на останньому вимірюванні"
+    }
+  ],
+  "same_plot_window_for_all_modified_graph_screenshots": true,
+  "episodes_scope": "Original UI journal explicitly shows last 50 episodes over entire selected run (300 points); includes earlier paired background episodes, not only the plotted 144-point window."
+}

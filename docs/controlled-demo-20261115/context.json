@@ -1,0 +1,12 @@
+{
+  "control_run": "controlled-demo-1a21d84b-control",
+  "selected_run": "controlled-demo-1a21d84b-plus-450",
+  "selected_delta_wh": 450,
+  "reports": [
+    "control-summary.json",
+    "plus-450-summary.json"
+  ],
+  "building_id": "appliances-house-1",
+  "source_id": "uci-appliances",
+  "view_window_measurements": 144
+}
