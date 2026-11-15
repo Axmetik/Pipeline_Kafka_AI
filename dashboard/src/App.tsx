@@ -25,6 +25,9 @@ import {
 import { align, label, valueLabel } from "./data";
 import Insights from "./InsightsPanel";
 import CombinedPanel from "./CombinedPanel";
+import ScoreChart, { detectors, statusName } from "./ScoreChart";
+import SourcesWorkspace from "./SourcesWorkspace";
+import { sourceHref } from "./sourceData";
 import NotificationsPanel from "./NotificationsPanel";
 import { nextPrimary, chartTime, scoreTick, finite } from "./insights";
 import { useMonitor } from "./useMonitor";
@@ -39,159 +42,7 @@ const chartTooltipStyle = {
   fontSize: 12,
 };
 
-const detectors: {
-  id: Detector;
-  name: string;
-  description: string;
-  color: string;
-}[] = [
-  {
-    id: "isolation_forest",
-    name: "Isolation Forest",
-    description: "Ізоляція незвичних спостережень",
-    color: "var(--detector-if)",
-  },
-  {
-    id: "autoencoder",
-    name: "Autoencoder",
-    description: "Помилка відновлення енергетичних ознак",
-    color: "var(--detector-ae)",
-  },
-  {
-    id: "residual",
-    name: "Residual Detector",
-    description: "Відхилення від окремого RF21-прогнозу",
-    color: "var(--detector-residual)",
-  },
-];
-const statusName = (s: string) =>
-  ({
-    ready: "Готово",
-    warmup: "Прогрів",
-    incompatible: "Несумісне джерело",
-    gap: "Пропуск історії",
-  })[s] ?? s;
-
-function ScoreChart({
-  detector,
-  rows,
-}: {
-  detector: (typeof detectors)[number];
-  rows: Score[];
-}) {
-  const ordered = [...rows].reverse();
-  const latest = rows[0];
-  return (
-    <section
-      className="card detector"
-      style={{ "--detector-color": detector.color } as CSSProperties}
-      data-testid={`detector-${detector.id}`}
-    >
-      <div className="card-heading">
-        <h3>{detector.name}</h3>
-        <span className="badge experimental" title="Експериментальний метод">
-          experimental
-        </span>
-      </div>
-      <p className="muted small">{detector.description}</p>
-      <div className="score-values">
-        <strong style={{ color: detector.color }}>
-          {valueLabel(latest?.score, 4)}
-          {detector.id === "residual" && (
-            <small className="score-unit">Wh</small>
-          )}
-        </strong>
-        <span>
-          Поріг <b>{valueLabel(latest?.threshold, 4)}</b>
-          {detector.id === "residual" ? " Wh" : ""}
-        </span>
-      </div>
-      <div className="mini-chart" aria-label={`Score ${detector.name}`}>
-        {ordered.length ? (
-          <ResponsiveContainer width="100%" height={120}>
-            <ComposedChart
-              data={ordered}
-              margin={{ top: 8, right: 8, left: 4, bottom: 0 }}
-            >
-              <CartesianGrid vertical={false} stroke="var(--chart-grid)" />
-              <XAxis dataKey="measurement_timestamp" hide />
-              <YAxis
-                fontSize={10}
-                tick={{ fill: "var(--text-muted)" }}
-                tickLine={false}
-                axisLine={false}
-                width={74}
-                tickFormatter={scoreTick}
-                domain={["auto", "auto"]}
-              />
-              <Tooltip
-                labelFormatter={(v) => label(String(v))}
-                formatter={(v, n) => [
-                  valueLabel(v as number | null, 4) +
-                    (detector.id === "residual" ? " Wh" : ""),
-                  n === "score" ? "Score" : "Поріг",
-                ]}
-                contentStyle={chartTooltipStyle}
-                cursor={{
-                  stroke: "var(--border-strong)",
-                  strokeDasharray: "3 3",
-                }}
-              />
-              <Line
-                dataKey="threshold"
-                name="threshold"
-                stroke="var(--threshold)"
-                strokeDasharray="4 4"
-                dot={false}
-                isAnimationActive={false}
-              />
-              <Line
-                dataKey="score"
-                name="score"
-                stroke={detector.color}
-                strokeWidth={2}
-                activeDot={{ r: 4, stroke: "var(--surface)", strokeWidth: 2 }}
-                dot={false}
-                connectNulls={false}
-                isAnimationActive={false}
-              />
-            </ComposedChart>
-          </ResponsiveContainer>
-        ) : (
-          <div className="chart-empty">Очікуємо оцінки</div>
-        )}
-      </div>
-      <div className="detector-footer">
-        <span
-          className={latest?.status === "ready" ? "status ready" : "status"}
-        >
-          {latest ? statusName(latest.status) : "Немає даних"}
-        </span>
-        <span>
-          Без готової оцінки:{" "}
-          {
-            rows.filter(
-              (r) => r.status !== "ready" || !finite(r.score) || r.flag == null,
-            ).length
-          }
-          <br />
-          Перевищень у вибраному вікні:{" "}
-          {
-            rows.filter(
-              (r) =>
-                r.status === "ready" &&
-                finite(r.score) &&
-                finite(r.threshold) &&
-                r.flag === true,
-            ).length
-          }
-        </span>
-      </div>
-    </section>
-  );
-}
-
-export default function App() {
+function MonitoringApp() {
   const initial = new URLSearchParams(window.location.search);
   const [selection, setSelection] = useState<Selection>({
     run: initial.get("run") || "",
@@ -277,6 +128,15 @@ export default function App() {
             <Gauge size={18} />
             Моніторинг
             {activeSection === "overview" && <span className="nav-dot" />}
+          </a>
+          <a
+            href={sourceHref("sources", {
+              run: chosen.run,
+              building: chosen.building,
+            })}
+          >
+            <Database size={18} />
+            Пристрої та джерела
           </a>
           <a
             className={activeSection === "detectors" ? "active" : undefined}
@@ -929,5 +789,20 @@ export default function App() {
         </footer>
       </main>
     </div>
+  );
+}
+
+export default function App() {
+  const [route, setRoute] = useState(window.location.search);
+  useEffect(() => {
+    const update = () => setRoute(window.location.search);
+    window.addEventListener("popstate", update);
+    return () => window.removeEventListener("popstate", update);
+  }, []);
+  const view = new URLSearchParams(route).get("view");
+  return view === "sources" || view === "source" ? (
+    <SourcesWorkspace route={route} />
+  ) : (
+    <MonitoringApp />
   );
 }

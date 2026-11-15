@@ -13,6 +13,8 @@ export interface Source {
   building_id: string;
   source_id: string;
   source_type: string;
+  energy_scope?: string;
+  timestamp_reference?: string;
   interval_seconds: number;
   timestamp_has_offset: boolean;
   timezone: string | null;
@@ -28,6 +30,7 @@ export interface Measurement {
   interval_seconds: number;
   feature_status: string;
   received_at: string;
+  gap_detected?: boolean;
   temperature_c: number | null;
   relative_humidity_pct: number | null;
 }
@@ -148,4 +151,19 @@ export interface EmailNotification {
   attempt_count: number;
   error_category: string | null;
   suppression_reason: string | null;
+}
+
+export interface SourceSummary extends Source {
+  run_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  latest_energy_wh: number;
+  received_at: string;
+  feature_status: string;
+  time_basis: Basis;
+  activity_status: "unknown";
+}
+export interface SourceCatalog extends Page<SourceSummary> {
+  building_ids: string[];
+  buildings_truncated: boolean;
 }

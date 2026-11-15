@@ -137,10 +137,34 @@ export async function load(
       status,
       basis,
     };
+  const [series, models] = await Promise.all([
+    loadSourceSeries(chosen, basis, windowSize, signal),
+    fetchJSON<Page<Model>>(
+      "/api/models?" + new URLSearchParams({ run_id: run, limit: "100" }),
+      signal,
+    ),
+  ]);
+  return {
+    ...series,
+    runs,
+    sources,
+    selection: chosen,
+    basis,
+    status,
+    models: models.items,
+  };
+}
+
+export async function loadSourceSeries(
+  chosen: Selection,
+  basis: Basis,
+  windowSize: number,
+  signal: AbortSignal,
+) {
   const params = {
-    run_id: run,
-    building_id: building,
-    source_id: source.source_id,
+    run_id: chosen.run,
+    building_id: chosen.building,
+    source_id: chosen.source,
     time_basis: basis,
   };
   const query = (extras: Record<string, string>) =>
@@ -150,7 +174,6 @@ export async function load(
     forecasts,
     scores,
     events,
-    models,
     combined,
     combinedEvents,
     notifications,
@@ -169,10 +192,6 @@ export async function load(
       signal,
     ),
     fetchJSON<Page<Episode>>("/api/events?" + query({ limit: "50" }), signal),
-    fetchJSON<Page<Model>>(
-      "/api/models?" + new URLSearchParams({ run_id: run, limit: "100" }),
-      signal,
-    ),
     fetchJSON<Page<CombinedDecision>>(
       "/api/combined-decisions?" + query({ limit: String(windowSize) }),
       signal,
@@ -182,23 +201,23 @@ export async function load(
       signal,
     ),
     fetchJSON<Page<EmailNotification>>(
-      "/api/notifications?" + new URLSearchParams({ run_id: run, building_id: building, source_id: source.source_id, limit: "20" }),
+      "/api/notifications?" +
+        new URLSearchParams({
+          run_id: chosen.run,
+          building_id: chosen.building,
+          source_id: chosen.source,
+          limit: "20",
+        }),
       signal,
     ),
   ]);
   const ids = new Set(measurements.items.map((m) => m.measurement_id));
   return {
-    runs,
-    sources,
-    selection: chosen,
-    basis,
-    status,
     measurements: measurements.items,
     forecasts: forecasts.items,
     scores: scores.items.filter((s) => ids.has(s.measurement_id)),
     events: events.items,
     moreEvents: events.next_cursor !== null,
-    models: models.items,
     notifications: notifications.items,
     combined: combined.items,
     combinedEvents: combinedEvents.items,

@@ -16,7 +16,8 @@ def catalog(c, f):
               'energy_wh','received_at','feature_status','time_basis']
     q = select(*(m.c[k] for k in fields), func.row_number().over(
         partition_by=[m.c.building_id,m.c.source_id],
-        order_by=[m.c.kafka_offset.desc(),m.c.measurement_id.desc()]).label('position')).where(m.c.run_id == f.run_id)
+        order_by=[m.c.measurement_time_utc.desc().nullslast(),
+                  m.c.measurement_time_local.desc(),m.c.measurement_id.desc()]).label('position')).where(m.c.run_id == f.run_id)
     for key in ('building_id','source_id'):
         if getattr(f,key) is not None: q = q.where(m.c[key] == getattr(f,key))
     if f.search:
