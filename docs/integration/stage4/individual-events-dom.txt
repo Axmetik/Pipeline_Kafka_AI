@@ -1,0 +1,311 @@
+- complementary:
+  - link "Energy INTELLIGENCE":
+    - /url: "#overview"
+    - text: Energy
+    - generic: INTELLIGENCE
+  - generic: РОБОЧИЙ ПРОСТІР
+  - navigation "Головна навігація":
+    - link "Огляд":
+      - /url: "#overview"
+      - text: Огляд
+    - link "Будівлі":
+      - /url: "#buildings"
+      - text: Будівлі
+    - link "Аналітика":
+      - /url: "#analytics"
+      - text: Аналітика
+    - link "Події":
+      - /url: "#events"
+      - text: Події
+    - link "Пристрої та джерела":
+      - /url: "?view=sources&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances"
+      - text: Пристрої та джерела
+  - strong: Від даних до розуміння
+  - paragraph: Споживання, прогнозування та сигнали для обґрунтованого перегляду.
+  - text: ENERGY INTELLIGENCE · MVP
+  - text: Локальне середовище
+- main:
+  - generic: Робочий простір /Події
+  - generic: Історичний replay
+  - code: ei-stage2-aedbd416-plus-450
+  - text: Датасет / replay
+  - generic: ENERGY INTELLIGENCE / EVENTS
+  - heading "Події." [active] [level=1]
+  - paragraph: Статистичні епізоди та історія доставки повідомлень.
+  - status:
+    - generic: API на зв’язку
+  - region "Вибір джерела":
+    - text: Запуск replay
+    - combobox "Запуск replay":
+      - option "Оберіть запуск"
+      - option "ei-stage2-aedbd416-control"
+      - option "ei-stage2-aedbd416-plus-450" [selected]
+    - text: Будівля
+    - combobox "Будівля":
+      - option "Оберіть будівлю"
+      - option "appliances-house-1" [selected]
+    - text: Джерело
+    - combobox "Джерело":
+      - option "Оберіть джерело"
+      - option "uci-appliances" [selected]
+    - text: Оновлення ≈ 2 с
+    - generic: API оновлено 22:01:55 UTC
+  - text: ІСТОРІЯ ТА УВАГА
+  - heading "Події обраного джерела" [level=2]
+  - paragraph: appliances-house-1 / uci-appliances
+  - paragraph: Епізоди перевищення статистичного порогу — experimental, не підтверджені несправності. Пріоритет фізичної несправності не визначено.
+  - text: Тип історії
+  - combobox "Тип історії":
+    - option "Уся доступна історія"
+    - option "Індивідуальні епізоди" [selected]
+    - option "Комбіновані епізоди"
+    - option "Residual OR Sustained high"
+    - option "Доставка Email"
+  - article:
+    - strong: "20"
+    - generic: Індивідуальні епізоди
+    - generic: Завантажено до 50 · не загальний підсумок
+  - article:
+    - strong: "1"
+    - generic: Комбіновані епізоди
+    - generic: Завантажено до 50 · Unanimous
+  - article:
+    - strong: "0"
+    - generic: Записи доставки
+    - generic: Завантажено до 20 · не фізичні події
+  - paragraph: "Час епізодів: час датасету, часовий пояс не визначено. Відкритий епізод — кандидат для перегляду, не встановлена аварія."
+  - heading "Історія експериментальних подій" [level=2]
+  - paragraph: Останні 50 епізодів за весь вибраний запуск, будівлю та джерело · не лише видиме вікно. Це не підтверджені несправності.
+  - generic "Експериментальний метод": experimental
+  - table:
+    - rowgroup:
+      - row "Початок / кінець зафіксованого перевищення Детектор Джерело Точок Стан епізоду":
+        - columnheader "Початок / кінець зафіксованого перевищення"
+        - columnheader "Детектор"
+        - columnheader "Джерело"
+        - columnheader "Точок"
+        - columnheader "Стан епізоду"
+    - rowgroup:
+      - row "2016-05-01 16:50:00 2016-05-01 16:50:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-05-01 16:50:00 2016-05-01 16:50:00":
+          - text: 2016-05-01 16:50:00
+          - generic: 2016-05-01 16:50:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-05-01 15:30:00 2016-05-01 15:30:00 Autoencoder uci-appliances 1 Завершений":
+        - cell "2016-05-01 15:30:00 2016-05-01 15:30:00":
+          - text: 2016-05-01 15:30:00
+          - generic: 2016-05-01 15:30:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-05-01 15:20:00 2016-05-01 15:20:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-05-01 15:20:00 2016-05-01 15:20:00":
+          - text: 2016-05-01 15:20:00
+          - generic: 2016-05-01 15:20:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-05-01 14:10:00 2016-05-01 15:30:00 Isolation Forest uci-appliances 9 Завершений":
+        - cell "2016-05-01 14:10:00 2016-05-01 15:30:00":
+          - text: 2016-05-01 14:10:00
+          - generic: 2016-05-01 15:30:00
+        - cell "Isolation Forest":
+          - text: Isolation Forest
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "9"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-05-01 14:10:00 2016-05-01 15:10:00 Autoencoder uci-appliances 7 Завершений":
+        - cell "2016-05-01 14:10:00 2016-05-01 15:10:00":
+          - text: 2016-05-01 14:10:00
+          - generic: 2016-05-01 15:10:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "7"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-05-01 13:40:00 2016-05-01 13:50:00 Autoencoder uci-appliances 2 Завершений":
+        - cell "2016-05-01 13:40:00 2016-05-01 13:50:00":
+          - text: 2016-05-01 13:40:00
+          - generic: 2016-05-01 13:50:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "2"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-05-01 13:20:00 2016-05-01 13:20:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-05-01 13:20:00 2016-05-01 13:20:00":
+          - text: 2016-05-01 13:20:00
+          - generic: 2016-05-01 13:20:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 17:30:00 2016-04-30 17:30:00 Autoencoder uci-appliances 1 Завершений":
+        - cell "2016-04-30 17:30:00 2016-04-30 17:30:00":
+          - text: 2016-04-30 17:30:00
+          - generic: 2016-04-30 17:30:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 17:10:00 2016-04-30 17:20:00 Isolation Forest uci-appliances 2 Завершений":
+        - cell "2016-04-30 17:10:00 2016-04-30 17:20:00":
+          - text: 2016-04-30 17:10:00
+          - generic: 2016-04-30 17:20:00
+        - cell "Isolation Forest":
+          - text: Isolation Forest
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "2"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 17:10:00 2016-04-30 17:10:00 Autoencoder uci-appliances 1 Завершений":
+        - cell "2016-04-30 17:10:00 2016-04-30 17:10:00":
+          - text: 2016-04-30 17:10:00
+          - generic: 2016-04-30 17:10:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 17:10:00 2016-04-30 17:10:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-30 17:10:00 2016-04-30 17:10:00":
+          - text: 2016-04-30 17:10:00
+          - generic: 2016-04-30 17:10:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 16:50:00 2016-04-30 16:50:00 Autoencoder uci-appliances 1 Завершений":
+        - cell "2016-04-30 16:50:00 2016-04-30 16:50:00":
+          - text: 2016-04-30 16:50:00
+          - generic: 2016-04-30 16:50:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 12:20:00 2016-04-30 12:20:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-30 12:20:00 2016-04-30 12:20:00":
+          - text: 2016-04-30 12:20:00
+          - generic: 2016-04-30 12:20:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 10:00:00 2016-04-30 10:30:00 Isolation Forest uci-appliances 4 Завершений":
+        - cell "2016-04-30 10:00:00 2016-04-30 10:30:00":
+          - text: 2016-04-30 10:00:00
+          - generic: 2016-04-30 10:30:00
+        - cell "Isolation Forest":
+          - text: Isolation Forest
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "4"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 10:00:00 2016-04-30 10:00:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-30 10:00:00 2016-04-30 10:00:00":
+          - text: 2016-04-30 10:00:00
+          - generic: 2016-04-30 10:00:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-30 08:30:00 2016-04-30 08:30:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-30 08:30:00 2016-04-30 08:30:00":
+          - text: 2016-04-30 08:30:00
+          - generic: 2016-04-30 08:30:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-29 11:40:00 2016-04-29 11:40:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-29 11:40:00 2016-04-29 11:40:00":
+          - text: 2016-04-29 11:40:00
+          - generic: 2016-04-29 11:40:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-28 18:20:00 2016-04-28 18:20:00 Autoencoder uci-appliances 1 Завершений":
+        - cell "2016-04-28 18:20:00 2016-04-28 18:20:00":
+          - text: 2016-04-28 18:20:00
+          - generic: 2016-04-28 18:20:00
+        - cell "Autoencoder":
+          - text: Autoencoder
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-28 17:40:00 2016-04-28 17:40:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-28 17:40:00 2016-04-28 17:40:00":
+          - text: 2016-04-28 17:40:00
+          - generic: 2016-04-28 17:40:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+      - row "2016-04-26 07:40:00 2016-04-26 07:40:00 Residual Detector uci-appliances 1 Завершений":
+        - cell "2016-04-26 07:40:00 2016-04-26 07:40:00":
+          - text: 2016-04-26 07:40:00
+          - generic: 2016-04-26 07:40:00
+        - cell "Residual Detector":
+          - text: Residual Detector
+          - generic "Деталі"
+        - cell "uci-appliances"
+        - cell "1"
+        - cell "Завершений":
+          - generic: Завершений
+  - text: ENERGY INTELLIGENCE
+  - generic: Дослідницький MVP · experimental оцінки не підтверджують фізичну несправність
+- generic: "150"

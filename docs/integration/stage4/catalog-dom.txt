@@ -1,0 +1,257 @@
+- complementary:
+  - link "Energy INTELLIGENCE":
+    - /url: "?run=ei-stage2-aedbd416-plus-450&building=appliances-house-1#overview"
+    - text: Energy
+    - generic: INTELLIGENCE
+  - generic: РОБОЧИЙ ПРОСТІР
+  - navigation:
+    - link "Моніторинг":
+      - /url: "?run=ei-stage2-aedbd416-plus-450&building=appliances-house-1#overview"
+      - text: Моніторинг
+    - link "Пристрої та джерела":
+      - /url: "?view=sources&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1"
+      - text: Пристрої та джерела
+    - link "Детектори":
+      - /url: "?run=ei-stage2-aedbd416-plus-450&building=appliances-house-1#detectors"
+      - text: Детектори
+    - link "Історія подій":
+      - /url: "?run=ei-stage2-aedbd416-plus-450&building=appliances-house-1#events"
+      - text: Історія подій
+    - link "Моделі":
+      - /url: "?run=ei-stage2-aedbd416-plus-450&building=appliances-house-1#models"
+      - text: Моделі
+  - strong: Від даних до розуміння
+  - paragraph: Кожне джерело — у власному контексті. Від вимірювання до аналітики.
+  - text: ЛОКАЛЬНА ЕНЕРГЕТИЧНА ПЛАТФОРМА
+  - text: Локальне середовище
+- main:
+  - generic: Робочий простір / Пристрої та джерела
+  - text: Збережені вимірювання
+  - generic: ДЖЕРЕЛА ЕНЕРГЕТИЧНИХ ДАНИХ
+  - heading "Пристрої та джерела." [level=1]
+  - paragraph: Енергія приладів і освітлення, температура та вологість зон — кожен вимірювальний канал у власному контексті.
+  - strong: Дані мають свій контекст
+  - paragraph: Каталог показує джерела зі збереженими вимірюваннями у вибраному запуску. Джерело датасету не обов’язково є фізичним пристроєм.
+  - region "Фільтри каталогу":
+    - text: Запуск
+    - combobox "Запуск каталогу":
+      - option "Оберіть запуск"
+      - option "ei-stage2-aedbd416-control"
+      - option "ei-stage2-aedbd416-plus-450" [selected]
+    - text: Будівля
+    - combobox "Будівля каталогу":
+      - option "Усі будівлі"
+      - option "appliances-house-1" [selected]
+    - text: Категорія
+    - combobox "Категорія каталогу":
+      - option "Усі категорії" [selected]
+      - option "Побутові прилади"
+      - option "Освітлення"
+      - option "Сенсори зон"
+    - text: Пошук за назвою та ID
+    - textbox "Пошук джерел":
+      - /placeholder: Назва, колонка або ID…
+  - heading "Доступні джерела" [level=2]
+  - generic: 11 на цій сторінці
+  - article:
+    - generic: Джерело датасету
+    - heading "Побутові прилади" [level=2]
+    - paragraph: uci-appliances
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Сукупна інтервальна енергія побутового обладнання будівлі. Розподілу за окремими приладами немає.
+    - generic: Останнє збережене вимірювання
+    - strong:
+      - text: "60"
+      - generic: Wh / 10 хв
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Споживання · прогноз · детектори
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=appliances"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Освітлення
+    - heading "Освітлення" [level=2]
+    - paragraph: uci-appliances / lights
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Інтервальна енергія освітлення будинку. Окремий ряд lights із датасету UCI.
+    - generic: Останнє збережене вимірювання
+    - strong:
+      - text: "0"
+      - generic: Wh / 10 хв
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=lights"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Кухня" [level=2]
+    - paragraph: uci-appliances / T1 + RH_1
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 21,4°C
+    - strong: 36,8% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-1"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Вітальня" [level=2]
+    - paragraph: uci-appliances / T2 + RH_2
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 23,8°C
+    - strong: 32,9% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-2"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Пральня" [level=2]
+    - paragraph: uci-appliances / T3 + RH_3
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 22,5°C
+    - strong: 34,6% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-3"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Кабінет" [level=2]
+    - paragraph: uci-appliances / T4 + RH_4
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 21,6°C
+    - strong: 35,6% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-4"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Ванна кімната" [level=2]
+    - paragraph: uci-appliances / T5 + RH_5
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 19,5°C
+    - strong: 44,7% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-5"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Зовні будівлі · північна сторона" [level=2]
+    - paragraph: uci-appliances / T6 + RH_6
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 14°C
+    - strong: 1% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-6"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Кімната для прасування" [level=2]
+    - paragraph: uci-appliances / T7 + RH_7
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 19,4°C
+    - strong: 29,6% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-7"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Кімната підлітка №2" [level=2]
+    - paragraph: uci-appliances / T8 + RH_8
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 21,9°C
+    - strong: 38,8% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-8"
+      - text: Переглянути аналітику
+  - article:
+    - generic: Сенсори зони
+    - heading "Спальня батьків" [level=2]
+    - paragraph: uci-appliances / T9 + RH_9
+    - paragraph:
+      - text: appliances-house-1
+    - paragraph: Канали температури та вологості. Ідентифікація фізичного пристрою не відома.
+    - generic: Останнє збережене вимірювання
+    - strong: 19,8°C
+    - strong: 38% вологості
+    - time: 2016-05-02 09:10:00
+    - text: 10 хв
+    - generic: Історичні дані
+    - paragraph: Час датасету, часовий пояс не визначено
+    - paragraph: Графіки та описова статистика · без ML
+    - link "Переглянути аналітику":
+      - /url: "?view=source&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances&channel=zone-9"
+      - text: Переглянути аналітику
+  - paragraph:
+    - text: Лише читання з PostgreSQL. Доступність API не означає, що джерело зараз активне.
