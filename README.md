@@ -604,6 +604,15 @@ python3 -m integration.email_demo synthetic
 
 [Оцінка P0](docs/product/p0-assessment.md) · [Звіт, screenshot evidence і frontend preview P1](docs/product/p1/report.md). P1 не змінює inference, API або моделі.
 
-### Єдина інтеграційна версія — етап 1 із 6
+### Інтегрована версія застосунку
 
-Локальна `integration/energy-intelligence-complete` поєднує Product Dashboard P1, каталог 11 каналів та opt-in experimental rules/hybrid із їхнім read-only API/UI. [Аудит, джерела комітів, перевірки, обмеження та підготовка наступного етапу](docs/integration/stage1/README.md). Контрольного досліду після інтеграції ще не виконували; правила залишаються default-off, hybrid Email не підключений.
+Product Dashboard P1, каталог 11 каналів і opt-in experimental rules/hybrid поєднано в одній версії Worker/PostgreSQL/API/UI. Правила залишаються **default-off**; їх увімкнення потребує наявної окремої міграції. Low-кандидати та hybrid Email не підключені. Основний прогноз — HGB20; RF21 використовується окремо для residual detector.
+
+Підтверджені матеріали інтеграції:
+
+- [Етап 1: аудит і цільові перевірки](docs/integration/stage1/README.md).
+- [Етап 2: два ізольовані Kafka→Worker→PostgreSQL запуски з увімкненими правилами](docs/integration/stage2/README.md).
+- [Етап 3: порівняння збережених рішень, фону та епізодів](docs/integration/stage3/README.md).
+- [Етап 4: перевірка UI, скриншоти й обмеження представлення](docs/integration/stage4/README.md).
+
+Збережений контрольований сценарій — демонстрація на тому самому історичному будинку, не незалежна оцінка якості. UI показує hybrid-епізоди, але не має поінтервальної історії high/hybrid та точного часу закривального вимірювання. Фінальні негативні картки не означають відсутності історичних сигналів. Етапи 5–6 цієї перевірки та перевірка Email для неї ще не виконані. Злиття коду не оновлює автоматично локальні images, міграції або запущені сервіси.
