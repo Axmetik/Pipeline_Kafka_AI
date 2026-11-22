@@ -1,0 +1,18 @@
+{
+  "registration_commit": "8cc7334",
+  "runner_commit": "a228124751770e04e01e98f686e1f014eeedec1c",
+  "note": "git absent in container: original provenance git_commit=null; exact source hashes verified on host against pre-execution commit.",
+  "scenarios_completed": 32,
+  "points_files": 64,
+  "rows_checked": 79899,
+  "all_or_decisions_and_sources_verified": true,
+  "episode_onsets_independently_reconstructed": true,
+  "known_v2_exact_pairs": 12,
+  "known_v2_exact_records": 15012,
+  "low_exact_offline_streaming_records": 79899,
+  "timing_rows": 2880,
+  "timing_pairs": 10,
+  "timing_percentiles_independently_verified": true,
+  "all_input_output_checksums_preserved": true,
+  "targeted_tests": 107
+}

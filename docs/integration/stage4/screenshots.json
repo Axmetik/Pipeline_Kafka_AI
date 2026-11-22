@@ -1,0 +1,110 @@
+{
+  "viewport_css_pixels": [
+    1440,
+    1000
+  ],
+  "native_capture_format": "JPEG",
+  "originals_preserved": true,
+  "no_resizing_annotations_or_data_changes": true,
+  "images": [
+    {
+      "png": "01-catalog.png",
+      "original": "01-catalog-original.jpg",
+      "crop_xywh": null,
+      "operation": "format conversion only",
+      "original_sha256": "8840fdb0def18210370278c539084f6a152e73b6d08427ac405e8bc4c1709dc7",
+      "png_sha256": "f64cbd0006a034f2e0c7e32ca925da21f7414478c76efc7a4d7406b5f5ade392"
+    },
+    {
+      "png": "02-control-forecast.png",
+      "original": "control-analytics-full-original.jpg",
+      "crop_xywh": [
+        1,
+        1,
+        1439,
+        1000
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "e248eb13214d62d6b4fa6bbf653a5060d567faeefa5ba24380d21cb2e20e5828",
+      "png_sha256": "db1ac8a302f2e5642332a17f8b41994506470f7821566df86419ea7faba46e94"
+    },
+    {
+      "png": "03-modified-forecast.png",
+      "original": "modified-forecast-full-original.jpg",
+      "crop_xywh": [
+        1,
+        1,
+        1439,
+        1000
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "b115322c93f020a5ba362e95ee6fc867061de10f70fc4437836e1e8c9c68485d",
+      "png_sha256": "d6a4531a62518a704f3da70f4516bb742db33ab4d889887c607e68d8fb71d0b6"
+    },
+    {
+      "png": "04-ml-scores.png",
+      "original": "modified-analytics-full-original.jpg",
+      "crop_xywh": [
+        264,
+        2029,
+        1144,
+        470
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "9612cef8ca27f8b525c8b8953f26abbe1886a711941bfad5ebdbe98ed1f55266",
+      "png_sha256": "3d99f2188b6ef0847c6ac555d3b3d143daef04c5d1dac0343c6244d5a79dac31"
+    },
+    {
+      "png": "05-rules-latest.png",
+      "original": "modified-analytics-full-original.jpg",
+      "crop_xywh": [
+        264,
+        2800,
+        1144,
+        521
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "9612cef8ca27f8b525c8b8953f26abbe1886a711941bfad5ebdbe98ed1f55266",
+      "png_sha256": "b796ed778f9bb91921565aef1c74b53fa9a76efd0435b93d8a4bffb9037a09fc"
+    },
+    {
+      "png": "06-hybrid-events.png",
+      "original": "hybrid-events-full-original.jpg",
+      "crop_xywh": [
+        1,
+        1,
+        1439,
+        1000
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "f5fe1ab8add8421e5279647968a702262ff8090da0456c7c2d9d925836e2f07a",
+      "png_sha256": "372cdf79a4df5e621e5d5440ff21ec80004a0c83ec6965dafee64e994f8a2fa3"
+    },
+    {
+      "png": "07-return-episodes.png",
+      "original": "individual-events-full-original.jpg",
+      "crop_xywh": [
+        1,
+        1,
+        1439,
+        1330
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "578406a272af680c695123877eaf2be982362ac22aa99312ddc446da28ff6990",
+      "png_sha256": "71239fe0e4360caa9d18a9ad3a0a3b4ce6e51bf2c02163db64c5c13504bfc90a"
+    },
+    {
+      "png": "08-control-background.png",
+      "original": "control-events-full-original.jpg",
+      "crop_xywh": [
+        1,
+        1,
+        1439,
+        1000
+      ],
+      "operation": "documented crop + PNG encoding; no resampling",
+      "original_sha256": "09b839e6aa97bc694746fc0d43f495381c9448eccdc974892cd017ab8ed3143b",
+      "png_sha256": "8075e03ded3d11bad67db25fc9c2cb77b5ada3475c091bd05c8f5e5fae20eeff"
+    }
+  ]
+}

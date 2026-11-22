@@ -1,0 +1,38 @@
+{
+  "file": "data/energy/raw/energydata_complete.csv",
+  "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "rows": 19735,
+  "first_timestamp": "2016-01-11 17:00:00",
+  "last_timestamp": "2016-05-27 18:00:00",
+  "usable_values_by_column": {
+    "Appliances": 19735,
+    "lights": 19735,
+    "T1": 19735,
+    "RH_1": 19735,
+    "T2": 19735,
+    "RH_2": 19735,
+    "T3": 19735,
+    "RH_3": 19735,
+    "T4": 19735,
+    "RH_4": 19735,
+    "T5": 19735,
+    "RH_5": 19735,
+    "T6": 19735,
+    "RH_6": 19735,
+    "T7": 19735,
+    "RH_7": 19735,
+    "T8": 19735,
+    "RH_8": 19735,
+    "T9": 19735,
+    "RH_9": 19735
+  },
+  "import": "producer/appliances_dataset.py:iter_appliances",
+  "storage": "measurements.wire_record; no migration or backfill",
+  "column_mapping": {
+    "Appliances": "measurements.energy_wh",
+    "T1": "wire_record.environment.temperature_c",
+    "RH_1": "wire_record.environment.relative_humidity_pct",
+    "lights_T2_T9_RH_2_RH_9": "wire_record.additional_parameters"
+  },
+  "zone_reference": "https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction"
+}

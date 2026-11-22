@@ -1,0 +1,247 @@
+{
+  "base_url": "http://127.0.0.1:49308",
+  "application_code_sha": "a6c1287ea8532aacb2d04c346d96d5d2595b9ad1",
+  "evidence_start_sha": "30912158e2be2031b498ebca85d45dd29fe44103",
+  "scenarios": {
+    "control": {
+      "unchanged_API_rows_verified": 1296,
+      "required_point_checks": {
+        "13:20:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "13:30:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "13:40:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "13:50:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "14:00:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "14:10:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "15:10:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "15:20:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "15:30:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "15:40:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "16:50:00": {
+          "residual": true,
+          "sustained_high": false,
+          "hybrid": true,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        }
+      },
+      "actual_chart_points_verified": 144,
+      "HGB20_target_aligned_chart_points_verified": 145,
+      "maximum_actual_chart_error_pixels": 0.00033333333334439885,
+      "maximum_forecast_chart_error_pixels": 0.0004989254323959358,
+      "visible_window_positive_ML_counts": {
+        "isolation_forest": 0,
+        "autoencoder": 0,
+        "residual": 1
+      },
+      "UI_hybrid_episode_rows_verified": 15
+    },
+    "plus-450": {
+      "unchanged_API_rows_verified": 1296,
+      "required_point_checks": {
+        "13:20:00": {
+          "residual": true,
+          "sustained_high": false,
+          "hybrid": true,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "13:30:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "13:40:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": true,
+          "unanimous": false
+        },
+        "13:50:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": true,
+          "unanimous": false
+        },
+        "14:00:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "14:10:00": {
+          "residual": false,
+          "sustained_high": true,
+          "hybrid": true,
+          "isolation_forest": true,
+          "autoencoder": true,
+          "unanimous": false
+        },
+        "15:10:00": {
+          "residual": false,
+          "sustained_high": true,
+          "hybrid": true,
+          "isolation_forest": true,
+          "autoencoder": true,
+          "unanimous": false
+        },
+        "15:20:00": {
+          "residual": true,
+          "sustained_high": false,
+          "hybrid": true,
+          "isolation_forest": true,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "15:30:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": true,
+          "autoencoder": true,
+          "unanimous": false
+        },
+        "15:40:00": {
+          "residual": false,
+          "sustained_high": false,
+          "hybrid": false,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        },
+        "16:50:00": {
+          "residual": true,
+          "sustained_high": false,
+          "hybrid": true,
+          "isolation_forest": false,
+          "autoencoder": false,
+          "unanimous": false
+        }
+      },
+      "actual_chart_points_verified": 144,
+      "HGB20_target_aligned_chart_points_verified": 145,
+      "maximum_actual_chart_error_pixels": 0.00033333333334439885,
+      "maximum_forecast_chart_error_pixels": 0.0004989254323959358,
+      "visible_window_positive_ML_counts": {
+        "isolation_forest": 9,
+        "autoencoder": 10,
+        "residual": 3
+      },
+      "UI_hybrid_episode_rows_verified": 17
+    }
+  },
+  "served_frontend_assets_sha256": {
+    "assets/index-C7VDeMja.js": "b7073a8c9395fd1562d751eab4c5b13a6413ae855d00211fe44559ea8ae87717",
+    "assets/index-DmnFMTkW.css": "1d5894a4d1e04bb666d69d71b49b9495e9982f52ecdfacb51648feb0968bb9f5",
+    "favicon.svg": "b460de9291238bc0c97aeeee1fb891365559759565386b4d61a35ca7a037ad9c",
+    "index.html": "008fffd984382b320b40e1b568f6c8258f7dcb396d733818c369ab5533835862"
+  },
+  "backend_image_id": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+  "read_only_worktree_mount": "/Users/oslavych/Documents/Codex/energy-intelligence-integration",
+  "email_enabled": false,
+  "rules_enabled": true,
+  "public_binding": {
+    "8099/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "49308"
+      }
+    ]
+  },
+  "actual_time_window": {
+    "measurements": "2016-05-01T09:20:00..2016-05-02T09:10:00",
+    "forecast_last_target": "2016-05-02T09:20:00",
+    "points": 144
+  },
+  "same_control_modified_y_axis_Wh": [
+    0,
+    600
+  ],
+  "arbitrary_time_filter_available": false,
+  "rule_decision_history_available_in_UI": false,
+  "closing_measurement_timestamp_displayed_in_UI": false,
+  "derived_high_episode_not_claimed_as_persisted": true,
+  "screenshots_via": "cua_repl only; native JPEG originals preserved; PNG conversion/cropping only",
+  "new_replay_inference_training_full_tests": false,
+  "application_changes": false
+}

@@ -62,7 +62,8 @@ test("live Kafka replay, worker/dashboard restart, immutable forecasts and dupli
   });
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/?run=" + encodeURIComponent(run));
+  await page.goto("/?run=" + encodeURIComponent(run) + "#analytics");
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   await expect(page.getByTestId("measurement-count")).toHaveText("0");
   await expect(page.getByTestId("empty-state")).toBeVisible();
   const producer = replay(300, 0.15);
@@ -155,6 +156,7 @@ test("live Kafka replay, worker/dashboard restart, immutable forecasts and dupli
   ).toEqual(allForecasts);
   demo("restart");
   await page.reload();
+  await page.getByTestId("advanced-analytics").locator("summary").click();
   await expect(page.getByTestId("measurement-count")).toHaveText("300");
   await expect(page.getByTestId("duplicate-count")).toHaveText("300");
   await expect(page.getByTestId("visible-count")).toHaveText(

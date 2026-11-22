@@ -1,0 +1,23 @@
+{
+  "protocol_version": "controlled-kafka-demonstration-v1",
+  "purpose": "paired illustrative intervention, not independent anomaly-quality evaluation",
+  "source_commit": "5eab359e9e2956e4bdc0becbe9945ea653e38f18",
+  "dataset": "data/energy/raw/energydata_complete.csv",
+  "building_id": "appliances-house-1",
+  "source_id": "uci-appliances",
+  "start": "2016-04-30T07:20:00",
+  "records": 300,
+  "injection_start_index_zero_based": 180,
+  "injection_intervals": 12,
+  "injection_formula": "modified Appliances(t) = original Appliances(t) + delta_wh only at indices 180..191",
+  "candidate_deltas_wh_in_order": [150, 300, 450],
+  "selection": "Predeclared: first 3 x 50 Wh train IQR level-shift scale from Stage4; second reuses 300 Wh Kafka spike magnitude but sustained; final 450 Wh magnitude only if needed. Duration 12 is inside Stage4 level_shift duration 6..18.",
+  "stop_rule": "stop at first variant with a ready positive during intervention absent in paired control at the same target timestamp; report pre-existing/continuing episodes separately; maximum three variants",
+  "warmup": {"HGB20_first_forecast_record_one_based": 7, "IF_AE_first_score_record_one_based": 7, "RF21_first_reference_forecast_record_one_based": 144, "residual_first_score_record_one_based": 145},
+  "rules": "Only frozen combined-q99-v1-unanimous is integrated on this branch; standalone sustained_high/hybrid/low/telemetry rules are not installed or imported",
+  "models": "existing artifacts/mvp/docker/manifest.json, thresholds q0.99 unchanged",
+  "timestamp_semantics": "original timezone-naive dataset labels; delay in 600-second dataset intervals, not wall-clock pipeline latency",
+  "isolation": "fresh uniquely named run/topic/group per control and variant; separate temporary PostgreSQL/Kafka; no production connection, SMTP sender, model writes or training",
+  "screenshots": "same modified run/building/source, final 144 measurements; overview, reacting detector score/threshold, episodes, final decisions; paired control overview also saved",
+  "checks": ["schema validation and exact 600-second ordering", "only energy.value differs in modified copy", "all wire records, ledger payload hashes and offsets match delivered Kafka data", "DB counts and Kafka checkpoint/commit", "API rows/flags/episode identity equal DB exports", "real browser graphs and experimental episode status"]
+}

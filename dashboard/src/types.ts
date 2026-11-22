@@ -13,6 +13,8 @@ export interface Source {
   building_id: string;
   source_id: string;
   source_type: string;
+  energy_scope?: string;
+  timestamp_reference?: string;
   interval_seconds: number;
   timestamp_has_offset: boolean;
   timezone: string | null;
@@ -28,6 +30,7 @@ export interface Measurement {
   interval_seconds: number;
   feature_status: string;
   received_at: string;
+  gap_detected?: boolean;
   temperature_c: number | null;
   relative_humidity_pct: number | null;
 }
@@ -95,6 +98,9 @@ export interface Selection {
   source: string;
 }
 export interface Snapshot {
+  ruleAssessments?: OptionalPage<RuleAssessment>;
+  hybridDecisions?: OptionalPage<HybridDecision>;
+  hybridEvents?: OptionalPage<HybridEpisode>;
   notifications?: EmailNotification[];
   combined?: CombinedDecision[];
   combinedEvents?: CombinedEpisode[];
@@ -148,4 +154,94 @@ export interface EmailNotification {
   attempt_count: number;
   error_category: string | null;
   suppression_reason: string | null;
+}
+
+export interface SourceSummary extends Source {
+  run_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  latest_energy_wh: number;
+  received_at: string;
+  feature_status: string;
+  time_basis: Basis;
+  activity_status: "unknown";
+}
+export interface SourceCatalog extends Page<SourceSummary> {
+  building_ids: string[];
+  buildings_truncated: boolean;
+}
+
+export type ChannelCategory = "appliances" | "lighting" | "zones";
+export interface ChannelSummary extends Source {
+  run_id: string;
+  measurement_id: string;
+  channel_id: string;
+  category: ChannelCategory;
+  name: string;
+  columns: string[];
+  units: string[];
+  capabilities: string[];
+  measurement_timestamp: string;
+  value: number | null;
+  secondary_value: number | null;
+  received_at: string;
+  time_basis: Basis;
+  activity_status: "unknown";
+  provenance: string;
+}
+export interface ChannelCatalog extends Page<ChannelSummary> {
+  building_ids: string[];
+  buildings_truncated: boolean;
+}
+export interface ChannelSeries extends Page<ChannelSummary> {
+  definition: Pick<
+    ChannelSummary,
+    "channel_id" | "category" | "name" | "columns" | "units" | "capabilities"
+  >;
+  statistics: {
+    count: number;
+    minimum: number | null;
+    maximum: number | null;
+    mean: number | null;
+  }[];
+  statistics_scope: "returned_window";
+}
+
+export interface OptionalPage<T> extends Page<T> {
+  channel_status: "not_connected" | "no_data" | "available";
+  status_reason: string;
+}
+export interface RuleAssessment {
+  assessment_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  rule: "flatline" | "interval_gap" | "sustained_high";
+  category: "telemetry_quality" | "consumption_pattern";
+  flag: boolean | null;
+  status: string;
+  evidence: Record<string, unknown>;
+  rule_version: string;
+  layer_version: string;
+  activation: string;
+}
+export interface HybridDecision {
+  decision_id: string;
+  measurement_id: string;
+  measurement_timestamp: string;
+  flag: boolean | null;
+  status: string;
+  coverage_count: number;
+  available_inputs: string[];
+  triggered_inputs: string[];
+  layer_version: string;
+}
+export interface HybridEpisode {
+  episode_id: string;
+  start_timestamp: string;
+  end_timestamp: string;
+  flagged_points: number;
+  triggered_inputs: string[];
+  status: "open" | "closed";
+  closed_reason: string | null;
+  layer_version: string;
 }

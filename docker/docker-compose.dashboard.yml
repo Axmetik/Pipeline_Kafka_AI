@@ -6,6 +6,7 @@ x-backend: &backend
     dockerfile: docker/Dockerfile.backend
   environment: &environment
     MVP_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:?}:${POSTGRES_PASSWORD:?}@postgres:5432/${POSTGRES_DB:?}
+    MVP_ENERGY_RULES_ENABLED: ${MVP_ENERGY_RULES_ENABLED:-false}
     MVP_BOOTSTRAP_SERVERS: kafka:29092
     MVP_RUN_ID: ${MVP_RUN_ID:-demo-001}
     MVP_GROUP_ID: ${MVP_GROUP_ID:-energy-mvp-demo-001}

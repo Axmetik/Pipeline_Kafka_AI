@@ -1,0 +1,27 @@
+test_cursor_search_and_limits (test_source_catalog_api.SourceCatalogAPI.test_cursor_search_and_limits) ... ok
+test_empty_and_constant_query_count (test_source_catalog_api.SourceCatalogAPI.test_empty_and_constant_query_count) ... ok
+test_identity_latest_and_scope (test_source_catalog_api.SourceCatalogAPI.test_identity_latest_and_scope) ... ok
+test_aggregation_cursor_and_source_run_separation (test_api_integration.APIIntegration.test_aggregation_cursor_and_source_run_separation) ... ok
+test_aggregation_sums_wh_and_marks_partial_buckets (test_api_integration.APIIntegration.test_aggregation_sums_wh_and_marks_partial_buckets) ... ok
+test_combined_filters_pagination_and_nullable_coverage (test_api_integration.APIIntegration.test_combined_filters_pagination_and_nullable_coverage) ... ok
+test_cors_and_local_access (test_api_integration.APIIntegration.test_cors_and_local_access) ... ok
+test_database_failure_is_503_without_credentials (test_api_integration.APIIntegration.test_database_failure_is_503_without_credentials) ... ok
+test_empty_lists_and_limits (test_api_integration.APIIntegration.test_empty_lists_and_limits) ... ok
+test_experimental_scores_and_events (test_api_integration.APIIntegration.test_experimental_scores_and_events) ... ok
+test_filters_and_stable_cursor_no_duplicates (test_api_integration.APIIntegration.test_filters_and_stable_cursor_no_duplicates) ... ok
+test_metadata_and_status_do_not_expose_secrets (test_api_integration.APIIntegration.test_metadata_and_status_do_not_expose_secrets) ... ok
+test_naive_utc_and_offset_preservation (test_api_integration.APIIntegration.test_naive_utc_and_offset_preservation) ... ok
+test_nullable_forecasts_and_target_alignment (test_api_integration.APIIntegration.test_nullable_forecasts_and_target_alignment) ... ok
+test_pagination_for_every_resource (test_api_integration.APIIntegration.test_pagination_for_every_resource) ... ok
+test_read_only_sql_and_http (test_api_integration.APIIntegration.test_read_only_sql_and_http) ... ok
+test_tied_timestamps_and_cursor_filter_mismatch (test_api_integration.APIIntegration.test_tied_timestamps_and_cursor_filter_mismatch) ... ok
+test_utc_label_and_off_grid_aggregation (test_api_integration.APIIntegration.test_utc_label_and_off_grid_aggregation) ... ok
+test_bounded_queries_no_models_and_no_invented_channels (test_channels_api.ChannelsAPI.test_bounded_queries_no_models_and_no_invented_channels) ... ok
+test_columns_units_and_null_are_not_appliances (test_channels_api.ChannelsAPI.test_columns_units_and_null_are_not_appliances) ... ok
+test_context_categories_search_and_cursor (test_channels_api.ChannelsAPI.test_context_categories_search_and_cursor) ... ok
+test_series_window_missing_and_timestamps (test_channels_api.ChannelsAPI.test_series_window_missing_and_timestamps) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 4.786s
+
+OK

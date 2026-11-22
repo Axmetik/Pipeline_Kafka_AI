@@ -1,0 +1,157 @@
+- complementary:
+  - link "Energy INTELLIGENCE":
+    - /url: "#overview"
+    - text: Energy
+    - generic: INTELLIGENCE
+  - generic: РОБОЧИЙ ПРОСТІР
+  - navigation "Головна навігація":
+    - link "Огляд":
+      - /url: "#overview"
+      - text: Огляд
+    - link "Будівлі":
+      - /url: "#buildings"
+      - text: Будівлі
+    - link "Аналітика":
+      - /url: "#analytics"
+      - text: Аналітика
+    - link "Події":
+      - /url: "#events"
+      - text: Події
+    - link "Пристрої та джерела":
+      - /url: "?view=sources&run=ei-stage2-aedbd416-control&building=appliances-house-1&source=uci-appliances"
+      - text: Пристрої та джерела
+  - strong: Від даних до розуміння
+  - paragraph: Споживання, прогнозування та сигнали для обґрунтованого перегляду.
+  - text: ENERGY INTELLIGENCE · MVP
+  - text: Локальне середовище
+- main:
+  - generic: Робочий простір /Аналітика
+  - generic: Історичний replay
+  - code: ei-stage2-aedbd416-control
+  - text: Датасет / replay
+  - generic: ENERGY INTELLIGENCE / ANALYTICS
+  - heading "Аналітика." [active] [level=1]
+  - paragraph: Часові ряди, прогнози та експериментальне оцінювання.
+  - status:
+    - generic: API на зв’язку
+  - region "Вибір джерела":
+    - text: Запуск replay
+    - combobox "Запуск replay":
+      - option "Оберіть запуск"
+      - option "ei-stage2-aedbd416-control" [selected]
+      - option "ei-stage2-aedbd416-plus-450"
+    - text: Будівля
+    - combobox "Будівля":
+      - option "Оберіть будівлю"
+      - option "appliances-house-1" [selected]
+    - text: Джерело
+    - combobox "Джерело":
+      - option "Оберіть джерело"
+      - option "uci-appliances" [selected]
+    - text: Оновлення ≈ 2 с
+    - generic: API оновлено 21:59:20 UTC
+  - article:
+    - text: Останнє споживання
+    - strong: 60Wh / 10 хв
+    - paragraph: 2016-05-02 09:10:00
+  - article:
+    - text: Прогноз наступного інтервалу
+    - strong: 59,8Wh / 10 хв
+    - paragraph: HGB20 · Готово
+    - paragraph: "Цільовий час: 2016-05-02 09:20:00"
+    - paragraph: "Від вимірювання: 2016-05-02 09:10:00"
+  - article:
+    - text: Вимірювань у запуску
+    - strong: "1308"
+    - paragraph: Усі джерела вибраного запуску · не лише ця будівля
+  - article:
+    - text: Відкриті епізоди
+    - strong: "0"
+    - paragraph: Індивідуальні · серед останніх 50 завантажених. Не підтверджені несправності.
+  - heading "Споживання та прогноз" [level=2]
+  - paragraph: Інтервальна енергія · Wh за 600 секунд
+  - text: Вікно
+  - combobox "Видиме вікно":
+    - option "Останні 72 точки"
+    - option "Останні 144 точки" [selected]
+    - option "Останні 288 точок"
+  - generic: Фактичне споживання
+  - generic: HGB20 · прогноз на 10 хв
+  - generic: 144 точок у вікні
+  - application:
+    - generic: 01.05 09:20
+    - generic: 01.05 12:00
+    - generic: 01.05 14:40
+    - generic: 01.05 17:20
+    - generic: 01.05 20:00
+    - generic: 01.05 22:40
+    - generic: 02.05 01:20
+    - generic: 02.05 04:00
+    - generic: 02.05 09:20
+    - generic: "0"
+    - generic: "150"
+    - generic: "300"
+    - generic: "450"
+    - generic: "600"
+  - generic: Час датасету, часовий пояс не визначено
+  - generic: Прогноз суміщено за цільовим часом · відсутнє значення не означає нуль
+  - region "Інтелектуальний аналіз енергоспоживання":
+    - heading "Інтелектуальний аналіз енергоспоживання" [level=2]
+    - generic: Прозорі правила
+    - paragraph:
+      - text: Історичний replay · appliances-house-1 / uci-appliances · 144 точок
+      - text: "Видиме вікно: 2016-05-01 09:20:00 — 2016-05-02 09:10:00"
+    - list:
+      - listitem: Останнє споживання на 42,1% нижче середнього у видимому вікні.
+      - listitem: На наступний інтервал прогноз на 0,3% нижче останнього факту.
+      - listitem: "Перегляньте інтервали перевищень: Residual Detector. Це незалежні експериментальні оцінки."
+      - listitem: 0 із 3 · Перевищень не зафіксовано. Правило комбінування не спрацювало. Це узгодження експериментальних методів, не ймовірність або фізична тяжкість несправності.
+    - generic "Як сформовано висновки"
+  - heading "Останні вимірювання" [level=2]
+  - paragraph: HGB20 для часу вимірювання у рядку. Верхня картка показує наступний інтервал; тому значення можуть відрізнятися.
+  - generic: Wh / 10 хв
+  - table:
+    - rowgroup:
+      - row "Час вимірювання Факт, Wh HGB20, Wh Деталі":
+        - columnheader "Час вимірювання"
+        - columnheader "Факт, Wh"
+        - columnheader "HGB20, Wh"
+        - columnheader "Деталі"
+    - rowgroup:
+      - row "2016-05-02 09:10:00 60 54,7 Переглянути ↗":
+        - cell "2016-05-02 09:10:00"
+        - cell "60"
+        - cell "54,7"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 09:00:00 50 68,5 Переглянути ↗":
+        - cell "2016-05-02 09:00:00"
+        - cell "50"
+        - cell "68,5"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 08:50:00 50 61,2 Переглянути ↗":
+        - cell "2016-05-02 08:50:00"
+        - cell "50"
+        - cell "61,2"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 08:40:00 50 60,2 Переглянути ↗":
+        - cell "2016-05-02 08:40:00"
+        - cell "50"
+        - cell "60,2"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 08:30:00 40 69,1 Переглянути ↗":
+        - cell "2016-05-02 08:30:00"
+        - cell "40"
+        - cell "69,1"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+  - generic "Розширена аналітика та діагностика Experimental scores, моделі, пороги та стан конвеєра +":
+    - text: Розширена аналітика та діагностика
+    - generic: Experimental scores, моделі, пороги та стан конвеєра
+    - text: +
+  - text: ENERGY INTELLIGENCE
+  - generic: Дослідницький MVP · experimental оцінки не підтверджують фізичну несправність
+- generic: "0"

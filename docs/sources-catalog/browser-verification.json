@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "saved_data_screenshots": true,
+  "screenshot_points": 144,
+  "real_api_and_postgres": true,
+  "existing_monitoring_and_navigation": true,
+  "multi_building_same_source_id": true,
+  "deep_link_reload": true,
+  "run_and_building_switch": true,
+  "not_found": true,
+  "empty_catalog": true,
+  "search_empty": true,
+  "warmup_null_and_zero": true,
+  "incompatible": true,
+  "api_recovery": true,
+  "naive_timezone": "Pacific/Honolulu",
+  "desktop_mobile_tablet_no_overflow": true,
+  "browser_errors": [],
+  "no_training_or_inference": true,
+  "no_email_sent": true,
+  "long_identifiers_no_overflow": true,
+  "demo_changed": false
+}

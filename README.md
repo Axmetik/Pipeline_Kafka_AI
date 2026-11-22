@@ -580,3 +580,39 @@ python3 -m integration.email_demo synthetic
 підготовленими trusted Docker artifacts: `python3 -m integration.email_demo replay`.
 Моделі ці команди не навчають. Використовується окремий Compose project;
 стандартний Showcase не активує Email. [Налаштування, гарантії, retry/cooldown і результати](docs/stage7c/email-notifications.md).
+
+
+### Пристрої та джерела
+
+Каталог доступний через `?view=sources`, персональна аналітика — через `?view=source&run=...&building=...&source=...`. Використовуйте API й frontend однієї версії. [Сценарій, API, результати перевірок і desktop/mobile скриншоти](docs/sources-catalog/README.md).
+
+### Канали UCI: освітлення й сенсори зон
+
+Каталог розширено реальними `lights` та парами `T1–T9` / `RH_1–RH_9`: українські назви зон за UCI, категорії/пошук, окремі графіки й статистика. HGB20, детектори та події залишаються лише в аналітиці Appliances. Історичні дані не означають активний фізичний пристрій. Нові канали читаються зі збереженого wire_record; без підміни пропусків нулями, міграцій або backfill.
+
+[Походження даних, можливості, обмеження, перевірки й шість desktop/mobile скриншотів](docs/sources-catalog/channels-20261115/README.md). Основний demo для цього етапу не перебудовувався.
+### Standalone experimental energy rules
+
+[Rules module and controlled test report](docs/energy-rules/README.md): repeated readings, measurement-time gaps and sustained high consumption against historical same-hour context. This historical first phase was **not connected to Worker/API/Dashboard/Email**, does not alter ML models and does not claim improved real-data detection metrics.
+
+## Experimental rules: Worker/PostgreSQL integration (default off)
+
+`MVP_ENERGY_RULES_ENABLED=false` preserves the existing pipeline. The optional layer stores frozen-v2 rule assessments, separate telemetry-quality signals, `residual OR sustained_high` decisions/episodes and durable per-source state. It does not enable low candidates or alter ML/Unanimous or Email. Read-only API/Dashboard integration is now included; the linked report describes its earlier Worker-only phase. Separate optional Alembic migration required only when enabled; no backfill. See [setup, recovery and targeted verification](docs/energy-rules/worker-integration-20261109/README.md).
+### Product Dashboard P1
+
+Чотири розділи: **Огляд / Будівлі / Аналітика / Події**. Фільтри запуску й джерела спільні; technical scores/models/pipeline diagnostics містяться в розширеній секції Аналітики. Події experimental і read-only; Email delivery має окрему часову семантику.
+
+[Оцінка P0](docs/product/p0-assessment.md) · [Звіт, screenshot evidence і frontend preview P1](docs/product/p1/report.md). P1 не змінює inference, API або моделі.
+
+### Інтегрована версія застосунку
+
+Product Dashboard P1, каталог 11 каналів і opt-in experimental rules/hybrid поєднано в одній версії Worker/PostgreSQL/API/UI. Правила залишаються **default-off**; їх увімкнення потребує наявної окремої міграції. Low-кандидати та hybrid Email не підключені. Основний прогноз — HGB20; RF21 використовується окремо для residual detector.
+
+Підтверджені матеріали інтеграції:
+
+- [Етап 1: аудит і цільові перевірки](docs/integration/stage1/README.md).
+- [Етап 2: два ізольовані Kafka→Worker→PostgreSQL запуски з увімкненими правилами](docs/integration/stage2/README.md).
+- [Етап 3: порівняння збережених рішень, фону та епізодів](docs/integration/stage3/README.md).
+- [Етап 4: перевірка UI, скриншоти й обмеження представлення](docs/integration/stage4/README.md).
+
+Збережений контрольований сценарій — демонстрація на тому самому історичному будинку, не незалежна оцінка якості. UI показує hybrid-епізоди, але не має поінтервальної історії high/hybrid та точного часу закривального вимірювання. Фінальні негативні картки не означають відсутності історичних сигналів. Етапи 5–6 цієї перевірки та перевірка Email для неї ще не виконані. Злиття коду не оновлює автоматично локальні images, міграції або запущені сервіси.

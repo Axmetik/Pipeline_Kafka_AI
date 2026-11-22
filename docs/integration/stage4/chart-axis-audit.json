@@ -1,0 +1,149 @@
+{
+  "svg": {
+    "bottom": 943.640625,
+    "height": 300,
+    "left": 289,
+    "right": 1383,
+    "top": 643.640625,
+    "width": 1094,
+    "x": 289,
+    "y": 643.640625
+  },
+  "ticks": [
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "0",
+      "x": "37",
+      "y": "265"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "150",
+      "x": "37",
+      "y": "202.5"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "300",
+      "x": "37",
+      "y": "140"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "450",
+      "x": "37",
+      "y": "77.5"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "600",
+      "x": "37",
+      "y": "15"
+    }
+  ],
+  "labels": [
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "01.05 09:20",
+      "x": "45",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "01.05 12:00",
+      "x": "159.33333333333331",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "01.05 14:40",
+      "x": "273.66666666666663",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "01.05 17:20",
+      "x": "388",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "01.05 20:00",
+      "x": "502.3333333333333",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "01.05 22:40",
+      "x": "616.6666666666666",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "02.05 01:20",
+      "x": "731",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "02.05 04:00",
+      "x": "845.3333333333333",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-xAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "02.05 09:20",
+      "x": "1061.703125",
+      "y": "273"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "0",
+      "x": "37",
+      "y": "265"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "150",
+      "x": "37",
+      "y": "202.5"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "300",
+      "x": "37",
+      "y": "140"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "450",
+      "x": "37",
+      "y": "77.5"
+    },
+    {
+      "ancestor": "recharts-cartesian-axis-tick-labels recharts-yAxis-tick-labels",
+      "parent": "recharts-layer recharts-cartesian-axis-tick-label",
+      "text": "600",
+      "x": "37",
+      "y": "15"
+    }
+  ]
+}

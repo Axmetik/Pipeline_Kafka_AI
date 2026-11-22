@@ -1,0 +1,37 @@
+cohort,family,method,target_events,detected_events,missed_events,common_onset_detected_events,event_coverage_percent,stream_coverage_percent,common_event_coverage_percent,unavailable_event_points,unavailable_stream_points,delay_median_minutes,delay_values_minutes,new_paired_crossings,paired_unknown_matches,paired_episode_onsets,modified_episode_onsets,paired_event_onsets,modified_tail_onsets
+known_regression,drop,residual,6,0,6,0,100.0,88.47419153453187,50.0,0,864,,[],0,0,33,31,2,1
+known_regression,drop,residual_high_low_or,6,0,6,0,50.0,50.26092836157498,50.0,21,3731,,[],0,0,33,31,2,1
+known_regression,drop,residual_high_or,6,0,6,0,100.0,65.46115517173429,50.0,0,2589,,[],0,0,33,31,2,1
+known_regression,drop,sustained_high,6,0,6,0,100.0,65.4225746035956,50.0,0,2592,,[],0,0,0,0,0,0
+known_regression,drop,sustained_low,6,0,6,0,50.0,50.08986110947507,50.0,21,3744,,[],0,0,0,0,0,0
+new,drop,residual,12,0,12,0,100.0,88.47419153453188,50.0,0,1728,,[],0,0,108,108,0,18
+new,drop,residual_high_low_or,12,2,10,2,50.0,52.50876105292037,50.0,42,7120,50.0,"[50.0, 50.0]",2,0,136,138,0,22
+new,drop,residual_high_or,12,0,12,0,100.0,65.62411504515418,50.0,0,5154,,[],0,0,136,136,0,22
+new,drop,sustained_high,12,0,12,0,100.0,65.4225746035956,50.0,0,5184,,[],0,0,34,34,0,4
+new,drop,sustained_low,12,2,10,2,50.0,51.744795374760386,50.0,42,7236,50.0,"[50.0, 50.0]",2,0,0,2,0,0
+new,gradual_change,residual,2,0,2,0,100.0,88.52029595477276,50.0,0,288,,[],0,0,18,18,0,3
+new,gradual_change,residual_high_low_or,2,2,0,1,62.5,52.684652788841206,50.0,9,1187,80.0,"[90.0, 70.0]",1,1,23,25,0,4
+new,gradual_change,residual_high_or,2,2,0,1,100.0,65.761616389857,50.0,0,859,80.0,"[90.0, 70.0]",2,0,23,25,0,4
+new,gradual_change,sustained_high,2,2,0,1,100.0,65.5608878643183,50.0,0,864,80.0,"[90.0, 70.0]",2,0,6,8,0,1
+new,gradual_change,sustained_low,2,0,2,0,50.0,51.73086700124594,50.0,12,1211,,[],0,0,0,0,0,0
+new,short_peak,residual,2,2,0,1,100.0,88.4186046511628,50.0,0,288,0.0,"[0.0, 0.0]",2,0,18,20,0,3
+new,short_peak,residual_high_low_or,2,2,0,1,100.0,52.55717054263567,50.0,0,1180,0.0,"[0.0, 0.0]",1,1,22,24,0,3
+new,short_peak,residual_high_or,2,2,0,1,100.0,65.45833333333333,50.0,0,859,0.0,"[0.0, 0.0]",2,0,22,24,0,3
+new,short_peak,sustained_high,2,0,2,0,100.0,65.25581395348837,50.0,0,864,,[],0,0,5,5,0,0
+new,short_peak,sustained_low,2,0,2,0,50.0,51.761627906976734,50.0,1,1200,,[],0,0,0,0,0,0
+new,sustained_high,residual,2,0,2,0,100.0,88.52029595477276,50.0,0,288,,[],0,0,18,18,0,3
+new,sustained_high,residual_high_low_or,2,2,0,1,79.16666666666667,52.84980555515004,50.0,5,1183,50.0,"[50.0, 50.0]",1,1,23,25,0,4
+new,sustained_high,residual_high_or,2,2,0,1,100.0,65.761616389857,50.0,0,859,50.0,"[50.0, 50.0]",2,0,23,25,0,4
+new,sustained_high,sustained_high,2,2,0,1,100.0,65.5608878643183,50.0,0,864,50.0,"[50.0, 50.0]",2,0,6,8,0,1
+new,sustained_high,sustained_low,2,0,2,0,50.0,51.73086700124594,50.0,12,1211,,[],0,0,0,0,0,0
+telemetry,flatline,flatline,1,1,0,0,100.0,99.59742351046698,0.0,0,5,40.0,[40.0],1,0,13,14,0,1
+known_regression,all_consumption,residual,6,0,6,0,100.0,88.47419153453187,50.0,0,864,,[],0,0,33,31,2,1
+known_regression,all_consumption,residual_high_low_or,6,0,6,0,50.0,50.26092836157498,50.0,21,3731,,[],0,0,33,31,2,1
+known_regression,all_consumption,residual_high_or,6,0,6,0,100.0,65.46115517173429,50.0,0,2589,,[],0,0,33,31,2,1
+known_regression,all_consumption,sustained_high,6,0,6,0,100.0,65.4225746035956,50.0,0,2592,,[],0,0,0,0,0,0
+known_regression,all_consumption,sustained_low,6,0,6,0,50.0,50.08986110947507,50.0,21,3744,,[],0,0,0,0,0,0
+new,all_consumption,residual,18,2,16,1,100.0,88.47826064087774,50.0,0,2592,0.0,"[0.0, 0.0]",2,0,162,164,0,27
+new,all_consumption,residual_high_low_or,18,8,10,5,60.18518518518518,52.571577244905455,50.0,56,10670,50.0,"[50.0, 0.0, 90.0, 50.0, 50.0, 50.0, 0.0, 70.0]",5,3,204,212,0,33
+new,all_consumption,residual_high_or,18,6,12,3,100.0,65.63625070933027,50.0,0,7731,50.0,"[50.0, 0.0, 90.0, 50.0, 0.0, 70.0]",6,0,204,210,0,33
+new,all_consumption,sustained_high,18,4,14,2,100.0,65.43478192263318,50.0,0,7776,60.0,"[50.0, 90.0, 50.0, 70.0]",4,0,51,55,0,6
+new,all_consumption,sustained_low,18,2,16,2,50.0,51.74357046200343,50.0,67,10858,50.0,"[50.0, 50.0]",2,0,0,2,0,0

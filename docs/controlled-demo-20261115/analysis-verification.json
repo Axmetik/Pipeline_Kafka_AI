@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "saved_exports_only": true,
+  "model_registries_identical_across_all_four_runs": true,
+  "contexts": 4,
+  "records_per_context": 300,
+  "all_episode_boundaries_and_counts_match_per_point_flags": true,
+  "original_event_and_other_columns_preserved": true,
+  "delay_clock": "dataset_naive measurement timestamps, not processing wall clock",
+  "total_events_injected": 3,
+  "independent_quality_evaluation": false
+}

@@ -1,0 +1,474 @@
+{
+  "git_commit": null,
+  "image_id": "sha256:3be9a8ff7a2eedf156ae4b85e4b2bd064b1fda84aa0057bf4718ab2f9ed4a865",
+  "input_sha256": {
+    "anomaly/artifacts.py": "77acff536b2db5219d69f49d406b0d09801e2aa1dcf0f638cd05f453e52458cf",
+    "anomaly/combined.py": "d8dbf3dbfdb5f7de1d81fe1b985b225ea6bc8db47fad4aabf0981a6fd7c2c601",
+    "anomaly/features.py": "8f7ffea0a9399e7047d37b7733b9675a012d7d9a0ae60cdb504f4867dbd5a12c",
+    "anomaly/residual.py": "7bae011bcce4aae059d5736e8b8d9ef7ab4d7ab6878542f55d978e3a735dad50",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "benchmark/features.py": "254fad194af82a391cfb0fc1738cbe62987428a882d662bf41a3cfc758a7fa65",
+    "configs/combined-rule-v1.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e",
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "diagnostics/rule_comparison.py": "f02b89456ada1a5d61dd4e20379ff0ccd9943452a42b688867f5c8e7006092e7",
+    "diagnostics/rule_complementarity.py": "efecad62714faa6212e0d43ada6fbf619a14cd5a86b58aa6a268d87d2cb6329e",
+    "processing/energy_processor.py": "d56d698c70a4fa40b5c0c9416b944409891c23e36b75c97a6fe2927379ae5c27",
+    "processing/energy_rules.py": "4fd53075e7f784056656dcc283047c69a307c01816f71a27948a69f43a80a91f",
+    "processing/energy_schema.py": "16dfd57f1e11eb2df84d3bfa6d71703afddbf65876d9b7a0848131b8dcc9a510"
+  },
+  "libraries": {
+    "joblib": "1.5.3",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyarrow": "24.0.0",
+    "scikit-learn": "1.8.0",
+    "torch": "2.11.0+cpu"
+  },
+  "low_exact_offline_streaming_records": 79899,
+  "low_metadata": {
+    "algorithm_version": "sustained-low-v1",
+    "calendar_model": false,
+    "calibration": "unvalidated_engineering_defaults",
+    "configuration": {
+      "context_days": 7,
+      "low_intervals": 6,
+      "mad_multiplier": 3.0,
+      "minimum_context_days": 3,
+      "minimum_context_points": 18,
+      "minimum_drop_wh": 10.0,
+      "minimum_reference_wh": 20.0,
+      "minimum_relative_drop": 0.5
+    },
+    "energy_unit": "Wh",
+    "interval_seconds": 600,
+    "maturity": "experimental",
+    "persistence": "in_memory_only",
+    "rule_version": "sustained-low-v1-20c2dc71216149ab",
+    "schema_version": "sustained-low-assessment-v1"
+  },
+  "low_module_sha256": "d41df6822401c30fa34ea7ca0aaa1cb7a8e05863520558287ea817c8420f8749",
+  "manifest_sha256": "ac20bc6c828b5d4dfbf8f342c79d6a83d22e0b61c0e338aae005928c3aa8cb44",
+  "old_scores_read_for_exact_post_inference_regression": true,
+  "old_scores_substituted": false,
+  "output_sha256": {
+    "cases.csv": "9b9d6cd9785f6fa2fd426738d86270b8979ba05cc67820aa3238d30a7c334808",
+    "contributions.csv": "b5e06a6cb1edfac4cf82184de81e25f54213ef6952676efec5cf7f27da2c3e46",
+    "controls.csv": "878b6277f0b33362eeac429483bf9204fa3a0375fb234bd2a23a92c96e0db60c",
+    "episodes.csv": "53cbdadde71cfb7c8b13dd76b034223bee162de339727d1ca2431efa56ad3724",
+    "executed-manifest.json": "238379e887d686c23437e2b0e2cf813d8e903df26e5d7d13c0c6d83319860f6e",
+    "gaps.csv": "f5e225fdcf8f7c0fb8e3e286037fdf53c46f28f228359bee3da0aee16378e7d2",
+    "plots/control-normal-night.png": "4c191133aef3e116802722dbd3973252a00d0f89520e531e4515e8521284f9b8",
+    "plots/control-regular-nonwork.png": "84cbd8430c9affaa5ebdf0040c8a169bed62eb3f93a9fd07b1ca8a4174c1f0b4",
+    "plots/control-zero-background.png": "f8c4969e006123e0b65051720ce732fddb889fe11dec1c8c0d9f3ef586dc734a",
+    "plots/known-drop-s1-n6.png": "60146e5209b5f6485e626360cdb77fd5aae71468a0019980df006663744321ec",
+    "plots/new-drop-s1-n6-f0.2.png": "fa612a065934de82e2e5c172d67ff11be25b80bc5af1d011f2982d10b087fa3f",
+    "plots/new-drop-s2-n12-f0.6.png": "f0032a649620cb26506918da3252debddbe89313138ddeb3a25280d550b8aab9",
+    "points/control-benign-zero-modified.parquet": "38f692193b6e80a2ab254a8d052f45d77f2e9b379a9721589d70f7d09f1cbe10",
+    "points/control-benign-zero-paired.parquet": "2c3472d111beb3a80f7a2fb7da00d7b0417519ea27bf4f71d3e8c1bb76c20c81",
+    "points/control-low-background-modified.parquet": "516138e5c92dc336de7eb261449b106c04e42d5a890e06b347bc50e2339bb840",
+    "points/control-low-background-paired.parquet": "2c3472d111beb3a80f7a2fb7da00d7b0417519ea27bf4f71d3e8c1bb76c20c81",
+    "points/control-normal-night-modified.parquet": "597830c1ba032a6ba428b116ca8a1ac5b67f2dd8ea79caf3eca8d826ff21e8ba",
+    "points/control-normal-night-paired.parquet": "423e8b4e7a0422cb23441fa549e01bda804cc941e7bb261bd6c9de2ab340c062",
+    "points/control-raw-modified.parquet": "a162562ffdeeffe1efbdd9c59c8a80d49c6336507de3973e0d0d69de1485febf",
+    "points/control-raw-paired.parquet": "a162562ffdeeffe1efbdd9c59c8a80d49c6336507de3973e0d0d69de1485febf",
+    "points/control-regular-nonwork-modified.parquet": "3c32cadfe15a5157dad350154c47881b3066a9300456133166ab33cf727672c8",
+    "points/control-regular-nonwork-paired.parquet": "a997e3f49e1db6c0807cd764c314c37bfb562167c05d4f1e03625066ab90b77c",
+    "points/control-zero-background-modified.parquet": "8e180d9da1e29b98c5f9b7599195e641036b17162d5bbb3af7569bc96f3e341a",
+    "points/control-zero-background-paired.parquet": "2c3472d111beb3a80f7a2fb7da00d7b0417519ea27bf4f71d3e8c1bb76c20c81",
+    "points/known-drop-s1-n12-modified.parquet": "7f7e0ef6fd4c74f86bcdde7180ba1f714deae52c26e4a5482924e38967aaa912",
+    "points/known-drop-s1-n12-paired.parquet": "ff6c121cf5e32a05e54ccf34bd3e56e0b850e5f1bbe984630ec4e952c05cae42",
+    "points/known-drop-s1-n3-modified.parquet": "484d6f5edc464b778c8dfaf995490f58722a4d6dbb898d89500deabbbdeea0e5",
+    "points/known-drop-s1-n3-paired.parquet": "828864de421232a0d1ff403474cae4f5775437289e1ed92be13956294c9feb23",
+    "points/known-drop-s1-n6-modified.parquet": "75981a85bce87f8806b2b8f9efe87b1d0817009fda97b366545623dfca77ecf4",
+    "points/known-drop-s1-n6-paired.parquet": "28ae94e17f4cdbb751e63976faa3bbd915b5a230942bf52e249a225af786abc3",
+    "points/known-drop-s2-n12-modified.parquet": "085a6e60df096f26c8065b241066cda7b94e1ad119cdf3942b5f14f0a7d21ad0",
+    "points/known-drop-s2-n12-paired.parquet": "e5e89353820fda94f3add0a6aa1d58836392075512623bf3901f4ab99dd0fc27",
+    "points/known-drop-s2-n3-modified.parquet": "65db3e702aff8d20225360550a49a93f7af401bd5724e5f9b22917ff7726e74e",
+    "points/known-drop-s2-n3-paired.parquet": "f40d1c4933355d89cd0235af850a9afc153e1e183a4eddff7f94e1f649f297a2",
+    "points/known-drop-s2-n6-modified.parquet": "43923d4d63b5aaecfceff12b80928c82bab953a98a6fc204d7fb0dd2a49d6c0a",
+    "points/known-drop-s2-n6-paired.parquet": "a99f5aecb3db265aff92c273c2b5202a7bc8e6c5eecfcba5c9a519ac6abf1f23",
+    "points/new-drop-s1-n12-f0.2-modified.parquet": "e19a4b0b683a10fa775ad42a0e42293ac417d992c70a54c53d083b140d733d9c",
+    "points/new-drop-s1-n12-f0.2-paired.parquet": "c344501b3aad1765092ba50186f6465f900a581cd999ac2a45603100f0340469",
+    "points/new-drop-s1-n12-f0.6-modified.parquet": "159c5b32c17a9e2568ff32d3802b19ffb0a82e9c44959c7ab850713a12ab021e",
+    "points/new-drop-s1-n12-f0.6-paired.parquet": "c344501b3aad1765092ba50186f6465f900a581cd999ac2a45603100f0340469",
+    "points/new-drop-s1-n3-f0.2-modified.parquet": "0d89f6d975435aac486c2b343dc0e39e8d9e96e1f855008b13719ec8b8227c17",
+    "points/new-drop-s1-n3-f0.2-paired.parquet": "76d7a4dbcb954a2b2340f0ed2d56fd7adad7ade9cb46e48763ebdd5102dafc24",
+    "points/new-drop-s1-n3-f0.6-modified.parquet": "a237d6d0939711744352849d1c0f284a3bf630e36949917e2314c4547c41f576",
+    "points/new-drop-s1-n3-f0.6-paired.parquet": "76d7a4dbcb954a2b2340f0ed2d56fd7adad7ade9cb46e48763ebdd5102dafc24",
+    "points/new-drop-s1-n6-f0.2-modified.parquet": "7b10610adf3eb49564108afd5be142044adb2122be66db7a2b81009349d9a0b1",
+    "points/new-drop-s1-n6-f0.2-paired.parquet": "5dc2f57e5d77cd4d04fb3bcf4de5b1867fa35c6ce7f90d9c7baf75558439680a",
+    "points/new-drop-s1-n6-f0.6-modified.parquet": "3a9b0b3bd906252e0c2d25d7ce9a7d4b5a02d64b5b61924b53f1e7dd34c9fa5f",
+    "points/new-drop-s1-n6-f0.6-paired.parquet": "5dc2f57e5d77cd4d04fb3bcf4de5b1867fa35c6ce7f90d9c7baf75558439680a",
+    "points/new-drop-s2-n12-f0.2-modified.parquet": "b0142b6fc972884d6c35c3b35c5494fa44aac9082e42e744d3318e6b067892b0",
+    "points/new-drop-s2-n12-f0.2-paired.parquet": "cdf67a75b701499266d973f3e265a8103cd3e0f60fcb8b57cf0a45ae16df70c5",
+    "points/new-drop-s2-n12-f0.6-modified.parquet": "25c6ec3f3008f558f2a8e8d96e50bfb2a949c09f82eecfb21a363489d1d0ac86",
+    "points/new-drop-s2-n12-f0.6-paired.parquet": "cdf67a75b701499266d973f3e265a8103cd3e0f60fcb8b57cf0a45ae16df70c5",
+    "points/new-drop-s2-n3-f0.2-modified.parquet": "d429b8b923d73592208f19b830cd94f8b298a41f69c78d863d0dc13074d05bd4",
+    "points/new-drop-s2-n3-f0.2-paired.parquet": "3b8e3a6658b75b34fff1ef306c292ce4c155da6e9aaa91e9a1b00c0388a80dd2",
+    "points/new-drop-s2-n3-f0.6-modified.parquet": "a4cfadbb6ffa2843f9cfb1f5fdf084627d9ba8324e2e4832aaf72fe0e86396b4",
+    "points/new-drop-s2-n3-f0.6-paired.parquet": "3b8e3a6658b75b34fff1ef306c292ce4c155da6e9aaa91e9a1b00c0388a80dd2",
+    "points/new-drop-s2-n6-f0.2-modified.parquet": "6a2fce690c201b38fd672f9413fb0fc4a6e4abc316a27d85596bff0e9ac4ad4e",
+    "points/new-drop-s2-n6-f0.2-paired.parquet": "356ecc137ea82e5a1b822d5d5ad1fd0d2971d26beadd5645ef83d1e9d0ce94c6",
+    "points/new-drop-s2-n6-f0.6-modified.parquet": "6a5329c300add2c1791745d08bedb2ae22d482498334248e5ccbdca3bbc2ab2d",
+    "points/new-drop-s2-n6-f0.6-paired.parquet": "356ecc137ea82e5a1b822d5d5ad1fd0d2971d26beadd5645ef83d1e9d0ce94c6",
+    "points/new-gradual_change-s1-modified.parquet": "3bca9d177a184ee877bb2f77bdfb900986d2dfc2879fecad3fcb430d907cfac1",
+    "points/new-gradual_change-s1-paired.parquet": "c344501b3aad1765092ba50186f6465f900a581cd999ac2a45603100f0340469",
+    "points/new-gradual_change-s2-modified.parquet": "6772a65debc30dd37728182113d68511a7ae34cdbbef47b3c5a242df402d4efb",
+    "points/new-gradual_change-s2-paired.parquet": "cdf67a75b701499266d973f3e265a8103cd3e0f60fcb8b57cf0a45ae16df70c5",
+    "points/new-short_peak-s1-modified.parquet": "41549ee527420289918c0d7bea4ea229fa85f307aa7465118b13ae482436acb6",
+    "points/new-short_peak-s1-paired.parquet": "7664364c5342347e363a8179656ad0cf1bea2226b484d07f55ac9e19e92ce73b",
+    "points/new-short_peak-s2-modified.parquet": "74098d5f28ffbd44fc9df2618f9cc3db2ba3f7214341a915939e641dee36e0fd",
+    "points/new-short_peak-s2-paired.parquet": "5058e7e2932f8ffa40613d8676ef9dc20f6e5d2b0e37548498d369992895bac3",
+    "points/new-sustained_high-s1-modified.parquet": "553361071d023aa841ad95ebeb8e3e3cbfb7e58184d367a4bcc045f1d31c3fb2",
+    "points/new-sustained_high-s1-paired.parquet": "c344501b3aad1765092ba50186f6465f900a581cd999ac2a45603100f0340469",
+    "points/new-sustained_high-s2-modified.parquet": "de6def8ef6f012b2160ee670b8e038cd8d46a7d700a631d71c607dd608a20716",
+    "points/new-sustained_high-s2-paired.parquet": "cdf67a75b701499266d973f3e265a8103cd3e0f60fcb8b57cf0a45ae16df70c5",
+    "points/telemetry-flatline-modified.parquet": "229b794f1f7e00dae53cab1a754741e8cfb5b5ea571516225133d133348d4309",
+    "points/telemetry-flatline-paired.parquet": "f1ad8a941af7d4ed6cce14b3073f3983a58bc019f182407a05c856fbac51c0bd",
+    "points/telemetry-interval_gap-modified.parquet": "0b995b6471be141fe77e29c2052b20ef90c86e9f98fea2c2a81ee4561dc15b28",
+    "points/telemetry-interval_gap-paired.parquet": "f31d700b83d7113d0abfd8282b2b1fc19deab98a02955e56c24ca8eff2b79e7c",
+    "report.md": "6496e3d55c613ae8a4a422aaee3d7c277c5c8539811c1f2d59a35bdc7e7e1d8f",
+    "summary.csv": "e19412dfc3ab5a97ea9dea736efa37723fda27c1be58023975763a5a019a1513",
+    "timing-environment.json": "0668b789d6c49cca669c7b26b755dcb6fc4238ede79228aca969b4057f7fcba7",
+    "timing-paired-deltas.csv": "9571ac1e893afee07ba98879b0e846333a8bcf10d326ecb404f6d396dc6bc16c",
+    "timing-records.csv": "e81b85f701fa7903f3bd4e4cd743b3c3a30f22b669cd06e195bffa7893113479",
+    "timing-summary.csv": "06e22c3e2fc6988e483aa695a35d2bba1b431b3d5a3d59dcdaa1c144653e47ee",
+    "unavailable-reasons.csv": "15e4daf17c292640499a99aa63ac54bace064d70e0fa90c87b23824111d7b764",
+    "v2-regression.json": "5ab9a7562b0496757ef56f673138f02a54a983d0a71d550d616b37cb81cc5a96"
+  },
+  "plan_sha256": "c9c6ac313180b937f8723ec2e62db36b4977d552e26dd3b5c095c68fddbdd192",
+  "protected_inputs_preserved": true,
+  "registry": [
+    {
+      "artifact_sha256": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": null
+      },
+      "feature_version": "energy-features-v1",
+      "maturity": "existing",
+      "model_id": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3:primary_forecast",
+      "model_version": "hgb-energy-v1-9bb48a66deb359e6",
+      "role": "primary_forecast",
+      "threshold_version": null
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend",
+          "seasonal_energy_wh"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "benchmark-energy-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual_reference",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "residual_reference",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "energy-anomaly-20-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "isolation_forest",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "energy-anomaly-20-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "autoencoder",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend",
+          "seasonal_energy_wh"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "benchmark-energy-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "residual",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    }
+  ],
+  "runner_sha256": "28e5075a15747ea5d76109b95c9673bae3ec41b919db0fb90a48d6f4b7f813c0",
+  "scenarios_completed": 32,
+  "thresholds": {
+    "autoencoder": 0.8288868594169614,
+    "isolation_forest": 0.6747213487966208,
+    "residual": 296.24602578530755
+  },
+  "trained": false,
+  "v2_metadata": {
+    "algorithm_version": "energy-rules-v2",
+    "calibration": "unvalidated_engineering_defaults",
+    "configuration": {
+      "context_days": 7,
+      "high_intervals": 6,
+      "mad_multiplier": 3.0,
+      "minimum_context_days": 3,
+      "minimum_context_points": 18,
+      "minimum_excess_wh": 50.0,
+      "minimum_relative_excess": 0.5,
+      "plateau_intervals": 6,
+      "plateau_tolerance_wh": 0.0
+    },
+    "energy_unit": "Wh",
+    "interval_seconds": 600,
+    "persistence": "in_memory_only",
+    "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+    "schema_version": "energy-rule-assessment-v1"
+  }
+}

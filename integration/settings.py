@@ -21,12 +21,17 @@ class Settings:
     run_id: str = 'demo-001'
     artifact_manifest: Path = ROOT / 'artifacts/mvp/local/manifest.json'
 
+    energy_rules_enabled: bool = False
+
     @classmethod
     def from_env(cls):
         values = {**env_file(ROOT / '.env.mvp'), **os.environ}
         url = values.get('MVP_DATABASE_URL')
         if not url:
             raise ValueError('MVP_DATABASE_URL missing. Run python -m integration.setup; see docs/stage5/5a-runbook.md')
+        switch=values.get('MVP_ENERGY_RULES_ENABLED','false').lower()
+        if switch not in ('true','false','1','0'):
+            raise ValueError('MVP_ENERGY_RULES_ENABLED must be true/false/1/0')
         return cls(url,values.get('MVP_BOOTSTRAP_SERVERS','127.0.0.1:19092'),
                    values.get('MVP_TOPIC','energy-mvp-demo-001'),values.get('MVP_GROUP_ID','energy-mvp-demo-001'),
-                   values.get('MVP_RUN_ID','demo-001'),Path(values.get('MVP_ARTIFACT_MANIFEST',ROOT / 'artifacts/mvp/local/manifest.json')))
+                   values.get('MVP_RUN_ID','demo-001'),Path(values.get('MVP_ARTIFACT_MANIFEST',ROOT / 'artifacts/mvp/local/manifest.json')),switch in ('true','1'))

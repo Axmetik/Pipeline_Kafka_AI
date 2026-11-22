@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "fixture": "synthetic; deterministic model doubles; no experimental quality estimates",
+  "measurements": 440,
+  "live_polling": true,
+  "hybrid_both_origins": true,
+  "gap_on_next_record": true,
+  "closed_episode": true,
+  "api": "real read-only FastAPI + isolated PostgreSQL",
+  "host_binding": "127.0.0.1 only",
+  "production_ui": true,
+  "browser_timezone": "Pacific/Honolulu",
+  "page_errors": [],
+  "existing_demo_modified": false
+}

@@ -1,0 +1,26 @@
+{
+  "completed": true,
+  "source_commit": "5eab359e9e2956e4bdc0becbe9945ea653e38f18",
+  "plan_sha256": "2abdc29ae62deb9eb03a423ad0226d5df1a78c8e3e6015b505086229ba3ee782",
+  "inputs_sha256_unchanged": {
+    "data/energy/raw/energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "artifacts/mvp/docker/manifest.json": "472ecf45565e63df05e4f12db715f61c081885a33d92dff3ca26ee820694fecb",
+    "artifacts/mvp/docker/hgb/model.joblib": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+    "artifacts/mvp/docker/bundle.joblib": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+    "configs/combined-rule-v1.json": "70313edd365dee826756ebd1c7ff3434b7bac5c053b4037b26f061da0c89250e"
+  },
+  "attempted_deltas_wh": [
+    150,
+    300,
+    450
+  ],
+  "planned_not_executed_deltas_wh": [],
+  "selected_delta_wh": 450,
+  "elapsed_wall_seconds_including_setup_browser": 65.307556249958,
+  "not_a_performance_benchmark": true,
+  "main_environment_untouched": true,
+  "notifier_started": false,
+  "rules_integrated": [
+    "combined-q99-v1-unanimous"
+  ]
+}

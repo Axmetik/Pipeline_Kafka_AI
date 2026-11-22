@@ -1,0 +1,224 @@
+- complementary:
+  - link "Energy INTELLIGENCE":
+    - /url: "#overview"
+    - text: Energy
+    - generic: INTELLIGENCE
+  - generic: РОБОЧИЙ ПРОСТІР
+  - navigation "Головна навігація":
+    - link "Огляд":
+      - /url: "#overview"
+      - text: Огляд
+    - link "Будівлі":
+      - /url: "#buildings"
+      - text: Будівлі
+    - link "Аналітика":
+      - /url: "#analytics"
+      - text: Аналітика
+    - link "Події":
+      - /url: "#events"
+      - text: Події
+    - link "Пристрої та джерела":
+      - /url: "?view=sources&run=ei-stage2-aedbd416-control&building=appliances-house-1&source=uci-appliances"
+      - text: Пристрої та джерела
+  - strong: Від даних до розуміння
+  - paragraph: Споживання, прогнозування та сигнали для обґрунтованого перегляду.
+  - text: ENERGY INTELLIGENCE · MVP
+  - text: Локальне середовище
+- main:
+  - generic: Робочий простір /Події
+  - generic: Історичний replay
+  - code: ei-stage2-aedbd416-control
+  - text: Датасет / replay
+  - generic: ENERGY INTELLIGENCE / EVENTS
+  - heading "Події." [active] [level=1]
+  - paragraph: Статистичні епізоди та історія доставки повідомлень.
+  - status:
+    - generic: API на зв’язку
+  - region "Вибір джерела":
+    - text: Запуск replay
+    - combobox "Запуск replay":
+      - option "Оберіть запуск"
+      - option "ei-stage2-aedbd416-control" [selected]
+      - option "ei-stage2-aedbd416-plus-450"
+    - text: Будівля
+    - combobox "Будівля":
+      - option "Оберіть будівлю"
+      - option "appliances-house-1" [selected]
+    - text: Джерело
+    - combobox "Джерело":
+      - option "Оберіть джерело"
+      - option "uci-appliances" [selected]
+    - text: Оновлення ≈ 2 с
+    - generic: API оновлено 22:02:04 UTC
+  - text: ІСТОРІЯ ТА УВАГА
+  - heading "Події обраного джерела" [level=2]
+  - paragraph: appliances-house-1 / uci-appliances
+  - paragraph: Епізоди перевищення статистичного порогу — experimental, не підтверджені несправності. Пріоритет фізичної несправності не визначено.
+  - text: Тип історії
+  - combobox "Тип історії":
+    - option "Уся доступна історія"
+    - option "Індивідуальні епізоди"
+    - option "Комбіновані епізоди"
+    - option "Residual OR Sustained high" [selected]
+    - option "Доставка Email"
+  - article:
+    - strong: "14"
+    - generic: Індивідуальні епізоди
+    - generic: Завантажено до 50 · не загальний підсумок
+  - article:
+    - strong: "1"
+    - generic: Комбіновані епізоди
+    - generic: Завантажено до 50 · Unanimous
+  - article:
+    - strong: "0"
+    - generic: Записи доставки
+    - generic: Завантажено до 20 · не фізичні події
+  - heading "Епізоди Residual OR Sustained high" [level=2]
+  - generic: experimental
+  - paragraph: Збережені результати; поточний стан увімкнення Worker невідомий. Останні 50 епізодів вибраного запуску, будівлі та джерела. Це не підтверджені несправності.
+  - table:
+    - rowgroup:
+      - row "Початок / останній сигнал Походження за весь епізод Точок Стан / версія":
+        - columnheader "Початок / останній сигнал"
+        - columnheader "Походження за весь епізод"
+        - columnheader "Точок"
+        - columnheader "Стан / версія"
+    - rowgroup:
+      - row "2016-05-01 16:50:00 2016-05-01 16:50:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-05-01 16:50:00 2016-05-01 16:50:00":
+          - text: 2016-05-01 16:50:00
+          - generic: 2016-05-01 16:50:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 17:10:00 2016-04-30 17:10:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 17:10:00 2016-04-30 17:10:00":
+          - text: 2016-04-30 17:10:00
+          - generic: 2016-04-30 17:10:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 13:10:00 2016-04-30 13:20:00 Sustained high (тривале підвищення) 2 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 13:10:00 2016-04-30 13:20:00":
+          - text: 2016-04-30 13:10:00
+          - generic: 2016-04-30 13:20:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "2"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 12:20:00 2016-04-30 12:20:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 12:20:00 2016-04-30 12:20:00":
+          - text: 2016-04-30 12:20:00
+          - generic: 2016-04-30 12:20:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 10:30:00 2016-04-30 11:20:00 Sustained high (тривале підвищення) 6 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 10:30:00 2016-04-30 11:20:00":
+          - text: 2016-04-30 10:30:00
+          - generic: 2016-04-30 11:20:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "6"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 10:00:00 2016-04-30 10:00:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 10:00:00 2016-04-30 10:00:00":
+          - text: 2016-04-30 10:00:00
+          - generic: 2016-04-30 10:00:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 09:00:00 2016-04-30 09:20:00 Sustained high (тривале підвищення) 3 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 09:00:00 2016-04-30 09:20:00":
+          - text: 2016-04-30 09:00:00
+          - generic: 2016-04-30 09:20:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "3"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-30 08:30:00 2016-04-30 08:30:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-30 08:30:00 2016-04-30 08:30:00":
+          - text: 2016-04-30 08:30:00
+          - generic: 2016-04-30 08:30:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-29 14:20:00 2016-04-29 14:40:00 Sustained high (тривале підвищення) 3 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-29 14:20:00 2016-04-29 14:40:00":
+          - text: 2016-04-29 14:20:00
+          - generic: 2016-04-29 14:40:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "3"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-29 12:20:00 2016-04-29 12:30:00 Sustained high (тривале підвищення) 2 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-29 12:20:00 2016-04-29 12:30:00":
+          - text: 2016-04-29 12:20:00
+          - generic: 2016-04-29 12:30:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "2"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-29 11:40:00 2016-04-29 11:40:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-29 11:40:00 2016-04-29 11:40:00":
+          - text: 2016-04-29 11:40:00
+          - generic: 2016-04-29 11:40:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-29 07:40:00 2016-04-29 08:00:00 Sustained high (тривале підвищення) 3 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-29 07:40:00 2016-04-29 08:00:00":
+          - text: 2016-04-29 07:40:00
+          - generic: 2016-04-29 08:00:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "3"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-28 18:20:00 2016-04-28 19:00:00 Sustained high (тривале підвищення) 5 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-28 18:20:00 2016-04-28 19:00:00":
+          - text: 2016-04-28 18:20:00
+          - generic: 2016-04-28 19:00:00
+        - cell "Sustained high (тривале підвищення)"
+        - cell "5"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-28 17:40:00 2016-04-28 17:40:00 Residual (відхилення від RF21) 1 closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-28 17:40:00 2016-04-28 17:40:00":
+          - text: 2016-04-28 17:40:00
+          - generic: 2016-04-28 17:40:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed negative · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: negative · residual-high-v1-0e2d29e530f2d68e910d5ea5
+      - row "2016-04-26 07:40:00 2016-04-26 07:40:00 Residual (відхилення від RF21) 1 closed unknown · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+        - cell "2016-04-26 07:40:00 2016-04-26 07:40:00":
+          - text: 2016-04-26 07:40:00
+          - generic: 2016-04-26 07:40:00
+        - cell "Residual (відхилення від RF21)"
+        - cell "1"
+        - cell "closed unknown · residual-high-v1-0e2d29e530f2d68e910d5ea5":
+          - text: closed
+          - generic: unknown · residual-high-v1-0e2d29e530f2d68e910d5ea5
+  - text: ENERGY INTELLIGENCE
+  - generic: Дослідницький MVP · experimental оцінки не підтверджують фізичну несправність
+- generic: "150"

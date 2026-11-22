@@ -1,0 +1,53 @@
+
+> energy-monitoring-dashboard@5.0.0 test
+> vitest run src/product.test.tsx src/RulePanel.test.tsx src/rule-data.test.ts src/sourceData.test.ts src/ChannelView.test.tsx src/useResource.test.ts
+
+
+ RUN  v5.0.5 /Users/oslavych/Documents/Codex/energy-intelligence-integration/dashboard
+
+
+ Test Files  6 passed (6)
+      Tests  23 passed (23)
+   Start at  20:27:22
+   Duration  2.33s (environment 76%, setup 11%, import 4%, tests 4%, transform 4%, worker 2%)
+
+
+> energy-monitoring-dashboard@5.0.0 test
+> vitest run src/integration-routing.test.tsx
+
+
+ RUN  v5.0.5 /Users/oslavych/Documents/Codex/energy-intelligence-integration/dashboard
+
+Not implemented: Window's scrollTo() method
+Not implemented: Window's scrollTo() method
+ ❯ src/integration-routing.test.tsx (3 tests | 1 failed) 131ms
+   × retains product Analytics and the persisted rule panel after the merges 41ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/integration-routing.test.tsx > retains product Analytics and the persisted rule panel after the merges
+TypeError: document.getElementById(...)?.scrollIntoView is not a function
+ ❯ src/pages/AnalyticsPage.tsx:30:11
+     28|       document
+     29|         .getElementById(location.hash.slice(1))
+     30|         ?.scrollIntoView({ block: "start" });
+       |           ^
+     31|   }, [expanded, legacyAdvanced]);
+     32|   return (
+ ❯ Object.react_stack_bottom_frame ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20
+ ❯ runWithFiberInDEV ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13
+ ❯ commitHookEffectListMount ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29
+ ❯ commitHookPassiveMountEffects ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:13835:11
+ ❯ commitPassiveMountOnFiber ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:16906:13
+ ❯ recursivelyTraversePassiveMountEffects ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:16851:13
+ ❯ commitPassiveMountOnFiber ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:17183:11
+ ❯ recursivelyTraversePassiveMountEffects ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:16851:13
+ ❯ commitPassiveMountOnFiber ../../../../PycharmProjects/Pipeline_Kafka_AI_main/dashboard/node_modules/react-dom/cjs/react-dom-client.development.js:17183:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  20:28:28
+   Duration  1.33s (environment 47%, import 23%, tests 11%, setup 10%, transform 9%)

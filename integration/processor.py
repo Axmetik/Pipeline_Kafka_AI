@@ -19,7 +19,7 @@ def normalized_fingerprint(record):
 
 
 class Processor:
-    def __init__(self,repository,artifacts,failpoint=None):
+    def __init__(self,repository,artifacts,failpoint=None,rule_config=None):
         self.repository,self.artifacts=repository,artifacts
         self.failpoint=failpoint or (lambda stage:None)
         checkpoint=repository.checkpoint()
@@ -28,6 +28,13 @@ class Processor:
         self.runtime_next_offset=checkpoint['next_offset']
         self.runtime=Runtime(artifacts)
         self.runtime.restore(repository.histories())
+        self.rule_layer=None
+        if getattr(repository.settings,'energy_rules_enabled',False):
+            from integration.rule_layer import RuleLayer
+            from storage.postgres.rules import restore_rows
+            residual=next(r for r in artifacts.registry() if r['role']=='residual')
+            self.rule_layer=RuleLayer(residual,rule_config)
+            for row in restore_rows(repository):self.rule_layer.restore(row)
         if repository.checkpoint()['next_offset']!=self.runtime_next_offset:
             raise CheckpointError('DB advanced during history recovery; restart required')
         self.poisoned=False
@@ -80,6 +87,10 @@ class Processor:
                         if not problem:
                             result=self.runtime.compute(raw)
                             mid=repo.persist(c,offset,raw,record,fingerprint,result)
+                            if self.rule_layer is not None:
+                                from storage.postgres.rules import persist as persist_rules
+                                rules=self.rule_layer.compute(raw,result)
+                                persist_rules(repo,c,offset,mid,record,rules)
                 if problem:
                     outcome=problem[0]
                 repo.finish(c,offset,digest,outcome,mid,

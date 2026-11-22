@@ -11,6 +11,8 @@ from integration.settings import Settings
 from storage.postgres import schema as s
 from . import schemas as out
 from .query import Filters, AggregateFilters, page, series, aggregation
+from .source_catalog import CatalogFilters, catalog
+from . import channels
 
 
 @contextmanager
@@ -66,6 +68,7 @@ def create_app(engine=None):
     DB=Annotated[object,Depends(connection)]
     F=Annotated[Filters,Query()]
     AF=Annotated[AggregateFilters,Query()]
+    CF=Annotated[CatalogFilters,Query()]
 
     @app.get('/health/live',response_model=out.Health)
     def live(): return {'status':'live'}
@@ -83,6 +86,20 @@ def create_app(engine=None):
         q=select(s.runs.c.run_id,s.runs.c.group_id,s.runs.c.topic,s.runs.c.created_at)
         if f.run_id: q=q.where(s.runs.c.run_id==f.run_id)
         return page(c,q,[s.runs.c.created_at,s.runs.c.run_id],'runs',f,['time','str'])
+
+    @app.get('/api/channels',response_model=out.ChannelCatalog)
+    def channel_catalog(c:DB,f:Annotated[channels.ChannelFilters,Query()]):
+        return channels.catalog(c,f)
+
+    @app.get('/api/channel-series',response_model=out.ChannelSeries)
+    def channel_series(c:DB,f:Annotated[channels.ChannelSeriesFilters,Query()]):
+        reject_filters(f,{'run_id','building_id','source_id','start','end'})
+        return channels.series(c,f)
+
+    @app.get('/api/source-summaries',response_model=out.SourceCatalog)
+    def source_summaries(c:DB,f:CF):
+        reject_filters(f,{'run_id','building_id','source_id'})
+        return catalog(c,f)
 
     @app.get('/api/sources',response_model=out.Page[out.Source])
     def sources(c:DB,f:F):
@@ -122,6 +139,20 @@ def create_app(engine=None):
 
     @app.get('/api/combined-events',response_model=out.Page[out.CombinedEpisode])
     def combined_events(c:DB,f:F): return series(c,'combined-events',f)
+
+    def rule_results(c, kind, f):
+        reject_filters(f, {'run_id','building_id','source_id','start','end','status'})
+        from .rules import optional_series
+        return optional_series(c, kind, f)
+
+    @app.get('/api/rule-assessments', response_model=out.OptionalPage[out.RuleAssessment])
+    def rule_assessments(c:DB, f:F): return rule_results(c, 'rule-assessments', f)
+
+    @app.get('/api/hybrid-decisions', response_model=out.OptionalPage[out.HybridDecision])
+    def hybrid_decisions(c:DB, f:F): return rule_results(c, 'hybrid-decisions', f)
+
+    @app.get('/api/hybrid-events', response_model=out.OptionalPage[out.HybridEpisode])
+    def hybrid_events(c:DB, f:F): return rule_results(c, 'hybrid-events', f)
 
     @app.get('/api/notifications',response_model=out.Page[out.Notification])
     def notifications(c:DB,f:F):

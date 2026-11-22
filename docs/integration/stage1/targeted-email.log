@@ -1,0 +1,14 @@
+test_disabled_default_and_scope_mode (test_email.EmailTests.test_disabled_default_and_scope_mode) ... ok
+test_external_smtp_requires_separate_optin_tls_and_exact_scope (test_email.EmailTests.test_external_smtp_requires_separate_optin_tls_and_exact_scope) ... ok
+test_notifier_imports_no_ml_models (test_email.EmailTests.test_notifier_imports_no_ml_models) ... ok
+test_safe_ukrainian_multipart_historical_time_and_deterministic_message_id (test_email.EmailTests.test_safe_ukrainian_multipart_historical_time_and_deterministic_message_id) ... ok
+test_smtp_transports_are_mocked_and_secure (test_email.EmailTests.test_smtp_transports_are_mocked_and_secure) ... ok
+test_temporary_permanent_errors_and_bounded_backoff (test_email.EmailTests.test_temporary_permanent_errors_and_bounded_backoff) ... ok
+test_episode_outbox_rollback_duplicates_continuation_and_cooldown (test_email_postgres.EmailPostgresTests.test_episode_outbox_rollback_duplicates_continuation_and_cooldown) ... ok
+test_disabled_filters_no_backfill_and_mode_changes (test_email_postgres.EmailPostgresTests.test_disabled_filters_no_backfill_and_mode_changes) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.876s
+
+OK
+{"ran": 8, "failures": 0, "errors": 0, "skipped": 0}

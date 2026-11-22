@@ -1,0 +1,112 @@
+{
+  "base_url": "http://127.0.0.1:49308",
+  "health_ready": true,
+  "production_dashboard_index_served": true,
+  "browser_visual_validation_performed": false,
+  "scenarios": {
+    "control": {
+      "measurements": {
+        "rows": 1308,
+        "pages": 2,
+        "db_count_matches": true
+      },
+      "forecasts": {
+        "rows": 2616,
+        "pages": 3,
+        "db_count_matches": true
+      },
+      "anomaly-scores": {
+        "rows": 3924,
+        "pages": 4,
+        "db_count_matches": true
+      },
+      "rule-assessments": {
+        "rows": 3924,
+        "pages": 4,
+        "db_count_matches": true
+      },
+      "hybrid-decisions": {
+        "rows": 1308,
+        "pages": 2,
+        "db_count_matches": true
+      },
+      "hybrid-events": {
+        "rows": 15,
+        "pages": 1,
+        "db_count_matches": true
+      },
+      "events": {
+        "rows": 14,
+        "pages": 1,
+        "db_count_matches": true
+      },
+      "combined-decisions": {
+        "rows": 1308,
+        "pages": 2,
+        "db_count_matches": true
+      },
+      "combined-events": {
+        "rows": 1,
+        "pages": 1,
+        "db_count_matches": true
+      },
+      "notifications": {
+        "rows": 0,
+        "pages": 1,
+        "db_count_matches": true
+      }
+    },
+    "plus-450": {
+      "measurements": {
+        "rows": 1308,
+        "pages": 2,
+        "db_count_matches": true
+      },
+      "forecasts": {
+        "rows": 2616,
+        "pages": 3,
+        "db_count_matches": true
+      },
+      "anomaly-scores": {
+        "rows": 3924,
+        "pages": 4,
+        "db_count_matches": true
+      },
+      "rule-assessments": {
+        "rows": 3924,
+        "pages": 4,
+        "db_count_matches": true
+      },
+      "hybrid-decisions": {
+        "rows": 1308,
+        "pages": 2,
+        "db_count_matches": true
+      },
+      "hybrid-events": {
+        "rows": 17,
+        "pages": 1,
+        "db_count_matches": true
+      },
+      "events": {
+        "rows": 20,
+        "pages": 1,
+        "db_count_matches": true
+      },
+      "combined-decisions": {
+        "rows": 1308,
+        "pages": 2,
+        "db_count_matches": true
+      },
+      "combined-events": {
+        "rows": 1,
+        "pages": 1,
+        "db_count_matches": true
+      },
+      "notifications": {
+        "rows": 0,
+        "pages": 1,
+        "db_count_matches": true
+      }
+    }
+  }
+}

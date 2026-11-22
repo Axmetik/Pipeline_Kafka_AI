@@ -1,0 +1,9 @@
+method,post_period_points,additional_positive_timestamps,additional_positive_points,additional_represented_interval_minutes,additional_label_span_minutes
+residual,108,"[""2016-05-01T15:20:00""]",1,10,0.0
+autoencoder,108,"[""2016-05-01T15:30:00""]",1,10,0.0
+isolation_forest,108,"[""2016-05-01T15:20:00"",""2016-05-01T15:30:00""]",2,20,10.0
+unanimous,108,[],0,0,null
+sustained_high,108,[],0,0,null
+hybrid,108,"[""2016-05-01T15:20:00""]",1,10,0.0
+flatline,108,[],0,0,null
+interval_gap,108,[],0,0,null

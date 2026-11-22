@@ -1,0 +1,9 @@
+{
+  "saved_points": 144,
+  "hgb_sha256": "a4d70e991178f7621fc2f8ced0941a283ad65c548637f3fc7e05b06a2dbcbff6",
+  "score_sha256": "d159ba4c30061e783193c4d8ef4f5cfbd33958d393412b8cbe38a8fe93c46f70",
+  "no_inference": true,
+  "isolated_only": true,
+  "operational_timestamps": "fixture only; not archived generation/receipt times",
+  "episode_and_outbox": "synthetic functional fixtures; no sending"
+}

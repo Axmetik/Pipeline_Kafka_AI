@@ -1,0 +1,8 @@
+{"state": "ready", "run_id": "controlled-demo-1a21d84b-plus-450", "topic": "controlled-demo-1a21d84b-plus-450", "db_next_offset": 0, "verified_journal_records": 0, "models": "HGB20 primary; RF21 residual; detectors experimental"}
+{"state": "processing", "db_next_offset": 50, "accepted": 50, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 50}
+{"state": "processing", "db_next_offset": 100, "accepted": 100, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 100}
+{"state": "processing", "db_next_offset": 150, "accepted": 150, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 150}
+{"state": "processing", "db_next_offset": 200, "accepted": 200, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 200}
+{"state": "processing", "db_next_offset": 250, "accepted": 250, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 250}
+{"state": "processing", "db_next_offset": 300, "accepted": 300, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 300}
+{"state": "stopped", "run_id": "controlled-demo-1a21d84b-plus-450", "db_next_offset": 300, "verified_journal_records": 0, "accepted": 300, "message_duplicate": 0, "offset_duplicate": 0, "quarantined": 0, "processed_deliveries": 300}

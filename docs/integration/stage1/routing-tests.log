@@ -1,0 +1,12 @@
+
+> energy-monitoring-dashboard@5.0.0 test
+> vitest run src/integration-routing.test.tsx
+
+
+ RUN  v5.0.5 /Users/oslavych/Documents/Codex/energy-intelligence-integration/dashboard
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  20:30:37
+   Duration  1.21s (environment 50%, import 23%, tests 12%, setup 9%, transform 5%)

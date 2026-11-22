@@ -1,0 +1,318 @@
+- complementary:
+  - link "Energy INTELLIGENCE":
+    - /url: "#overview"
+    - text: Energy
+    - generic: INTELLIGENCE
+  - generic: РОБОЧИЙ ПРОСТІР
+  - navigation "Головна навігація":
+    - link "Огляд":
+      - /url: "#overview"
+      - text: Огляд
+    - link "Будівлі":
+      - /url: "#buildings"
+      - text: Будівлі
+    - link "Аналітика":
+      - /url: "#analytics"
+      - text: Аналітика
+    - link "Події":
+      - /url: "#events"
+      - text: Події
+    - link "Пристрої та джерела":
+      - /url: "?view=sources&run=ei-stage2-aedbd416-plus-450&building=appliances-house-1&source=uci-appliances"
+      - text: Пристрої та джерела
+  - strong: Від даних до розуміння
+  - paragraph: Споживання, прогнозування та сигнали для обґрунтованого перегляду.
+  - text: ENERGY INTELLIGENCE · MVP
+  - text: Локальне середовище
+- main:
+  - generic: Робочий простір /Аналітика
+  - generic: Історичний replay
+  - code: ei-stage2-aedbd416-plus-450
+  - text: Датасет / replay
+  - generic: ENERGY INTELLIGENCE / ANALYTICS
+  - heading "Аналітика." [level=1]
+  - paragraph: Часові ряди, прогнози та експериментальне оцінювання.
+  - status:
+    - generic: API на зв’язку
+  - region "Вибір джерела":
+    - text: Запуск replay
+    - combobox "Запуск replay":
+      - option "Оберіть запуск"
+      - option "ei-stage2-aedbd416-control"
+      - option "ei-stage2-aedbd416-plus-450" [selected]
+    - text: Будівля
+    - combobox "Будівля":
+      - option "Оберіть будівлю"
+      - option "appliances-house-1" [selected]
+    - text: Джерело
+    - combobox "Джерело":
+      - option "Оберіть джерело"
+      - option "uci-appliances" [selected]
+    - text: Оновлення ≈ 2 с
+    - generic: API оновлено 22:00:26 UTC
+  - article:
+    - text: Останнє споживання
+    - strong: 60Wh / 10 хв
+    - paragraph: 2016-05-02 09:10:00
+  - article:
+    - text: Прогноз наступного інтервалу
+    - strong: 59,8Wh / 10 хв
+    - paragraph: HGB20 · Готово
+    - paragraph: "Цільовий час: 2016-05-02 09:20:00"
+    - paragraph: "Від вимірювання: 2016-05-02 09:10:00"
+  - article:
+    - text: Вимірювань у запуску
+    - strong: "1308"
+    - paragraph: Усі джерела вибраного запуску · не лише ця будівля
+  - article:
+    - text: Відкриті епізоди
+    - strong: "0"
+    - paragraph: Індивідуальні · серед останніх 50 завантажених. Не підтверджені несправності.
+  - heading "Споживання та прогноз" [level=2]
+  - paragraph: Інтервальна енергія · Wh за 600 секунд
+  - text: Вікно
+  - combobox "Видиме вікно":
+    - option "Останні 72 точки"
+    - option "Останні 144 точки" [selected]
+    - option "Останні 288 точок"
+  - generic: Фактичне споживання
+  - generic: HGB20 · прогноз на 10 хв
+  - generic: 144 точок у вікні
+  - application:
+    - generic: 01.05 09:20
+    - generic: 01.05 12:00
+    - generic: 01.05 14:40
+    - generic: 01.05 17:20
+    - generic: 01.05 20:00
+    - generic: 01.05 22:40
+    - generic: 02.05 01:20
+    - generic: 02.05 04:00
+    - generic: 02.05 09:20
+    - generic: "0"
+    - generic: "150"
+    - generic: "300"
+    - generic: "450"
+    - generic: "600"
+  - generic: Час датасету, часовий пояс не визначено
+  - generic: Прогноз суміщено за цільовим часом · відсутнє значення не означає нуль
+  - region "Інтелектуальний аналіз енергоспоживання":
+    - heading "Інтелектуальний аналіз енергоспоживання" [level=2]
+    - generic: Прозорі правила
+    - paragraph:
+      - text: Історичний replay · appliances-house-1 / uci-appliances · 144 точок
+      - text: "Видиме вікно: 2016-05-01 09:20:00 — 2016-05-02 09:10:00"
+    - list:
+      - listitem: Останнє споживання на 57,5% нижче середнього у видимому вікні.
+      - listitem: На наступний інтервал прогноз на 0,3% нижче останнього факту.
+      - listitem: "Перегляньте інтервали перевищень: Isolation Forest, Autoencoder, Residual Detector. Це незалежні експериментальні оцінки."
+      - listitem: 0 із 3 · Перевищень не зафіксовано. Правило комбінування не спрацювало. Це узгодження експериментальних методів, не ймовірність або фізична тяжкість несправності.
+    - generic "Як сформовано висновки"
+  - heading "Останні вимірювання" [level=2]
+  - paragraph: HGB20 для часу вимірювання у рядку. Верхня картка показує наступний інтервал; тому значення можуть відрізнятися.
+  - generic: Wh / 10 хв
+  - table:
+    - rowgroup:
+      - row "Час вимірювання Факт, Wh HGB20, Wh Деталі":
+        - columnheader "Час вимірювання"
+        - columnheader "Факт, Wh"
+        - columnheader "HGB20, Wh"
+        - columnheader "Деталі"
+    - rowgroup:
+      - row "2016-05-02 09:10:00 60 54,7 Переглянути ↗":
+        - cell "2016-05-02 09:10:00"
+        - cell "60"
+        - cell "54,7"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 09:00:00 50 68,5 Переглянути ↗":
+        - cell "2016-05-02 09:00:00"
+        - cell "50"
+        - cell "68,5"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 08:50:00 50 61,2 Переглянути ↗":
+        - cell "2016-05-02 08:50:00"
+        - cell "50"
+        - cell "61,2"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 08:40:00 50 60,2 Переглянути ↗":
+        - cell "2016-05-02 08:40:00"
+        - cell "50"
+        - cell "60,2"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+      - row "2016-05-02 08:30:00 40 69,1 Переглянути ↗":
+        - cell "2016-05-02 08:30:00"
+        - cell "40"
+        - cell "69,1"
+        - cell "Переглянути ↗":
+          - button "Переглянути ↗"
+  - generic "Розширена аналітика та діагностика Experimental scores, моделі, пороги та стан конвеєра −":
+    - text: Розширена аналітика та діагностика
+    - generic: Experimental scores, моделі, пороги та стан конвеєра
+    - text: −
+  - heading "Демонстраційний запуск" [level=3]
+  - paragraph: "Стан відтворення невідомий · Оброблено у запуску: 1308 вимірювань."
+  - paragraph:
+    - text: "Остання транзакція (реальний час, UTC): 2026-11-15 21:15:33Z"
+    - text: "Надходження останнього видимого вимірювання (UTC): 2026-11-15 21:15:33Z"
+    - text: "Між останніми двома успішними оновленнями API: +0 вимірювань у запуску."
+    - text: API не повідомляє стан producer або очікувану кількість. Незмінні лічильники не підтверджують завершення replay.
+  - heading "Експериментальні детектори" [level=2]
+  - paragraph: Score не є ймовірністю. Перевищення порогу не підтверджує несправність.
+  - generic: 3 незалежні шкали
+  - heading "Isolation Forest" [level=3]
+  - generic "Експериментальний метод": experimental
+  - paragraph: Ізоляція незвичних спостережень
+  - strong: 0,3978
+  - generic: Поріг 0,6747
+  - generic "Score Isolation Forest":
+    - application:
+      - generic: 0,45
+      - generic: 0,54
+      - generic: 0,63
+      - generic: 0,72
+  - generic: Готово
+  - text: "Без готової оцінки: 0"
+  - text: "Перевищень у вибраному вікні: 9"
+  - heading "Autoencoder" [level=3]
+  - generic "Експериментальний метод": experimental
+  - paragraph: Помилка відновлення енергетичних ознак
+  - strong: 0,0311
+  - generic: Поріг 0,8289
+  - generic "Score Autoencoder":
+    - application:
+      - generic: 0,45
+      - generic: 0,9
+      - generic: 1,35
+      - generic: 1,8
+  - generic: Готово
+  - text: "Без готової оцінки: 0"
+  - text: "Перевищень у вибраному вікні: 10"
+  - heading "Residual Detector" [level=3]
+  - generic "Експериментальний метод": experimental
+  - paragraph: Відхилення від окремого RF21-прогнозу
+  - strong: 2,3812Wh
+  - generic: Поріг 296,246 Wh
+  - generic "Score Residual Detector":
+    - application:
+      - generic: "150"
+      - generic: "300"
+      - generic: "450"
+      - generic: "600"
+  - generic: Готово
+  - text: "Без готової оцінки: 0"
+  - text: "Перевищень у вибраному вікні: 3"
+  - heading "Комбінована оцінка аномальності" [level=2]
+  - generic: experimental
+  - paragraph: 0 із 3 · Перевищень не зафіксовано. Правило комбінування не спрацювало. Це узгодження експериментальних методів, не ймовірність або фізична тяжкість несправності.
+  - paragraph: "Поточний інтервал: 2016-05-02 09:10:00 · Правило: combined-q99-v1-unanimous · Покриття: 3/3"
+  - paragraph: Unanimous потребує 3 із 3 готових спрацювань. Вибір за validation не доводить операційну якість. Історія нижче — останні 50 комбінованих епізодів за весь вибраний запуск, будівлю та джерело.
+  - table:
+    - rowgroup:
+      - row "Початок / останнє перевищення Максимальне одночасне узгодження Методи за весь епізод Вимірювань Стан / версія":
+        - columnheader "Початок / останнє перевищення"
+        - columnheader "Максимальне одночасне узгодження"
+        - columnheader "Методи за весь епізод"
+        - columnheader "Вимірювань"
+        - columnheader "Стан / версія"
+    - rowgroup:
+      - 'row "2016-04-30 17:10:00 2016-04-30 17:10:00 3/3 Останнє: 3/3 Isolation Forest, Autoencoder, Residual Detector 1 closed combined-q99-v1-unanimous · below_rule"':
+        - cell "2016-04-30 17:10:00 2016-04-30 17:10:00":
+          - text: 2016-04-30 17:10:00
+          - generic: 2016-04-30 17:10:00
+        - 'cell "3/3 Останнє: 3/3"':
+          - text: 3/3
+          - generic: "Останнє: 3/3"
+        - cell "Isolation Forest, Autoencoder, Residual Detector"
+        - cell "1"
+        - cell "closed combined-q99-v1-unanimous · below_rule":
+          - text: closed
+          - generic: combined-q99-v1-unanimous · below_rule
+  - heading "Residual OR Sustained high" [level=2]
+  - generic: experimental
+  - paragraph: Збережені результати; поточний стан увімкнення Worker невідомий
+  - paragraph: Відхилення немає за обома доступними входами
+  - paragraph: "Інтервал: 2016-05-02 09:10:00 · Покриття: 2/2 · ready · residual-high-v1-0e2d29e530f2d68e910d5ea5"
+  - paragraph: "Residual: перевищення чинного порогу залишку RF21. Sustained high: кілька послідовних перевищень історичного погодинного порогу. Сигнал не підтверджує несправність."
+  - paragraph: "Sustained high: Ще немає підтвердженого перевищення · ready · контекст: доступний · послідовність 0/6 · поріг 110 Wh"
+  - heading "Якість телеметрії — окремі індикатори" [level=3]
+  - paragraph: Збережені результати; поточний стан увімкнення Worker невідомий. Повторювані, зокрема нульові, показання можуть бути нормальними. Пропуск визначається після наступного запису; це не watchdog мовчання джерела.
+  - paragraph: Останні 6 індикаторів або недоступних оцінок із завантаженого вікна; також показано поточні негативні оцінки.
+  - table:
+    - rowgroup:
+      - row "Час датасету / правило Результат Пояснення / версія":
+        - columnheader "Час датасету / правило"
+        - columnheader "Результат"
+        - columnheader "Пояснення / версія"
+    - rowgroup:
+      - 'row "2016-05-02 09:10:00 interval_gap Ознаки немає ready Пропущені інтервали: 0; виявлено на наступному записі energy-rules-v2-a83ff8cf889d4981 · continuing"':
+        - cell "2016-05-02 09:10:00 interval_gap":
+          - text: 2016-05-02 09:10:00
+          - generic: interval_gap
+        - cell "Ознаки немає ready":
+          - text: Ознаки немає
+          - generic: ready
+        - 'cell "Пропущені інтервали: 0; виявлено на наступному записі energy-rules-v2-a83ff8cf889d4981 · continuing"':
+          - text: "Пропущені інтервали: 0; виявлено на наступному записі"
+          - generic: energy-rules-v2-a83ff8cf889d4981 · continuing
+      - 'row "2016-05-02 09:10:00 flatline Ознаки немає ready Повторення: вікно 6/6; не діагноз несправності energy-rules-v2-a83ff8cf889d4981 · continuing"':
+        - cell "2016-05-02 09:10:00 flatline":
+          - text: 2016-05-02 09:10:00
+          - generic: flatline
+        - cell "Ознаки немає ready":
+          - text: Ознаки немає
+          - generic: ready
+        - 'cell "Повторення: вікно 6/6; не діагноз несправності energy-rules-v2-a83ff8cf889d4981 · continuing"':
+          - text: "Повторення: вікно 6/6; не діагноз несправності"
+          - generic: energy-rules-v2-a83ff8cf889d4981 · continuing
+  - paragraph: Індикатори лише з обмеженого останнього вікна; повна історія доступна через API.
+  - heading "Конвеєр обробки" [level=3]
+  - paragraph: "Стан обробника: Невідомий — checkpoint не доводить активність."
+  - paragraph: Лічильники всього запуску · стан зафіксованих транзакцій
+  - text: Записи прогнозів (HGB20 + RF21)
+  - generic: "2616"
+  - text: Записи оцінок (3 методи)
+  - generic: "3924"
+  - text: Дублі
+  - generic: "0"
+  - text: Відхилено
+  - generic: "0"
+  - text: Наступна позиція обробки
+  - generic: "1308"
+  - generic: "Остання транзакція (реальний час, UTC): 2026-11-15 21:15:33Z"
+  - heading "Реєстр моделей" [level=2]
+  - paragraph: HGB20 — основний прогноз · RF21 — окремий reference для residual detector
+  - article:
+    - generic: Autoencoder
+    - text: experimental
+    - code: energy-anomaly-v1-14c9c4ce4d835763
+    - generic: energy-anomaly-20-v1 · 20 ознак
+    - generic: "Поріг: quantiles-v1-7ad1a9024c86e188"
+  - article:
+    - generic: Isolation Forest
+    - text: experimental
+    - code: energy-anomaly-v1-14c9c4ce4d835763
+    - generic: energy-anomaly-20-v1 · 20 ознак
+    - generic: "Поріг: quantiles-v1-7ad1a9024c86e188"
+  - article:
+    - generic: Residual Detector
+    - text: experimental
+    - code: energy-anomaly-v1-14c9c4ce4d835763
+    - generic: benchmark-energy-v1 · 21 ознак
+    - generic: "Поріг: quantiles-v1-7ad1a9024c86e188"
+  - article:
+    - generic: RF21 · residual reference
+    - text: experimental
+    - code: energy-anomaly-v1-14c9c4ce4d835763
+    - generic: benchmark-energy-v1 · 21 ознак
+    - generic: "Поріг: quantiles-v1-7ad1a9024c86e188"
+  - article:
+    - generic: HGB20 · основний прогноз
+    - text: existing
+    - code: hgb-energy-v1-9bb48a66deb359e6
+    - generic: energy-features-v1 · 20 ознак
+  - text: ENERGY INTELLIGENCE
+  - generic: Дослідницький MVP · experimental оцінки не підтверджують фізичну несправність
+- generic: "150"

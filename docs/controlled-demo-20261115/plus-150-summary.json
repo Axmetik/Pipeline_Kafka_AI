@@ -1,0 +1,543 @@
+{
+  "changes": [
+    {
+      "modified_wh": 240.0,
+      "original_wh": 90.0,
+      "timestamp": "2016-05-01T13:20:00"
+    },
+    {
+      "modified_wh": 220.0,
+      "original_wh": 70.0,
+      "timestamp": "2016-05-01T13:30:00"
+    },
+    {
+      "modified_wh": 210.0,
+      "original_wh": 60.0,
+      "timestamp": "2016-05-01T13:40:00"
+    },
+    {
+      "modified_wh": 210.0,
+      "original_wh": 60.0,
+      "timestamp": "2016-05-01T13:50:00"
+    },
+    {
+      "modified_wh": 230.0,
+      "original_wh": 80.0,
+      "timestamp": "2016-05-01T14:00:00"
+    },
+    {
+      "modified_wh": 230.0,
+      "original_wh": 80.0,
+      "timestamp": "2016-05-01T14:10:00"
+    },
+    {
+      "modified_wh": 270.0,
+      "original_wh": 120.0,
+      "timestamp": "2016-05-01T14:20:00"
+    },
+    {
+      "modified_wh": 270.0,
+      "original_wh": 120.0,
+      "timestamp": "2016-05-01T14:30:00"
+    },
+    {
+      "modified_wh": 260.0,
+      "original_wh": 110.0,
+      "timestamp": "2016-05-01T14:40:00"
+    },
+    {
+      "modified_wh": 290.0,
+      "original_wh": 140.0,
+      "timestamp": "2016-05-01T14:50:00"
+    },
+    {
+      "modified_wh": 260.0,
+      "original_wh": 110.0,
+      "timestamp": "2016-05-01T15:00:00"
+    },
+    {
+      "modified_wh": 260.0,
+      "original_wh": 110.0,
+      "timestamp": "2016-05-01T15:10:00"
+    }
+  ],
+  "combined_episodes": [],
+  "counts": {
+    "combined_decisions": 300,
+    "combined_episodes": 0,
+    "episodes": 6,
+    "forecasts": 600,
+    "measurements": 300,
+    "notifications": 0,
+    "scores": 900
+  },
+  "delta_wh": 150,
+  "end": "2016-05-02T09:10:00",
+  "episodes": [
+    {
+      "building_id": "appliances-house-1",
+      "closed_reason": "below_threshold",
+      "created_at": "2026-11-15 18:04:42.291169+00:00",
+      "detector": "autoencoder",
+      "end_measurement_id": "388df5a215049b0b68044dbcb5d576c4647ade4495d0c6b71a1f2428008ce00a",
+      "end_timestamp": "2016-04-30T16:50:00",
+      "episode_id": "64c0e413ffd8743bd33ec2dcceb0f34918350a8dc77f667334d87ad9e38f3b23",
+      "feature_version": "energy-anomaly-20-v1",
+      "flagged_points": 1,
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "run_id": "controlled-demo-1a21d84b-plus-150",
+      "source_id": "uci-appliances",
+      "start_measurement_id": "388df5a215049b0b68044dbcb5d576c4647ade4495d0c6b71a1f2428008ce00a",
+      "start_timestamp": "2016-04-30T16:50:00",
+      "status": "closed",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "updated_at": "2026-11-15 18:04:42.328704+00:00"
+    },
+    {
+      "building_id": "appliances-house-1",
+      "closed_reason": "below_threshold",
+      "created_at": "2026-11-15 18:04:42.332727+00:00",
+      "detector": "autoencoder",
+      "end_measurement_id": "56c9ac66e0cbc96bbae3bdebbedd8fa32158f9178554a9f7808f9b62e3f7fbfd",
+      "end_timestamp": "2016-04-30T17:10:00",
+      "episode_id": "de13d0ab5401f403c79e841f5826fe722b3475aa348f681cb12c1f2e033d2760",
+      "feature_version": "energy-anomaly-20-v1",
+      "flagged_points": 1,
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "run_id": "controlled-demo-1a21d84b-plus-150",
+      "source_id": "uci-appliances",
+      "start_measurement_id": "56c9ac66e0cbc96bbae3bdebbedd8fa32158f9178554a9f7808f9b62e3f7fbfd",
+      "start_timestamp": "2016-04-30T17:10:00",
+      "status": "closed",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "updated_at": "2026-11-15 18:04:42.369654+00:00"
+    },
+    {
+      "building_id": "appliances-house-1",
+      "closed_reason": "below_threshold",
+      "created_at": "2026-11-15 18:04:41.398815+00:00",
+      "detector": "isolation_forest",
+      "end_measurement_id": "a2bca61082c28b78e460db54a612800a6a68b823a0d03702345709004f073edf",
+      "end_timestamp": "2016-04-30T10:30:00",
+      "episode_id": "1f585c40e432e58d778138597ae536edbc88583c6d2b98101dc20a95ce85c199",
+      "feature_version": "energy-anomaly-20-v1",
+      "flagged_points": 4,
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "run_id": "controlled-demo-1a21d84b-plus-150",
+      "source_id": "uci-appliances",
+      "start_measurement_id": "7874dd5e02420d6fc23749eb1172cfe91063abc806b24b70265133cd87062437",
+      "start_timestamp": "2016-04-30T10:00:00",
+      "status": "closed",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "updated_at": "2026-11-15 18:04:41.493497+00:00"
+    },
+    {
+      "building_id": "appliances-house-1",
+      "closed_reason": "below_threshold",
+      "created_at": "2026-11-15 18:04:42.332727+00:00",
+      "detector": "isolation_forest",
+      "end_measurement_id": "9e990e3e565de3ae12c4adc1233711b73d7c06de74b65b5e80f07e5233bbb616",
+      "end_timestamp": "2016-04-30T17:20:00",
+      "episode_id": "9b6362194b71e4f67e4c1b7eb874d591f25ae98d932d7f8b46538eb6586068dd",
+      "feature_version": "energy-anomaly-20-v1",
+      "flagged_points": 2,
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "run_id": "controlled-demo-1a21d84b-plus-150",
+      "source_id": "uci-appliances",
+      "start_measurement_id": "56c9ac66e0cbc96bbae3bdebbedd8fa32158f9178554a9f7808f9b62e3f7fbfd",
+      "start_timestamp": "2016-04-30T17:10:00",
+      "status": "closed",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "updated_at": "2026-11-15 18:04:42.389001+00:00"
+    },
+    {
+      "building_id": "appliances-house-1",
+      "closed_reason": "below_threshold",
+      "created_at": "2026-11-15 18:04:42.373635+00:00",
+      "detector": "autoencoder",
+      "end_measurement_id": "872fd04d5ae3612c1b399ab2aa216f9fcc07b6dc1584c5d85e95ecc00ad9ead6",
+      "end_timestamp": "2016-04-30T17:30:00",
+      "episode_id": "84cdb4ab5c71e9b255fa39e1ccdac68ece3f7fc2a858a19e082b6d9b6fda9ed8",
+      "feature_version": "energy-anomaly-20-v1",
+      "flagged_points": 1,
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "run_id": "controlled-demo-1a21d84b-plus-150",
+      "source_id": "uci-appliances",
+      "start_measurement_id": "872fd04d5ae3612c1b399ab2aa216f9fcc07b6dc1584c5d85e95ecc00ad9ead6",
+      "start_timestamp": "2016-04-30T17:30:00",
+      "status": "closed",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "updated_at": "2026-11-15 18:04:42.409773+00:00"
+    },
+    {
+      "building_id": "appliances-house-1",
+      "closed_reason": "below_threshold",
+      "created_at": "2026-11-15 18:04:45.991784+00:00",
+      "detector": "residual",
+      "end_measurement_id": "deec2840d572a5c1e28066acf1cc96ad1b071979ed576caf3c91739467361714",
+      "end_timestamp": "2016-05-01T16:50:00",
+      "episode_id": "614e089ccdacd0eb4857fd617e9f9f5c68640ba8b983669e3630017498a2bb84",
+      "feature_version": "benchmark-energy-v1",
+      "flagged_points": 1,
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "run_id": "controlled-demo-1a21d84b-plus-150",
+      "source_id": "uci-appliances",
+      "start_measurement_id": "deec2840d572a5c1e28066acf1cc96ad1b071979ed576caf3c91739467361714",
+      "start_timestamp": "2016-05-01T16:50:00",
+      "status": "closed",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188",
+      "updated_at": "2026-11-15 18:04:46.054832+00:00"
+    }
+  ],
+  "group_id": "controlled-demo-1a21d84b-plus-150",
+  "integrity": {
+    "db_checkpoint": 300,
+    "kafka_committed": 300,
+    "kafka_end_offset": 300,
+    "ledger_hashes_match": true,
+    "ordered_600_seconds": true,
+    "original_other_fields_unchanged": true,
+    "unique_event_ids": 300,
+    "valid_schema": true,
+    "wire_records_match": true
+  },
+  "intervention_end": "2016-05-01T15:10:00",
+  "intervention_start": "2016-05-01T13:20:00",
+  "models": [
+    {
+      "artifact_sha256": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": null
+      },
+      "feature_version": "energy-features-v1",
+      "maturity": "existing",
+      "model_id": "087cbc03c4b9bd3fa0f94db903045c7c2a790ea95f03e35862aa21cb6b0727a3:primary_forecast",
+      "model_version": "hgb-energy-v1-9bb48a66deb359e6",
+      "role": "primary_forecast",
+      "threshold_version": null
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend",
+          "seasonal_energy_wh"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "benchmark-energy-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual_reference",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "residual_reference",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "energy-anomaly-20-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "isolation_forest",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "energy-anomaly-20-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "autoencoder",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    {
+      "artifact_sha256": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566",
+      "details": {
+        "allowed_sources": [
+          {
+            "building_id": "appliances-house-1",
+            "energy_scope": "appliances",
+            "interval_seconds": 600,
+            "source_id": "uci-appliances",
+            "source_type": "dataset",
+            "timestamp_has_offset": false,
+            "timestamp_reference": "dataset_label",
+            "timezone": null
+          }
+        ],
+        "feature_names": [
+          "energy_wh",
+          "lag_1_wh",
+          "lag_2_wh",
+          "lag_3_wh",
+          "lag_4_wh",
+          "lag_5_wh",
+          "lag_6_wh",
+          "rolling_3_mean",
+          "rolling_3_std",
+          "rolling_6_mean",
+          "rolling_6_std",
+          "temperature_c",
+          "relative_humidity_pct",
+          "temperature_missing",
+          "humidity_missing",
+          "hour_sin",
+          "hour_cos",
+          "weekday_sin",
+          "weekday_cos",
+          "is_weekend",
+          "seasonal_energy_wh"
+        ],
+        "horizon_seconds": 600,
+        "thresholds": {
+          "0.98": {
+            "autoencoder": 0.6165361189842222,
+            "isolation_forest": 0.6537878009841837,
+            "residual": 219.0285953467243
+          },
+          "0.99": {
+            "autoencoder": 0.8288868594169614,
+            "isolation_forest": 0.6747213487966208,
+            "residual": 296.24602578530755
+          },
+          "0.995": {
+            "autoencoder": 1.0901817536354175,
+            "isolation_forest": 0.6928881719602268,
+            "residual": 399.1783091669025
+          }
+        }
+      },
+      "feature_version": "benchmark-energy-v1",
+      "maturity": "experimental",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "role": "residual",
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    }
+  ],
+  "records": 300,
+  "return_to_original": "2016-05-01T15:20:00",
+  "run_id": "controlled-demo-1a21d84b-plus-150",
+  "start": "2016-04-30T07:20:00",
+  "topic": "controlled-demo-1a21d84b-plus-150",
+  "worker": {
+    "accepted": 300,
+    "db_next_offset": 300,
+    "message_duplicate": 0,
+    "offset_duplicate": 0,
+    "processed_deliveries": 300,
+    "quarantined": 0,
+    "run_id": "controlled-demo-1a21d84b-plus-150",
+    "verified_journal_records": 0
+  },
+  "points_file": "plus-150-points.csv",
+  "additional_positive_timestamps_during_injection": {
+    "isolation_forest": [],
+    "autoencoder": [],
+    "residual": [],
+    "unanimous": []
+  }
+}

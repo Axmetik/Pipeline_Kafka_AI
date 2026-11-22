@@ -1,0 +1,301 @@
+{
+  "source_stage2_commit": "f9d518531c2be1fd8b75c77d64a4e10ce7b43303",
+  "application_code_sha": "a6c1287ea8532aacb2d04c346d96d5d2595b9ad1",
+  "source_files_sha256": {
+    "docs/integration/stage2/plan.json": "a017e6235e166ebd69c82f08c66fb129af2756cda5febe4a538a890cbf31645e",
+    "docs/integration/stage2/environment.json": "3aab43df80be2fc1547b7122bc7a27154399487f27b3bba4e4cdf0f5b3981d4b",
+    "docs/integration/stage2/control-summary.json": "bca31a5770ad0288a227f73f25950bdc48771b2133121a21c7a0d3be2758d4f2",
+    "docs/integration/stage2/plus-450-summary.json": "ca1514cf79edc14e3099bdbb8046d555342b59d97afecd001d7eef844ea4573c",
+    "docs/integration/stage2/control-points.csv": "d6ac7ac9988dfb9c88fda7fc507b3aa9176f35d06848a04ae1e1f1901be1fcb8",
+    "docs/integration/stage2/plus-450-points.csv": "04127254200bf78f5acd61105c3f84944e90c04b844d0f2a666c69c1b530147d"
+  },
+  "api_cache_sha256": "808b74394b591a7a28ed77270f6744531817c9566a107fde5900a2927bd399d7",
+  "api_exports": {
+    "control": {
+      "anomaly-scores": {
+        "canonical_sha256": "74414745aa42d2a5ee34906999ced0981d1e256754d9509013e6345e6cb5a2cd",
+        "pages": 4,
+        "rows": 3924
+      },
+      "combined-decisions": {
+        "canonical_sha256": "ca7da31f2972964d57f4db7d4f7e9879f919603371ec5baa76eeec88872aac52",
+        "pages": 2,
+        "rows": 1308
+      },
+      "combined-events": {
+        "canonical_sha256": "9e0e167eb4b018f6c061930042ff23432ecfe231428ca904cd3c1bbbc5a8c271",
+        "pages": 1,
+        "rows": 1
+      },
+      "events": {
+        "canonical_sha256": "67f76d08efa9c42bc46d183e2232c4e380311a26c09f0d44f7d347d03f5ee792",
+        "pages": 1,
+        "rows": 14
+      },
+      "hybrid-decisions": {
+        "canonical_sha256": "a15ec7f4afc579ba622456783ee94de7ee4109ac39ba9b6d8871a75a08cdf01e",
+        "pages": 2,
+        "rows": 1308
+      },
+      "hybrid-events": {
+        "canonical_sha256": "48e0e8fbcb68ffd2d5e09fcef8b0dd5260235221d337b57833f954a4057c7b35",
+        "pages": 1,
+        "rows": 15
+      },
+      "measurements": {
+        "canonical_sha256": "ecbc8d0f605d29664f2da8e7a7a546b4b2098cd20b68bc4bbb4a846919b12e00",
+        "pages": 2,
+        "rows": 1308
+      },
+      "rule-assessments": {
+        "canonical_sha256": "4a37e117eecbd2f3a79eb3da07941e99cc04ebed68d72a938662ae9e9c017c1f",
+        "pages": 4,
+        "rows": 3924
+      }
+    },
+    "plus-450": {
+      "anomaly-scores": {
+        "canonical_sha256": "ea64251823f3c0f40a22b963e31a134dda85ca0e7717f46c69f706bba0773aa2",
+        "pages": 4,
+        "rows": 3924
+      },
+      "combined-decisions": {
+        "canonical_sha256": "8cdce38eea93ad03fdc3aa99d1c9461b9b0c6f3d91f43b32e4d69fdf9c65c6b5",
+        "pages": 2,
+        "rows": 1308
+      },
+      "combined-events": {
+        "canonical_sha256": "fdcb645e28b3863daa0e76e77256644ae1738af263d9580ba6ed815522b59067",
+        "pages": 1,
+        "rows": 1
+      },
+      "events": {
+        "canonical_sha256": "a137abd97ff7f388d6b8db19ce9c86d07ecf308e14e10480f802a6ff9f2cfdd8",
+        "pages": 1,
+        "rows": 20
+      },
+      "hybrid-decisions": {
+        "canonical_sha256": "2f00da19e928ffbac1d5716837a1bc6aae25a147540a4b465d7ee611a231a01d",
+        "pages": 2,
+        "rows": 1308
+      },
+      "hybrid-events": {
+        "canonical_sha256": "a21f16f7ef4b959ad052143764a724e3c4a0ff71e722ecbba0c234e368783ce6",
+        "pages": 1,
+        "rows": 17
+      },
+      "measurements": {
+        "canonical_sha256": "8358482361efeb46bd004985c7418903c7dd3b09b3ff5e47584c905b074c427d",
+        "pages": 2,
+        "rows": 1308
+      },
+      "rule-assessments": {
+        "canonical_sha256": "0b37567388a0949803705474be38fca2e8995184e413af052e8bccb27f0f6eb4",
+        "pages": 4,
+        "rows": 3924
+      }
+    }
+  },
+  "paired_by": [
+    "measurement_timestamp",
+    "building_id",
+    "source_id",
+    "method",
+    "compatible_configuration"
+  ],
+  "paired_by_internal_ids": false,
+  "rows_per_run": 1308,
+  "stage2_csv_rows_crosschecked_per_run": 300,
+  "stage2_flag_cells_crosschecked_per_run": 2400,
+  "all_2616_hybrid_flags_availability_provenance_match_OR": true,
+  "observed_OR_truth_cases": {
+    "None,None->None": 288,
+    "False,None->None": 582,
+    "True,None->True": 2,
+    "False,False->False": 1673,
+    "True,False->True": 16,
+    "False,True->True": 55
+  },
+  "identical_model_rule_threshold_signatures": true,
+  "signatures": {
+    "residual": {
+      "feature_version": "benchmark-energy-v1",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "threshold": 296.24602578530755,
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    "autoencoder": {
+      "feature_version": "energy-anomaly-20-v1",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "threshold": 0.8288868594169614,
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    "isolation_forest": {
+      "feature_version": "energy-anomaly-20-v1",
+      "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+      "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+      "threshold": 0.6747213487966208,
+      "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+    },
+    "unanimous": {
+      "input_versions": {
+        "autoencoder": {
+          "feature_version": "energy-anomaly-20-v1",
+          "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:autoencoder",
+          "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+          "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+        },
+        "isolation_forest": {
+          "feature_version": "energy-anomaly-20-v1",
+          "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:isolation_forest",
+          "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+          "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+        },
+        "residual": {
+          "feature_version": "benchmark-energy-v1",
+          "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+          "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+          "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+        }
+      },
+      "rule_version": "combined-q99-v1-unanimous"
+    },
+    "sustained_high": {
+      "configuration": {
+        "algorithm": "residual-high-layer-v1",
+        "hybrid": "residual OR sustained_high",
+        "inputs": {
+          "residual": {
+            "feature_version": "benchmark-energy-v1",
+            "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+            "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+            "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+          }
+        },
+        "low_enabled": false,
+        "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+        "rules": {
+          "context_days": 7,
+          "high_intervals": 6,
+          "mad_multiplier": 3.0,
+          "minimum_context_days": 3,
+          "minimum_context_points": 18,
+          "minimum_excess_wh": 50.0,
+          "minimum_relative_excess": 0.5,
+          "plateau_intervals": 6,
+          "plateau_tolerance_wh": 0.0
+        }
+      },
+      "layer_version": "residual-high-v1-0e2d29e530f2d68e910d5ea5",
+      "rule_version": "energy-rules-v2-a83ff8cf889d4981"
+    },
+    "hybrid": {
+      "configuration": {
+        "algorithm": "residual-high-layer-v1",
+        "hybrid": "residual OR sustained_high",
+        "inputs": {
+          "residual": {
+            "feature_version": "benchmark-energy-v1",
+            "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+            "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+            "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+          }
+        },
+        "low_enabled": false,
+        "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+        "rules": {
+          "context_days": 7,
+          "high_intervals": 6,
+          "mad_multiplier": 3.0,
+          "minimum_context_days": 3,
+          "minimum_context_points": 18,
+          "minimum_excess_wh": 50.0,
+          "minimum_relative_excess": 0.5,
+          "plateau_intervals": 6,
+          "plateau_tolerance_wh": 0.0
+        }
+      },
+      "input_versions": {
+        "residual": {
+          "feature_version": "benchmark-energy-v1",
+          "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+          "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+          "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+        },
+        "sustained_high": "energy-rules-v2-a83ff8cf889d4981"
+      },
+      "layer_version": "residual-high-v1-0e2d29e530f2d68e910d5ea5"
+    },
+    "flatline": {
+      "configuration": {
+        "algorithm": "residual-high-layer-v1",
+        "hybrid": "residual OR sustained_high",
+        "inputs": {
+          "residual": {
+            "feature_version": "benchmark-energy-v1",
+            "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+            "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+            "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+          }
+        },
+        "low_enabled": false,
+        "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+        "rules": {
+          "context_days": 7,
+          "high_intervals": 6,
+          "mad_multiplier": 3.0,
+          "minimum_context_days": 3,
+          "minimum_context_points": 18,
+          "minimum_excess_wh": 50.0,
+          "minimum_relative_excess": 0.5,
+          "plateau_intervals": 6,
+          "plateau_tolerance_wh": 0.0
+        }
+      },
+      "layer_version": "residual-high-v1-0e2d29e530f2d68e910d5ea5",
+      "rule_version": "energy-rules-v2-a83ff8cf889d4981"
+    },
+    "interval_gap": {
+      "configuration": {
+        "algorithm": "residual-high-layer-v1",
+        "hybrid": "residual OR sustained_high",
+        "inputs": {
+          "residual": {
+            "feature_version": "benchmark-energy-v1",
+            "model_id": "06ecf75dcd4c1ad780194941803e5e5991274ad7d38d88936c728b8c40318566:residual",
+            "model_version": "energy-anomaly-v1-14c9c4ce4d835763",
+            "threshold_version": "quantiles-v1-7ad1a9024c86e188"
+          }
+        },
+        "low_enabled": false,
+        "rule_version": "energy-rules-v2-a83ff8cf889d4981",
+        "rules": {
+          "context_days": 7,
+          "high_intervals": 6,
+          "mad_multiplier": 3.0,
+          "minimum_context_days": 3,
+          "minimum_context_points": 18,
+          "minimum_excess_wh": 50.0,
+          "minimum_relative_excess": 0.5,
+          "plateau_intervals": 6,
+          "plateau_tolerance_wh": 0.0
+        }
+      },
+      "layer_version": "residual-high-v1-0e2d29e530f2d68e910d5ea5",
+      "rule_version": "energy-rules-v2-a83ff8cf889d4981"
+    }
+  },
+  "all_persisted_ML_Unanimous_hybrid_episodes_match_recomputed_runs": true,
+  "closure_evidence": "Persisted updated_at and first subsequent non-true measurement; updated_at verified between that measurement received_at and the next one. Not a measured DB commit acknowledgement.",
+  "sustained_high_episode_storage": "Only assessments persisted; high/flatline/gap episodes derived from saved flags, no invented DB episode IDs",
+  "phase_denominators": {
+    "before": 1188,
+    "intervention": 12,
+    "after": 108
+  },
+  "new_replay_inference_training_tests_screenshots": false,
+  "email_enabled": false,
+  "analysis_script_AST_syntax": true
+}

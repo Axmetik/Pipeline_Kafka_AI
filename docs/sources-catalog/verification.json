@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-15",
+  "branch": "feature/sources-catalog",
+  "base_commit": "e285efd926c5f9682243a4f571b35ee141c5af15",
+  "implementation_commit": "5012a3712dab2f7035254d776870db3170307d64",
+  "api_tests": {
+    "passed": 18,
+    "new_catalog_tests": 3,
+    "skipped": 0,
+    "database": "isolated real PostgreSQL; no published DB ports; temporary tmpfs"
+  },
+  "frontend_tests": {
+    "passed": 35,
+    "files": 8,
+    "new_source_tests": 7
+  },
+  "typescript": "passed via npm run build",
+  "production_build": "passed; existing-size warning above 500 kB remains",
+  "python_syntax_files": 4,
+  "browser_evidence": "browser-verification.json",
+  "fixture_provenance": "fixture-provenance.json",
+  "screenshots": [
+    "catalog-desktop.png",
+    "detail-desktop.png",
+    "catalog-mobile.png",
+    "detail-mobile.png"
+  ],
+  "no_model_fitting_or_inference": true,
+  "no_external_email": true,
+  "no_deployment": true,
+  "no_demo_rebuild_or_restart": true,
+  "no_stage6_changes": true
+}

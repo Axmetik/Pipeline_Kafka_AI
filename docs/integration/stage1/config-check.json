@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "compose_default_rules_enabled": false,
+  "compose_optin_forwarded": true,
+  "kafka_container_address": "kafka:29092",
+  "postgres_container_host": "postgres:5432",
+  "optional_migration_config_packaged_statically": true,
+  "new_images_built": false,
+  "services_started_for_this_check": false,
+  "credentials_exported": false
+}

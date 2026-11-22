@@ -1,0 +1,105 @@
+{
+  "scope": "Stage2 bounded replay and read-only API verification; no new experiments/screenshots",
+  "scenarios": {
+    "control": {
+      "measurement_values_compared": 300,
+      "ML_rows_compared": 900,
+      "rule_rows_compared": 900,
+      "hybrid_rows_compared": 300,
+      "HGB20_target_aligned_values_compared": 300,
+      "RF21_causal_target_aligned_values_compared": 300,
+      "catalog_channels": 11,
+      "evidence_and_triggered_inputs_match": true,
+      "dataset_naive_preserved": true
+    },
+    "plus-450": {
+      "measurement_values_compared": 300,
+      "ML_rows_compared": 900,
+      "rule_rows_compared": 900,
+      "hybrid_rows_compared": 300,
+      "HGB20_target_aligned_values_compared": 300,
+      "RF21_causal_target_aligned_values_compared": 300,
+      "catalog_channels": 11,
+      "evidence_and_triggered_inputs_match": true,
+      "dataset_naive_preserved": true
+    }
+  },
+  "pair_energy_difference_exactly_12x450_wh": true,
+  "preliminary_during_intervention_reactions": {
+    "residual": {
+      "control": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      },
+      "plus-450": {
+        "positive_points": 1,
+        "first_positive_timestamp": "2016-05-01T13:20:00",
+        "first_positive_delay_minutes": 0.0
+      }
+    },
+    "isolation_forest": {
+      "control": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      },
+      "plus-450": {
+        "positive_points": 7,
+        "first_positive_timestamp": "2016-05-01T14:10:00",
+        "first_positive_delay_minutes": 50.0
+      }
+    },
+    "autoencoder": {
+      "control": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      },
+      "plus-450": {
+        "positive_points": 9,
+        "first_positive_timestamp": "2016-05-01T13:40:00",
+        "first_positive_delay_minutes": 20.0
+      }
+    },
+    "sustained_high": {
+      "control": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      },
+      "plus-450": {
+        "positive_points": 7,
+        "first_positive_timestamp": "2016-05-01T14:10:00",
+        "first_positive_delay_minutes": 50.0
+      }
+    },
+    "hybrid": {
+      "control": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      },
+      "plus-450": {
+        "positive_points": 8,
+        "first_positive_timestamp": "2016-05-01T13:20:00",
+        "first_positive_delay_minutes": 0.0
+      }
+    },
+    "unanimous": {
+      "control": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      },
+      "plus-450": {
+        "positive_points": 0,
+        "first_positive_timestamp": null,
+        "first_positive_delay_minutes": null
+      }
+    }
+  },
+  "scripts_syntax": "AST parsed, four scripts",
+  "production_code_changed": false,
+  "full_suite_CI_training_performance_browser_tests_run": false
+}

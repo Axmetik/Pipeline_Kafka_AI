@@ -1,0 +1,3 @@
+scenario_id,known_missing_intervals,detected_missing_intervals,expected_detection_timestamp,actual_detection_timestamp,gap_signals,correct,delay_from_first_missing_minutes,semantics
+gap-n1,1,1,2016-05-10T08:10:00,2016-05-10T08:10:00,1,True,10,returned_gap_not_silence_watchdog
+gap-n3,3,3,2016-05-10T14:30:00,2016-05-10T14:30:00,1,True,30,returned_gap_not_silence_watchdog

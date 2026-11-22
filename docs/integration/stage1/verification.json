@@ -1,0 +1,31 @@
+{
+  "scope": "stage 1 of 6; audit/integration only",
+  "branch": "integration/energy-intelligence-complete",
+  "python_targeted": {
+    "passed": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "email_targeted": {
+    "passed": 8,
+    "smtp": "mocked",
+    "delivery_verified": false
+  },
+  "frontend_targeted": {
+    "passed": 26,
+    "files": 7,
+    "routing_first_attempt": "jsdom scrollIntoView missing; fixture corrected, final 3 passed"
+  },
+  "typescript": "passed",
+  "production_build": "passed with existing >500 kB warning",
+  "compose": "static default-off and opt-in forwarding passed; no services started",
+  "models": "trusted artifacts loaded and compatibility verified; no inference",
+  "integration_replay_executed": false,
+  "new_screenshots_created": false,
+  "main_environment_changed": false,
+  "full_suite_or_ci_started": false,
+  "push_performed": false,
+  "new_migrations_created": false,
+  "frozen_rules_and_model_code_changed": false
+}

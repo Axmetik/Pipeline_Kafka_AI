@@ -1,0 +1,21 @@
+{
+  "schema_version": "sustained-low-assessment-v1",
+  "algorithm_version": "sustained-low-v1",
+  "rule_version": "sustained-low-v1-20c2dc71216149ab",
+  "configuration": {
+    "low_intervals": 6,
+    "context_days": 7,
+    "minimum_context_days": 3,
+    "minimum_context_points": 18,
+    "mad_multiplier": 3.0,
+    "minimum_drop_wh": 10.0,
+    "minimum_relative_drop": 0.5,
+    "minimum_reference_wh": 20.0
+  },
+  "interval_seconds": 600,
+  "energy_unit": "Wh",
+  "maturity": "experimental",
+  "persistence": "in_memory_only",
+  "calibration": "unvalidated_engineering_defaults",
+  "calendar_model": false
+}
