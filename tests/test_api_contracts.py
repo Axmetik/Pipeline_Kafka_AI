@@ -27,7 +27,15 @@ class APIContracts(unittest.TestCase):
 
     def test_openapi_exposes_all_read_only_contracts(self):
         spec=create_app(object()).openapi()
-        self.assertEqual(len(spec['paths']),14)
+        self.assertEqual(set(spec['paths']), {
+            '/health/live', '/health/ready', '/api/runs', '/api/sources',
+            '/api/channels', '/api/channel-series', '/api/source-summaries',
+            '/api/measurements', '/api/measurements/aggregate', '/api/forecasts',
+            '/api/anomaly-scores', '/api/events', '/api/combined-decisions',
+            '/api/combined-events', '/api/rule-assessments',
+            '/api/hybrid-decisions', '/api/hybrid-events', '/api/notifications',
+            '/api/models', '/api/pipeline-status',
+        })
         for value in spec['paths'].values(): self.assertEqual(set(value),{'get'})
         schemas=spec['components']['schemas']
         self.assertEqual(schemas['Score']['properties']['maturity']['const'],'experimental')
